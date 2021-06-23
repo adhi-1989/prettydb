@@ -1,0 +1,7 @@
+button {
+  @include button-gradient;
+}
+.button {
+  @include button-gradient;
+  @apply cursor-pointer;
+}

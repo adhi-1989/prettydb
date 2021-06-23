@@ -1,0 +1,10 @@
+svg {
+  @apply focus:outline-none fill-current;
+  pointer-events: none;
+}
+input {
+  @apply focus:outline-none;
+}
+button {
+  @apply focus:outline-none;
+}
