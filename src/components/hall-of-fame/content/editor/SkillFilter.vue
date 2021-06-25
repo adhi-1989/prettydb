@@ -4,7 +4,13 @@
       <div class="icon">
         <search-icon />
       </div>
-      <input class="input" type="text" v-model="filterQuery" @input="updateFilter()" @focus="selectInputValueOnFocus" />
+      <input
+        class="input"
+        type="text"
+        v-model="filterQuery"
+        @input="updateFilter()"
+        @focus="selectInputValueOnFocus"
+      />
     </div>
     <div v-if="false">
       <div>すべてオン</div>
@@ -53,9 +59,9 @@ const FilterTypes = {
   SKILL_TYPE_SUPPORT_STAMINA: 12,
   SKILL_TYPE_SUPPORT_POWER: 13,
   SKILL_TYPE_SUPPORT_TENACITY: 14,
-  SKILL_TYPE_SUPPORT_BROADLY: 15,
-  SKILL_TYPE_SUPPORT_GATE: 16,
-  SKILL_TYPE_WEAK_GATE: 17,
+  SKILL_TYPE_SUPPORT_GENERAL: 15,
+  SKILL_TYPE_SUPPORT_STRATEGY: 16,
+  SKILL_TYPE_WEAK_STARTING: 17,
   UNIQUE_SKILL: 128,
   ADVANCED_SKILL: 129,
   STANDARD_SKILL: 130,
@@ -78,9 +84,9 @@ const filterTypeBySkillType = Object.freeze(
     [FilterTypes.SKILL_TYPE_SUPPORT_STAMINA, SkillTypes.SUPPORT_STAMINA],
     [FilterTypes.SKILL_TYPE_SUPPORT_POWER, SkillTypes.SUPPORT_POWER],
     [FilterTypes.SKILL_TYPE_SUPPORT_TENACITY, SkillTypes.SUPPORT_TENACITY],
-    [FilterTypes.SKILL_TYPE_SUPPORT_BROADLY, SkillTypes.SUPPORT_BROADLY],
-    [FilterTypes.SKILL_TYPE_SUPPORT_GATE, SkillTypes.SUPPORT_GATE],
-    [FilterTypes.SKILL_TYPE_WEAK_GATE, SkillTypes.WEAK_GATE],
+    [FilterTypes.SKILL_TYPE_SUPPORT_GENERAL, SkillTypes.SUPPORT_GENERAL],
+    [FilterTypes.SKILL_TYPE_SUPPORT_STRATEGY, SkillTypes.SUPPORT_STRATEGY],
+    [FilterTypes.SKILL_TYPE_WEAK_STARTING, SkillTypes.WEAK_STARTING],
   ])
 );
 
@@ -89,7 +95,7 @@ type FilterType = typeof FilterTypes[keyof typeof FilterTypes];
 function isSkillTypeFilter(type: FilterType): boolean {
   return (
     type >= FilterTypes.SKILL_TYPE_BUFF_SPEED &&
-    type <= FilterTypes.SKILL_TYPE_WEAK_GATE
+    type <= FilterTypes.SKILL_TYPE_WEAK_STARTING
   );
 }
 

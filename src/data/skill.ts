@@ -1,4 +1,4 @@
-import { createNumMap, NumMap } from "/@/util/common";
+import { createNumMap } from "/@/util/common";
 
 export const SkillTypes = {
   BUFF_SPEED: 0,
@@ -16,10 +16,10 @@ export const SkillTypes = {
   SUPPORT_STAMINA: 12,
   SUPPORT_POWER: 13,
   SUPPORT_TENACITY: 14,
-  SUPPORT_BROADLY: 15,
-  SUPPORT_GATE: 16,
+  SUPPORT_GENERAL: 15,
+  SUPPORT_STRATEGY: 16,
   WEAK_STAMINA: 17,
-  WEAK_GATE: 18,
+  WEAK_STARTING: 18,
 } as const;
 
 export type SkillType = typeof SkillTypes[keyof typeof SkillTypes];
@@ -40,10 +40,10 @@ const {
   SUPPORT_STAMINA,
   SUPPORT_POWER,
   SUPPORT_TENACITY,
-  SUPPORT_BROADLY,
-  SUPPORT_GATE,
+  SUPPORT_GENERAL,
+  SUPPORT_STRATEGY,
   WEAK_STAMINA,
-  WEAK_GATE,
+  WEAK_STARTING,
 } = SkillTypes;
 
 const FROM_1_TO_5 = (id: number): boolean => id >= 1 && id <= 5;
@@ -758,7 +758,7 @@ export const Skills = [
   /* ゲート難 */ {
     SKILL_ID: 1038,
     SORT_ID: 1038,
-    TYPE: WEAK_GATE,
+    TYPE: WEAK_STARTING,
     ADVANCED: false,
     UNIQUE: false,
   },
@@ -820,7 +820,7 @@ export const Skills = [
   /* スーパーラッキーセブン */ {
     SKILL_ID: 1046,
     SORT_ID: 1046,
-    TYPE: SUPPORT_BROADLY,
+    TYPE: SUPPORT_GENERAL,
     CONFLICT_ID: 54,
     ADVANCED: true,
     UNIQUE: false,
@@ -1034,7 +1034,7 @@ export const Skills = [
   /* ラッキーセブン */ {
     SKILL_ID: 1074,
     SORT_ID: 1074,
-    TYPE: SUPPORT_BROADLY,
+    TYPE: SUPPORT_GENERAL,
     CONFLICT_ID: 54,
     ADVANCED: false,
     UNIQUE: false,
@@ -1464,7 +1464,7 @@ export const Skills = [
   /* 差しのコツ○ */ {
     SKILL_ID: 1129,
     SORT_ID: 1129,
-    TYPE: SUPPORT_GATE,
+    TYPE: SUPPORT_STRATEGY,
     CONFLICT_ID: 15,
     ADVANCED: false,
     UNIQUE: false,
@@ -1472,7 +1472,7 @@ export const Skills = [
   /* 差しのコツ◎ */ {
     SKILL_ID: 1130,
     SORT_ID: 1130,
-    TYPE: SUPPORT_GATE,
+    TYPE: SUPPORT_STRATEGY,
     CONFLICT_ID: 15,
     ADVANCED: false,
     UNIQUE: false,
@@ -1798,7 +1798,7 @@ export const Skills = [
   /* 先行のコツ○ */ {
     SKILL_ID: 1172,
     SORT_ID: 1172,
-    TYPE: SUPPORT_GATE,
+    TYPE: SUPPORT_STRATEGY,
     CONFLICT_ID: 73,
     ADVANCED: false,
     UNIQUE: false,
@@ -1806,7 +1806,7 @@ export const Skills = [
   /* 先行のコツ◎ */ {
     SKILL_ID: 1173,
     SORT_ID: 1173,
-    TYPE: SUPPORT_GATE,
+    TYPE: SUPPORT_STRATEGY,
     CONFLICT_ID: 73,
     ADVANCED: false,
     UNIQUE: false,
@@ -2163,7 +2163,7 @@ export const Skills = [
   /* 追込のコツ○ */ {
     SKILL_ID: 1219,
     SORT_ID: 1219,
-    TYPE: SUPPORT_GATE,
+    TYPE: SUPPORT_STRATEGY,
     CONFLICT_ID: 74,
     ADVANCED: false,
     UNIQUE: false,
@@ -2171,7 +2171,7 @@ export const Skills = [
   /* 追込のコツ◎ */ {
     SKILL_ID: 1220,
     SORT_ID: 1220,
-    TYPE: SUPPORT_GATE,
+    TYPE: SUPPORT_STRATEGY,
     CONFLICT_ID: 74,
     ADVANCED: false,
     UNIQUE: false,
@@ -2318,7 +2318,7 @@ export const Skills = [
   /* 逃げのコツ○ */ {
     SKILL_ID: 1239,
     SORT_ID: 1239,
-    TYPE: SUPPORT_GATE,
+    TYPE: SUPPORT_STRATEGY,
     CONFLICT_ID: 75,
     ADVANCED: false,
     UNIQUE: false,
@@ -2326,7 +2326,7 @@ export const Skills = [
   /* 逃げのコツ◎ */ {
     SKILL_ID: 1240,
     SORT_ID: 1240,
-    TYPE: SUPPORT_GATE,
+    TYPE: SUPPORT_STRATEGY,
     CONFLICT_ID: 75,
     ADVANCED: false,
     UNIQUE: false,
@@ -2427,7 +2427,7 @@ export const Skills = [
   /* 内枠得意○ */ {
     SKILL_ID: 1253,
     SORT_ID: 1253,
-    TYPE: SUPPORT_GATE,
+    TYPE: SUPPORT_STRATEGY,
     CONFLICT_ID: 98,
     ADVANCED: false,
     UNIQUE: false,
@@ -2435,7 +2435,7 @@ export const Skills = [
   /* 内枠得意◎ */ {
     SKILL_ID: 1254,
     SORT_ID: 1254,
-    TYPE: SUPPORT_GATE,
+    TYPE: SUPPORT_STRATEGY,
     CONFLICT_ID: 98,
     ADVANCED: false,
     UNIQUE: false,
