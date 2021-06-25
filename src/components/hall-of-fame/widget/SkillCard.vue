@@ -7,6 +7,9 @@
     :data-advanced="isAdvanced"
   >
     <div class="content">
+      <div class="icon">
+        <img :src="skillTypeIcon" alt="" />
+      </div>
       <div class="label" v-t="`skill.${skill.skillID}.name`" />
       <div class="level" v-if="isOwnUnique">
         <!-- TODO: Lv => 国際化したほうがいい？ -->
@@ -21,6 +24,7 @@ import { computed, defineComponent, PropType } from "vue";
 import { CharacterDTO, SkillDTO } from "/@/db/hall-of-fame";
 import { getSkill, getUniqueSkill } from "/@/data";
 import { useI18n } from "vue-i18n";
+import { getSkillTypeIcon } from "/@/util/resources/image/skill";
 
 export default defineComponent({
   name: "SkillCard",
@@ -44,13 +48,18 @@ export default defineComponent({
     };
   },
   setup(props) {
+    const skill = getSkill(props.skill.skillID);
+    const skillTypeIcon = computed(() => {
+      return getSkillTypeIcon(skill.TYPE);
+    });
     const isOwnUnique = computed(() => {
-      return getSkill(props.skill.skillID) === getUniqueSkill(props.character);
+      return skill === getUniqueSkill(props.character);
     });
     const isAdvanced = computed(() => {
-      return getSkill(props.skill.skillID).ADVANCED;
+      return skill.ADVANCED;
     });
     return {
+      skillTypeIcon,
       isOwnUnique,
       isAdvanced,
     };
@@ -70,7 +79,7 @@ export default defineComponent({
     #9895bc
   );
   > .content {
-    @apply flex justify-between rounded-md py-[0.25rem];
+    @apply flex items-center rounded-md py-[0.25rem];
     border: solid 2px transparent;
     background: linear-gradient(
       to right,
@@ -80,9 +89,12 @@ export default defineComponent({
       #b6b5cc
     );
     background-clip: padding-box;
+    > .icon {
+      @apply w-[1.25rem] h-[1.25rem] ml-[0.25rem];
+    }
     > .label {
       @include text-overflow-omit;
-      @apply font-bold ml-[0.5rem];
+      @apply font-bold ml-[0.25rem];
     }
     > .level {
       @apply font-bold mr-[0.125rem];
@@ -133,7 +145,13 @@ export default defineComponent({
   .skill-card {
     @apply text-[0.875rem];
     > .content {
-      @apply py-[0.5rem];
+      @apply py-[0.25rem];
+      > .icon {
+        @apply w-[1.75rem] h-[1.75rem];
+      }
+      > .label {
+        @apply ml-[0.5rem];
+      }
       > .level {
         @apply mr-[0.25rem];
       }
