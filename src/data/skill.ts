@@ -694,7 +694,7 @@ export const Skills = [
   /* おひとり様◎ */ {
     SKILL_ID: 1030,
     SORT_ID: 1030,
-    TYPE: BUFF_SPEED,
+    TYPE: SUPPORT_SPEED,
     CONFLICT_ID: 90,
     ADVANCED: false,
     UNIQUE: false,
