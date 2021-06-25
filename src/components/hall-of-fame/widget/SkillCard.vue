@@ -97,7 +97,7 @@ export default defineComponent({
       @apply font-bold ml-[0.25rem];
     }
     > .level {
-      @apply font-bold mr-[0.125rem];
+      @apply font-bold mr-[0.125rem] hidden;
     }
   }
   &[data-unique="true"] {
