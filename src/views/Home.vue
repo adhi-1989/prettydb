@@ -23,7 +23,7 @@
           text-[1rem]
           xs:text-[1.25rem]
         "
-        >v0.7.1</span
+        >v0.7.2</span
       >
     </header>
 

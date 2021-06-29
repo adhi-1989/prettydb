@@ -13,6 +13,28 @@
         shadow-sm
       "
     >
+      <h1 class="text-[1rem]">v0.7.2</h1>
+      <div class="text-[0.875rem]">リリース: 2021-06-29</div>
+      <ul class="mt-[0.75rem] xs:mt-[1rem]">
+        <li class="list-disc list-inside">
+          2021-06-29 のガチャ更新で追加されたデータに対応
+        </li>
+      </ul>
+    </section>
+    <section
+      class="
+        border-2
+        rounded-lg
+        w-[90%]
+        xs:w-[70%]
+        max-w-[40rem]
+        mx-auto
+        p-[0.75rem]
+        xs:p-[1.25rem]
+        shadow-sm
+        mt-[1.5rem]
+      "
+    >
       <h1 class="text-[1rem]">v0.7.1</h1>
       <div class="text-[0.875rem]">リリース: 2021-06-25</div>
       <ul class="mt-[0.75rem] xs:mt-[1rem]">
