@@ -1642,6 +1642,7 @@ export const Skills = [
     SKILL_ID: 1149,
     SORT_ID: 1149,
     TYPE: RECOVERY_STAMINA,
+    CONFLICT_ID: 100,
     ADVANCED: false,
     UNIQUE: false,
   },
@@ -2645,6 +2646,14 @@ export const Skills = [
     SORT_ID: 1278,
     TYPE: RECOVERY_STAMINA,
     ADVANCED: false,
+    UNIQUE: false,
+  },
+  /* リラックス */ {
+    SKILL_ID: 1279,
+    SORT_ID: 1279,
+    TYPE: RECOVERY_STAMINA,
+    CONFLICT_ID: 100,
+    ADVANCED: true,
     UNIQUE: false,
   },
 ] as const;
