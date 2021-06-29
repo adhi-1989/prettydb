@@ -645,6 +645,28 @@ export const Skills = [
     MATCH_TALENT_LEVEL: FROM_3_TO_5,
     INHERITABLE: true,
   },
+  /* コンドル猛撃波 */ {
+    SKILL_ID: 54,
+    SORT_ID: 54,
+    TYPE: BUFF_ACCELERATION,
+    ADVANCED: false,
+    UNIQUE: true,
+    CHARACTER_ID: 13,
+    MONIKER_ID: 1,
+    MATCH_TALENT_LEVEL: FROM_3_TO_5,
+    INHERITABLE: true,
+  },
+  /* ゲインヒール・スペリアー */ {
+    SKILL_ID: 55,
+    SORT_ID: 55,
+    TYPE: RECOVERY_STAMINA,
+    ADVANCED: false,
+    UNIQUE: true,
+    CHARACTER_ID: 10,
+    MONIKER_ID: 1,
+    MATCH_TALENT_LEVEL: FROM_3_TO_5,
+    INHERITABLE: true,
+  },
 
   /* アガッてきた！ */ {
     SKILL_ID: 1024,

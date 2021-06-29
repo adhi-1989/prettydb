@@ -232,6 +232,16 @@ const Monikers = [
     MONIKER_ID: 0,
     INITIAL_TALENT_LEVEL: 3,
   },
+  /* エルコンドルパサー:クルルカン・モンク */ {
+    CHARACTER_ID: 13,
+    MONIKER_ID: 1,
+    INITIAL_TALENT_LEVEL: 3,
+  },
+  /* グラスワンダー:セイントジェード・ヒーラー */ {
+    CHARACTER_ID: 10,
+    MONIKER_ID: 1,
+    INITIAL_TALENT_LEVEL: 3,
+  },
 ] as const;
 
 export type Character = {

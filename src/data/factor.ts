@@ -263,6 +263,18 @@ const Factors = [
     TYPE: UNIQUE_SKILL,
     UNIQUE_SKILL_ID: 53,
   },
+  /* コンドル猛撃波 */ {
+    FACTOR_ID: 182,
+    SORT_ID: 182,
+    TYPE: UNIQUE_SKILL,
+    UNIQUE_SKILL_ID: 54,
+  },
+  /* ゲインヒール・スペリアー */ {
+    FACTOR_ID: 183,
+    SORT_ID: 183,
+    TYPE: UNIQUE_SKILL,
+    UNIQUE_SKILL_ID: 55,
+  },
 
   /* NHKマイルC */ { FACTOR_ID: 1024, SORT_ID: 1024, TYPE: RACE },
   /* エリザベス女王杯 */ { FACTOR_ID: 1025, SORT_ID: 1025, TYPE: RACE },
