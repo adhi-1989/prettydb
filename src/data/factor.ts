@@ -351,7 +351,6 @@ const Factors = [
   /* 詰め寄り */ { FACTOR_ID: 2127, SORT_ID: 2127, TYPE: SKILL },
   /* 急ぎ足 */ { FACTOR_ID: 2128, SORT_ID: 2128, TYPE: SKILL },
   /* 京都レース場○ */ { FACTOR_ID: 2129, SORT_ID: 2129, TYPE: SKILL },
-  /* 空回り */ { FACTOR_ID: 2132, SORT_ID: 2132, TYPE: SKILL },
   /* 軽やかステップ */ { FACTOR_ID: 2134, SORT_ID: 2134, TYPE: SKILL },
   /* 後方待機 */ { FACTOR_ID: 2137, SORT_ID: 2137, TYPE: SKILL },
   /* 後方釘付 */ { FACTOR_ID: 2138, SORT_ID: 2138, TYPE: SKILL },
