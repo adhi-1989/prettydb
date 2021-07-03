@@ -10,12 +10,7 @@
             alt=""
             v-if="level <= factor.factorLevel"
           />
-          <img
-            class="factor-level"
-            :src="EmptyStarIcon"
-            alt=""
-            v-else
-          />
+          <img class="factor-level" :src="EmptyStarIcon" alt="" v-else />
         </template>
       </div>
     </div>
@@ -27,8 +22,8 @@ import { defineComponent, PropType } from "vue";
 import { CharacterDTO, FactorDTO } from "/@/db/hall-of-fame";
 import { FactorTypes, getFactor, FactorLevels } from "/@/data";
 import { useI18n } from "vue-i18n";
-import FillStarIcon from "/assets/image/common/star/fill.svg?url";
-import EmptyStarIcon from "/assets/image/common/star/empty.svg?url";
+import FillStarIcon from "/assets/image/level/star-fill.svg?url";
+import EmptyStarIcon from "/assets/image/level/star-empty.svg?url";
 
 export default defineComponent({
   name: "FactorCard",

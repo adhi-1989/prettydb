@@ -24,8 +24,8 @@
 import { defineComponent, PropType, reactive, readonly } from "vue";
 import { HallOfFameDTO } from "/@/db/hall-of-fame";
 import { getMoniker, TalentLevels, TalentLevel } from "/@/data";
-import FillStarIcon from "/assets/image/common/star/fill.svg?url";
-import EmptyStarIcon from "/assets/image/common/star/empty.svg?url";
+import FillStarIcon from "/assets/image/level/star-fill.svg?url";
+import EmptyStarIcon from "/assets/image/level/star-empty.svg?url";
 
 export default defineComponent({
   name: "TalentLevelSelector",

@@ -16,12 +16,7 @@
             alt=""
             v-if="level <= character.talentLevel"
           />
-          <img
-            class="talent-level"
-            :src="EmptyStarIcon"
-            alt=""
-            v-else
-          />
+          <img class="talent-level" :src="EmptyStarIcon" alt="" v-else />
         </template>
       </div>
     </div>
@@ -46,8 +41,8 @@ import { getCharacterNameKey, getMonikerKey } from "/@/util/i18n";
 import { useI18n } from "vue-i18n";
 import { TalentLevels } from "/@/data";
 import _ from "lodash";
-import FillStarIcon from "/assets/image/common/star/fill.svg?url";
-import EmptyStarIcon from "/assets/image/common/star/empty.svg?url";
+import FillStarIcon from "/assets/image/level/star-fill.svg?url";
+import EmptyStarIcon from "/assets/image/level/star-empty.svg?url";
 
 export default defineComponent({
   name: "ProfileView",
