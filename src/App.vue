@@ -6,7 +6,7 @@
       <!-- logo -->
       <div class="logo">
         <router-link class="router-link" to="/" @click="deactivateMenu()">
-          <logo />
+          <img class="image" :src="Logo" alt="" />
         </router-link>
       </div>
 
@@ -75,8 +75,8 @@
 
 <script lang="ts">
 import { defineComponent, ref } from "vue";
-import Logo from "/components/common/widget/Logo.vue";
 import { useI18n } from "vue-i18n";
+import Logo from "/assets/image/common/logo.svg?url";
 import MenuIcon from "/icon/menu-sharp.svg?component";
 import CloseIcon from "/icon/close-sharp.svg?component";
 import GithubIcon from "/icon/logo-github.svg?component";
@@ -85,7 +85,6 @@ import SettingsIcon from "/icon/settings-sharp.svg?component";
 export default defineComponent({
   name: "App",
   components: {
-    Logo,
     MenuIcon,
     CloseIcon,
     GithubIcon,
@@ -96,6 +95,7 @@ export default defineComponent({
       useScope: "global",
     });
     return {
+      Logo,
       t,
     };
   },
@@ -107,7 +107,7 @@ export default defineComponent({
       deactivateMenu,
     };
   },
-})
+});
 </script>
 
 <style lang="scss">
@@ -132,9 +132,9 @@ body {
     @apply fixed flex justify-between w-full h-[2.5rem] shadow z-40;
     user-select: none;
     > .logo {
-      @apply w-[50%] px-[0.5rem];
-      > .router-link > .app-logo {
-        @apply h-full;
+      @apply flex items-center w-[50%] px-[0.5rem];
+      > .router-link > .image {
+        @apply w-full;
       }
     }
     > .toggle-menu {

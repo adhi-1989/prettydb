@@ -11,7 +11,7 @@
         relative
       "
     >
-      <logo />
+      <img class="w-[90%] mx-auto" :src="Logo" alt="" />
       <span
         class="
           absolute
@@ -287,12 +287,14 @@
 
 <script lang="ts">
 import { defineComponent, ref } from "vue";
-import Logo from "/components/common/widget/Logo.vue";
+import Logo from "/assets/image/common/logo.svg?url";
 
 export default defineComponent({
   name: "Home",
-  components: {
-    Logo,
+  data() {
+    return {
+      Logo,
+    };
   },
   setup() {
     const ja = ref(false);
