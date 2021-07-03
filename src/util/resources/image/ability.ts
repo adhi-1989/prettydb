@@ -1,33 +1,26 @@
+import { GradeIcons } from "./grade";
 import { AbilityGrade } from "/@/data";
-import S from "/assets/image/ability/s.png";
-import A from "/assets/image/ability/a.png";
-import B from "/assets/image/ability/b.png";
-import C from "/assets/image/ability/c.png";
-import D from "/assets/image/ability/d.png";
-import E from "/assets/image/ability/e.png";
-import F from "/assets/image/ability/f.png";
-import G from "/assets/image/ability/g.png";
 
 export function getAbilityGradeIcon(grade: AbilityGrade): string {
   switch (grade) {
     case "s":
-      return S;
+      return GradeIcons.S;
     case "a":
-      return A;
+      return GradeIcons.A;
     case "b":
-      return B;
+      return GradeIcons.B;
     case "c":
-      return C;
+      return GradeIcons.C;
     case "d":
-      return D;
+      return GradeIcons.D;
     case "e":
-      return E;
+      return GradeIcons.E;
     case "f":
-      return F;
+      return GradeIcons.F;
     case "g":
-      return G;
+      return GradeIcons.G;
     default:
       console.warn("Illegal ability grade: " + grade);
-      return G;
+      return GradeIcons.G;
   }
 }
