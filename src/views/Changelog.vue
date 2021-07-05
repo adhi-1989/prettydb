@@ -1,66 +1,26 @@
 <template>
-  <article class="changelog-root text-[0.75rem] xs:text-[1rem] py-[2rem]">
-    <section
-      class="
-        border-2
-        rounded-lg
-        w-[90%]
-        xs:w-[70%]
-        max-w-[40rem]
-        mx-auto
-        p-[0.75rem]
-        xs:p-[1.25rem]
-        shadow-sm
-      "
-    >
-      <h1 class="text-[1rem]">v0.7.2</h1>
-      <div class="text-[0.875rem]">リリース: 2021-06-29</div>
-      <ul class="mt-[0.75rem] xs:mt-[1rem]">
-        <li class="list-disc list-inside">
+  <article class="changelog-root">
+    <section class="content">
+      <h1 class="version">v0.7.2</h1>
+      <div class="release-date">公開日: 2021-06-29</div>
+      <ul class="changelogs">
+        <li class="log-item">
           2021-06-29 のガチャ更新で追加されたデータに対応
         </li>
       </ul>
     </section>
-    <section
-      class="
-        border-2
-        rounded-lg
-        w-[90%]
-        xs:w-[70%]
-        max-w-[40rem]
-        mx-auto
-        p-[0.75rem]
-        xs:p-[1.25rem]
-        shadow-sm
-        mt-[1.5rem]
-      "
-    >
-      <h1 class="text-[1rem]">v0.7.1</h1>
-      <div class="text-[0.875rem]">リリース: 2021-06-25</div>
-      <ul class="mt-[0.75rem] xs:mt-[1rem]">
-        <li class="list-disc list-inside">
-          スキルにアイコンが表示されるようになった
-        </li>
+    <section class="content">
+      <h1 class="version">v0.7.1</h1>
+      <div class="release-date">公開日: 2021-06-25</div>
+      <ul class="changelogs">
+        <li class="log-item">スキルにアイコンが表示されるようになった</li>
       </ul>
     </section>
-    <section
-      class="
-        border-2
-        rounded-lg
-        w-[90%]
-        xs:w-[70%]
-        max-w-[40rem]
-        mx-auto
-        p-[0.75rem]
-        xs:p-[1.25rem]
-        shadow-sm
-        mt-[1.5rem]
-      "
-    >
-      <h1 class="text-[1rem]">v0.7.0</h1>
-      <div class="text-[0.875rem]">リリース: 2021-06-23</div>
-      <ul class="mt-[0.75rem] xs:mt-[1rem]">
-        <li class="list-disc list-inside">新規公開</li>
+    <section class="content">
+      <h1 class="version">v0.7.0</h1>
+      <div class="release-date">公開日: 2021-06-23</div>
+      <ul class="changelogs">
+        <li class="log-item">新規公開</li>
       </ul>
     </section>
   </article>
@@ -74,4 +34,28 @@ export default defineComponent({
 });
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss">
+.changelog-root {
+  @apply flex flex-col gap-y-[1rem] py-[2rem];
+  > .content {
+    @apply border-2 rounded-lg w-[90%] max-w-[40rem] mx-auto p-[0.75rem] shadow-sm;
+    @apply xs:w-[70%] xs:p-[1.25rem];
+    > .version {
+      @apply text-[1rem];
+      @apply xs:text-[1.125rem];
+    }
+    > .release-date {
+      @apply text-[0.75rem];
+      @apply xs:text-[0.875rem];
+    }
+    > .changelogs {
+      @apply mt-[0.75rem];
+      @apply xs:mt-[1rem];
+      > .log-item {
+        @apply list-disc list-inside text-[0.875rem];
+        @apply xs:text-[1rem];
+      }
+    }
+  }
+}
+</style>
