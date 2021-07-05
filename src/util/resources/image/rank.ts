@@ -1,22 +1,24 @@
-// import from  require("/assets/image/rank/ss.png";
+import S_PLUS from "/assets/image/rank/s-plus.svg?url";
+import S from "/assets/image/rank/s.svg?url";
+import A_PLUS from "/assets/image/rank/a-plus.svg?url";
+import A from "/assets/image/rank/a.svg?url";
+import B_PLUS from "/assets/image/rank/b-plus.svg?url";
+import B from "/assets/image/rank/b.svg?url";
+import C_PLUS from "/assets/image/rank/c-plus.svg?url";
+import C from "/assets/image/rank/c.svg?url";
+import D_PLUS from "/assets/image/rank/d-plus.svg?url";
+import D from "/assets/image/rank/d.svg?url";
+import E_PLUS from "/assets/image/rank/e-plus.svg?url";
+import E from "/assets/image/rank/e.svg?url";
+import F_PLUS from "/assets/image/rank/f-plus.svg?url";
+import F from "/assets/image/rank/f.svg?url";
+import G_PLUS from "/assets/image/rank/g-plus.svg?url";
 
-import G_PLUS from "/assets/image/rank/g_plus.png";
-import F from "/assets/image/rank/f.png";
-import F_PLUS from "/assets/image/rank/f_plus.png";
-import E from "/assets/image/rank/e.png";
-import E_PLUS from "/assets/image/rank/e_plus.png";
-import D from "/assets/image/rank/d.png";
-import D_PLUS from "/assets/image/rank/d_plus.png";
-import C from "/assets/image/rank/c.png";
-import C_PLUS from "/assets/image/rank/c_plus.png";
-import B from "/assets/image/rank/b.png";
-import B_PLUS from "/assets/image/rank/b_plus.png";
-import A from "/assets/image/rank/a.png";
-import A_PLUS from "/assets/image/rank/a_plus.png";
-import S from "/assets/image/rank/s.png";
-
+//TODO: スコアのグレードが決まる閾値が適当なのでちゃんとデータ集める
 export function getRankGradeIcon(score: number): string {
-  if (score >= 15000) {
+  if (score >= 20000) {
+    return S_PLUS;
+  } else if (score >= 15000) {
     return S;
   } else if (score >= 12000) {
     return A_PLUS;
