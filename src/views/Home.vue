@@ -1,287 +1,149 @@
 <template>
-  <article class="home-root text-[0.75rem] xs:text-[1rem]">
-    <header
-      class="
-        w-full
-        max-w-[32rem]
-        mx-auto
-        my-[1.5rem]
-        xs:my-[2rem]
-        px-[1rem]
-        relative
-      "
-    >
-      <img class="w-[90%] mx-auto" :src="Logo" alt="" />
-      <span
-        class="
-          absolute
-          right-[1rem]
-          xs:right-0
-          bottom-[-0.875rem]
-          xs:bottom-[-0.6125rem]
-          font-bold
-          text-[1rem]
-          xs:text-[1.25rem]
-        "
-        >v0.7.2</span
-      >
+  <article class="home-root">
+    <header class="header">
+      <img class="logo" :src="Logo" alt="" />
+      <span class="version">v0.7.2</span>
     </header>
 
-    <section
-      class="
-        border-2
-        rounded-lg
-        w-[90%]
-        xs:w-[70%]
-        max-w-[40rem]
-        mx-auto
-        p-[0.75rem]
-        xs:p-[1.25rem]
-        shadow-sm
-      "
-    >
-      <h1
-        class="
-          font-bold
-          text-[1rem]
-          xs:text-[1.5rem]
-          sm:text-[2rem]
-          text-center
-        "
-      >
-        「プリティーデービー」とは？
-      </h1>
-      <p class="mt-[0.75rem] xs:mt-[1rem]">
-        「株式会社Cygames」様より提供・運営されているアプリケーション 「ウマ娘
-        プリティーダービー」に関するデータを参照したり登録したりできるデータベースアプリです。
-      </p>
-      <div class="mt-[0.75rem] xs:mt-[1rem]">
-        <h2
-          class="
-            text-red-500
-            font-bold
-            text-[0.875rem]
-            xs:text-[1.25rem]
-            sm:text-[1.75rem]
-          "
-        >
-          注意！！
-        </h2>
-        <p class="text-red-400">
-          このアプリはブラウザにデータを保存します。
-          そのため、プライベートウィンドウでこのアプリを利用するとデータが正常に保存されない恐れがあります。
-          このアプリを利用する際はプライベートウィンドウをつかわないようにお願いします。
+    <main class="main">
+      <section class="content outline">
+        <span class="heading level-1">「プリティーデービー」とは？</span>
+        <p class="text-block">
+          「株式会社Cygames」様より提供・運営されているアプリケーション 「ウマ娘
+          プリティーダービー」に関するデータを参照したり登録したりできるデータベースアプリです。
         </p>
-      </div>
-      <div class="mt-[0.75rem] xs:mt-[1rem]">
-        <span>現在、公開されている機能は以下のとおりです</span>
-        <ul class="px-[0.5rem] py-[1rem]">
-          <li class="list-disc list-inside cursor-pointer">
-            <router-link to="/hall-of-fame">
-              <span class="text-blue-400">殿堂入りデータ管理</span>
+        <section class="section warning">
+          <span class="heading level-4">＊＊ 注意 ＊＊</span>
+          <p class="text-block">
+            このアプリはブラウザにデータを保存します。
+            そのため、プライベートウィンドウでこのアプリを利用するとデータが正常に保存されない恐れがあります。
+            このアプリを利用する際はプライベートウィンドウをつかわないようにお願いします。
+          </p>
+        </section>
+        <section class="section features">
+          <span class="heading level-4">公開中の機能一覧</span>
+          <ul class="list block">
+            <li class="list-item">
+              <router-link class="link" to="/hall-of-fame">
+                殿堂入りデータ管理
+              </router-link>
+            </li>
+          </ul>
+        </section>
+      </section>
+
+      <section class="content development">
+        <span class="heading level-1">開発について</span>
+        <section class="section changelog">
+          <span class="heading level-4">変更履歴</span>
+          <div class="block">
+            <router-link class="link" to="/changelog">
+              変更履歴（別ページ）へ移動します
             </router-link>
-          </li>
-        </ul>
-      </div>
-    </section>
+          </div>
+        </section>
+        <section class="section todo-list">
+          <span class="heading level-4">やることリスト</span>
+          <div class="block">
+            <span class="heading level-6">[ 殿堂入りデータ管理 ]</span>
+            <ul class="list">
+              <li class="list-item">
+                スキル、因子の編集画面が重いので改善する
+              </li>
+              <li class="list-item">
+                登録したデータの検索・ソート機能を追加する
+              </li>
+              <li class="list-item">
+                データ入力時、キーボードで操作できるようにする
+              </li>
+              <li class="list-item">
+                スキルや因子などをクリックしたとき、詳細を見られるようにする
+              </li>
+              <li class="list-item">グラフィック・デザインの改善</li>
+            </ul>
+          </div>
+        </section>
+      </section>
 
-    <section
-      class="
-        border-2
-        rounded-lg
-        w-[90%]
-        xs:w-[70%]
-        max-w-[40rem]
-        mx-auto
-        p-[0.75rem]
-        xs:p-[1.25rem]
-        shadow-sm
-        mt-[2rem]
-      "
-    >
-      <h1
-        class="
-          font-bold
-          text-[1rem]
-          xs:text-[1.5rem]
-          sm:text-[2rem]
-          text-center
-        "
-      >
-        開発について
-      </h1>
-
-      <h2
-        class="
-          font-bold
-          text-[0.875rem]
-          xs:text-[1.25rem]
-          sm:text-[1.75rem]
-          mt-[0.75rem]
-          xs:mt-[1rem]
-        "
-      >
-        変更履歴
-      </h2>
-      <div>
-        <router-link to="/changelog">
-          <span class="text-blue-400">変更履歴（別ページ）へ移動します</span>
-        </router-link>
-      </div>
-
-      <h2
-        class="
-          font-bold
-          text-[0.875rem]
-          xs:text-[1.25rem]
-          sm:text-[1.75rem]
-          mt-[0.75rem]
-          xs:mt-[1rem]
-        "
-      >
-        やることリスト
-      </h2>
-      <section class="mt-[0.25rem]">
-        <span class="font-bold">[ 殿堂入りデータ管理 ]</span>
-        <ul>
-          <li class="ml-[0.25rem] list-disc list-inside">
-            スキル、因子の編集画面が重いので改善する
+      <section class="content issues">
+        <span class="heading level-1">要望・バグについて</span>
+        <p class="text-block">
+          要望やバグ報告はつねに歓迎しております。 Twitter( @Adhi_1989
+          )までメンションかDMを送っていただくか、
+          Issuesから新規にissueを作成していただけると助かります。
+        </p>
+        <ul class="list block">
+          <li class="list-item">
+            <a
+              class="link"
+              href="https://twitter.com/Adhi_1989"
+              target="_blank"
+            >
+              Twitterを別タブで開きます
+            </a>
           </li>
-          <li class="ml-[0.25rem] list-disc list-inside">
-            登録したデータの検索・ソート機能を追加する
-          </li>
-          <li class="ml-[0.25rem] list-disc list-inside">
-            データ入力時、キーボードで操作できるようにする
-          </li>
-          <li class="ml-[0.25rem] list-disc list-inside">
-            スキルや因子などをクリックしたとき、詳細を見られるようにする
-          </li>
-          <li class="ml-[0.25rem] list-disc list-inside">
-            グラフィック・デザインの改善
+          <li class="list-item">
+            <a
+              class="link"
+              href="https://github.com/adhi-1989/prettydb/issues"
+              target="_blank"
+            >
+              Issuesを別タブで開きます
+            </a>
           </li>
         </ul>
       </section>
-    </section>
 
-    <section
-      class="
-        border-2
-        rounded-lg
-        w-[90%]
-        xs:w-[70%]
-        max-w-[40rem]
-        mx-auto
-        p-[0.75rem]
-        xs:p-[1.25rem]
-        shadow-sm
-        mt-[2rem]
-      "
-    >
-      <h1
-        class="
-          font-bold
-          text-[1rem]
-          xs:text-[1.5rem]
-          sm:text-[2rem]
-          text-center
-        "
-      >
-        要望・バグについて
-      </h1>
-      <p class="mt-[0.75rem] xs:mt-[1rem]">
-        要望やバグ報告はつねに歓迎しております。 Twitter( @Adhi_1989
-        )までメンションかDMを送っていただくか、Issuesから新規にissueを作成していただけると助かります。
-      </p>
-      <ul class="mt-[1.25rem] xs:mt-[1.5rem] flex flex-col gap-y-[0.75rem]">
-        <li class="ml-[0.25rem] list-disc list-inside">
-          <a href="https://twitter.com/Adhi_1989" target="_blank">
-            <span class="text-blue-400">Twitterを別タブで開きます</span>
-          </a>
-        </li>
-        <li class="ml-[0.25rem] list-disc list-inside">
-          <a
-            href="https://github.com/adhi-1989/prettydb/issues"
-            target="_blank"
+      <section class="content license">
+        <span class="heading level-1">ライセンス</span>
+        <p class="text-block">
+          プリティーデービーはMITライセンスのもと、開発・公開されています。
+          あなたはプリティーデービーを（MITライセンスの認める限り）自由に利用できますが、そこに一切の保証はありません。
+        </p>
+        <section class="section license-article" @click="ja = !ja">
+          <span class="heading level-6"
+            >＊ クリック（タップ）で表示切り替え ＊</span
           >
-            <span class="text-blue-400">Issuesを別タブで開きます</span>
-          </a>
-        </li>
-      </ul>
-    </section>
-
-    <section
-      class="
-        border-2
-        rounded-lg
-        w-[90%]
-        xs:w-[70%]
-        max-w-[40rem]
-        mx-auto
-        p-[0.75rem]
-        xs:p-[1.25rem]
-        shadow-sm
-        mt-[2rem]
-      "
-    >
-      <h1
-        class="
-          font-bold
-          text-[1rem]
-          xs:text-[1.5rem]
-          sm:text-[2rem]
-          text-center
-        "
-      >
-        ライセンス
-      </h1>
-      <p class="mt-[0.75rem] xs:mt-[1rem]">
-        プリティーデービーはMITライセンスのもと、開発・公開されています。
-        あなたはプリティーデービーを（MITライセンスの認める限り）自由に利用できますが、そこに一切の保証はありません。
-      </p>
-      <div
-        class="mt-[1.25rem] xs:mt-[1.5rem] bg-[#f2f2f2] p-[0.5rem]"
-        @click="ja = !ja"
-      >
-        <span>＊ クリック（タップ）で表示切り替え ＊</span>
-        <transition name="license">
-          <p class="license" v-if="!ja">
-            The MIT License<br />
-            Copyright 2021 adhi-1989<br />
-            <br />
-            Permission is hereby granted, free of charge, to any person
-            obtaining a copy of this software and associated documentation files
-            (the "Software"), to deal in the Software without restriction,
-            including without limitation the rights to use, copy, modify, merge,
-            publish, distribute, sublicense, and/or sell copies of the Software,
-            and to permit persons to whom the Software is furnished to do so,
-            subject to the following conditions:<br />
-            <br />
-            The above copyright notice and this permission notice shall be
-            included in all copies or substantial portions of the Software.<br />
-            <br />
-            THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-            EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-            MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-            NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
-            BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
-            ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
-            CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-            SOFTWARE.
-          </p>
-          <p class="license" v-else>
-            The MIT License<br />
-            Copyright (c) 2021 adhi-1989<br />
-            <br />
-            以下に定める条件に従い、本ソフトウェアおよび関連文書のファイル（以下「ソフトウェア」）の複製を取得するすべての人に対し、ソフトウェアを無制限に扱うことを無償で許可します。これには、ソフトウェアの複製を使用、複写、変更、結合、掲載、頒布、サブライセンス、および/または販売する権利、およびソフトウェアを提供する相手に同じことを許可する権利も無制限に含まれます。<br />
-            <br />
-            上記の著作権表示および本許諾表示を、ソフトウェアのすべての複製または重要な部分に記載するものとします。<br />
-            <br />
-            ソフトウェアは「現状のまま」で、明示であるか暗黙であるかを問わず、何らの保証もなく提供されます。ここでいう保証とは、商品性、特定の目的への適合性、および権利非侵害についての保証も含みますが、それに限定されるものではありません。
-            作者または著作権者は、契約行為、不法行為、またはそれ以外であろうと、ソフトウェアに起因または関連し、あるいはソフトウェアの使用またはその他の扱いによって生じる一切の請求、損害、その他の義務について何らの責任も負わないものとします。
-          </p>
-        </transition>
-      </div>
-    </section>
+          <transition name="license">
+            <p class="text-block" v-if="!ja">
+              The MIT License<br />
+              Copyright 2021 adhi-1989<br />
+              <br />
+              Permission is hereby granted, free of charge, to any person
+              obtaining a copy of this software and associated documentation
+              files (the "Software"), to deal in the Software without
+              restriction, including without limitation the rights to use, copy,
+              modify, merge, publish, distribute, sublicense, and/or sell copies
+              of the Software, and to permit persons to whom the Software is
+              furnished to do so, subject to the following conditions:<br />
+              <br />
+              The above copyright notice and this permission notice shall be
+              included in all copies or substantial portions of the Software.<br />
+              <br />
+              THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+              EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+              MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+              NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+              HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+              WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+              OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+              DEALINGS IN THE SOFTWARE.
+            </p>
+            <p class="text-block" v-else>
+              The MIT License<br />
+              Copyright (c) 2021 adhi-1989<br />
+              <br />
+              以下に定める条件に従い、本ソフトウェアおよび関連文書のファイル（以下「ソフトウェア」）の複製を取得するすべての人に対し、ソフトウェアを無制限に扱うことを無償で許可します。これには、ソフトウェアの複製を使用、複写、変更、結合、掲載、頒布、サブライセンス、および/または販売する権利、およびソフトウェアを提供する相手に同じことを許可する権利も無制限に含まれます。<br />
+              <br />
+              上記の著作権表示および本許諾表示を、ソフトウェアのすべての複製または重要な部分に記載するものとします。<br />
+              <br />
+              ソフトウェアは「現状のまま」で、明示であるか暗黙であるかを問わず、何らの保証もなく提供されます。ここでいう保証とは、商品性、特定の目的への適合性、および権利非侵害についての保証も含みますが、それに限定されるものではありません。
+              作者または著作権者は、契約行為、不法行為、またはそれ以外であろうと、ソフトウェアに起因または関連し、あるいはソフトウェアの使用またはその他の扱いによって生じる一切の請求、損害、その他の義務について何らの責任も負わないものとします。
+            </p>
+          </transition>
+        </section>
+      </section>
+    </main>
   </article>
 </template>
 
@@ -305,14 +167,100 @@ export default defineComponent({
 });
 </script>
 
-<style lang="scss" scoped>
-.license-enter-active {
-  animation: fadeIn;
-  animation-duration: 0.5s;
-}
-.license-leave-active {
-  animation: fadeOut;
-  animation-duration: 0.5s;
-  position: absolute;
+<style lang="scss">
+.home-root {
+  @apply text-[0.75rem];
+  @apply xs:text-[0.875rem];
+  @apply sm:text-[1rem];
+  > .header {
+    @apply relative w-full max-w-[32rem] mx-auto px-[2rem] py-[1rem];
+    @apply xs:py-[2rem];
+    > .logo {
+      @apply w-[28rem] mx-auto;
+    }
+    > .version {
+      @include text-stroke;
+      @apply absolute font-bold text-[1rem] right-[2rem] bottom-0;
+      @apply xs:text-[1.25rem] xs:bottom-[1rem];
+    }
+  }
+  > .main {
+    @apply flex flex-col gap-y-[2rem] items-center mt-[1rem];
+    > .content {
+      @apply border-2 rounded-lg w-[90%] max-w-[40rem] mx-auto p-[0.75rem] shadow-sm;
+      @apply xs:w-[70%] xs:p-[1.25rem];
+      .heading {
+        @apply font-bold;
+      }
+      .heading.level-1 {
+        @apply text-[1.25rem] text-center block;
+        @apply xs:text-[1.5rem];
+        @apply sm:text-[1.75rem];
+      }
+      .heading.level-2 {
+        @apply text-[1.125rem];
+        @apply xs:text-[1.375rem];
+        @apply sm:text-[1.625rem];
+      }
+      .heading.level-3 {
+        @apply text-[1rem];
+        @apply xs:text-[1.25rem];
+        @apply sm:text-[1.5rem];
+      }
+      .heading.level-4 {
+        @apply text-[0.875rem];
+        @apply xs:text-[1.125rem];
+        @apply sm:text-[1.375rem];
+      }
+      .heading.level-5 {
+        @apply text-[0.75rem];
+        @apply xs:text-[1rem];
+        @apply sm:text-[1.25rem];
+      }
+      .section,
+      .block,
+      .text-block {
+        @apply mt-[0.75rem];
+        @apply xs:mt-[1rem];
+      }
+      .list {
+        > .list-item {
+          @apply list-disc list-inside;
+        }
+      }
+      .link {
+        @apply text-blue-400;
+      }
+      &.outline {
+        > .warning {
+          > .heading {
+            @apply text-red-500;
+          }
+          > .text-block {
+            @apply text-red-400;
+          }
+        }
+      }
+      &.issues {
+        > .list > .list-item {
+          @apply mt-[1rem];
+        }
+      }
+      &.license {
+        > .license-article {
+          @apply bg-[#f2f2f2] p-[0.5rem] cursor-pointer;
+          > .license-enter-active {
+            animation: fadeIn;
+            animation-duration: 0.5s;
+          }
+          > .license-leave-active {
+            animation: fadeOut;
+            animation-duration: 0.5s;
+            position: absolute;
+          }
+        }
+      }
+    }
+  }
 }
 </style>
