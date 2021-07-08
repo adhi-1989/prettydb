@@ -1,6 +1,17 @@
 <template>
   <article class="changelog-root">
     <section class="content">
+      <h1 class="version">v0.7.3</h1>
+      <div class="release-date">公開日: 2021-07-08</div>
+      <ul class="changelogs">
+        <li class="log-item">内的体験のスキルデータを追加</li>
+        <li class="log-item">
+          ホーム画面と変更履歴画面のバックグラウンドにパーティクルアニメーションを追加
+        </li>
+        <li class="log-item">一部グラフィックの改善</li>
+      </ul>
+    </section>
+    <section class="content">
       <h1 class="version">v0.7.2</h1>
       <div class="release-date">公開日: 2021-06-29</div>
       <ul class="changelogs">
