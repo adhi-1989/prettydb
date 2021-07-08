@@ -187,7 +187,7 @@ export default defineComponent({
   > .main {
     @apply flex flex-col gap-y-[2rem] items-center mt-[1rem];
     > .content {
-      @apply border-2 rounded-lg w-[90%] max-w-[40rem] mx-auto p-[0.75rem] shadow-sm;
+      @apply border-2 rounded-lg w-[90%] max-w-[40rem] mx-auto p-[0.75rem] shadow-sm bg-[color:var(--app-bg-color-primary-default)];
       @apply xs:w-[70%] xs:p-[1.25rem];
       .heading {
         @apply font-bold;

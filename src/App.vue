@@ -66,6 +66,7 @@
     <main class="main">
       <!-- TODO: ページ遷移時にもアニメーションつける -->
       <router-view />
+      <router-view class="background" name="background" />
     </main>
   </div>
 
@@ -184,10 +185,15 @@ body {
     }
   }
   > .main {
-    @apply overflow-auto w-full h-[calc(100%-2.5rem)] mt-[2.5rem];
+    @apply relative overflow-auto w-full h-[calc(100%-2.5rem)] mt-[2.5rem];
     @apply xs:h-[calc(100%-3rem)] xs:mt-[3rem];
     @apply lg:w-[calc(100%-16rem)] lg:ml-[16rem];
     transition: width 0.5s ease, margin-left 0.5s ease;
+    > .background {
+      @apply fixed bottom-0 w-full h-[calc(100%-2.5rem)] z-[-10];
+      @apply xs:h-[calc(100%-3rem)];
+      @apply lg:w-[calc(100%-16rem)];
+    }
   }
 }
 </style>

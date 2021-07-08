@@ -21,7 +21,10 @@
       "/assets/*": ["src/assets/*"],
       "/components/*": ["src/components/*"],
       "/views/*": ["src/views/*"],
-      "/locales/*": ["src/assets/locales/*"]
+      "/locales/*": ["src/assets/locales/*"],
+      "mini-signals": [
+        "node_modules/mini-signals/index.js"
+      ]
     }
   },
   "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"]

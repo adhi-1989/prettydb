@@ -1,7 +1,13 @@
-import { createRouter, createWebHistory, createWebHashHistory, RouteRecordRaw } from "vue-router";
+import {
+  createRouter,
+  createWebHistory,
+  createWebHashHistory,
+  RouteRecordRaw,
+} from "vue-router";
 import Home from "/views/Home.vue";
 import HallOfFame from "/views/HallOfFame.vue";
 import NotFound from "/views/NotFound.vue";
+import HorseshoeParticle from "/components/common/content/HorseshoeParticle.vue";
 import i18n from "./i18n";
 import _ from "lodash";
 
@@ -9,33 +15,39 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/",
     name: "Home",
-    component: Home,
+    components: {
+      default: Home,
+      background: HorseshoeParticle,
+    },
   },
   {
     path: "/changelog",
     name: "Changelog",
-    component: () =>
-      import(/* webpackChunkName: "changelog" */ "/views/Changelog.vue"),
+    components: {
+      default: () =>
+        import(/* webpackChunkName: "changelog" */ "/views/Changelog.vue"),
+      background: HorseshoeParticle,
+    },
     meta: {
-      title: "document-title.changelog"
-    }
+      title: "document-title.changelog",
+    },
   },
   {
     path: "/hall-of-fame",
     name: "HallOfFame",
     component: HallOfFame,
     meta: {
-      title: "document-title.hall-of-fame"
-    }
+      title: "document-title.hall-of-fame",
+    },
   },
   {
     path: "/:pathMatch(.*)",
     name: "NotFound",
     component: NotFound,
     meta: {
-      title: "document-title.notfound"
-    }
-  }
+      title: "document-title.notfound",
+    },
+  },
 ];
 
 const router = createRouter({
@@ -55,6 +67,6 @@ router.afterEach((to, from) => {
   } else {
     document.title = i18n.global.t("document-title.base");
   }
-})
+});
 
 export default router;
