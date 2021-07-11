@@ -1,9 +1,25 @@
 import path from "path";
-import { defineConfig } from "vite";
+import { defineConfig, Plugin } from "vite";
 import vue from "@vitejs/plugin-vue";
 import svgLoader from "vite-svg-loader";
 import vueI18n from "@intlify/vite-plugin-vue-i18n";
 import { extendDefaultPlugins } from "svgo";
+
+const appendMetaTag: Plugin = {
+  name: 'append-meta-tag',
+  transformIndexHtml() {
+    return [
+      {
+        tag: 'meta',
+        attrs: {
+          name: "google-site-verification",
+          content: "2rnihvffpSYW6LFMcJFSwQz6Eg1DaGKjlyBJYE7lcNI",
+        },
+        injectTo: "head"
+      }
+    ]
+  }
+}
 
 // https://vitejs.dev/config/
 export default defineConfig(({ command, mode }) => {
@@ -40,6 +56,7 @@ export default defineConfig(({ command, mode }) => {
       vueI18n({
         include: path.resolve(__dirname, "src/assets/locales/**/global/**"),
       }),
+      appendMetaTag,
     ],
     css: {
       preprocessorOptions: {
