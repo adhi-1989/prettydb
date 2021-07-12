@@ -275,6 +275,12 @@ const Factors = [
     TYPE: UNIQUE_SKILL,
     UNIQUE_SKILL_ID: 55,
   },
+  /* 煌星のヴォードヴィル */ {
+    FACTOR_ID: 184,
+    SORT_ID: 184,
+    TYPE: UNIQUE_SKILL,
+    UNIQUE_SKILL_ID: 56,
+  },
 
   /* NHKマイルC */ { FACTOR_ID: 1024, SORT_ID: 1024, TYPE: RACE },
   /* エリザベス女王杯 */ { FACTOR_ID: 1025, SORT_ID: 1025, TYPE: RACE },

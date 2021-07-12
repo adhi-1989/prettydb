@@ -667,6 +667,17 @@ export const Skills = [
     MATCH_TALENT_LEVEL: FROM_3_TO_5,
     INHERITABLE: true,
   },
+  /* 煌星のヴォードヴィル */ {
+    SKILL_ID: 56,
+    SORT_ID: 56,
+    TYPE: BUFF_SPEED,
+    ADVANCED: false,
+    UNIQUE: true,
+    CHARACTER_ID: 4,
+    MONIKER_ID: 0,
+    MATCH_TALENT_LEVEL: FROM_3_TO_5,
+    INHERITABLE: true,
+  },
 
   /* アガッてきた！ */ {
     SKILL_ID: 1024,

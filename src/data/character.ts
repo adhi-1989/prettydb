@@ -39,6 +39,7 @@ const Characters = [
   /* ナイスネイチャ */ { CHARACTER_ID: 59, SORT_ID: 59 },
   /* キングヘイロー */ { CHARACTER_ID: 60, SORT_ID: 60 },
   /* ヒシアマゾン */ { CHARACTER_ID: 11, SORT_ID: 11 },
+  /* フジキセキ */ { CHARACTER_ID: 4, SORT_ID: 4 },
 ] as const;
 
 const Monikers = [
@@ -240,6 +241,11 @@ const Monikers = [
   /* グラスワンダー:セイントジェード・ヒーラー */ {
     CHARACTER_ID: 10,
     MONIKER_ID: 1,
+    INITIAL_TALENT_LEVEL: 3,
+  },
+  /* フジキセキ:シューティンスタァ・ルヴュ */ {
+    CHARACTER_ID: 4,
+    MONIKER_ID: 0,
     INITIAL_TALENT_LEVEL: 3,
   },
 ] as const;
