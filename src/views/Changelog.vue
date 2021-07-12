@@ -1,10 +1,20 @@
 <template>
   <article class="changelog-root">
     <section class="content">
+      <h1 class="version">v0.7.4</h1>
+      <div class="release-date">公開日: 2021-07-12</div>
+      <ul class="changelogs">
+        <li class="log-item">
+          フジキセキ[シューティンスタァ・ルヴュ] のデータを追加
+        </li>
+        <li class="log-item">勝利への執念 のスキルデータを追加</li>
+      </ul>
+    </section>
+    <section class="content">
       <h1 class="version">v0.7.3</h1>
       <div class="release-date">公開日: 2021-07-08</div>
       <ul class="changelogs">
-        <li class="log-item">内的体験のスキルデータを追加</li>
+        <li class="log-item">内的体験 のスキルデータを追加</li>
         <li class="log-item">
           ホーム画面と変更履歴画面のバックグラウンドにパーティクルアニメーションを追加
         </li>
@@ -16,7 +26,10 @@
       <div class="release-date">公開日: 2021-06-29</div>
       <ul class="changelogs">
         <li class="log-item">
-          2021-06-29 のガチャ更新で追加されたデータに対応
+          エルコンドルパサー[クルルカン・モンク] のデータを追加
+        </li>
+        <li class="log-item">
+          グラスワンダー[セイントジェード・ヒーラー] のデータを追加
         </li>
       </ul>
     </section>
