@@ -9,22 +9,20 @@
     "resolveJsonModule": true,
     "esModuleInterop": true,
     "lib": ["esnext", "dom"],
+    "forceConsistentCasingInFileNames": true,
+    "baseUrl": ".",
     "types": [
       "vite/client",
       "@intlify/vite-plugin-vue-i18n/client",
+      "vite-plugin-vue-layouts/client",
+      "vite-plugin-pwa/client"
     ],
-    "baseUrl": ".",
     "paths": {
-      "/~/*": ["node_modules/*"],
-      "/icon/*": ["node_modules/ionicons/dist/svg/*"],
-      "/@/*": ["src/*"],
-      "/assets/*": ["src/assets/*"],
-      "/components/*": ["src/components/*"],
-      "/views/*": ["src/views/*"],
-      "/locales/*": ["src/assets/locales/*"],
-      "mini-signals": [
-        "node_modules/mini-signals/index.js"
-      ]
+      "~/*": ["node_modules/*"],
+      "@/*": ["src/*"],
+      "#/assets/*": ["src/assets/*"],
+      "#/images/*": ["src/assets/images/*"],
+      "#/views/*": ["src/views/*"]
     }
   },
   "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"]

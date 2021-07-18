@@ -1,0 +1,16 @@
+html {
+  @apply h-full;
+  body {
+    @apply font-sans antialiased overflow-hidden text-[#734065] h-full bg-[#fefefe];
+    #app {
+      @apply h-full;
+    }
+
+    #root-level-modal {
+      @apply absolute top-0 left-0 overflow-hidden z-5;
+      &:not(:empty) {
+        @apply w-full h-full;
+      }
+    }
+  }
+}

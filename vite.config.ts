@@ -1,69 +1,94 @@
 import path from "path";
-import { defineConfig, Plugin } from "vite";
+import { defineConfig } from "vite";
+import "vite-ssg";
 import vue from "@vitejs/plugin-vue";
-import svgLoader from "vite-svg-loader";
-import vueI18n from "@intlify/vite-plugin-vue-i18n";
-import { extendDefaultPlugins } from "svgo";
-
-const appendMetaTag: Plugin = {
-  name: 'append-meta-tag',
-  transformIndexHtml() {
-    return [
-      {
-        tag: 'meta',
-        attrs: {
-          name: "google-site-verification",
-          content: "2rnihvffpSYW6LFMcJFSwQz6Eg1DaGKjlyBJYE7lcNI",
-        },
-        injectTo: "head"
-      }
-    ]
-  }
-}
+import i18n from "@intlify/vite-plugin-vue-i18n";
+import windiCss from "vite-plugin-windicss";
+import icons, { ViteIconsResolver } from "vite-plugin-icons";
+import components from "vite-plugin-components";
+import pages from "vite-plugin-pages";
+import layouts from "vite-plugin-vue-layouts";
+import { VitePWA } from "vite-plugin-pwa";
 
 // https://vitejs.dev/config/
-export default defineConfig(({ command, mode }) => {
-  const isDevelopment = mode === "development";
-  const base: string = isDevelopment ? "./" : "/prettydb/";
+export default defineConfig(({ mode }) => {
+  const isProductionMode = mode === "production";
   return {
-    base,
-    build: {
-      outDir: "./docs",
-    },
+    base: isProductionMode ? "/prettydb/" : "/",
     resolve: {
       alias: {
-        "/~": path.resolve(__dirname, "node_modules"),
-        "/icon": path.resolve(__dirname, "node_modules/ionicons/dist/svg"),
-        "/@": path.resolve(__dirname, "src"),
-        "/assets": path.resolve(__dirname, "src/assets"),
-        "/components": path.resolve(__dirname, "src/components"),
-        "/views": path.resolve(__dirname, "src/views"),
-        "/locales": path.resolve(__dirname, "src/assets/locales"),
+        "~/": `${path.resolve(__dirname, "node_modules")}/`,
+        "@/": `${path.resolve(__dirname, "src")}/`,
+        "#/assets/": `${path.resolve(__dirname, "src/assets")}/`,
+        "#/images/": `${path.resolve(__dirname, "src/assets/images")}/`,
+        "#/views/": `${path.resolve(__dirname, "src/views")}/`,
       },
     },
     plugins: [
       vue(),
-      svgLoader({
-        svgoConfig: {
-          plugins: extendDefaultPlugins([
+      i18n({
+        include: [path.resolve(__dirname, "src/assets/locales/**")],
+      }),
+      windiCss(),
+      icons(),
+      components({
+        globalComponentsDeclaration: path.resolve(
+          __dirname,
+          "src/components.d.ts"
+        ),
+        customComponentResolvers: ViteIconsResolver({
+          componentPrefix: "icon",
+        }),
+      }),
+      pages({
+        pagesDir: [
+          { dir: "src/views/pages", baseRoute: "" },
+          { dir: "src/views/hall-of-fame/pages", baseRoute: "hall-of-fame" },
+        ],
+        exclude: ["**/components/*.vue"],
+      }),
+      layouts({
+        layoutsDir: "src/views/_layouts",
+      }),
+      VitePWA({
+        registerType: "autoUpdate",
+        includeAssets: ["favicon.svg", "robots.txt"],
+        manifest: {
+          name: "プリティーデービー",
+          short_name: "PrettyDB",
+          display: "standalone",
+          theme_color: "#fefefe",
+          background_color: "#fefefe",
+          icons: [
             {
-              name: "cleanupIDs",
-              active: false,
+              src: "apple-icon.png",
+              sizes: "192x192",
+              type: "image/png",
             },
-          ]),
+            {
+              src: "pwa-icon.png",
+              sizes: "512x512",
+              type: "image/png",
+            },
+          ],
         },
       }),
-      vueI18n({
-        include: path.resolve(__dirname, "src/assets/locales/**/global/**"),
-      }),
-      appendMetaTag,
     ],
     css: {
       preprocessorOptions: {
         scss: {
-          additionalData: '@import "src/assets/style/abstract.scss";',
+          additionalData: '@import "src/assets/styles/abstract.scss";',
         },
       },
+    },
+    server: {
+      fs: {
+        strict: true,
+      },
+    },
+    ssgOptions: {
+      script: "async",
+      formatting: "minify",
     },
   };
 });

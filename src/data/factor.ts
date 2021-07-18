@@ -1,4 +1,4 @@
-import { createNumMap, NumMap } from "/@/util/common";
+import { createNumMap } from "@/util";
 
 export const FactorTypes = {
   STATUS: 0,

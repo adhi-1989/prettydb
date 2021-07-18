@@ -1,10 +1,25 @@
-import { createApp } from "vue";
+import _ from "lodash";
+import { ViteSSG } from "vite-ssg";
+import generatedRoutes from "virtual:generated-pages";
+import { setupLayouts } from "virtual:generated-layouts";
 import App from "./App.vue";
-import i18n from "./init/i18n";
-import router from "./init/router";
 
-import "animate.css";
-import "tailwindcss/tailwind.css";
-import "/assets/style/concrete.scss";
+import "virtual:windi.css";
+import "./assets/styles/main.scss";
+// インストールしたのをそのまま使うとエラーがでるので、問題箇所を削除したものをローカルからロードする
+// https://github.com/animate-css/animate.css/issues/641
+import "./assets/styles/animate.css";
 
-createApp(App).use(i18n).use(router).mount("#app");
+const routes = setupLayouts(generatedRoutes);
+
+export const createApp = ViteSSG(
+  App,
+  { routes, base: import.meta.env.BASE_URL },
+  (context) => {
+    _.values(import.meta.globEager("./modules/*.ts")).forEach(({ install }) => {
+      if (_.isFunction(install)) {
+        install(context);
+      }
+    });
+  }
+);

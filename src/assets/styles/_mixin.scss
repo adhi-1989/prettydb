@@ -1,0 +1,13 @@
+@mixin button-gradient {
+  @apply bg-gradient-to-t from-[#e9e6ee] via-[#f5f5f7] to-[#fefefe];
+}
+
+@mixin text-stroke($color) {
+  text-shadow: -1px 0 $color, 1px 0 $color, 0 -1px $color, 0 1px $color;
+}
+
+@mixin text-overflow-omit {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}

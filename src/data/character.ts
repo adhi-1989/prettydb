@@ -1,4 +1,4 @@
-import { hashCode, createNumMap } from "/@/util/common";
+import { hashCode, createNumMap } from "@/util";
 
 export const TalentLevels = [1, 2, 3, 4, 5] as const;
 
@@ -272,7 +272,7 @@ export const NULL_CHARACTER: Character = {
 
 export const NULL_MONIKER: Moniker = {
   CHARACTER_ID: -1,
-  MONIKER_ID: 0,
+  MONIKER_ID: -1,
   INITIAL_TALENT_LEVEL: 1,
 };
 

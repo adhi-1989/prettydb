@@ -1,4 +1,4 @@
-import { createNumMap } from "/@/util/common";
+import { createNumMap } from "@/util";
 
 export const SkillTypes = {
   BUFF_SPEED: 0,
@@ -2683,6 +2683,13 @@ export const Skills = [
     TYPE: BUFF_SPEED,
     CONFLICT_ID: 102,
     ADVANCED: true,
+    UNIQUE: false,
+  },
+  /* 仕掛け準備 */ {
+    SKILL_ID: 1282,
+    SORT_ID: 1282,
+    TYPE: BUFF_POSITIONING,
+    ADVANCED: false,
     UNIQUE: false,
   },
 ] as const;
