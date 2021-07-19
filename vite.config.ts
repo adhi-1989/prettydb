@@ -72,6 +72,22 @@ export default defineConfig(({ mode }) => {
             },
           ],
         },
+        workbox: {
+          navigationPreload: true,
+          runtimeCaching: [
+            {
+              urlPattern: /https:\/\/adhi-1989\.github\.io\/.+\.(svg|png)$/,
+              handler: "CacheFirst",
+              options: {
+                cacheName: "assets",
+                expiration: {
+                  maxEntries: 128,
+                  maxAgeSeconds: 60 * 60 * 24 * 30,
+                },
+              },
+            },
+          ],
+        },
       }),
     ],
     css: {
