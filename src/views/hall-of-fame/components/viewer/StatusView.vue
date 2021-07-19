@@ -26,8 +26,8 @@
 
 <script lang="ts">
 import { defineComponent, PropType, readonly } from "vue";
-import { getStatusGradeIcon } from "#/views/logic/resources/images";
-import { HallOfFameDTO } from "#/views/hall-of-fame/logic/db";
+import { getStatusGradeIcon } from "@/views/logic/resources/images";
+import { HallOfFameDTO } from "@/views/hall-of-fame/logic/db";
 import { useI18n } from "vue-i18n";
 import { StatusKeys } from "@/data";
 

@@ -35,10 +35,10 @@
 
 <script lang="ts">
 import { defineComponent, reactive, ref } from "vue";
-import { SkillDTO } from "#/views/hall-of-fame/logic/db";
+import { SkillDTO } from "@/views/hall-of-fame/logic/db";
 import { createNumMap, NumMap } from "@/util";
 import { getSkill, SkillType, SkillTypes } from "@/data";
-import { selectInputValueOnFocus } from "#/views/logic/dom";
+import { selectInputValueOnFocus } from "@/views/logic/dom";
 import { useI18n } from "vue-i18n";
 
 const FilterTypes = {

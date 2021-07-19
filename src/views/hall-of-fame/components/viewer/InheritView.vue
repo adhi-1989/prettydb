@@ -42,9 +42,9 @@
 
 <script lang="ts">
 import { defineComponent, PropType, readonly } from "vue";
-import FactorCard from "#/views/hall-of-fame/components/widget/FactorCard.vue";
-import { HallOfFameDTO } from "#/views/hall-of-fame/logic/db";
-import { getPortrait, getRankGradeIcon } from "#/views/logic/resources/images";
+import FactorCard from "@/views/hall-of-fame/components/widget/FactorCard.vue";
+import { HallOfFameDTO } from "@/views/hall-of-fame/logic/db";
+import { getPortrait, getRankGradeIcon } from "@/views/logic/resources/images";
 import { useI18n } from "vue-i18n";
 
 export default defineComponent({

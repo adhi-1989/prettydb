@@ -21,8 +21,7 @@
       "~/*": ["node_modules/*"],
       "@/*": ["src/*"],
       "#/assets/*": ["src/assets/*"],
-      "#/images/*": ["src/assets/images/*"],
-      "#/views/*": ["src/views/*"]
+      "#/images/*": ["src/assets/images/*"]
     }
   },
   "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"]

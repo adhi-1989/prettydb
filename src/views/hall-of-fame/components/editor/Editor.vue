@@ -103,14 +103,14 @@
 
 <script lang="ts">
 import { computed, defineComponent, PropType, ref } from "vue";
-import { HallOfFameDTO } from "#/views/hall-of-fame/logic/db";
-import CharacterEditor from "#/views/hall-of-fame/components/editor/CharacterEditor.vue";
-import StatusEditor from "#/views/hall-of-fame/components/editor/StatusEditor.vue";
-import AbilityEditor from "#/views/hall-of-fame/components/editor/AbilityEditor.vue";
-import SkillEditor from "#/views/hall-of-fame/components/editor/SkillEditor.vue";
-import FactorEditor from "#/views/hall-of-fame/components/editor/FactorEditor.vue";
-import HistoryEditor from "#/views/hall-of-fame/components/editor/HistoryEditor.vue";
-import Viewer from "#/views/hall-of-fame/components/viewer/Viewer.vue";
+import { HallOfFameDTO } from "@/views/hall-of-fame/logic/db";
+import CharacterEditor from "@/views/hall-of-fame/components/editor/CharacterEditor.vue";
+import StatusEditor from "@/views/hall-of-fame/components/editor/StatusEditor.vue";
+import AbilityEditor from "@/views/hall-of-fame/components/editor/AbilityEditor.vue";
+import SkillEditor from "@/views/hall-of-fame/components/editor/SkillEditor.vue";
+import FactorEditor from "@/views/hall-of-fame/components/editor/FactorEditor.vue";
+import HistoryEditor from "@/views/hall-of-fame/components/editor/HistoryEditor.vue";
+import Viewer from "@/views/hall-of-fame/components/viewer/Viewer.vue";
 
 const Pages = {
   CHARACTER_EDITOR: 0,

@@ -36,7 +36,7 @@
 
 <script lang="ts">
 import { defineComponent, ref } from "vue";
-import { selectInputValueOnFocus } from "#/views/logic/dom";
+import { selectInputValueOnFocus } from "@/views/logic/dom";
 
 const Numpad = {
   ZERO: "0",

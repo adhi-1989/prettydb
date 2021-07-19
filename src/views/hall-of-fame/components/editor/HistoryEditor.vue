@@ -35,9 +35,9 @@
 
 <script lang="ts">
 import { defineComponent, PropType, reactive } from "vue";
-import { HallOfFameDTO } from "#/views/hall-of-fame/logic/db";
+import { HallOfFameDTO } from "@/views/hall-of-fame/logic/db";
 import { useI18n } from "vue-i18n";
-import { selectInputValueOnFocus } from "#/views/logic/dom";
+import { selectInputValueOnFocus } from "@/views/logic/dom";
 
 export default defineComponent({
   props: {

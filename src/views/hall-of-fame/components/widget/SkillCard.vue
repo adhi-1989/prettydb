@@ -21,10 +21,10 @@
 
 <script lang="ts">
 import { computed, defineComponent, PropType } from "vue";
-import { CharacterDTO, SkillDTO } from "#/views/hall-of-fame/logic/db";
+import { CharacterDTO, SkillDTO } from "@/views/hall-of-fame/logic/db";
 import { getSkill, getUniqueSkill } from "@/data";
 import { useI18n } from "vue-i18n";
-import { getSkillTypeIcon } from "#/views/logic/resources/images";
+import { getSkillTypeIcon } from "@/views/logic/resources/images";
 
 export default defineComponent({
   props: {

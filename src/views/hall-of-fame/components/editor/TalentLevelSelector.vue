@@ -22,7 +22,7 @@
 
 <script lang="ts">
 import { defineComponent, PropType, reactive, readonly } from "vue";
-import { HallOfFameDTO } from "#/views/hall-of-fame/logic/db";
+import { HallOfFameDTO } from "@/views/hall-of-fame/logic/db";
 import { getMoniker, TalentLevels, TalentLevel } from "@/data";
 import starFill from "#/images/level/star-fill.svg";
 import starEmpty from "#/images/level/star-empty.svg";

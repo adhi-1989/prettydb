@@ -13,8 +13,8 @@
 
 <script lang="ts">
 import { defineComponent, PropType, readonly } from "vue";
-import SkillCard from "#/views/hall-of-fame/components/widget/SkillCard.vue";
-import { HallOfFameDTO } from "#/views/hall-of-fame/logic/db";
+import SkillCard from "@/views/hall-of-fame/components/widget/SkillCard.vue";
+import { HallOfFameDTO } from "@/views/hall-of-fame/logic/db";
 
 export default defineComponent({
   components: {

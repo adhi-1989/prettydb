@@ -65,10 +65,10 @@ import {
   db,
   fetch,
   upsert,
-} from "#/views/hall-of-fame/logic/db";
-import List from "#/views/hall-of-fame/components/list/List.vue";
-import Viewer from "#/views/hall-of-fame/components/viewer/Viewer.vue";
-import Editor from "#/views/hall-of-fame/components/editor/Editor.vue";
+} from "@/views/hall-of-fame/logic/db";
+import List from "@/views/hall-of-fame/components/list/List.vue";
+import Viewer from "@/views/hall-of-fame/components/viewer/Viewer.vue";
+import Editor from "@/views/hall-of-fame/components/editor/Editor.vue";
 import { useI18n } from "vue-i18n";
 import { useHead } from "~/@vueuse/head";
 

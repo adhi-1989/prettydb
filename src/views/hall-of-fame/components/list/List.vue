@@ -37,10 +37,10 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from "vue";
-import { HallOfFameDTO } from "#/views/hall-of-fame/logic/db";
+import { HallOfFameDTO } from "@/views/hall-of-fame/logic/db";
 import { useI18n } from "vue-i18n";
-import { getRankGradeIcon } from "#/views/logic/resources/images";
-import { getCharacterNameKey, getMonikerKey } from "#/views/logic/i18n";
+import { getRankGradeIcon } from "@/views/logic/resources/images";
+import { getCharacterNameKey, getMonikerKey } from "@/views/logic/i18n";
 
 export default defineComponent({
   emits: ["openViewer", "openEditor"],

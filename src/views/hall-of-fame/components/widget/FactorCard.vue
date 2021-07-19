@@ -19,7 +19,7 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from "vue";
-import { CharacterDTO, FactorDTO } from "#/views/hall-of-fame/logic/db";
+import { CharacterDTO, FactorDTO } from "@/views/hall-of-fame/logic/db";
 import { FactorTypes, getFactor, FactorLevels } from "@/data";
 import { useI18n } from "vue-i18n";
 import starFill from "#/images/level/star-fill.svg";

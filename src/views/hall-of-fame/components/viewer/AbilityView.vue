@@ -22,8 +22,8 @@
 
 <script lang="ts">
 import { defineComponent, PropType, readonly } from "vue";
-import { HallOfFameDTO } from "#/views/hall-of-fame/logic/db";
-import { getAbilityGradeIcon } from "#/views/logic/resources/images";
+import { HallOfFameDTO } from "@/views/hall-of-fame/logic/db";
+import { getAbilityGradeIcon } from "@/views/logic/resources/images";
 import { useI18n } from "vue-i18n";
 import { AbilityStructure, AbilityKey } from "@/data";
 

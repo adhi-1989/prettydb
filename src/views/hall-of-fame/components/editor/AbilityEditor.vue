@@ -49,8 +49,8 @@ import {
   AbilityGrade,
   AbilityKeys,
 } from "@/data";
-import { getAbilityGradeIcon } from "#/views/logic/resources/images";
-import { HallOfFameDTO } from "#/views/hall-of-fame/logic/db";
+import { getAbilityGradeIcon } from "@/views/logic/resources/images";
+import { HallOfFameDTO } from "@/views/hall-of-fame/logic/db";
 import { useI18n } from "vue-i18n";
 
 export default defineComponent({

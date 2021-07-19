@@ -25,11 +25,11 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from "vue";
-import { HallOfFameDTO } from "#/views/hall-of-fame/logic/db";
-import ProfileView from "#/views/hall-of-fame/components/viewer/ProfileView.vue";
-import StatusView from "#/views/hall-of-fame/components/viewer/StatusView.vue";
-import AbilityView from "#/views/hall-of-fame/components/viewer/AbilityView.vue";
-import MultiContentView from "#/views/hall-of-fame/components/viewer/MultiContentView.vue";
+import { HallOfFameDTO } from "@/views/hall-of-fame/logic/db";
+import ProfileView from "@/views/hall-of-fame/components/viewer/ProfileView.vue";
+import StatusView from "@/views/hall-of-fame/components/viewer/StatusView.vue";
+import AbilityView from "@/views/hall-of-fame/components/viewer/AbilityView.vue";
+import MultiContentView from "@/views/hall-of-fame/components/viewer/MultiContentView.vue";
 import { useI18n } from "vue-i18n";
 
 export default defineComponent({

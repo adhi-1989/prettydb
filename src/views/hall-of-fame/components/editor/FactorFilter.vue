@@ -34,10 +34,10 @@
 <script lang="ts">
 import { defineComponent, reactive, ref } from "vue";
 import { createNumMap, NumMap } from "@/util";
-import { FactorDTO } from "#/views/hall-of-fame/logic/db";
+import { FactorDTO } from "@/views/hall-of-fame/logic/db";
 import { FactorTypes, getFactor, FactorType } from "@/data";
 import { useI18n } from "vue-i18n";
-import { selectInputValueOnFocus } from "#/views/logic/dom";
+import { selectInputValueOnFocus } from "@/views/logic/dom";
 
 const FilterTypes = {
   STATUS: 0,

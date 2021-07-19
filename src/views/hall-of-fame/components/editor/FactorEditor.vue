@@ -67,9 +67,9 @@ import {
   onBeforeUnmount,
   ref,
 } from "vue";
-import { HallOfFameDTO, FactorDTO } from "#/views/hall-of-fame/logic/db";
-import FactorCard from "#/views/hall-of-fame/components/widget/FactorCard.vue";
-import FactorFilter from "#/views/hall-of-fame/components/editor/FactorFilter.vue";
+import { HallOfFameDTO, FactorDTO } from "@/views/hall-of-fame/logic/db";
+import FactorCard from "@/views/hall-of-fame/components/widget/FactorCard.vue";
+import FactorFilter from "@/views/hall-of-fame/components/editor/FactorFilter.vue";
 import {
   FactorLevels,
   AllFactor,

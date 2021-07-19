@@ -33,10 +33,10 @@
 
 <script lang="ts">
 import { computed, defineComponent, PropType, reactive, ref } from "vue";
-import { HallOfFameDTO } from "#/views/hall-of-fame/logic/db";
+import { HallOfFameDTO } from "@/views/hall-of-fame/logic/db";
 import { AllCharacter } from "@/data";
-import { selectInputValueOnFocus } from "#/views/logic/dom";
-import { getCharacterNameKey } from "#/views/logic/i18n";
+import { selectInputValueOnFocus } from "@/views/logic/dom";
+import { getCharacterNameKey } from "@/views/logic/i18n";
 import { useI18n } from "vue-i18n";
 
 export default defineComponent({

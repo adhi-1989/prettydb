@@ -61,7 +61,7 @@ import {
   readonly,
 } from "vue";
 import _ from "lodash";
-import { HallOfFameDTO, SkillDTO } from "#/views/hall-of-fame/logic/db";
+import { HallOfFameDTO, SkillDTO } from "@/views/hall-of-fame/logic/db";
 import {
   SkillTypes,
   isUniqueSkill,
@@ -69,8 +69,8 @@ import {
   isUniqueSkillOwner,
   getSkill,
 } from "@/data";
-import SkillFilter from "#/views/hall-of-fame/components/editor/SkillFilter.vue";
-import SkillCard from "#/views/hall-of-fame/components/widget/SkillCard.vue";
+import SkillFilter from "@/views/hall-of-fame/components/editor/SkillFilter.vue";
+import SkillCard from "@/views/hall-of-fame/components/widget/SkillCard.vue";
 
 type Filter = (skill: SkillDTO) => boolean;
 type FilterHolder = {
