@@ -281,6 +281,12 @@ const Factors = [
     TYPE: UNIQUE_SKILL,
     UNIQUE_SKILL_ID: 56,
   },
+  /* KEEP IT REAL. */ {
+    FACTOR_ID: 185,
+    SORT_ID: 185,
+    TYPE: UNIQUE_SKILL,
+    UNIQUE_SKILL_ID: 57,
+  },
 
   /* NHKマイルC */ { FACTOR_ID: 1024, SORT_ID: 1024, TYPE: RACE },
   /* エリザベス女王杯 */ { FACTOR_ID: 1025, SORT_ID: 1025, TYPE: RACE },

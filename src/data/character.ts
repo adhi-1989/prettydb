@@ -40,6 +40,7 @@ const Characters = [
   /* キングヘイロー */ { CHARACTER_ID: 60, SORT_ID: 60 },
   /* ヒシアマゾン */ { CHARACTER_ID: 11, SORT_ID: 11 },
   /* フジキセキ */ { CHARACTER_ID: 4, SORT_ID: 4 },
+  /* ゴールドシチー */ { CHARACTER_ID: 39, SORT_ID: 39 },
 ] as const;
 
 const Monikers = [
@@ -245,6 +246,11 @@ const Monikers = [
   },
   /* フジキセキ:シューティンスタァ・ルヴュ */ {
     CHARACTER_ID: 4,
+    MONIKER_ID: 0,
+    INITIAL_TALENT_LEVEL: 3,
+  },
+  /* ゴールドシチー:オーセンティック/1928 */ {
+    CHARACTER_ID: 39,
     MONIKER_ID: 0,
     INITIAL_TALENT_LEVEL: 3,
   },

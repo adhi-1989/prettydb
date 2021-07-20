@@ -678,6 +678,17 @@ export const Skills = [
     MATCH_TALENT_LEVEL: FROM_3_TO_5,
     INHERITABLE: true,
   },
+  /* KEEP IT REAL. */ {
+    SKILL_ID: 57,
+    SORT_ID: 57,
+    TYPE: BUFF_ACCELERATION,
+    ADVANCED: false,
+    UNIQUE: true,
+    CHARACTER_ID: 39,
+    MONIKER_ID: 0,
+    MATCH_TALENT_LEVEL: FROM_3_TO_5,
+    INHERITABLE: true,
+  },
 
   /* アガッてきた！ */ {
     SKILL_ID: 1024,

@@ -223,6 +223,11 @@ character:
     moniker:
       0:
         name: フィーユ・エクレール
+  39:
+    name: ゴールドシチー
+    moniker:
+      0:
+        name: オーセンティック/1928
   40:
     name: サクラバクシンオー
     moniker:
@@ -478,6 +483,10 @@ skill:
   56:
     name: 煌星のヴォードヴィル
     description: '最終直線で前の方で少し抜け出ていると\n輝きを増し速度がすごく上がる'
+    description-for-inheritor:
+  57:
+    name: KEEP IT REAL.
+    description: 'レース後半に中団から仕掛け始める時に\n持てるパフォーマンスを発揮して\n加速力を少しずつ上げる'
     description-for-inheritor:
   1024:
     name: アガッてきた！
@@ -1425,6 +1434,9 @@ factor:
   184:
     name: 煌星のヴォードヴィル
     description: 「煌星のヴォードヴィル」のスキルヒントを得られる因子です
+  185:
+    name: KEEP IT REAL.
+    description: 「KEEP IT REAL.」のスキルヒントを得られる因子です
   1024:
     name: NHKマイルC
     description: スピードとパワーがアップする因子です
