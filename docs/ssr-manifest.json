@@ -245,7 +245,7 @@
   "\u0000commonjsHelpers.js": [
     "/prettydb/assets/vendor.81907403.js"
   ],
-  "\u0000E:/development/workspaces/playground/prettydb-deploy/node_modules/lodash/lodash.js?commonjs-module": [
+  "\u0000E:/development/workspaces/service/prettydb/node_modules/lodash/lodash.js?commonjs-module": [
     "/prettydb/assets/vendor.81907403.js"
   ],
   "node_modules/lodash/lodash.js": [
@@ -276,7 +276,7 @@
     "/prettydb/assets/virtual_pwa-register.151256e2.js"
   ],
   "src/data/ability.ts": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -335,7 +335,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/util/map.ts": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -394,7 +394,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/util/number.ts": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -453,7 +453,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/data/character.ts": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -512,7 +512,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/data/factor.ts": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -571,7 +571,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/data/skill.ts": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -630,7 +630,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/data/status.ts": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -689,7 +689,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "node_modules/dexie/dist/dexie.mjs": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -748,7 +748,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/views/hall-of-fame/logic/db.ts": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -807,7 +807,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "@vite-icons/ion/add": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -866,7 +866,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "node_modules/vue-i18n/dist/vue-i18n.runtime.esm-bundler.js": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -925,7 +925,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/assets/images/grade/ss-plus.svg": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -984,7 +984,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/assets/images/grade/ss.svg": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -1043,7 +1043,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/assets/images/grade/s-plus.svg": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -1102,7 +1102,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/assets/images/grade/s.svg": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -1161,7 +1161,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/assets/images/grade/a-plus.svg": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -1220,7 +1220,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/assets/images/grade/a.svg": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -1279,7 +1279,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/assets/images/grade/b-plus.svg": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -1338,7 +1338,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/assets/images/grade/b.svg": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -1397,7 +1397,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/assets/images/grade/c-plus.svg": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -1456,7 +1456,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/assets/images/grade/c.svg": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -1515,7 +1515,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/assets/images/grade/d-plus.svg": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -1574,7 +1574,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/assets/images/grade/d.svg": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -1633,7 +1633,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/assets/images/grade/e-plus.svg": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -1692,7 +1692,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/assets/images/grade/e.svg": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -1751,7 +1751,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/assets/images/grade/f-plus.svg": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -1810,7 +1810,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/assets/images/grade/f.svg": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -1869,7 +1869,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/assets/images/grade/g-plus.svg": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -1928,7 +1928,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/assets/images/grade/g.svg": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -1987,7 +1987,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/views/logic/resources/images/grade.ts": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -2046,7 +2046,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/views/logic/resources/images/ability.ts": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -2105,7 +2105,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/assets/images/portrait/missing.png": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -2164,7 +2164,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/views/logic/resources/images/character.ts": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -2223,7 +2223,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/assets/images/rank/s-plus.svg": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -2282,7 +2282,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/assets/images/rank/s.svg": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -2341,7 +2341,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/assets/images/rank/a-plus.svg": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -2400,7 +2400,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/assets/images/rank/a.svg": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -2459,7 +2459,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/assets/images/rank/b-plus.svg": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -2518,7 +2518,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/assets/images/rank/b.svg": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -2577,7 +2577,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/assets/images/rank/c-plus.svg": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -2636,7 +2636,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/assets/images/rank/c.svg": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -2695,7 +2695,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/assets/images/rank/d-plus.svg": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -2754,7 +2754,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/assets/images/rank/d.svg": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -2813,7 +2813,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/assets/images/rank/e-plus.svg": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -2872,7 +2872,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/assets/images/rank/e.svg": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -2931,7 +2931,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/assets/images/rank/f-plus.svg": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -2990,7 +2990,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/assets/images/rank/f.svg": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -3049,7 +3049,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/assets/images/rank/g-plus.svg": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -3108,7 +3108,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/views/logic/resources/images/rank.ts": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -3167,7 +3167,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/assets/images/skill/buff_speed.svg": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -3226,7 +3226,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/assets/images/skill/buff_acceleration.svg": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -3285,7 +3285,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/assets/images/skill/buff_positioning.svg": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -3344,7 +3344,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/assets/images/skill/buff_vision.svg": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -3403,7 +3403,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/assets/images/skill/buff_starting.svg": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -3462,7 +3462,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/assets/images/skill/debuff_speed.svg": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -3521,7 +3521,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/assets/images/skill/debuff_stamina.svg": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -3580,7 +3580,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/assets/images/skill/debuff_agitation.svg": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -3639,7 +3639,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/assets/images/skill/debuff_calm.svg": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -3698,7 +3698,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/assets/images/skill/debuff_vision.svg": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -3757,7 +3757,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/assets/images/skill/recovery_stamina.svg": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -3816,7 +3816,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/assets/images/skill/support_speed.svg": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -3875,7 +3875,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/assets/images/skill/support_stamina.svg": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -3934,7 +3934,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/assets/images/skill/support_power.svg": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -3993,7 +3993,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/assets/images/skill/support_tenacity.svg": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -4052,7 +4052,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/assets/images/skill/support_general.svg": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -4111,7 +4111,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/assets/images/skill/support_strategy.svg": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -4170,7 +4170,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/assets/images/skill/weak_stamina.svg": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -4229,7 +4229,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/assets/images/skill/weak_starting.svg": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -4288,7 +4288,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/views/logic/resources/images/skill.ts": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -4347,7 +4347,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/views/logic/resources/images/status.ts": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -4406,7 +4406,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/views/logic/i18n/character.ts": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -4465,7 +4465,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/views/hall-of-fame/components/list/List.vue?vue&type=script&lang.ts": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -4524,7 +4524,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/views/hall-of-fame/components/list/List.vue?vue&type=style&index=0&lang.scss": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -4583,7 +4583,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/views/hall-of-fame/components/list/List.vue": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -4642,7 +4642,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/assets/images/level/star-fill.svg": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -4701,7 +4701,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/assets/images/level/star-empty.svg": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -4760,7 +4760,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/views/hall-of-fame/components/viewer/ProfileView.vue?vue&type=script&lang.ts": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -4819,7 +4819,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/views/hall-of-fame/components/viewer/ProfileView.vue?vue&type=style&index=0&scoped=true&lang.scss": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -4878,7 +4878,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/views/hall-of-fame/components/viewer/ProfileView.vue": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -4937,7 +4937,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/views/hall-of-fame/components/viewer/StatusView.vue?vue&type=script&lang.ts": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -4996,7 +4996,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/views/hall-of-fame/components/viewer/StatusView.vue?vue&type=style&index=0&scoped=true&lang.scss": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -5055,7 +5055,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/views/hall-of-fame/components/viewer/StatusView.vue": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -5114,7 +5114,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/views/hall-of-fame/components/viewer/AbilityView.vue?vue&type=script&lang.ts": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -5173,7 +5173,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/views/hall-of-fame/components/viewer/AbilityView.vue?vue&type=style&index=0&scoped=true&lang.scss": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -5232,7 +5232,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/views/hall-of-fame/components/viewer/AbilityView.vue": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -5291,7 +5291,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/views/hall-of-fame/components/widget/SkillCard.vue?vue&type=script&lang.ts": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -5350,7 +5350,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/views/hall-of-fame/components/widget/SkillCard.vue?vue&type=style&index=0&lang.scss": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -5409,7 +5409,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/views/hall-of-fame/components/widget/SkillCard.vue": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -5468,7 +5468,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/views/hall-of-fame/components/viewer/SkillView.vue?vue&type=script&lang.ts": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -5527,7 +5527,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/views/hall-of-fame/components/viewer/SkillView.vue?vue&type=style&index=0&scoped=true&lang.scss": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -5586,7 +5586,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/views/hall-of-fame/components/viewer/SkillView.vue": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -5645,7 +5645,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/views/hall-of-fame/components/widget/FactorCard.vue?vue&type=script&lang.ts": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -5704,7 +5704,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/views/hall-of-fame/components/widget/FactorCard.vue?vue&type=style&index=0&lang.scss": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -5763,7 +5763,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/views/hall-of-fame/components/widget/FactorCard.vue": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -5822,7 +5822,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/views/hall-of-fame/components/viewer/InheritView.vue?vue&type=script&lang.ts": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -5881,7 +5881,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/views/hall-of-fame/components/viewer/InheritView.vue?vue&type=style&index=0&scoped=true&lang.scss": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -5940,7 +5940,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/views/hall-of-fame/components/viewer/InheritView.vue": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -5999,7 +5999,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/views/hall-of-fame/components/viewer/HistoryView.vue?vue&type=script&lang.ts": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -6058,7 +6058,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/views/hall-of-fame/components/viewer/HistoryView.vue?vue&type=style&index=0&scoped=true&lang.scss": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -6117,7 +6117,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/views/hall-of-fame/components/viewer/HistoryView.vue": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -6176,7 +6176,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/views/hall-of-fame/components/viewer/MultiContentView.vue?vue&type=script&lang.ts": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -6235,7 +6235,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/views/hall-of-fame/components/viewer/MultiContentView.vue?vue&type=style&index=0&scoped=true&lang.scss": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -6294,7 +6294,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/views/hall-of-fame/components/viewer/MultiContentView.vue": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -6353,7 +6353,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/views/hall-of-fame/components/viewer/Viewer.vue?vue&type=script&lang.ts": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -6412,7 +6412,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/views/hall-of-fame/components/viewer/Viewer.vue?vue&type=style&index=0&scoped=true&lang.scss": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -6471,7 +6471,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/views/hall-of-fame/components/viewer/Viewer.vue": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -6530,7 +6530,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "@vite-icons/ion/caret-back": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -6589,7 +6589,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "@vite-icons/ion/caret-forward": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -6648,7 +6648,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "@vite-icons/ion/search": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -6707,7 +6707,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/views/logic/dom/input.ts": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -6766,7 +6766,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/views/hall-of-fame/components/editor/CharacterSelector.vue?vue&type=script&lang.ts": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -6825,7 +6825,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/views/hall-of-fame/components/editor/CharacterSelector.vue?vue&type=style&index=0&scoped=true&lang.scss": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -6884,7 +6884,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/views/hall-of-fame/components/editor/CharacterSelector.vue": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -6943,7 +6943,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/views/hall-of-fame/components/editor/MonikerSelector.vue?vue&type=script&lang.ts": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -7002,7 +7002,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/views/hall-of-fame/components/editor/MonikerSelector.vue?vue&type=style&index=0&scoped=true&lang.scss": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -7061,7 +7061,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/views/hall-of-fame/components/editor/MonikerSelector.vue": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -7120,7 +7120,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/views/hall-of-fame/components/editor/TalentLevelSelector.vue?vue&type=script&lang.ts": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -7179,7 +7179,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/views/hall-of-fame/components/editor/TalentLevelSelector.vue?vue&type=style&index=0&scoped=true&lang.scss": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -7238,7 +7238,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/views/hall-of-fame/components/editor/TalentLevelSelector.vue": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -7297,7 +7297,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/views/hall-of-fame/components/editor/CharacterEditor.vue?vue&type=script&lang.ts": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -7356,7 +7356,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/views/hall-of-fame/components/editor/CharacterEditor.vue?vue&type=style&index=0&scoped=true&lang.scss": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -7415,7 +7415,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/views/hall-of-fame/components/editor/CharacterEditor.vue": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -7474,7 +7474,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "@vite-icons/ion/backspace": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -7533,7 +7533,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "@vite-icons/ion/return-down-back": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -7592,7 +7592,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/views/components/Numpad.vue?vue&type=script&lang.ts": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -7651,7 +7651,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/views/components/Numpad.vue?vue&type=style&index=0&lang.scss": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -7710,7 +7710,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/views/components/Numpad.vue": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -7769,7 +7769,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/views/hall-of-fame/components/editor/StatusEditor.vue?vue&type=script&lang.ts": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -7828,7 +7828,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/views/hall-of-fame/components/editor/StatusEditor.vue?vue&type=style&index=0&scoped=true&lang.scss": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -7887,7 +7887,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/views/hall-of-fame/components/editor/StatusEditor.vue": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -7946,7 +7946,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/views/hall-of-fame/components/editor/AbilityEditor.vue?vue&type=script&lang.ts": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -8005,7 +8005,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/views/hall-of-fame/components/editor/AbilityEditor.vue?vue&type=style&index=0&scoped=true&lang.scss": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -8064,7 +8064,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/views/hall-of-fame/components/editor/AbilityEditor.vue": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -8123,7 +8123,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "@vite-icons/ion/caret-up": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -8182,7 +8182,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "@vite-icons/ion/caret-down": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -8241,7 +8241,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/views/hall-of-fame/components/editor/SkillFilter.vue?vue&type=script&lang.ts": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -8300,7 +8300,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/views/hall-of-fame/components/editor/SkillFilter.vue?vue&type=style&index=0&scoped=true&lang.scss": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -8359,7 +8359,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/views/hall-of-fame/components/editor/SkillFilter.vue": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -8418,7 +8418,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/views/hall-of-fame/components/editor/SkillEditor.vue?vue&type=script&lang.ts": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -8477,7 +8477,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/views/hall-of-fame/components/editor/SkillEditor.vue?vue&type=style&index=0&scoped=true&lang.scss": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -8536,7 +8536,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/views/hall-of-fame/components/editor/SkillEditor.vue": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -8595,7 +8595,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/views/hall-of-fame/components/editor/FactorFilter.vue?vue&type=script&lang.ts": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -8654,7 +8654,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/views/hall-of-fame/components/editor/FactorFilter.vue?vue&type=style&index=0&scoped=true&lang.scss": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -8713,7 +8713,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/views/hall-of-fame/components/editor/FactorFilter.vue": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -8772,7 +8772,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/views/hall-of-fame/components/editor/FactorEditor.vue?vue&type=script&lang.ts": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -8831,7 +8831,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/views/hall-of-fame/components/editor/FactorEditor.vue?vue&type=style&index=0&scoped=true&lang.scss": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -8890,7 +8890,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/views/hall-of-fame/components/editor/FactorEditor.vue": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -8949,7 +8949,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/views/hall-of-fame/components/editor/HistoryEditor.vue?vue&type=script&lang.ts": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -9008,7 +9008,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/views/hall-of-fame/components/editor/HistoryEditor.vue": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -9067,7 +9067,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/views/hall-of-fame/components/editor/Editor.vue?vue&type=script&lang.ts": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -9126,7 +9126,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/views/hall-of-fame/components/editor/Editor.vue?vue&type=style&index=0&scoped=true&lang.scss": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -9185,7 +9185,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/views/hall-of-fame/components/editor/Editor.vue": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -9244,7 +9244,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/views/hall-of-fame/pages/index.vue?vue&type=script&lang.ts": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -9303,7 +9303,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/views/hall-of-fame/pages/index.vue?vue&type=style&index=0&lang.scss": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -9362,7 +9362,7 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/views/hall-of-fame/pages/index.vue": [
-    "/prettydb/assets/index.7c151dfa.js",
+    "/prettydb/assets/index.bef01222.js",
     "/prettydb/assets/index.c7e63f1a.css",
     "/prettydb/assets/ss-plus.c0f55ea2.svg",
     "/prettydb/assets/ss.88f59932.svg",
@@ -9421,15 +9421,15 @@
     "/prettydb/assets/star-empty.0bdf0273.svg"
   ],
   "src/views/pages/changelog.vue?vue&type=script&lang.ts": [
-    "/prettydb/assets/changelog.d9975c69.js",
+    "/prettydb/assets/changelog.09529b2f.js",
     "/prettydb/assets/changelog.c4a2d241.css"
   ],
   "src/views/pages/changelog.vue?vue&type=style&index=0&lang.scss": [
-    "/prettydb/assets/changelog.d9975c69.js",
+    "/prettydb/assets/changelog.09529b2f.js",
     "/prettydb/assets/changelog.c4a2d241.css"
   ],
   "src/views/pages/changelog.vue": [
-    "/prettydb/assets/changelog.d9975c69.js",
+    "/prettydb/assets/changelog.09529b2f.js",
     "/prettydb/assets/changelog.c4a2d241.css"
   ],
   "src/assets/images/app/notfound.svg": [
