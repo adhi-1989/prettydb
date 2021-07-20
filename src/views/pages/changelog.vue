@@ -1,6 +1,17 @@
 <template>
   <article class="changelog-root">
     <section class="content">
+      <h1 class="version">v0.7.6</h1>
+      <div class="release-date">公開日: 2021-07-20</div>
+      <ul class="changelogs">
+        <li class="log-item">
+          ゴールドシチー[オーセンティック/1928] のデータを追加
+        </li>
+        <li class="log-item">くじけぬ精神 のスキルデータを追加</li>
+        <li class="log-item">プランX のスキルデータが抜けていたので追加</li>
+      </ul>
+    </section>
+    <section class="content">
       <h1 class="version">v0.7.5</h1>
       <div class="release-date">公開日: 2021-07-18</div>
       <ul class="changelogs">

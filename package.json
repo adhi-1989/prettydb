@@ -1,5 +1,6 @@
 {
-  "version": "0.7.5",
+  "name": "prettydb",
+  "version": "0.7.6",
   "scripts": {
     "dev": "vite",
     "build": "vite-ssg build",
