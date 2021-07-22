@@ -45,7 +45,6 @@ import {
   actionInjectionKey,
   stateInjectionKey,
 } from "@/views/hall-of-fame/logic/dependency";
-import { links } from "@/views/hall-of-fame/logic/head";
 
 export default defineComponent({
   components: {
@@ -60,7 +59,6 @@ export default defineComponent({
       meta: [
         { name: "description", content: t("pages.hall-of-fame.description") },
       ],
-      link: [...links],
     });
 
     const activeView = ref<ViewType>("list");
