@@ -51,7 +51,7 @@ export default defineConfig(({ mode }) => {
       }),
       VitePWA({
         registerType: "autoUpdate",
-        includeAssets: ["favicon.svg", "robots.txt", "sitemap.txt"],
+        includeAssets: ["favicon.svg", "robots.txt", "sitemap.xml"],
         manifest: {
           name: "プリティーデービー",
           short_name: "PrettyDB",
