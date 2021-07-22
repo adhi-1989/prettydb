@@ -1,4 +1,4 @@
-import _ from "lodash";
+import _ from "@/util/lodash";
 import { ViteSSG } from "vite-ssg";
 import generatedRoutes from "virtual:generated-pages";
 import { setupLayouts } from "virtual:generated-layouts";

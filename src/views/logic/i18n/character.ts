@@ -1,4 +1,4 @@
-import _ from "lodash";
+import _ from "@/util/lodash";
 
 export function getCharacterNameKey(characterID: number): string;
 export function getCharacterNameKey(obj: { characterID: number }): string;

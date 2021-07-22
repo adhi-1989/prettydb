@@ -40,7 +40,7 @@ import { getPortrait, getRankGradeIcon } from "@/views/logic/resources/images";
 import { getCharacterNameKey, getMonikerKey } from "@/views/logic/i18n";
 import { useI18n } from "vue-i18n";
 import { TalentLevels } from "@/data";
-import _ from "lodash";
+import _ from "@/util/lodash";
 import starFill from "#/images/level/star-fill.svg";
 import starEmpty from "#/images/level/star-empty.svg";
 

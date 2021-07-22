@@ -59,7 +59,7 @@ import {
   ref,
   toRaw,
 } from "vue";
-import _ from "lodash";
+import _ from "@/util/lodash";
 import {
   HallOfFameDTO,
   db,

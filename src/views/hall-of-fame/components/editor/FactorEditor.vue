@@ -79,7 +79,7 @@ import {
   FactorTypes,
 } from "@/data";
 import { hashCode } from "@/util";
-import _ from "lodash";
+import _ from "@/util/lodash";
 
 type Filter = (factor: FactorDTO) => boolean;
 type FilterHolder = {

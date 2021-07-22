@@ -4,7 +4,7 @@
 
 <script lang="ts">
 import { defineComponent, onMounted, ref } from "vue";
-import _ from "lodash";
+import _ from "@/util/lodash";
 import * as THREE from "three";
 import horseshoe from "#/images/app/horseshoe.svg";
 

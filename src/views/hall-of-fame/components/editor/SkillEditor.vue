@@ -60,7 +60,7 @@ import {
   reactive,
   readonly,
 } from "vue";
-import _ from "lodash";
+import _ from "@/util/lodash";
 import { HallOfFameDTO, SkillDTO } from "@/views/hall-of-fame/logic/db";
 import {
   SkillTypes,
