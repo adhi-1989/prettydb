@@ -3,93 +3,54 @@
     <!-- modal view -->
     <div class="modal-view">
       <transition name="view-container">
-        <div class="view-container" v-if="activeContent !== ActiveContent.LIST">
-          <viewer
-            :view-data="getInjectionData()"
-            v-if="activeContent === ActiveContent.VIEWER"
-            @click.ctrl="closeViewer()"
-          >
-            <div class="controller-container">
-              <div class="controller" @click="openEditor()">
-                {{ t("ui.edit") }}
-              </div>
-              <div class="controller" @click="closeViewer()">
-                {{ t("ui.close") }}
-              </div>
+        <div class="view-container" v-if="!isViewActive('list')">
+          <transition name="view" mode="out-in">
+            <div class="view" v-if="isViewActive('viewer')">
+              <viewer />
             </div>
-          </viewer>
-          <editor
-            :edit-data="getInjectionData()"
-            v-else-if="activeContent === ActiveContent.EDITOR"
-            @click.ctrl="closeEditor()"
-          >
-            <div class="controller-container">
-              <div class="controller" @click="saveEditData()">
-                {{ t("ui.save") }}
-              </div>
-              <div class="controller" @click="closeEditor()">
-                {{ t("ui.discard") }}
-              </div>
+            <div class="view" v-else-if="isViewActive('editor')">
+              <editor />
             </div>
-          </editor>
+          </transition>
         </div>
       </transition>
     </div>
 
     <!-- standard view -->
-    <div
-      class="standard-view"
-      :data-active="activeContent === ActiveContent.LIST"
-    >
-      <list
-        :data-list="dataList"
-        @openViewer="openViewer"
-        @openEditor="openEditor"
-      />
+    <div class="standard-view" :data-active="isViewActive('list')">
+      <list />
     </div>
   </article>
 </template>
 
 <script lang="ts">
 import {
+  computed,
   defineComponent,
   onMounted,
+  provide,
   reactive,
   readonly,
   ref,
-  toRaw,
 } from "vue";
 import _ from "@/util/lodash";
-import {
-  HallOfFameDTO,
-  db,
-  fetch,
-  upsert,
-} from "@/views/hall-of-fame/logic/db";
+import { Dto, db, fetch, upsert } from "@/views/hall-of-fame/logic/db";
 import List from "@/views/hall-of-fame/components/list/List.vue";
 import Viewer from "@/views/hall-of-fame/components/viewer/Viewer.vue";
 import Editor from "@/views/hall-of-fame/components/editor/Editor.vue";
 import { useI18n } from "vue-i18n";
 import { useHead } from "~/@vueuse/head";
-
-const ActiveContent = {
-  LIST: 0,
-  VIEWER: 1,
-  EDITOR: 2,
-} as const;
-
-type ActiveContentKey = typeof ActiveContent[keyof typeof ActiveContent];
+import {
+  ViewType,
+  actionInjectionKey,
+  stateInjectionKey,
+} from "@/views/hall-of-fame/logic/dependency";
 
 export default defineComponent({
   components: {
     List,
     Viewer,
     Editor,
-  },
-  data() {
-    return {
-      ActiveContent,
-    };
   },
   setup() {
     const { t } = useI18n();
@@ -100,8 +61,13 @@ export default defineComponent({
       ],
     });
 
-    const dataList: Array<HallOfFameDTO> = reactive([]);
-    const activeContent = ref<ActiveContentKey>(ActiveContent.LIST);
+    const activeView = ref<ViewType>("list");
+    const parentView: Array<ViewType> = [];
+    const dataList = reactive<Array<Dto>>([]);
+    const viewDataIndex = ref(-1);
+    const viewData = ref(Dto());
+    const viewDataBackup = ref<Dto | undefined>(undefined);
+    const editData = ref(Dto());
 
     const refreshList = () => {
       dataList.splice(0);
@@ -118,45 +84,54 @@ export default defineComponent({
         });
     };
 
-    let injectionData = HallOfFameDTO();
-    const getInjectionData = () => {
-      if (activeContent.value == ActiveContent.EDITOR) {
-        return reactive(injectionData) as HallOfFameDTO;
-      } else {
-        return readonly(injectionData) as HallOfFameDTO;
+    const isViewActive = (type: ViewType) => {
+      return activeView.value == type;
+    };
+    const openView = (type: ViewType) => {
+      if (type === "viewer") {
+        viewData.value = dataList[viewDataIndex.value];
+      } else if (type === "editor") {
+        if (viewDataIndex.value < 0) {
+          editData.value = Dto();
+        } else {
+          viewDataBackup.value = viewData.value;
+          editData.value = _.cloneDeep(dataList[viewDataIndex.value]);
+          viewData.value = editData.value;
+        }
       }
+      parentView.push(activeView.value);
+      activeView.value = type;
     };
-    const openViewer = (index: number) => {
-      injectionData = dataList[index];
-      activeContent.value = ActiveContent.VIEWER;
-    };
-    const closeViewer = () => {
-      injectionData = HallOfFameDTO();
-      activeContent.value = ActiveContent.LIST;
+    const closeView = (type: ViewType) => {
+      if (activeView.value === type) {
+        if (type === "editor" && viewDataBackup.value != undefined) {
+          viewData.value = viewDataBackup.value;
+          viewDataBackup.value = undefined;
+        }
+        activeView.value = parentView.pop() || "list";
+      }
     };
 
-    let parentMode: ActiveContentKey = ActiveContent.LIST;
-    let backupData = HallOfFameDTO();
-    const openEditor = (clearInjectionData = false) => {
-      if (clearInjectionData) {
-        injectionData = HallOfFameDTO();
-      }
-      parentMode = activeContent.value;
-      backupData = _.cloneDeep(toRaw(injectionData));
-      activeContent.value = ActiveContent.EDITOR;
-    };
-    const closeEditor = (discard = true) => {
-      if (discard) {
-        injectionData = backupData;
-      }
-      activeContent.value = parentMode;
-    };
-    const saveEditData = () => {
-      upsert(injectionData).then(() => {
-        refreshList();
-      });
-      closeEditor(false);
-    };
+    provide(actionInjectionKey, {
+      openView,
+      closeView,
+      setViewDataIndex: (index: number) => {
+        viewDataIndex.value = index;
+      },
+      saveEditData: () => {
+        return upsert(editData.value).then(() => {
+          refreshList();
+          viewDataBackup.value = undefined;
+          return Promise.resolve();
+        });
+      },
+    });
+
+    provide(stateInjectionKey, {
+      dataList: computed(() => dataList.map(readonly)),
+      viewData: readonly(viewData),
+      editData: editData,
+    });
 
     onMounted(() => {
       refreshList();
@@ -164,14 +139,7 @@ export default defineComponent({
 
     return {
       t,
-      dataList: readonly(dataList) as Array<HallOfFameDTO>,
-      activeContent: readonly(activeContent),
-      getInjectionData,
-      openViewer,
-      closeViewer,
-      openEditor,
-      closeEditor,
-      saveEditData,
+      isViewActive,
     };
   },
 });
@@ -187,7 +155,7 @@ export default defineComponent({
     }
 
     > .view-container {
-      @apply overflow-hidden h-full p-[1rem];
+      @apply relative h-full w-full;
       &-enter-active {
         animation: zoomIn;
         animation-duration: 0.3s;
@@ -198,13 +166,17 @@ export default defineComponent({
         animation-duration: 0.3s;
       }
 
-      .controller-container {
-        @apply flex gap-x-[2rem] justify-center;
-        @apply xs:(text-[1.25rem] rounded-lg px-[1rem] py-[0.25rem]);
-        > .controller {
-          @include button-gradient;
-          @apply font-bold text-[0.875rem] rounded-md px-[0.5rem] py-[0.25rem] border cursor-pointer;
-          @apply xs:(text-[1.125rem] px-[1rem] py-[0.5rem]);
+      > .view {
+        @apply overflow-hidden h-full w-full p-[1rem];
+        &-enter-active {
+          animation: flipInY;
+          animation-duration: 0.25s;
+        }
+
+        &-leave-active {
+          animation: flipOutY;
+          animation-duration: 0.25s;
+          @apply absolute;
         }
       }
     }

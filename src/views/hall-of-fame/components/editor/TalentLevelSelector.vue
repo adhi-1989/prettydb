@@ -22,7 +22,7 @@
 
 <script lang="ts">
 import { defineComponent, PropType, reactive, readonly } from "vue";
-import { HallOfFameDTO } from "@/views/hall-of-fame/logic/db";
+import { Dto } from "@/views/hall-of-fame/logic/db";
 import { getMoniker, TalentLevels, TalentLevel } from "@/data";
 import starFill from "#/images/level/star-fill.svg";
 import starEmpty from "#/images/level/star-empty.svg";
@@ -30,7 +30,7 @@ import starEmpty from "#/images/level/star-empty.svg";
 export default defineComponent({
   props: {
     editData: {
-      type: Object as PropType<HallOfFameDTO>,
+      type: Object as PropType<Dto>,
       required: true,
     },
   },

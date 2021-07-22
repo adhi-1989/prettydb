@@ -50,13 +50,13 @@ import {
   AbilityKeys,
 } from "@/data";
 import { getAbilityGradeIcon } from "@/views/logic/resources/images";
-import { HallOfFameDTO } from "@/views/hall-of-fame/logic/db";
+import { Dto } from "@/views/hall-of-fame/logic/db";
 import { useI18n } from "vue-i18n";
 
 export default defineComponent({
   props: {
     editData: {
-      type: Object as PropType<HallOfFameDTO>,
+      type: Object as PropType<Dto>,
       required: true,
     },
   },

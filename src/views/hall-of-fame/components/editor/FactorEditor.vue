@@ -67,7 +67,7 @@ import {
   onBeforeUnmount,
   ref,
 } from "vue";
-import { HallOfFameDTO, FactorDTO } from "@/views/hall-of-fame/logic/db";
+import { Dto, FactorDTO } from "@/views/hall-of-fame/logic/db";
 import FactorCard from "@/views/hall-of-fame/components/widget/FactorCard.vue";
 import FactorFilter from "@/views/hall-of-fame/components/editor/FactorFilter.vue";
 import {
@@ -93,7 +93,7 @@ export default defineComponent({
   },
   props: {
     editData: {
-      type: Object as PropType<HallOfFameDTO>,
+      type: Object as PropType<Dto>,
       required: true,
     },
   },

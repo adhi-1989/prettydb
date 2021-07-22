@@ -35,7 +35,7 @@
 
 <script lang="ts">
 import { defineComponent, PropType, readonly } from "vue";
-import { HallOfFameDTO } from "@/views/hall-of-fame/logic/db";
+import { Dto } from "@/views/hall-of-fame/logic/db";
 import { getPortrait, getRankGradeIcon } from "@/views/logic/resources/images";
 import { getCharacterNameKey, getMonikerKey } from "@/views/logic/i18n";
 import { useI18n } from "vue-i18n";
@@ -47,7 +47,7 @@ import starEmpty from "#/images/level/star-empty.svg";
 export default defineComponent({
   props: {
     viewData: {
-      type: Object as PropType<HallOfFameDTO>,
+      type: Object as PropType<Dto>,
       required: true,
     },
   },

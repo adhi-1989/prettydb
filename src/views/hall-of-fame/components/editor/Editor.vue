@@ -8,41 +8,13 @@
         @click="transitionPrevPage()"
       />
       <div class="pagination">
-        <div
-          class="sphere"
-          :data-page-active="isPageActive(Pages.CHARACTER_EDITOR)"
-          @click="transitionPage(Pages.CHARACTER_EDITOR)"
-        />
-        <div
-          class="sphere"
-          :data-page-active="isPageActive(Pages.STATUS_EDITOR)"
-          @click="transitionPage(Pages.STATUS_EDITOR)"
-        />
-        <div
-          class="sphere"
-          :data-page-active="isPageActive(Pages.ABILITY_EDITOR)"
-          @click="transitionPage(Pages.ABILITY_EDITOR)"
-        />
-        <div
-          class="sphere"
-          :data-page-active="isPageActive(Pages.SKILL_EDITOR)"
-          @click="transitionPage(Pages.SKILL_EDITOR)"
-        />
-        <div
-          class="sphere"
-          :data-page-active="isPageActive(Pages.FACTOR_EDITOR)"
-          @click="transitionPage(Pages.FACTOR_EDITOR)"
-        />
-        <div
-          class="sphere"
-          :data-page-active="isPageActive(Pages.HISTORY_EDITOR)"
-          @click="transitionPage(Pages.HISTORY_EDITOR)"
-        />
-        <div
-          class="sphere"
-          :data-page-active="isPageActive(Pages.PREVIEW)"
-          @click="transitionPage(Pages.PREVIEW)"
-        />
+        <template v-for="page in Pages" :key="page">
+          <div
+            class="sphere"
+            :data-page-active="isPageActive(page)"
+            @click="transitionPage(page)"
+          />
+        </template>
       </div>
       <icon-ion-caret-forward
         class="transition-button"
@@ -52,7 +24,7 @@
 
     <!-- main content -->
     <div class="main-content">
-      <transition :name="getTransitionName">
+      <transition :name="transitionName">
         <keep-alive>
           <div
             class="content character"
@@ -91,8 +63,15 @@
             <history-editor :edit-data="editData" />
           </div>
           <div class="content preview" v-else-if="isPageActive(Pages.PREVIEW)">
-            <viewer :view-data="editData">
-              <slot />
+            <viewer>
+              <template #controllers>
+                <div class="controller" @click="closeEditor(false)">
+                  {{ t("ui.save") }}
+                </div>
+                <div class="controller" @click="closeEditor(true)">
+                  {{ t("ui.discard") }}
+                </div>
+              </template>
             </viewer>
           </div>
         </keep-alive>
@@ -102,8 +81,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, PropType, ref } from "vue";
-import { HallOfFameDTO } from "@/views/hall-of-fame/logic/db";
+import { computed, defineComponent, inject, readonly, ref } from "vue";
 import CharacterEditor from "@/views/hall-of-fame/components/editor/CharacterEditor.vue";
 import StatusEditor from "@/views/hall-of-fame/components/editor/StatusEditor.vue";
 import AbilityEditor from "@/views/hall-of-fame/components/editor/AbilityEditor.vue";
@@ -111,6 +89,14 @@ import SkillEditor from "@/views/hall-of-fame/components/editor/SkillEditor.vue"
 import FactorEditor from "@/views/hall-of-fame/components/editor/FactorEditor.vue";
 import HistoryEditor from "@/views/hall-of-fame/components/editor/HistoryEditor.vue";
 import Viewer from "@/views/hall-of-fame/components/viewer/Viewer.vue";
+import {
+  actionInjectionKey,
+  fallbackActionFactory,
+  fallbackStateFactory,
+  stateInjectionKey,
+} from "@/views/hall-of-fame/logic/dependency";
+import { useI18n } from "~/vue-i18n";
+import _ from "@/util/lodash";
 
 const Pages = {
   CHARACTER_EDITOR: 0,
@@ -121,14 +107,9 @@ const Pages = {
   HISTORY_EDITOR: 5,
   PREVIEW: 6,
 } as const;
-
-const Directions = {
-  NEXT: 0,
-  PREV: 1,
-} as const;
-
 type Page = typeof Pages[keyof typeof Pages];
-type Direction = typeof Directions[keyof typeof Directions];
+
+type Direction = "next" | "prev";
 
 export default defineComponent({
   components: {
@@ -140,82 +121,78 @@ export default defineComponent({
     HistoryEditor,
     Viewer,
   },
-  props: {
-    editData: {
-      type: Object as PropType<HallOfFameDTO>,
-      required: true,
-    },
-  },
   data() {
     return {
       Pages,
     };
   },
   setup() {
+    const { t } = useI18n();
+    const { closeView, saveEditData } = inject(
+      actionInjectionKey,
+      fallbackActionFactory,
+      true
+    );
+    const { editData } = inject(stateInjectionKey, fallbackStateFactory, true);
+    const closeEditor = (discard: boolean) => {
+      if (!discard) {
+        saveEditData().then(() => {
+          closeView("editor");
+        });
+      } else {
+        closeView("editor");
+      }
+    };
+
     const activePage = ref<Page>(Pages.CHARACTER_EDITOR);
-    const direction = ref<Direction>(Directions.NEXT);
+    const direction = ref<Direction>("next");
     const isPageActive = (page: Page) => {
       return activePage.value === page;
     };
     const transitionPage = (page: Page) => {
-      if (activePage.value == page) {
+      const _activePage = activePage.value;
+      if (_activePage == page) {
         return;
-      } else if (activePage.value < page) {
-        direction.value = Directions.NEXT;
-      } else if (activePage.value > page) {
-        direction.value = Directions.PREV;
+      } else if (_activePage < page) {
+        direction.value = "next";
+      } else if (_activePage > page) {
+        direction.value = "prev";
       }
       activePage.value = page;
     };
     const transitionNextPage = () => {
-      if (activePage.value == Pages.PREVIEW) {
-        return;
-      } else if (activePage.value == Pages.CHARACTER_EDITOR) {
-        transitionPage(Pages.STATUS_EDITOR);
-      } else if (activePage.value == Pages.STATUS_EDITOR) {
-        transitionPage(Pages.ABILITY_EDITOR);
-      } else if (activePage.value == Pages.ABILITY_EDITOR) {
-        transitionPage(Pages.SKILL_EDITOR);
-      } else if (activePage.value == Pages.SKILL_EDITOR) {
-        transitionPage(Pages.FACTOR_EDITOR);
-      } else if (activePage.value == Pages.FACTOR_EDITOR) {
-        transitionPage(Pages.HISTORY_EDITOR);
-      } else if (activePage.value == Pages.HISTORY_EDITOR) {
-        transitionPage(Pages.PREVIEW);
+      const nextIndex = activePage.value + 1;
+      const nextPage = _.values(Pages).find((x) => x == nextIndex);
+      if (nextPage != undefined) {
+        transitionPage(nextPage);
       }
     };
     const transitionPrevPage = () => {
-      if (activePage.value == Pages.CHARACTER_EDITOR) {
-        return;
-      } else if (activePage.value == Pages.PREVIEW) {
-        transitionPage(Pages.HISTORY_EDITOR);
-      } else if (activePage.value == Pages.HISTORY_EDITOR) {
-        transitionPage(Pages.FACTOR_EDITOR);
-      } else if (activePage.value == Pages.FACTOR_EDITOR) {
-        transitionPage(Pages.SKILL_EDITOR);
-      } else if (activePage.value == Pages.SKILL_EDITOR) {
-        transitionPage(Pages.ABILITY_EDITOR);
-      } else if (activePage.value == Pages.ABILITY_EDITOR) {
-        transitionPage(Pages.STATUS_EDITOR);
-      } else if (activePage.value == Pages.STATUS_EDITOR) {
-        transitionPage(Pages.CHARACTER_EDITOR);
+      const prevIndex = activePage.value - 1;
+      const prevPage = _.values(Pages).find((x) => x == prevIndex);
+      if (prevPage != undefined) {
+        transitionPage(prevPage);
       }
     };
-    const getTransitionName = computed(() => {
-      return direction.value == Directions.NEXT ? "slide-next" : "slide-prev";
+    const transitionName = computed(() => {
+      return direction.value == "next" ? "slide-next" : "slide-prev";
     });
     return {
+      t,
+      activePage: readonly(activePage),
+      closeEditor,
+      editData,
       isPageActive,
       transitionPage,
       transitionNextPage,
       transitionPrevPage,
-      getTransitionName,
+      transitionName,
     };
   },
 });
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .data-editor-root {
   @apply flex flex-col h-full;
   user-select: none;

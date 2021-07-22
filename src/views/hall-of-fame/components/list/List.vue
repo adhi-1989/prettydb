@@ -6,7 +6,7 @@
       <div class="data-item-group">
         <template v-for="(data, index) in dataList" :key="data.id">
           <!-- item -->
-          <div class="data-item" @click="$emit('openViewer', index)">
+          <div class="data-item" @click="selectItem(index)">
             <div class="score">
               <img
                 class="image"
@@ -30,26 +30,24 @@
 
     <!-- toolbar -->
     <section class="toolbar">
-      <icon-ion-add class="button add" @click="$emit('openEditor', true)" />
+      <icon-ion-add class="button add" @click="openEditor()" />
     </section>
   </article>
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from "vue";
-import { HallOfFameDTO } from "@/views/hall-of-fame/logic/db";
+import { defineComponent, inject } from "vue";
 import { useI18n } from "vue-i18n";
 import { getRankGradeIcon } from "@/views/logic/resources/images";
 import { getCharacterNameKey, getMonikerKey } from "@/views/logic/i18n";
+import {
+  actionInjectionKey,
+  stateInjectionKey,
+  fallbackActionFactory,
+  fallbackStateFactory,
+} from "@/views/hall-of-fame/logic/dependency";
 
 export default defineComponent({
-  emits: ["openViewer", "openEditor"],
-  props: {
-    dataList: {
-      type: Array as PropType<Array<HallOfFameDTO>>,
-      required: true,
-    },
-  },
   data() {
     return {
       getRankGradeIcon,
@@ -59,8 +57,24 @@ export default defineComponent({
   },
   setup() {
     const { t } = useI18n();
+    const { openView, setViewDataIndex } = inject(
+      actionInjectionKey,
+      fallbackActionFactory,
+      true
+    );
+    const { dataList } = inject(stateInjectionKey, fallbackStateFactory, true);
+    const selectItem = (index: number) => {
+      setViewDataIndex(index);
+      openView("viewer");
+    };
+    const openEditor = () => {
+      openView("editor");
+    };
     return {
       t,
+      dataList,
+      selectItem,
+      openEditor,
     };
   },
 });

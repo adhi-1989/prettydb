@@ -140,7 +140,7 @@ export function HistoryDTO(
   };
 }
 
-export type HallOfFameDTO = {
+export type Dto = {
   id?: number;
   character: CharacterDTO;
   status: StatusDTO;
@@ -150,9 +150,7 @@ export type HallOfFameDTO = {
   history: HistoryDTO;
 };
 
-export function HallOfFameDTO(
-  arg: HallOfFameDTO | undefined = undefined
-): HallOfFameDTO {
+export function Dto(arg: Dto | undefined = undefined): Dto {
   return {
     id: arg?.id,
     character: CharacterDTO(arg?.character),
@@ -164,7 +162,7 @@ export function HallOfFameDTO(
   };
 }
 
-class HallOfFameDB extends Dexie {
+class Database extends Dexie {
   public readonly IDs: Dexie.Table<ID, number>;
   public readonly characters: Dexie.Table<Character, number>;
   public readonly status: Dexie.Table<Status, number>;
@@ -197,9 +195,9 @@ class HallOfFameDB extends Dexie {
   }
 }
 
-export const db = new HallOfFameDB();
+export const db = new Database();
 
-export async function fetch(id: number): Promise<HallOfFameDTO> {
+export async function fetch(id: number): Promise<Dto> {
   return db.transaction(
     "r",
     [
@@ -225,7 +223,7 @@ export async function fetch(id: number): Promise<HallOfFameDTO> {
             db.histories.where("id").equals(id).first(),
           ]).then(([character, status, ability, skills, factors, history]) => {
             return Promise.resolve(
-              HallOfFameDTO({
+              Dto({
                 id,
                 character: CharacterDTO(character),
                 status: StatusDTO(status),
@@ -241,7 +239,7 @@ export async function fetch(id: number): Promise<HallOfFameDTO> {
   );
 }
 
-export async function upsert(dto: HallOfFameDTO): Promise<void> {
+export async function upsert(dto: Dto): Promise<void> {
   return db.transaction(
     "rw",
     [
@@ -287,9 +285,3 @@ export async function upsert(dto: HallOfFameDTO): Promise<void> {
     }
   );
 }
-
-export const hallOfFameDB = {
-  db,
-  fetch,
-  upsert,
-};

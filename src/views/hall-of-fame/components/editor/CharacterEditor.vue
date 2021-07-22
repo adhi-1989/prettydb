@@ -8,7 +8,7 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from "vue";
-import { HallOfFameDTO } from "@/views/hall-of-fame/logic/db";
+import { Dto } from "@/views/hall-of-fame/logic/db";
 import CharacterSelector from "@/views/hall-of-fame/components/editor/CharacterSelector.vue";
 import MonikerSelector from "@/views/hall-of-fame/components/editor/MonikerSelector.vue";
 import TalentLevelSelector from "@/views/hall-of-fame/components/editor/TalentLevelSelector.vue";
@@ -21,7 +21,7 @@ export default defineComponent({
   },
   props: {
     editData: {
-      type: Object as PropType<HallOfFameDTO>,
+      type: Object as PropType<Dto>,
       required: true,
     },
   },

@@ -23,12 +23,14 @@
       </div>
 
       <div class="skill-transfer-controller">
-        <div class="transfer-button" @click="transferMarkedItemsToUpper()">
-          <icon-ion-caret-up />
-        </div>
-        <div class="transfer-button" @click="transferMarkedItemsToLower()">
-          <icon-ion-caret-down />
-        </div>
+        <icon-ion-caret-up
+          class="transfer-button"
+          @click="transferMarkedItemsToUpper()"
+        />
+        <icon-ion-caret-down
+          class="transfer-button"
+          @click="transferMarkedItemsToLower()"
+        />
       </div>
 
       <div class="skill-list">
@@ -61,7 +63,7 @@ import {
   readonly,
 } from "vue";
 import _ from "@/util/lodash";
-import { HallOfFameDTO, SkillDTO } from "@/views/hall-of-fame/logic/db";
+import { Dto, SkillDTO } from "@/views/hall-of-fame/logic/db";
 import {
   SkillTypes,
   isUniqueSkill,
@@ -84,7 +86,7 @@ export default defineComponent({
   },
   props: {
     editData: {
-      type: Object as PropType<HallOfFameDTO>,
+      type: Object as PropType<Dto>,
       required: true,
     },
   },
@@ -239,26 +241,30 @@ export default defineComponent({
           &-move {
             transition: transform 0.5s;
           }
+
           &-enter-active {
             animation: zoomIn;
             animation-duration: 0.5s;
           }
+
           &-leave-active {
             /* FIXME: グリッドアイテムの座標を保持できるようになったらアニメーションを追加 */
             /* NOTE: grid-area を直で指定してやれば absolute でも座標を固定することが可能 */
             @apply absolute;
             opacity: 0;
           }
+
           &[data-marked="true"] {
             @apply ring;
           }
         }
       }
     }
+
     > .skill-transfer-controller {
       @apply flex gap-x-[4rem] justify-center h-[3rem] py-[0.25rem];
       > .transfer-button {
-        @apply w-[2.5rem] cursor-pointer;
+        @apply w-[2.5rem] h-[2.5rem] cursor-pointer;
       }
     }
   }

@@ -26,7 +26,7 @@
 
 <script lang="ts">
 import { defineComponent, PropType, readonly, ref } from "vue";
-import { HallOfFameDTO } from "@/views/hall-of-fame/logic/db";
+import { Dto } from "@/views/hall-of-fame/logic/db";
 import SkillView from "@/views/hall-of-fame/components/viewer/SkillView.vue";
 import InheritView from "@/views/hall-of-fame/components/viewer/InheritView.vue";
 import HistoryView from "@/views/hall-of-fame/components/viewer/HistoryView.vue";
@@ -50,7 +50,7 @@ export default defineComponent({
   },
   props: {
     viewData: {
-      type: Object as PropType<HallOfFameDTO>,
+      type: Object as PropType<Dto>,
       required: true,
     },
   },

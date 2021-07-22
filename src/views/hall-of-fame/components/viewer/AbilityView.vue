@@ -22,7 +22,7 @@
 
 <script lang="ts">
 import { defineComponent, PropType, readonly } from "vue";
-import { HallOfFameDTO } from "@/views/hall-of-fame/logic/db";
+import { Dto } from "@/views/hall-of-fame/logic/db";
 import { getAbilityGradeIcon } from "@/views/logic/resources/images";
 import { useI18n } from "vue-i18n";
 import { AbilityStructure, AbilityKey } from "@/data";
@@ -30,7 +30,7 @@ import { AbilityStructure, AbilityKey } from "@/data";
 export default defineComponent({
   props: {
     viewData: {
-      type: Object as PropType<HallOfFameDTO>,
+      type: Object as PropType<Dto>,
       required: true,
     },
   },

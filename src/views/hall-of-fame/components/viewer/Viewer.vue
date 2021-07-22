@@ -18,19 +18,41 @@
 
     <!-- injected controller -->
     <footer class="controller-container">
-      <slot />
+      <slot name="controllers">
+        <div class="controller" @click="openView('editor')">
+          {{ t("ui.edit") }}
+        </div>
+        <div class="controller" @click="closeView('viewer')">
+          {{ t("ui.close") }}
+        </div>
+      </slot>
     </footer>
   </article>
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from "vue";
-import { HallOfFameDTO } from "@/views/hall-of-fame/logic/db";
+import {
+  defineComponent,
+  inject,
+  toRaw,
+  isReactive,
+  markRaw,
+  ref,
+  readonly,
+} from "vue";
 import ProfileView from "@/views/hall-of-fame/components/viewer/ProfileView.vue";
 import StatusView from "@/views/hall-of-fame/components/viewer/StatusView.vue";
 import AbilityView from "@/views/hall-of-fame/components/viewer/AbilityView.vue";
 import MultiContentView from "@/views/hall-of-fame/components/viewer/MultiContentView.vue";
 import { useI18n } from "vue-i18n";
+import {
+  actionInjectionKey,
+  fallbackActionFactory,
+  fallbackStateFactory,
+  stateInjectionKey,
+} from "@/views/hall-of-fame/logic/dependency";
+import { Dto } from "@/views/hall-of-fame/logic/db";
+import _ from "lodash";
 
 export default defineComponent({
   components: {
@@ -39,22 +61,25 @@ export default defineComponent({
     AbilityView,
     MultiContentView,
   },
-  props: {
-    viewData: {
-      type: Object as PropType<HallOfFameDTO>,
-      required: true,
-    },
-  },
-  data() {
+  setup() {
     const { t } = useI18n();
+    const { openView, closeView } = inject(
+      actionInjectionKey,
+      fallbackActionFactory,
+      true
+    );
+    const { viewData } = inject(stateInjectionKey, fallbackStateFactory, true);
     return {
       t,
+      viewData,
+      openView,
+      closeView,
     };
   },
 });
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .data-viewer-root {
   @apply flex flex-col rounded-md overflow-hidden h-full bg-[#fafafa];
   @apply xs:(max-w-[32rem] mx-auto);
@@ -77,9 +102,12 @@ export default defineComponent({
   }
 
   > .controller-container {
-    &:not(:empty) {
-      @apply my-[0.375rem];
-      @apply xs:(my-[0.5rem]);
+    @apply flex gap-x-[2rem] justify-center my-[0.375rem];
+    @apply xs:(text-[1.25rem] rounded-lg my-[0.5rem] px-[1rem] py-[0.25rem]);
+    > .controller {
+      @include button-gradient;
+      @apply font-bold text-[0.875rem] rounded-md px-[0.5rem] py-[0.25rem] border cursor-pointer;
+      @apply xs:(text-[1.125rem] px-[1rem] py-[0.5rem]);
     }
   }
 }
