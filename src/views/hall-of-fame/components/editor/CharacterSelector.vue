@@ -60,9 +60,9 @@ export default defineComponent({
     const searchQuery = ref("");
     const characterList = computed(() => {
       return AllCharacter.filter((x) => {
-        const name = t(getCharacterNameKey(x.CHARACTER_ID));
+        const name = t(getCharacterNameKey(x.characterID));
         return name.includes(searchQuery.value);
-      }).map((x) => x.CHARACTER_ID);
+      }).map((x) => x.characterID);
     });
     const setCharacterID = (id: number) => {
       character.characterID = id;
@@ -86,21 +86,20 @@ export default defineComponent({
 .character-selector-root {
   @apply h-full;
   > .character-filter {
-    @apply rounded-full overflow-hidden h-[1.5rem] border shadow-sm;
+    @apply rounded-full overflow-hidden h-[1.75rem] border shadow-sm;
     > .input-wrapper {
-      @apply flex bg-[#fefefe];
+      @apply flex bg-[#fefefe] px-[0.25rem] py-[0.125rem];
       > .icon {
-        @apply w-[1.5rem] h-[1.5rem] ml-[0.125rem];
+        @apply w-[1.5rem] h-[1.5rem];
       }
-
       > .input {
-        @apply text-[0.75rem] w-full bg-transparent;
+        @apply w-full bg-transparent;
       }
     }
   }
 
   > .character-selector {
-    @apply rounded overflow-auto h-[calc(100%-1.5rem-0.5rem)] p-[0.75rem] mt-[0.5rem] bg-[#f2f2f2];
+    @apply rounded overflow-auto h-[calc(100%-1.75rem-0.5rem)] p-[0.75rem] mt-[0.5rem] bg-[#f2f2f2];
     > .selector-item-group {
       @apply grid gap-[0.75rem];
       grid-template-columns: repeat(auto-fit, minmax(6rem, 1fr));

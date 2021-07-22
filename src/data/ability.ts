@@ -1,60 +1,65 @@
-export const AbilityGrades = {
-  G: "g",
-  F: "f",
-  E: "e",
-  D: "d",
-  C: "c",
-  B: "b",
-  A: "a",
-  S: "s",
-} as const;
+export type AbilityGrade = "g" | "f" | "e" | "d" | "c" | "b" | "a" | "s";
 
-export type AbilityGrade = typeof AbilityGrades[keyof typeof AbilityGrades];
+export type AbilityType =
+  // バ場適正
+  | "racetrack"
+  // 距離適性
+  | "distance"
+  // 脚質適正
+  | "running-style";
 
-export const AbilityTypes = {
-  RACETRACK: "racetrack",
-  DISTANCE: "distance",
-  RUNNING_STYLE: "running-style",
-} as const;
+export type Ability =
+  // バ場適正
+  | "turf" // 芝
+  | "dirt" // ダート
+  // 距離適性
+  | "short" // 短距離
+  | "mile" // マイル
+  | "middle" // 中距離
+  | "long" // 長距離
+  // 脚質適正
+  // ググっても適切な単語が見つからなかったのでローマ字表記
+  | "nige" // 逃げ
+  | "senko" // 先行
+  | "sashi" // 差し
+  | "oikomi"; // 追込
 
-export type AbilityType = typeof AbilityTypes[keyof typeof AbilityTypes];
+export type AbilityContainer = {
+  type: AbilityType;
+  abilities: Array<Ability>;
+};
 
-export const AbilityKeys = {
-  TURF: "turf",
-  DIRT: "dirt",
-  SHORT: "short",
-  MILE: "mile",
-  MIDDLE: "middle",
-  LONG: "long",
-  NIGE: "nige",
-  SENKO: "senko",
-  SASHI: "sashi",
-  OIKOMI: "oikomi",
-} as const;
+export const AllAbilityType: Readonly<Array<AbilityType>> = Object.freeze([
+  "racetrack",
+  "distance",
+  "running-style",
+]);
 
-export type AbilityKey = typeof AbilityKeys[keyof typeof AbilityKeys];
+export const AllAbility: Readonly<Array<Ability>> = Object.freeze([
+  "turf",
+  "dirt",
+  "short",
+  "mile",
+  "middle",
+  "long",
+  "nige",
+  "senko",
+  "sashi",
+  "oikomi",
+]);
 
-export const AbilityStructure = [
-  {
-    type: AbilityTypes.RACETRACK,
-    values: [AbilityKeys.TURF, AbilityKeys.DIRT],
-  },
-  {
-    type: AbilityTypes.DISTANCE,
-    values: [
-      AbilityKeys.SHORT,
-      AbilityKeys.MILE,
-      AbilityKeys.MIDDLE,
-      AbilityKeys.LONG,
-    ],
-  },
-  {
-    type: AbilityTypes.RUNNING_STYLE,
-    values: [
-      AbilityKeys.NIGE,
-      AbilityKeys.SENKO,
-      AbilityKeys.SASHI,
-      AbilityKeys.OIKOMI,
-    ],
-  },
-] as const;
+export const AllAbilityContainer: Readonly<Array<AbilityContainer>> =
+  Object.freeze([
+    {
+      type: "racetrack",
+      abilities: ["turf", "dirt"],
+    },
+    {
+      type: "distance",
+      abilities: ["short", "mile", "middle", "long"],
+    },
+    {
+      type: "running-style",
+      abilities: ["nige", "senko", "sashi", "oikomi"],
+    },
+  ]);

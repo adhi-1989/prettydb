@@ -5,7 +5,7 @@
     <div class="star-item-group">
       <div
         class="star-item"
-        v-for="level in TalentLevels"
+        v-for="level in AllTalentLevel"
         :key="level"
         @click="setTalentLevel(level)"
       >
@@ -23,7 +23,7 @@
 <script lang="ts">
 import { defineComponent, PropType, reactive, readonly } from "vue";
 import { Dto } from "@/views/hall-of-fame/logic/db";
-import { getMoniker, TalentLevels, TalentLevel } from "@/data";
+import { getMoniker, AllTalentLevel, TalentLevel } from "@/data";
 import starFill from "#/images/level/star-fill.svg";
 import starEmpty from "#/images/level/star-empty.svg";
 
@@ -36,7 +36,7 @@ export default defineComponent({
   },
   data() {
     return {
-      TalentLevels,
+      AllTalentLevel,
       starFill,
       starEmpty,
     };
@@ -46,10 +46,10 @@ export default defineComponent({
 
     const setTalentLevel = (level: TalentLevel) => {
       const moniker = getMoniker(character.characterID, character.monikerID);
-      if (moniker.INITIAL_TALENT_LEVEL <= level) {
+      if (moniker.initialTalentLevel <= level) {
         character.talentLevel = level;
       } else {
-        character.talentLevel = moniker.INITIAL_TALENT_LEVEL;
+        character.talentLevel = moniker.initialTalentLevel;
       }
     };
 

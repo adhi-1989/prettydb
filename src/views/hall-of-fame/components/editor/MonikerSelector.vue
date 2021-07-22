@@ -62,10 +62,10 @@ export default defineComponent({
     const monikerList = computed(() => {
       return getAllMoniker(character.characterID)
         .filter((x) => {
-          const name = t(getMonikerKey(x.CHARACTER_ID, x.MONIKER_ID));
+          const name = t(getMonikerKey(x.characterID, x.monikerID));
           return name.includes(searchQuery.value);
         })
-        .map((x) => x.MONIKER_ID);
+        .map((x) => x.monikerID);
     });
     const setMonikerID = (id: number) => {
       character.monikerID = id;

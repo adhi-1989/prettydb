@@ -1,70 +1,54 @@
 import { toRaw } from "vue";
-import { AbilityGrade, AbilityGrades, FactorLevel, TalentLevel } from "@/data";
+import {
+  AbilityGrade,
+  Ability as AbilityName,
+  FactorLevel,
+  TalentLevel,
+} from "@/data";
 import Dexie from "dexie";
 
-interface ID {
+type ID = {
   id?: number;
-}
+};
 
-interface Character {
-  id: number;
+type Character = Required<ID> & {
   characterID: number;
   monikerID: number;
   talentLevel: TalentLevel;
   awakeLevel: number;
   uniqueSkillLevel: number;
-}
+};
 
-interface Status {
-  id: number;
+type Status = Required<ID> & {
   speed: number;
   stamina: number;
   power: number;
   tenacity: number;
   intelligence: number;
-}
+};
 
-interface Ability {
-  id: number;
-  // バ場適正
-  turf: AbilityGrade;
-  dirt: AbilityGrade;
-  // 距離適性
-  short: AbilityGrade;
-  mile: AbilityGrade;
-  middle: AbilityGrade;
-  long: AbilityGrade;
-  // 脚質適正
-  // ググっても適切な単語が見つからなかったのでローマ字表記
-  nige: AbilityGrade;
-  senko: AbilityGrade;
-  sashi: AbilityGrade;
-  oikomi: AbilityGrade;
-}
+type Ability = Required<ID> & Record<AbilityName, AbilityGrade>;
 
-interface Skill {
-  id: number;
+type Skill = Required<ID> & {
   skillID: number;
-}
+};
 
-interface Factor {
-  id: number;
+type Factor = Required<ID> & {
   factorID: number;
   factorLevel: FactorLevel;
-}
+};
 
-interface History {
-  id: number;
+type History = Required<ID> & {
   fansNumber: number;
   score: number;
   registerDate: Date;
-}
+};
 
-export type CharacterDTO = Omit<Character, "id">;
+export type CharacterDto = Omit<Character, "id">;
 
-export function CharacterDTO(
-  arg: Character | CharacterDTO | undefined = undefined
-): CharacterDTO {
+export function CharacterDto(
+  arg: Character | CharacterDto | undefined = undefined
+): CharacterDto {
   return {
     characterID: arg?.characterID || 0,
     monikerID: arg?.monikerID || 0,
@@ -74,11 +58,11 @@ export function CharacterDTO(
   };
 }
 
-export type StatusDTO = Omit<Status, "id">;
+export type StatusDto = Omit<Status, "id">;
 
-export function StatusDTO(
-  arg: Status | StatusDTO | undefined = undefined
-): StatusDTO {
+export function StatusDto(
+  arg: Status | StatusDto | undefined = undefined
+): StatusDto {
   return {
     speed: arg?.speed || 0,
     stamina: arg?.stamina || 0,
@@ -88,51 +72,51 @@ export function StatusDTO(
   };
 }
 
-export type AbilityDTO = Omit<Ability, "id">;
+export type AbilityDto = Omit<Ability, "id">;
 
-export function AbilityDTO(
-  arg: Ability | AbilityDTO | undefined = undefined
-): AbilityDTO {
+export function AbilityDto(
+  arg: Ability | AbilityDto | undefined = undefined
+): AbilityDto {
   return {
-    turf: arg?.turf || AbilityGrades.G,
-    dirt: arg?.dirt || AbilityGrades.G,
-    short: arg?.short || AbilityGrades.G,
-    mile: arg?.mile || AbilityGrades.G,
-    middle: arg?.middle || AbilityGrades.G,
-    long: arg?.long || AbilityGrades.G,
-    nige: arg?.nige || AbilityGrades.G,
-    senko: arg?.senko || AbilityGrades.G,
-    sashi: arg?.sashi || AbilityGrades.G,
-    oikomi: arg?.oikomi || AbilityGrades.G,
+    turf: arg?.turf || "g",
+    dirt: arg?.dirt || "g",
+    short: arg?.short || "g",
+    mile: arg?.mile || "g",
+    middle: arg?.middle || "g",
+    long: arg?.long || "g",
+    nige: arg?.nige || "g",
+    senko: arg?.senko || "g",
+    sashi: arg?.sashi || "g",
+    oikomi: arg?.oikomi || "g",
   };
 }
 
-export type SkillDTO = Omit<Skill, "id">;
+export type SkillDto = Omit<Skill, "id">;
 
-export function SkillDTO(
-  arg: Skill | SkillDTO | undefined = undefined
-): SkillDTO {
+export function SkillDto(
+  arg: Skill | SkillDto | undefined = undefined
+): SkillDto {
   return {
     skillID: arg?.skillID || 0,
   };
 }
 
-export type FactorDTO = Omit<Factor, "id">;
+export type FactorDto = Omit<Factor, "id">;
 
-export function FactorDTO(
-  arg: Factor | FactorDTO | undefined = undefined
-): FactorDTO {
+export function FactorDto(
+  arg: Factor | FactorDto | undefined = undefined
+): FactorDto {
   return {
     factorID: arg?.factorID || 0,
     factorLevel: arg?.factorLevel || 1,
   };
 }
 
-export type HistoryDTO = Omit<History, "id">;
+export type HistoryDto = Omit<History, "id">;
 
-export function HistoryDTO(
-  arg: History | HistoryDTO | undefined = undefined
-): HistoryDTO {
+export function HistoryDto(
+  arg: History | HistoryDto | undefined = undefined
+): HistoryDto {
   return {
     fansNumber: arg?.fansNumber || 0,
     score: arg?.score || 0,
@@ -142,23 +126,23 @@ export function HistoryDTO(
 
 export type Dto = {
   id?: number;
-  character: CharacterDTO;
-  status: StatusDTO;
-  ability: AbilityDTO;
-  skills: Array<SkillDTO>;
-  factors: Array<FactorDTO>;
-  history: HistoryDTO;
+  character: CharacterDto;
+  status: StatusDto;
+  ability: AbilityDto;
+  skills: Array<SkillDto>;
+  factors: Array<FactorDto>;
+  history: HistoryDto;
 };
 
 export function Dto(arg: Dto | undefined = undefined): Dto {
   return {
     id: arg?.id,
-    character: CharacterDTO(arg?.character),
-    status: StatusDTO(arg?.status),
-    ability: AbilityDTO(arg?.ability),
+    character: CharacterDto(arg?.character),
+    status: StatusDto(arg?.status),
+    ability: AbilityDto(arg?.ability),
     skills: [...(arg?.skills || [])],
     factors: [...(arg?.factors || [])],
-    history: HistoryDTO(arg?.history),
+    history: HistoryDto(arg?.history),
   };
 }
 
@@ -225,12 +209,12 @@ export async function fetch(id: number): Promise<Dto> {
             return Promise.resolve(
               Dto({
                 id,
-                character: CharacterDTO(character),
-                status: StatusDTO(status),
-                ability: AbilityDTO(ability),
-                skills: skills.map(SkillDTO),
-                factors: factors.map(FactorDTO),
-                history: HistoryDTO(history),
+                character: CharacterDto(character),
+                status: StatusDto(status),
+                ability: AbilityDto(ability),
+                skills: skills.map(SkillDto),
+                factors: factors.map(FactorDto),
+                history: HistoryDto(history),
               })
             );
           });

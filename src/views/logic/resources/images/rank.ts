@@ -14,6 +14,24 @@ import F_PLUS from "#/images/rank/f-plus.svg";
 import F from "#/images/rank/f.svg";
 import G_PLUS from "#/images/rank/g-plus.svg";
 
+export const RankIcons = {
+  S_PLUS,
+  S,
+  A_PLUS,
+  A,
+  B_PLUS,
+  B,
+  C_PLUS,
+  C,
+  D_PLUS,
+  D,
+  E_PLUS,
+  E,
+  F_PLUS,
+  F,
+  G_PLUS,
+};
+
 //TODO: スコアのグレードが決まる閾値が適当なのでちゃんとデータ集める
 export function getRankGradeIcon(score: number): string {
   if (score >= 20000) {

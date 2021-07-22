@@ -9,7 +9,7 @@
         alt=""
       />
       <div class="talent-level-container">
-        <template v-for="level in TalentLevels" :key="level">
+        <template v-for="level in AllTalentLevel" :key="level">
           <img
             class="talent-level"
             :src="starFill"
@@ -39,7 +39,7 @@ import { Dto } from "@/views/hall-of-fame/logic/db";
 import { getPortrait, getRankGradeIcon } from "@/views/logic/resources/images";
 import { getCharacterNameKey, getMonikerKey } from "@/views/logic/i18n";
 import { useI18n } from "vue-i18n";
-import { TalentLevels } from "@/data";
+import { AllTalentLevel } from "@/data";
 import _ from "@/util/lodash";
 import starFill from "#/images/level/star-fill.svg";
 import starEmpty from "#/images/level/star-empty.svg";
@@ -54,7 +54,7 @@ export default defineComponent({
   data() {
     const { t } = useI18n();
     return {
-      TalentLevels: _.reverse([...TalentLevels]),
+      AllTalentLevel: _.reverse([...AllTalentLevel]),
       getPortrait,
       getRankGradeIcon,
       getCharacterNameKey,

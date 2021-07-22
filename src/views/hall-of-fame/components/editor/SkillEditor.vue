@@ -63,18 +63,18 @@ import {
   readonly,
 } from "vue";
 import _ from "@/util/lodash";
-import { Dto, SkillDTO } from "@/views/hall-of-fame/logic/db";
+import { Dto, SkillDto } from "@/views/hall-of-fame/logic/db";
 import {
   SkillTypes,
   isUniqueSkill,
-  Skills,
+  AllSkill,
   isUniqueSkillOwner,
   getSkill,
 } from "@/data";
 import SkillFilter from "@/views/hall-of-fame/components/editor/SkillFilter.vue";
 import SkillCard from "@/views/hall-of-fame/components/widget/SkillCard.vue";
 
-type Filter = (skill: SkillDTO) => boolean;
+type Filter = (skill: SkillDto) => boolean;
 type FilterHolder = {
   filter: Filter;
 };
@@ -99,7 +99,7 @@ export default defineComponent({
     const character = readonly(props.editData.character);
     const skills = reactive(props.editData.skills);
 
-    const skillList = reactive<Array<SkillDTO>>([]);
+    const skillList = reactive<Array<SkillDto>>([]);
     const filterHolder = reactive<FilterHolder>({ filter: () => true });
     const updateFilter = (filter: Filter) => {
       filterHolder.filter = filter;
@@ -108,13 +108,13 @@ export default defineComponent({
       return skillList.filter(filterHolder.filter);
     });
 
-    const markedItemsUpper = reactive<Array<SkillDTO>>([]);
-    const toggleMarkForUpper = (skill: SkillDTO) => {
+    const markedItemsUpper = reactive<Array<SkillDto>>([]);
+    const toggleMarkForUpper = (skill: SkillDto) => {
       const index = markedItemsUpper.indexOf(skill);
       if (index == -1) {
         _.remove(markedItemsUpper, (x) => {
-          const conflictID1 = getSkill(x.skillID).CONFLICT_ID;
-          const conflictID2 = getSkill(skill.skillID).CONFLICT_ID;
+          const conflictID1 = getSkill(x.skillID).conflictID;
+          const conflictID2 = getSkill(skill.skillID).conflictID;
           if (!_.isNumber(conflictID1) || !_.isNumber(conflictID2)) {
             return false;
           }
@@ -125,12 +125,12 @@ export default defineComponent({
         markedItemsUpper.splice(index, 1);
       }
     };
-    const isMarkedAtUpper = (skill: SkillDTO) => {
+    const isMarkedAtUpper = (skill: SkillDto) => {
       return markedItemsUpper.includes(skill);
     };
 
-    const markedItemsLower = reactive<Array<SkillDTO>>([]);
-    const toggleMarkForLower = (skill: SkillDTO) => {
+    const markedItemsLower = reactive<Array<SkillDto>>([]);
+    const toggleMarkForLower = (skill: SkillDto) => {
       const index = markedItemsLower.indexOf(skill);
       if (index == -1) {
         markedItemsLower.push(skill);
@@ -138,19 +138,19 @@ export default defineComponent({
         markedItemsLower.splice(index, 1);
       }
     };
-    const isMarkedAtLower = (skill: SkillDTO) => {
+    const isMarkedAtLower = (skill: SkillDto) => {
       return markedItemsLower.includes(skill);
     };
 
     const transferMarkedItemsToUpper = () => {
-      let skill: SkillDTO | undefined;
+      let skill: SkillDto | undefined;
       while ((skill = markedItemsLower.pop()) != undefined) {
         skillList.push(skill);
         skills.splice(skills.indexOf(skill), 1);
       }
     };
     const transferMarkedItemsToLower = () => {
-      let skill: SkillDTO | undefined;
+      let skill: SkillDto | undefined;
       while ((skill = markedItemsUpper.pop()) != undefined) {
         skills.push(skill);
         skillList.splice(skillList.indexOf(skill), 1);
@@ -159,9 +159,10 @@ export default defineComponent({
 
     const acquiredSkillIDs = skills.map((x) => x.skillID);
     const setupSkillList = (offset: number, limit: number) => {
-      const list: Array<SkillDTO> = [];
+      const list: Array<SkillDto> = [];
       let count = 0;
-      Skills.forEach((skill, index) => {
+
+      AllSkill.forEach((skill, index) => {
         if (index < offset) {
           return;
         }
@@ -170,15 +171,15 @@ export default defineComponent({
         }
         if (isUniqueSkill(skill) && !isUniqueSkillOwner(character, skill)) {
           if (
-            skill.CHARACTER_ID == character.characterID ||
-            !skill.INHERITABLE
+            skill.characterID == character.characterID ||
+            !skill.inheritable
           ) {
             return;
           }
         }
-        const skillID = skill.SKILL_ID;
+        const skillID = skill.skillID;
         if (acquiredSkillIDs.indexOf(skillID) == -1) {
-          list.push(SkillDTO({ skillID }));
+          list.push(SkillDto(skill));
         }
       });
       skillList.push(...list);
@@ -193,7 +194,7 @@ export default defineComponent({
       offset += limit;
 
       timerID = window.setInterval(() => {
-        if (offset < Skills.length) {
+        if (offset < AllSkill.length) {
           setupSkillList(offset, limit);
           offset += limit;
         } else {

@@ -27,12 +27,14 @@
       </div>
 
       <div class="factor-transfer-controller">
-        <div class="transfer-button" @click="transferMarkedItemsToUpper()">
-          <icon-ion-caret-up />
-        </div>
-        <div class="transfer-button" @click="transferMarkedItemsToLower()">
-          <icon-ion-caret-down />
-        </div>
+        <icon-ion-caret-up
+          class="transfer-button"
+          @click="transferMarkedItemsToUpper()"
+        />
+        <icon-ion-caret-down
+          class="transfer-button"
+          @click="transferMarkedItemsToLower()"
+        />
       </div>
 
       <div class="factor-list">
@@ -67,21 +69,21 @@ import {
   onBeforeUnmount,
   ref,
 } from "vue";
-import { Dto, FactorDTO } from "@/views/hall-of-fame/logic/db";
+import { Dto, FactorDto } from "@/views/hall-of-fame/logic/db";
 import FactorCard from "@/views/hall-of-fame/components/widget/FactorCard.vue";
 import FactorFilter from "@/views/hall-of-fame/components/editor/FactorFilter.vue";
 import {
-  FactorLevels,
   AllFactor,
   isUniqueSkillFactor,
   getUniqueSkill,
   getFactor,
-  FactorTypes,
+  FactorLevel,
+  AllFactorLevel,
 } from "@/data";
 import { hashCode } from "@/util";
 import _ from "@/util/lodash";
 
-type Filter = (factor: FactorDTO) => boolean;
+type Filter = (factor: FactorDto) => boolean;
 type FilterHolder = {
   filter: Filter;
 };
@@ -109,35 +111,35 @@ export default defineComponent({
     const factorList = reactive(
       (() => {
         const acquiredFactors = [...factors];
-        const list: Array<FactorDTO> = [];
+        const list: Array<FactorDto> = [];
         const uniqueSkill = getUniqueSkill(character);
         AllFactor.forEach((factor) => {
           if (
             isUniqueSkillFactor(factor) &&
-            factor.UNIQUE_SKILL_ID !== uniqueSkill.SKILL_ID
+            factor.skillID !== uniqueSkill.skillID
           ) {
             return;
           }
-          const factorID = factor.FACTOR_ID;
+          const factorID = factor.factorID;
           let omitLevel = -1;
           const i = acquiredFactors.findIndex((x) => x.factorID == factorID);
           if (i != -1) {
             omitLevel = acquiredFactors[i].factorLevel;
           }
-          FactorLevels.forEach((factorLevel) => {
+          AllFactorLevel.forEach((factorLevel: FactorLevel) => {
             if (omitLevel != factorLevel) {
-              list.push(FactorDTO({ factorID, factorLevel }));
+              list.push(FactorDto({ factorID, factorLevel }));
             }
           });
         });
         return list;
       })()
     );
-    const displayFactorList = reactive<Array<FactorDTO>>([]);
+    const displayFactorList = reactive<Array<FactorDto>>([]);
     const filterHolder = reactive<FilterHolder>({ filter: () => true });
     let fetchOffset = 0;
     const fetchDisplayFactors = (size: number) => {
-      let list: Array<FactorDTO> = [];
+      let list: Array<FactorDto> = [];
       let count = size;
       while (count > 0) {
         list = factorList
@@ -159,18 +161,18 @@ export default defineComponent({
       fetchDisplayFactors(50);
     };
 
-    const markedItemsUpper = reactive<Array<FactorDTO>>([]);
-    const toggleMarkForUpper = (factor: FactorDTO) => {
+    const markedItemsUpper = reactive<Array<FactorDto>>([]);
+    const toggleMarkForUpper = (factor: FactorDto) => {
       const index = markedItemsUpper.indexOf(factor);
       if (index == -1) {
         const factorObj = getFactor(factor.factorID);
         _.remove(markedItemsUpper, (x) => {
           if (
-            factorObj.TYPE == FactorTypes.STATUS ||
-            factorObj.TYPE == FactorTypes.ABILITY ||
-            factorObj.TYPE == FactorTypes.UNIQUE_SKILL
+            factorObj.type == "status" ||
+            factorObj.type == "ability" ||
+            factorObj.type == "uniqueSkill"
           ) {
-            if (factorObj.TYPE == getFactor(x.factorID).TYPE) {
+            if (factorObj.type == getFactor(x.factorID).type) {
               return true;
             }
           }
@@ -181,12 +183,12 @@ export default defineComponent({
         markedItemsUpper.splice(index, 1);
       }
     };
-    const isMarkedAtUpper = (factor: FactorDTO) => {
+    const isMarkedAtUpper = (factor: FactorDto) => {
       return markedItemsUpper.includes(factor);
     };
 
-    const markedItemsLower = reactive<Array<FactorDTO>>([]);
-    const toggleMarkForLower = (factor: FactorDTO) => {
+    const markedItemsLower = reactive<Array<FactorDto>>([]);
+    const toggleMarkForLower = (factor: FactorDto) => {
       const index = markedItemsLower.indexOf(factor);
       if (index == -1) {
         markedItemsLower.push(factor);
@@ -194,12 +196,12 @@ export default defineComponent({
         markedItemsLower.splice(index, 1);
       }
     };
-    const isMarkedAtLower = (factor: FactorDTO) => {
+    const isMarkedAtLower = (factor: FactorDto) => {
       return markedItemsLower.includes(factor);
     };
 
     const transferMarkedItemsToUpper = () => {
-      let factor: FactorDTO | undefined;
+      let factor: FactorDto | undefined;
       while ((factor = markedItemsLower.pop()) != undefined) {
         factorList.push(factor);
         displayFactorList.push(factor);
@@ -207,7 +209,7 @@ export default defineComponent({
       }
     };
     const transferMarkedItemsToLower = () => {
-      let factor: FactorDTO | undefined;
+      let factor: FactorDto | undefined;
       while ((factor = markedItemsUpper.pop()) != undefined) {
         factors.push(factor);
         displayFactorList.splice(displayFactorList.indexOf(factor), 1);
@@ -259,6 +261,7 @@ export default defineComponent({
   > .factor-filter {
     @apply h-[2rem];
   }
+
   > .factor-editor {
     @apply flex-grow flex flex-col overflow-hidden  h-[calc(100%-2.5rem)] mt-[0.5rem];
     > .factor-list {
@@ -269,31 +272,37 @@ export default defineComponent({
           &-move {
             transition: transform 0.5s;
           }
+
           &-enter-active {
             animation: zoomIn;
             animation-duration: 0.5s;
           }
+
           &-leave-active {
             /* FIXME: グリッドアイテムの座標を保持する方法を思いついたらアニメーションを追加 */
             @apply absolute;
             opacity: 0;
           }
+
           &[data-marked="true"] {
             @apply ring;
           }
+
           &[data-marked="true"] {
             @apply ring;
           }
         }
+
         > .observe-item {
           @apply w-[1px] h-[1px];
         }
       }
     }
+
     > .factor-transfer-controller {
       @apply flex gap-x-[4rem] justify-center h-[3rem] py-[0.25rem];
       > .transfer-button {
-        @apply w-[2.5rem] cursor-pointer;
+        @apply w-[2.5rem] h-[2.5rem] cursor-pointer;
       }
     }
   }

@@ -3,7 +3,7 @@
     <div class="content">
       <div class="label">{{ t(`factor.${factor.factorID}.name`) }}</div>
       <div class="factor-level-container">
-        <template v-for="level in FactorLevels" :key="level">
+        <template v-for="level in AllFactorLevel" :key="level">
           <img
             class="factor-level"
             :src="starFill"
@@ -19,8 +19,8 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from "vue";
-import { CharacterDTO, FactorDTO } from "@/views/hall-of-fame/logic/db";
-import { FactorTypes, getFactor, FactorLevels } from "@/data";
+import { CharacterDto, FactorDto } from "@/views/hall-of-fame/logic/db";
+import { getFactor, AllFactorLevel } from "@/data";
 import { useI18n } from "vue-i18n";
 import starFill from "#/images/level/star-fill.svg";
 import starEmpty from "#/images/level/star-empty.svg";
@@ -28,35 +28,33 @@ import starEmpty from "#/images/level/star-empty.svg";
 export default defineComponent({
   props: {
     factor: {
-      type: Object as PropType<FactorDTO>,
+      type: Object as PropType<FactorDto>,
       required: true,
     },
     character: {
-      type: Object as PropType<CharacterDTO>,
+      type: Object as PropType<CharacterDto>,
       required: true,
     },
   },
   data() {
     const { t } = useI18n();
     return {
-      FactorTypes,
-      FactorLevels,
+      AllFactorLevel,
       starFill,
       starEmpty,
       t,
     };
   },
   setup() {
-    const getFactorType = (factor: FactorDTO) => {
-      const factorType = getFactor(factor.factorID).TYPE;
-      if (factorType == FactorTypes.STATUS) {
-        return "status";
-      } else if (factorType == FactorTypes.ABILITY) {
-        return "ability";
-      } else if (factorType == FactorTypes.UNIQUE_SKILL) {
-        return "unique-skill";
-      } else {
-        return "standard";
+    const getFactorType = (factor: FactorDto) => {
+      const factorType = getFactor(factor.factorID).type;
+      switch (factorType) {
+        case "status":
+        case "ability":
+        case "uniqueSkill":
+          return factorType;
+        default:
+          return "standard";
       }
     };
     return {
@@ -108,7 +106,7 @@ export default defineComponent({
     }
   }
 
-  &[data-factor-type="unique-skill"] {
+  &[data-factor-type="uniqueSkill"] {
     color: #fefefe;
     background-color: #99ce4d;
 

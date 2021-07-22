@@ -21,7 +21,7 @@
 
 <script lang="ts">
 import { computed, defineComponent, PropType } from "vue";
-import { CharacterDTO, SkillDTO } from "@/views/hall-of-fame/logic/db";
+import { CharacterDto, SkillDto } from "@/views/hall-of-fame/logic/db";
 import { getSkill, getUniqueSkill } from "@/data";
 import { useI18n } from "vue-i18n";
 import { getSkillTypeIcon } from "@/views/logic/resources/images";
@@ -29,11 +29,11 @@ import { getSkillTypeIcon } from "@/views/logic/resources/images";
 export default defineComponent({
   props: {
     skill: {
-      type: Object as PropType<SkillDTO>,
+      type: Object as PropType<SkillDto>,
       required: true,
     },
     character: {
-      type: Object as PropType<CharacterDTO>,
+      type: Object as PropType<CharacterDto>,
       required: true,
     },
   },
@@ -46,13 +46,13 @@ export default defineComponent({
   setup(props) {
     const skill = getSkill(props.skill.skillID);
     const skillTypeIcon = computed(() => {
-      return getSkillTypeIcon(skill.TYPE);
+      return getSkillTypeIcon(skill.type);
     });
     const isOwnUnique = computed(() => {
       return skill === getUniqueSkill(props.character);
     });
     const isAdvanced = computed(() => {
-      return skill.ADVANCED;
+      return skill.advanced;
     });
     return {
       skillTypeIcon,

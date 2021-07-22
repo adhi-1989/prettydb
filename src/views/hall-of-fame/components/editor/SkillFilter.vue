@@ -1,9 +1,7 @@
 <template>
   <section class="skill-filter-root">
     <div class="input-container">
-      <div class="icon">
-        <icon-ion-search />
-      </div>
+      <icon-ion-search class="icon" />
       <input
         class="input"
         type="text"
@@ -35,7 +33,7 @@
 
 <script lang="ts">
 import { defineComponent, reactive, ref } from "vue";
-import { SkillDTO } from "@/views/hall-of-fame/logic/db";
+import { SkillDto } from "@/views/hall-of-fame/logic/db";
 import { createNumMap, NumMap } from "@/util";
 import { getSkill, SkillType, SkillTypes } from "@/data";
 import { selectInputValueOnFocus } from "@/views/logic/dom";
@@ -130,7 +128,7 @@ export default defineComponent({
       updateFilter();
     };
     const updateFilter = () => {
-      emit("updateFilter", (skill: SkillDTO) => {
+      emit("updateFilter", (skill: SkillDto) => {
         if (filterQuery.value.length > 0) {
           const name = t(`skill.${skill.skillID}.name`);
           if (!name.includes(filterQuery.value)) {
@@ -142,20 +140,20 @@ export default defineComponent({
             continue;
           }
           if (isSkillTypeFilter(type)) {
-            if (getSkill(skill.skillID).TYPE == getSkillType(type)) {
+            if (getSkill(skill.skillID).type == getSkillType(type)) {
               return false;
             }
           } else if (type == FilterTypes.UNIQUE_SKILL) {
-            if (getSkill(skill.skillID).UNIQUE) {
+            if (getSkill(skill.skillID).unique) {
               return false;
             }
           } else if (type == FilterTypes.ADVANCED_SKILL) {
-            if (getSkill(skill.skillID).ADVANCED) {
+            if (getSkill(skill.skillID).advanced) {
               return false;
             }
           } else if (type == FilterTypes.STANDARD_SKILL) {
             const s = getSkill(skill.skillID);
-            if (!s.UNIQUE && !s.ADVANCED) {
+            if (!s.unique && !s.advanced) {
               return false;
             }
           }

@@ -4,7 +4,7 @@
     <!-- status preview -->
     <div class="status-preview">
       <div class="status-item-group">
-        <template v-for="key in StatusKeys" :key="key">
+        <template v-for="key in AllStatus" :key="key">
           <div
             class="status-item"
             :data-editing="isEditing(key)"
@@ -33,7 +33,15 @@ import { defineComponent, PropType, reactive, ref } from "vue";
 import { Dto } from "@/views/hall-of-fame/logic/db";
 import Numpad from "@/views/components/Numpad.vue";
 import { useI18n } from "vue-i18n";
-import { StatusKeys, StatusKey } from "@/data";
+import { Status, AllStatus } from "@/data";
+
+const StatusRotation: Record<Status, Status> = {
+  speed: "stamina",
+  stamina: "power",
+  power: "tenacity",
+  tenacity: "intelligence",
+  intelligence: "speed",
+};
 
 export default defineComponent({
   components: {
@@ -48,32 +56,22 @@ export default defineComponent({
   data() {
     const { t } = useI18n();
     return {
-      StatusKeys,
+      AllStatus,
       t,
     };
   },
   setup(props) {
     const status = reactive(props.editData.status);
 
-    const editing = ref<StatusKey>(StatusKeys.SPEED);
-    const setEditing = (key: StatusKey) => {
+    const editing = ref<Status>("speed");
+    const setEditing = (key: Status) => {
       editing.value = key;
     };
-    const isEditing = (key: StatusKey) => {
+    const isEditing = (key: Status) => {
       return editing.value == key;
     };
     const rotateEditing = () => {
-      if (isEditing(StatusKeys.SPEED)) {
-        setEditing(StatusKeys.STAMINA);
-      } else if (isEditing(StatusKeys.STAMINA)) {
-        setEditing(StatusKeys.POWER);
-      } else if (isEditing(StatusKeys.POWER)) {
-        setEditing(StatusKeys.TENACITY);
-      } else if (isEditing(StatusKeys.TENACITY)) {
-        setEditing(StatusKeys.INTELLIGENCE);
-      } else {
-        setEditing(StatusKeys.SPEED);
-      }
+      setEditing(StatusRotation[editing.value]);
     };
     return {
       status,

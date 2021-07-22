@@ -3,22 +3,22 @@
   <section class="ability-editor-root">
     <!-- ability preview -->
     <div class="ability-preview">
-      <template v-for="ability in AbilityStructure" :key="ability.type">
-        <div class="ability-generic-term" :data-ability-type="ability.type">
-          {{ t(`game-system.ability.${ability.type}.generic-term`) }}
+      <template v-for="container in AllAbilityContainer" :key="container.type">
+        <div class="ability-generic-term" :data-ability-type="container.type">
+          {{ t(`game-system.ability.${container.type}.generic-term`) }}
         </div>
         <div
           class="ability-container"
-          :data-ability-type="ability.type"
-          v-for="key in ability.values"
-          :key="key"
-          :data-selected="isEditing(key)"
-          @click="setEditing(key)"
+          :data-ability-type="container.type"
+          v-for="ability in container.abilities"
+          :key="ability"
+          :data-selected="isEditing(ability)"
+          @click="setEditing(ability)"
         >
           <div class="ability-name">
-            {{ t(`game-system.ability.${ability.type}.${key}`) }}
+            {{ t(`game-system.ability.${container.type}.${ability}`) }}
           </div>
-          <img class="ability-value" :src="getAbilityGradeIcon(key)" alt="" />
+          <img class="ability-value" :src="getGradeIcon(ability)" alt="" />
         </div>
       </template>
     </div>
@@ -28,11 +28,7 @@
       <div class="grade-item-group">
         <template v-for="grade in AbilityGrades" :key="grade">
           <div class="grade-item" @click="setAbilityGrade(grade)">
-            <img
-              class="grade-image"
-              :src="getAbilityGradeIcon_(grade)"
-              alt=""
-            />
+            <img class="grade-image" :src="getAbilityGradeIcon(grade)" alt="" />
           </div>
         </template>
       </div>
@@ -42,16 +38,34 @@
 
 <script lang="ts">
 import { defineComponent, PropType, reactive, ref } from "vue";
-import {
-  AbilityStructure,
-  AbilityKey,
-  AbilityGrades,
-  AbilityGrade,
-  AbilityKeys,
-} from "@/data";
+import { AbilityGrade, Ability, AllAbilityContainer } from "@/data";
 import { getAbilityGradeIcon } from "@/views/logic/resources/images";
 import { Dto } from "@/views/hall-of-fame/logic/db";
 import { useI18n } from "vue-i18n";
+
+const AbilityGrades: Array<AbilityGrade> = [
+  "s",
+  "a",
+  "b",
+  "c",
+  "d",
+  "e",
+  "f",
+  "g",
+];
+
+const AbilityRotation: Record<Ability, Ability> = {
+  turf: "dirt",
+  dirt: "short",
+  short: "mile",
+  mile: "middle",
+  middle: "long",
+  long: "nige",
+  nige: "senko",
+  senko: "sashi",
+  sashi: "oikomi",
+  oikomi: "turf",
+};
 
 export default defineComponent({
   props: {
@@ -63,52 +77,32 @@ export default defineComponent({
   data() {
     const { t } = useI18n();
     return {
-      getAbilityGradeIcon_: getAbilityGradeIcon,
-      AbilityStructure,
-      AbilityGrades: Object.values(AbilityGrades).reverse(),
+      getAbilityGradeIcon,
+      AllAbilityContainer,
+      AbilityGrades,
       t,
     };
   },
   setup(props) {
-    const ability = reactive(props.editData.ability);
+    const abilityDto = reactive(props.editData.ability);
 
-    const editing = ref<AbilityKey>(AbilityKeys.TURF);
-    const setEditing = (key: AbilityKey) => {
-      editing.value = key;
+    const editing = ref<Ability>("turf");
+    const setEditing = (ability: Ability) => {
+      editing.value = ability;
     };
-    const isEditing = (key: AbilityKey) => {
-      return editing.value == key;
+    const isEditing = (ability: Ability) => {
+      return editing.value == ability;
     };
     const rotateEditing = () => {
-      if (isEditing(AbilityKeys.TURF)) {
-        setEditing(AbilityKeys.DIRT);
-      } else if (isEditing(AbilityKeys.DIRT)) {
-        setEditing(AbilityKeys.SHORT);
-      } else if (isEditing(AbilityKeys.SHORT)) {
-        setEditing(AbilityKeys.MILE);
-      } else if (isEditing(AbilityKeys.MILE)) {
-        setEditing(AbilityKeys.MIDDLE);
-      } else if (isEditing(AbilityKeys.MIDDLE)) {
-        setEditing(AbilityKeys.LONG);
-      } else if (isEditing(AbilityKeys.LONG)) {
-        setEditing(AbilityKeys.NIGE);
-      } else if (isEditing(AbilityKeys.NIGE)) {
-        setEditing(AbilityKeys.SENKO);
-      } else if (isEditing(AbilityKeys.SENKO)) {
-        setEditing(AbilityKeys.SASHI);
-      } else if (isEditing(AbilityKeys.SASHI)) {
-        setEditing(AbilityKeys.OIKOMI);
-      } else {
-        setEditing(AbilityKeys.TURF);
-      }
+      setEditing(AbilityRotation[editing.value]);
     };
     const setAbilityGrade = (grade: AbilityGrade) => {
-      ability[editing.value] = grade;
+      abilityDto[editing.value] = grade;
       rotateEditing();
     };
     return {
-      getAbilityGradeIcon: (key: AbilityKey) =>
-        getAbilityGradeIcon(ability[key]),
+      getGradeIcon: (ability: Ability) =>
+        getAbilityGradeIcon(abilityDto[ability]),
       setEditing,
       isEditing,
       rotateEditing,

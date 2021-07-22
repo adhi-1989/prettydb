@@ -1,9 +1,7 @@
 <template>
   <section class="factor-filter-root">
     <div class="input-container">
-      <div class="icon">
-        <icon-ion-search />
-      </div>
+      <icon-ion-search class="icon" />
       <input
         class="input"
         type="text"
@@ -34,8 +32,8 @@
 <script lang="ts">
 import { defineComponent, reactive, ref } from "vue";
 import { createNumMap, NumMap } from "@/util";
-import { FactorDTO } from "@/views/hall-of-fame/logic/db";
-import { FactorTypes, getFactor, FactorType } from "@/data";
+import { FactorDto } from "@/views/hall-of-fame/logic/db";
+import { getFactor, FactorType } from "@/data";
 import { useI18n } from "vue-i18n";
 import { selectInputValueOnFocus } from "@/views/logic/dom";
 
@@ -51,14 +49,14 @@ const FilterTypes = {
   LEVEL_3: 130,
 } as const;
 
-const filterTypeByFactorType = Object.freeze(
+const filterTypeByFactorType: Readonly<NumMap<FactorType>> = Object.freeze(
   createNumMap([
-    [FilterTypes.STATUS, FactorTypes.STATUS],
-    [FilterTypes.ABILITY, FactorTypes.ABILITY],
-    [FilterTypes.UNIQUE_SKILL, FactorTypes.UNIQUE_SKILL],
-    [FilterTypes.SKILL, FactorTypes.SKILL],
-    [FilterTypes.RACE, FactorTypes.RACE],
-    [FilterTypes.SCENARIO, FactorTypes.SCENARIO],
+    [FilterTypes.STATUS, "status"],
+    [FilterTypes.ABILITY, "ability"],
+    [FilterTypes.UNIQUE_SKILL, "uniqueSkill"],
+    [FilterTypes.SKILL, "skill"],
+    [FilterTypes.RACE, "race"],
+    [FilterTypes.SCENARIO, "scenario"],
   ])
 );
 
@@ -74,7 +72,7 @@ function getFactorType(type: FilterType): FactorType {
     return result;
   } else {
     console.warn("Illegal factor type filter: " + type);
-    return FactorTypes.STATUS;
+    return "status";
   }
 }
 
@@ -101,7 +99,7 @@ export default defineComponent({
       updateFilter();
     };
     const updateFilter = () => {
-      emit("updateFilter", (factor: FactorDTO) => {
+      emit("updateFilter", (factor: FactorDto) => {
         if (filterQuery.value.length > 0) {
           const name = t(`factor.${factor.factorID}.name`);
           if (!name.includes(filterQuery.value)) {
@@ -113,7 +111,7 @@ export default defineComponent({
             continue;
           }
           if (isFactorTypeFilter(type)) {
-            if (getFactor(factor.factorID).TYPE == getFactorType(type)) {
+            if (getFactor(factor.factorID).type == getFactorType(type)) {
               return false;
             }
           } else if (type == FilterTypes.LEVEL_1) {

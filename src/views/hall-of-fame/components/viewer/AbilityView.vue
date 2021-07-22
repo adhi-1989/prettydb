@@ -1,20 +1,20 @@
 <template>
   <!-- ability -->
   <section class="ability-view-root">
-    <template v-for="abilityKey in AbilityStructure" :key="abilityKey.type">
-      <div class="ability-generic-term" :data-ability-type="abilityKey.type">
-        {{ t(`game-system.ability.${abilityKey.type}.generic-term`) }}
+    <template v-for="container in AllAbilityContainer" :key="container.type">
+      <div class="ability-generic-term" :data-ability-type="container.type">
+        {{ t(`game-system.ability.${container.type}.generic-term`) }}
       </div>
       <div
         class="ability-container"
-        :data-ability-type="abilityKey.type"
-        v-for="key in abilityKey.values"
-        :key="key"
+        :data-ability-type="container.type"
+        v-for="ability in container.abilities"
+        :key="ability"
       >
         <div class="ability-name">
-          {{ t(`game-system.ability.${abilityKey.type}.${key}`) }}
+          {{ t(`game-system.ability.${container.type}.${ability}`) }}
         </div>
-        <img class="ability-value" :src="getAbilityGradeIcon(key)" alt="" />
+        <img class="ability-value" :src="getGradeIcon(ability)" alt="" />
       </div>
     </template>
   </section>
@@ -25,7 +25,7 @@ import { defineComponent, PropType, readonly } from "vue";
 import { Dto } from "@/views/hall-of-fame/logic/db";
 import { getAbilityGradeIcon } from "@/views/logic/resources/images";
 import { useI18n } from "vue-i18n";
-import { AbilityStructure, AbilityKey } from "@/data";
+import { Ability, AllAbilityContainer } from "@/data";
 
 export default defineComponent({
   props: {
@@ -37,15 +37,15 @@ export default defineComponent({
   data() {
     const { t } = useI18n();
     return {
-      AbilityStructure,
+      AllAbilityContainer,
       t,
     };
   },
   setup(props) {
-    const ability = readonly(props.viewData.ability);
+    const abilityDto = readonly(props.viewData.ability);
     return {
-      getAbilityGradeIcon: (key: AbilityKey) =>
-        getAbilityGradeIcon(ability[key]),
+      getGradeIcon: (ability: Ability) =>
+        getAbilityGradeIcon(abilityDto[ability]),
     };
   },
 });

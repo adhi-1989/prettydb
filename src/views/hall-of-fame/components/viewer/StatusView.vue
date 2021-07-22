@@ -3,7 +3,7 @@
   <section class="status-view-root">
     <div class="status-view-wrapper">
       <div class="status-element-group">
-        <template v-for="key in StatusKeys" :key="key">
+        <template v-for="key in AllStatus" :key="key">
           <!-- status-element -->
           <div class="status-element" :class="key">
             <div class="element-label">
@@ -29,7 +29,7 @@ import { defineComponent, PropType, readonly } from "vue";
 import { getStatusGradeIcon } from "@/views/logic/resources/images";
 import { Dto } from "@/views/hall-of-fame/logic/db";
 import { useI18n } from "vue-i18n";
-import { StatusKeys } from "@/data";
+import { AllStatus } from "@/data";
 
 export default defineComponent({
   props: {
@@ -42,7 +42,7 @@ export default defineComponent({
     const { t } = useI18n();
     return {
       getStatusGradeIcon,
-      StatusKeys,
+      AllStatus,
       t,
     };
   },

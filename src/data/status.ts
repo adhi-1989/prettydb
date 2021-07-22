@@ -1,69 +1,71 @@
-export const StatusGrades = {
-  G_PLUS: "g+",
-  F: "f",
-  F_PLUS: "f+",
-  E: "e",
-  E_PLUS: "e+",
-  D: "d",
-  D_PLUS: "d+",
-  C: "c",
-  C_PLUS: "c+",
-  B: "b",
-  B_PLUS: "b+",
-  A: "a",
-  A_PLUS: "a+",
-  S: "s",
-  S_PLUS: "s+",
-  SS: "ss",
-  SS_PLUS: "ss+",
-} as const;
+export type StatusGrade =
+  | "g+"
+  | "f"
+  | "f+"
+  | "e"
+  | "e+"
+  | "d"
+  | "d+"
+  | "c"
+  | "c+"
+  | "b"
+  | "b+"
+  | "a"
+  | "a+"
+  | "s"
+  | "s+"
+  | "ss"
+  | "ss+";
 
-export type StatusGrade = typeof StatusGrades[keyof typeof StatusGrades];
+export type Status =
+  | "speed"
+  | "stamina"
+  | "power"
+  | "tenacity"
+  | "intelligence";
 
-export const StatusKeys = {
-  SPEED: "speed",
-  STAMINA: "stamina",
-  POWER: "power",
-  TENACITY: "tenacity",
-  INTELLIGENCE: "intelligence",
-} as const;
+export const AllStatus: Readonly<Array<Status>> = Object.freeze([
+  "speed",
+  "stamina",
+  "power",
+  "tenacity",
+  "intelligence",
+]);
 
-export type StatusKey = typeof StatusKeys[keyof typeof StatusKeys];
-
-export function getStatusGrade(value: number): StatusGrade {
-  if (value >= 1150) {
-    return StatusGrades.SS_PLUS;
-  } else if (value >= 1100) {
-    return StatusGrades.SS;
-  } else if (value >= 1050) {
-    return StatusGrades.S_PLUS;
-  } else if (value >= 1000) {
-    return StatusGrades.S;
-  } else if (value >= 900) {
-    return StatusGrades.A_PLUS;
-  } else if (value >= 800) {
-    return StatusGrades.A;
-  } else if (value >= 700) {
-    return StatusGrades.B_PLUS;
-  } else if (value >= 600) {
-    return StatusGrades.B;
-  } else if (value >= 500) {
-    return StatusGrades.C_PLUS;
-  } else if (value >= 400) {
-    return StatusGrades.C;
-  } else if (value >= 350) {
-    return StatusGrades.D_PLUS;
-  } else if (value >= 300) {
-    return StatusGrades.D;
-  } else if (value >= 250) {
-    return StatusGrades.E_PLUS;
-  } else if (value >= 200) {
-    return StatusGrades.E;
-  } else if (value >= 150) {
-    return StatusGrades.F_PLUS;
-  } else if (value >= 100) {
-    return StatusGrades.F;
+export function getStatusGrade(statusValue: number): StatusGrade {
+  if (statusValue >= 1150) {
+    return "ss+";
+  } else if (statusValue >= 1100) {
+    return "ss";
+  } else if (statusValue >= 1050) {
+    return "s+";
+  } else if (statusValue >= 1000) {
+    return "s";
+  } else if (statusValue >= 900) {
+    return "a+";
+  } else if (statusValue >= 800) {
+    return "a";
+  } else if (statusValue >= 700) {
+    return "b+";
+  } else if (statusValue >= 600) {
+    return "b";
+  } else if (statusValue >= 500) {
+    return "c+";
+  } else if (statusValue >= 400) {
+    return "c";
+  } else if (statusValue >= 350) {
+    return "d+";
+  } else if (statusValue >= 300) {
+    return "d";
+  } else if (statusValue >= 250) {
+    return "e+";
+  } else if (statusValue >= 200) {
+    return "e";
+  } else if (statusValue >= 150) {
+    return "f+";
+  } else if (statusValue >= 100) {
+    return "f";
   } else {
-    return StatusGrades.G_PLUS;
+    return "g+";
   }
 }
