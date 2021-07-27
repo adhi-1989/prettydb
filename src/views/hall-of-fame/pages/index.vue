@@ -96,15 +96,17 @@ export default defineComponent({
         } else {
           viewDataBackup.value = viewData.value;
           editData.value = _.cloneDeep(dataList[viewDataIndex.value]);
-          viewData.value = editData.value;
         }
+        viewData.value = editData.value;
       }
       parentView.push(activeView.value);
       activeView.value = type;
     };
     const closeView = (type: ViewType) => {
       if (activeView.value === type) {
-        if (type === "editor" && viewDataBackup.value != undefined) {
+        if (type === "viewer") {
+          viewDataIndex.value = -1;
+        } else if (type === "editor" && viewDataBackup.value != undefined) {
           viewData.value = viewDataBackup.value;
           viewDataBackup.value = undefined;
         }
