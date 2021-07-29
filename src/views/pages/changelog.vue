@@ -1,6 +1,20 @@
 <template>
   <article class="changelog-root">
     <section class="content">
+      <h1 class="version">v0.7.7</h1>
+      <div class="release-date">公開日: 2021-07-29</div>
+      <ul class="changelogs">
+        <li class="log-item">
+          スペシャルウィーク[ほっぴん♪ビタミンハート] のデータを追加
+        </li>
+        <li class="log-item">
+          マルゼンスキー[ぶっとび☆さまーナイト] のデータを追加
+        </li>
+        <li class="log-item">天命士 のスキルデータを追加</li>
+        <li class="log-item">弱点系スキルのデータを4種類追加</li>
+      </ul>
+    </section>
+    <section class="content">
       <h1 class="version">v0.7.6</h1>
       <div class="release-date">公開日: 2021-07-20</div>
       <ul class="changelogs">
