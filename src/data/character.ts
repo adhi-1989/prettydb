@@ -270,6 +270,16 @@ const Monikers: Array<Moniker> = [
     monikerID: 0,
     initialTalentLevel: 3,
   },
+  /* スペシャルウィーク:ほっぴん♪ビタミンハート */ {
+    characterID: 0,
+    monikerID: 1,
+    initialTalentLevel: 3,
+  },
+  /* マルゼンスキー:ぶっとび☆さまーナイト */ {
+    characterID: 3,
+    monikerID: 1,
+    initialTalentLevel: 3,
+  },
 ];
 
 export const NULL_CHARACTER: Character = Object.freeze({

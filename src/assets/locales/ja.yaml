@@ -81,6 +81,8 @@ character:
     moniker:
       0:
         name: スペシャルドリーマー
+      1:
+        name: ほっぴん♪ビタミンハート
   1:
     name: サイレンススズカ
     moniker:
@@ -98,6 +100,8 @@ character:
     moniker:
       0:
         name: フォーミュラオブルージュ
+      1:
+        name: ぶっとび☆さまーナイト
   4:
     name: フジキセキ
     moniker:
@@ -487,6 +491,14 @@ skill:
   57:
     name: KEEP IT REAL.
     description: 'レース後半に中団から仕掛け始める時に\n持てるパフォーマンスを発揮して\n加速力を少しずつ上げる'
+    description-for-inheritor:
+  58:
+    name: わやかわ♪マリンダイヴ
+    description: '中盤で2回スキルと使うと\nよりリラックスして持久力が回復する'
+    description-for-inheritor:
+  59:
+    name: グッときて♪Chu
+    description: 'スキルで持久力を回復すると\nレース後半で前のほうにいる時に\nレッツラゴー！と速度を上げる'
     description-for-inheritor:
   1024:
     name: アガッてきた！
@@ -1443,6 +1455,12 @@ factor:
   185:
     name: KEEP IT REAL.
     description: 「KEEP IT REAL.」のスキルヒントを得られる因子です
+  186:
+    name: わやかわ♪マリンダイヴ
+    description: 「わやかわ♪マリンダイヴ」のスキルヒントを得られる因子です
+  187:
+    name: グッときて♪Chu
+    description: 「グッときて♪Chu」のスキルヒントを得られる因子です
   1024:
     name: NHKマイルC
     description: スピードとパワーがアップする因子です

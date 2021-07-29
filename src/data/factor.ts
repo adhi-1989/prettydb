@@ -288,6 +288,18 @@ const Factors: Array<Factor | UniqueSkillFactor> = [
     type: "uniqueSkill",
     skillID: 57,
   },
+  /* わやかわ♪マリンダイヴ */ {
+    factorID: 186,
+    sortID: 186,
+    type: "uniqueSkill",
+    skillID: 58,
+  },
+  /* グッときて♪Chu */ {
+    factorID: 187,
+    sortID: 187,
+    type: "uniqueSkill",
+    skillID: 59,
+  },
   /* NHKマイルC */ { factorID: 1024, sortID: 1024, type: "race" },
   /* エリザベス女王杯 */ { factorID: 1025, sortID: 1025, type: "race" },
   /* オークス */ { factorID: 1026, sortID: 1026, type: "race" },
