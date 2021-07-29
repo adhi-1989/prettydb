@@ -21,20 +21,20 @@ export default defineComponent({
         { property: "og:title", content: title },
         { property: "og:description", content: description },
         { property: "og:type", content: "website" },
-        { property: "og:url", content: "https://adhi-1989.github.io/prettydb" },
+        { property: "og:url", content: "https://prettydb.adhi.jp" },
         {
           property: "og:image",
-          content: `https://adhi-1989.github.io${ogImage}`,
+          content: `https://prettydb.adhi.jp${ogImage}`,
         },
         { name: "twitter:site", content: "@Adhi_1989" },
         { name: "twitter:card", content: "summary" },
         {
           name: "twitter:image:src",
-          content: `https://adhi-1989.github.io${twitterImage}`,
+          content: `https://prettydb.adhi.jp${twitterImage}`,
         },
         {
           name: "google-site-verification",
-          content: "2rnihvffpSYW6LFMcJFSwQz6Eg1DaGKjlyBJYE7lcNI",
+          content: "A1a4Lg8VOWuKDKM-oGfnqlBM51X1BbqfaMHrl0KB0PY",
         },
       ],
     });

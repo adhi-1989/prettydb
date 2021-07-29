@@ -73,7 +73,7 @@ export default defineConfig(() => {
           navigationPreload: true,
           runtimeCaching: [
             {
-              urlPattern: /https:\/\/adhi-1989\.github\.io\/.+\.(svg|png)$/,
+              urlPattern: /https:\/\/prettydb\.adhi\.jp\/.+\.(svg|png)$/,
               handler: "CacheFirst",
               options: {
                 cacheName: "assets",
