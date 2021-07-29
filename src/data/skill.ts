@@ -1805,6 +1805,7 @@ const Skills: Array<Skill | UniqueSkill> = [
     sortID: 1138,
     point: 110,
     type: BUFF_VISION,
+    conflictID: 105,
     advanced: false,
     unique: false,
   },
@@ -3122,6 +3123,15 @@ const Skills: Array<Skill | UniqueSkill> = [
     point: -1,
     type: WEAK_RACE,
     advanced: false,
+    unique: false,
+  },
+  /* 天命士 */ {
+    skillID: 1289,
+    sortID: 1289,
+    point: 110,
+    type: BUFF_VISION,
+    conflictID: 105,
+    advanced: true,
     unique: false,
   },
 ];

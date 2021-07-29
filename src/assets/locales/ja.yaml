@@ -1295,6 +1295,9 @@ skill:
   1288:
     name: GⅠ苦手
     description: 'GⅠなどの大舞台のレースが\n少し苦手になる'
+  1289:
+    name: 天命士
+    description: 'レース終盤に後ろの方にいると\n視野が広くなる＜作戦・追込＞'
 factor:
   0:
     name: スピード
