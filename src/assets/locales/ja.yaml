@@ -1283,6 +1283,18 @@ skill:
   1284:
     name: プランX
     description: 'レース中盤に前の方にいると\n抜かしやすくなる＜短距離＞'
+  1285:
+    name: 小心者
+    description: 一番人気になる事が少し苦手になる
+  1286:
+    name: あきらめ癖
+    description: '最終直線で最後方付近にいると\n少しあきらめてしまいがちになる'
+  1287:
+    name: バ群嫌い
+    description: '周りを囲まれると\n持久力が少し減少する'
+  1288:
+    name: GⅠ苦手
+    description: 'GⅠなどの大舞台のレースが\n少し苦手になる'
 factor:
   0:
     name: スピード

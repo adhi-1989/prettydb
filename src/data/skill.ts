@@ -74,6 +74,9 @@ const {
   SUPPORT_STRATEGY,
   WEAK_FATIGUE,
   WEAK_STARTING,
+  WEAK_MENTAL,
+  WEAK_WILL,
+  WEAK_RACE,
 } = SkillTypes;
 
 const Skills: Array<Skill | UniqueSkill> = [
@@ -3087,6 +3090,38 @@ const Skills: Array<Skill | UniqueSkill> = [
     type: BUFF_ACCELERATION,
     conflictID: 104,
     advanced: true,
+    unique: false,
+  },
+  /* 小心者 */ {
+    skillID: 1285,
+    sortID: 1285,
+    point: -1,
+    type: WEAK_MENTAL,
+    advanced: false,
+    unique: false,
+  },
+  /* あきらめ癖 */ {
+    skillID: 1286,
+    sortID: 1286,
+    point: -1,
+    type: WEAK_WILL,
+    advanced: false,
+    unique: false,
+  },
+  /* バ群嫌い */ {
+    skillID: 1287,
+    sortID: 1287,
+    point: -1,
+    type: WEAK_FATIGUE,
+    advanced: false,
+    unique: false,
+  },
+  /* GⅠ苦手 */ {
+    skillID: 1288,
+    sortID: 1288,
+    point: -1,
+    type: WEAK_RACE,
+    advanced: false,
     unique: false,
   },
 ];
