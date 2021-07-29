@@ -1,6 +1,6 @@
 import { createNumMap } from "@/util";
 import _ from "@/util/lodash";
-import { Character, MonikerIdentify } from "@/data/character";
+import { MonikerIdentify } from "@/data/character";
 
 export const SkillTypes = {
   BUFF_SPEED: 0,
@@ -20,8 +20,11 @@ export const SkillTypes = {
   SUPPORT_TENACITY: 14,
   SUPPORT_GENERAL: 15,
   SUPPORT_STRATEGY: 16,
-  WEAK_STAMINA: 17,
+  WEAK_FATIGUE: 17,
   WEAK_STARTING: 18,
+  WEAK_MENTAL: 19,
+  WEAK_WILL: 20,
+  WEAK_RACE: 21,
 } as const;
 
 export type SkillType = typeof SkillTypes[keyof typeof SkillTypes];
@@ -69,7 +72,7 @@ const {
   SUPPORT_TENACITY,
   SUPPORT_GENERAL,
   SUPPORT_STRATEGY,
-  WEAK_STAMINA,
+  WEAK_FATIGUE,
   WEAK_STARTING,
 } = SkillTypes;
 
@@ -1521,7 +1524,7 @@ const Skills: Array<Skill | UniqueSkill> = [
     skillID: 1109,
     sortID: 1109,
     point: 100,
-    type: WEAK_STAMINA,
+    type: WEAK_FATIGUE,
     advanced: false,
     unique: false,
   },

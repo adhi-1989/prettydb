@@ -16,8 +16,11 @@ import SUPPORT_POWER from "#/images/skill/support_power.svg";
 import SUPPORT_TENACITY from "#/images/skill/support_tenacity.svg";
 import SUPPORT_GENERAL from "#/images/skill/support_general.svg";
 import SUPPORT_STRATEGY from "#/images/skill/support_strategy.svg";
-import WEAK_STAMINA from "#/images/skill/weak_stamina.svg";
+import WEAK_FATIGUE from "#/images/skill/weak_fatigue.svg";
 import WEAK_STARTING from "#/images/skill/weak_starting.svg";
+import WEAK_MENTAL from "#/images/skill/weak_mental.svg";
+import WEAK_WILL from "#/images/skill/weak_will.svg";
+import WEAK_RACE from "#/images/skill/weak_race.svg";
 
 export const SkillTypeIcons = {
   BUFF_SPEED,
@@ -37,8 +40,11 @@ export const SkillTypeIcons = {
   SUPPORT_TENACITY,
   SUPPORT_GENERAL,
   SUPPORT_STRATEGY,
-  WEAK_STAMINA,
+  WEAK_FATIGUE,
   WEAK_STARTING,
+  WEAK_MENTAL,
+  WEAK_WILL,
+  WEAK_RACE,
 };
 
 export function getSkillTypeIcon(type: SkillType): string {
@@ -77,10 +83,16 @@ export function getSkillTypeIcon(type: SkillType): string {
       return SUPPORT_GENERAL;
     case SkillTypes.SUPPORT_STRATEGY:
       return SUPPORT_STRATEGY;
-    case SkillTypes.WEAK_STAMINA:
-      return WEAK_STAMINA;
+    case SkillTypes.WEAK_FATIGUE:
+      return WEAK_FATIGUE;
     case SkillTypes.WEAK_STARTING:
       return WEAK_STARTING;
+    case SkillTypes.WEAK_MENTAL:
+      return WEAK_MENTAL;
+    case SkillTypes.WEAK_WILL:
+      return WEAK_WILL;
+    case SkillTypes.WEAK_RACE:
+      return WEAK_RACE;
     default:
       console.warn("Illegal skill type: " + type);
       return BUFF_SPEED;
