@@ -2,10 +2,30 @@
   <article class="home-root">
     <header class="header">
       <img class="logo" :src="logo" alt="" />
-      <span class="version">v0.7.7</span>
+      <span class="version">v0.7.8</span>
     </header>
 
     <main class="main">
+      <section class="info content">
+        <span class="heading level-1">お知らせ</span>
+        <p class="text-block">
+          諸事情により、アプリを公開するURLを変更しました。
+          これに伴い、こちらのURLで入力した殿堂入りウマ娘のデータを移行する必要があります。
+          お手数ですが、設定画面から殿堂入りウマ娘のデータをバックアップしたのち、新しいURLの方でデータのインポートしていただくようお願いします。
+        </p>
+        <ul class="list block">
+          <li class="list-item">
+            <router-link class="link" to="/settings">
+              設定画面（別ページ）へ移動します
+            </router-link>
+          </li>
+          <li class="list-item">
+            <a class="link" href="https://prettydb.adhi.jp/" target="_blank">
+              新しいURLを別タブで開きます
+            </a>
+          </li>
+        </ul>
+      </section>
       <section class="outline content">
         <span class="heading level-1">「プリティーデービー」とは？</span>
         <p class="text-block">
@@ -182,8 +202,7 @@ export default defineComponent({
   setup() {
     const { t } = useI18n();
     useHead({
-      title: t("pages.home.title"),
-      meta: [{ name: "description", content: t("pages.home.description") }],
+      link: [{ rel: "canonical", href: "https://prettydb.adhi.jp" }],
     });
     const ja = ref(false);
     return {
@@ -262,6 +281,11 @@ export default defineComponent({
       }
       .link {
         @apply text-blue-400;
+      }
+      &.info {
+        > .list > .list-item {
+          @apply mt-[1rem];
+        }
       }
       &.outline {
         > .warning {

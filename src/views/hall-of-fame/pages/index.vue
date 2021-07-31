@@ -59,6 +59,9 @@ export default defineComponent({
       meta: [
         { name: "description", content: t("pages.hall-of-fame.description") },
       ],
+      link: [
+        { rel: "canonical", href: "https://prettydb.adhi.jp/hall-of-fame" },
+      ],
     });
 
     const activeView = ref<ViewType>("list");

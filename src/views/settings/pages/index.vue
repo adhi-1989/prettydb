@@ -43,6 +43,7 @@ export default defineComponent({
     useHead({
       title: t("pages.settings.title"),
       meta: [{ name: "description", content: t("pages.settings.description") }],
+      link: [{ rel: "canonical", href: "https://prettydb.adhi.jp/settings" }],
     });
 
     const showToast = ref(false);
