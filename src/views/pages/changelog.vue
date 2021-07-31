@@ -1,6 +1,15 @@
 <template>
   <article class="changelog-root">
     <section class="content">
+      <h1 class="version">v0.7.8</h1>
+      <div class="release-date">公開日: 2021-07-31</div>
+      <ul class="changelogs">
+        <li class="log-item">
+          殿堂入りウマ娘のデータをバックアップ・インポートする機能を追加
+        </li>
+      </ul>
+    </section>
+    <section class="content">
       <h1 class="version">v0.7.7</h1>
       <div class="release-date">公開日: 2021-07-29</div>
       <ul class="changelogs">

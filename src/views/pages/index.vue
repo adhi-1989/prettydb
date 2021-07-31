@@ -2,7 +2,7 @@
   <article class="home-root">
     <header class="header">
       <img class="logo" :src="logo" alt="" />
-      <span class="version">v0.7.7</span>
+      <span class="version">v0.7.8</span>
     </header>
 
     <main class="main">
@@ -31,6 +31,16 @@
             <li class="list-item no-disc">
               <p>
                 殿堂入りしたウマ娘のデータを手動で入力することで、アプリにデータを保存・閲覧することができます。
+              </p>
+            </li>
+            <li class="list-item">
+              <router-link class="link" to="/settings">
+                <icon-ion-settings class="icon" />(設定)
+              </router-link>
+            </li>
+            <li class="list-item no-disc">
+              <p>
+                入力した殿堂入りウマ娘のデータをバックアップ・インポートすることができます。
               </p>
             </li>
           </ul>
@@ -270,6 +280,13 @@ export default defineComponent({
           }
           > .text-block {
             @apply text-red-400;
+          }
+        }
+        > .features {
+          > .list {
+            > .list-item > .link {
+              @apply inline-flex items-center;
+            }
           }
         }
       }
