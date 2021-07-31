@@ -14,6 +14,21 @@ pages:
     name: 404 Not Found
     title: 'ありません！！ - @:app.name'
     description: このURLにコンテンツはありません。URLが間違っているか、コンテンツが削除された可能性があります。
+  settings:
+    name: 設定
+    title: '@:pages.settings.name - @:app.name'
+    description: プリティーデービーの設定を変更したり、データのバックアップ・インポートなどを行うことができます。
+    content:
+      toast:
+        import: データのインポートが完了しました
+      export-import:
+        label: 設定やデータのバックアップ・インポート
+        button:
+          export: バックアップ
+          import: インポート
+        file-name:
+          hall-of-fame:
+            data: 殿堂入りウマ娘データ
   changelog:
     name: 変更履歴
     title: '@:pages.changelog.name - @:app.name'

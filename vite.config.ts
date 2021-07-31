@@ -42,6 +42,7 @@ export default defineConfig(({ mode }) => {
       pages({
         pagesDir: [
           { dir: "src/views/pages", baseRoute: "" },
+          { dir: "src/views/settings/pages", baseRoute: "settings" },
           { dir: "src/views/hall-of-fame/pages", baseRoute: "hall-of-fame" },
         ],
         exclude: ["**/components/*.vue"],
