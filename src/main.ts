@@ -12,14 +12,10 @@ import "./assets/styles/animate.css";
 
 const routes = setupLayouts(generatedRoutes);
 
-export const createApp = ViteSSG(
-  App,
-  { routes, base: import.meta.env.BASE_URL },
-  (context) => {
-    _.values(import.meta.globEager("./modules/*.ts")).forEach(({ install }) => {
-      if (_.isFunction(install)) {
-        install(context);
-      }
-    });
-  }
-);
+export const createApp = ViteSSG(App, { routes }, (context) => {
+  _.values(import.meta.globEager("./modules/*.ts")).forEach(({ install }) => {
+    if (_.isFunction(install)) {
+      install(context);
+    }
+  });
+});

@@ -35,7 +35,8 @@
             </li>
             <li class="list-item">
               <router-link class="link" to="/settings">
-                <icon-ion-settings class="icon" />(設定)
+                <icon-ion-settings class="icon" />
+                (設定)
               </router-link>
             </li>
             <li class="list-item no-disc">
@@ -176,7 +177,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from "vue";
+import { computed, defineComponent, onMounted, reactive, ref } from "vue";
 import logo from "#/images/app/logo.svg";
 import HorseshoeParticles from "@/views/components/HorseshoeParticles.vue";
 import { useHead } from "~/@vueuse/head";
@@ -191,11 +192,26 @@ export default defineComponent({
   },
   setup() {
     const { t } = useI18n();
-    useHead({
-      title: t("pages.home.title"),
-      meta: [{ name: "description", content: t("pages.home.description") }],
+    const pageInfo = reactive({
+      title: t("app.title"),
+      description: t("app.description"),
     });
+    useHead({
+      title: computed(() => pageInfo.title),
+      meta: [
+        { name: "description", content: computed(() => pageInfo.description) },
+      ],
+    });
+
     const ja = ref(false);
+
+    onMounted(() => {
+      window.setTimeout(() => {
+        pageInfo.title = t("pages.home.title");
+        pageInfo.description = t("pages.home.description");
+      }, 500);
+    });
+
     return {
       ja,
     };
@@ -214,12 +230,14 @@ export default defineComponent({
     > .logo {
       @apply w-[28rem] mx-auto;
     }
+
     > .version {
       @include text-stroke(#fefefe);
       @apply absolute font-bold text-[1rem] right-[2rem] bottom-0;
       @apply xs:text-[1.25rem] xs:bottom-[1rem];
     }
   }
+
   > .main {
     @apply flex flex-col gap-y-[2rem] items-center mt-[1rem] mb-[1rem];
     @apply xs:mb-[2rem];
@@ -230,37 +248,44 @@ export default defineComponent({
       .heading {
         @apply font-bold;
       }
+
       .heading.level-1 {
         @apply text-[1.25rem] text-center block;
         @apply xs:text-[1.5rem];
         @apply sm:text-[1.75rem];
       }
+
       .heading.level-2 {
         @apply text-[1.125rem];
         @apply xs:text-[1.375rem];
         @apply sm:text-[1.625rem];
       }
+
       .heading.level-3 {
         @apply text-[1rem];
         @apply xs:text-[1.25rem];
         @apply sm:text-[1.5rem];
       }
+
       .heading.level-4 {
         @apply text-[0.875rem];
         @apply xs:text-[1.125rem];
         @apply sm:text-[1.375rem];
       }
+
       .heading.level-5 {
         @apply text-[0.75rem];
         @apply xs:text-[1rem];
         @apply sm:text-[1.25rem];
       }
+
       .section,
       .block,
       .text-block {
         @apply mt-[0.75rem];
         @apply xs:mt-[1rem];
       }
+
       .list {
         @apply flex flex-col gap-y-[0.375rem];
         > .list-item {
@@ -270,18 +295,22 @@ export default defineComponent({
           }
         }
       }
+
       .link {
         @apply text-blue-400;
       }
+
       &.outline {
         > .warning {
           > .heading {
             @apply text-red-500;
           }
+
           > .text-block {
             @apply text-red-400;
           }
         }
+
         > .features {
           > .list {
             > .list-item > .link {
@@ -290,11 +319,13 @@ export default defineComponent({
           }
         }
       }
+
       &.issues {
         > .list > .list-item {
           @apply mt-[1rem];
         }
       }
+
       &.license {
         > .license-article {
           @apply bg-[#f2f2f2] p-[0.5rem] leading-normal rounded-md cursor-pointer;
@@ -302,6 +333,7 @@ export default defineComponent({
             animation: fadeIn;
             animation-duration: 0.25s;
           }
+
           > .license-leave-active {
             animation: fadeOut;
             animation-duration: 0.25s;
