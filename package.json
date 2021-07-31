@@ -11,6 +11,7 @@
     "@vueuse/head": "^0.5.1",
     "animate.css": "^4.1.1",
     "dexie": "^3.0.3",
+    "dexie-export-import": "^1.0.3",
     "lodash": "^4.17.21",
     "three": "^0.130.1",
     "vue": "^3.0.5",

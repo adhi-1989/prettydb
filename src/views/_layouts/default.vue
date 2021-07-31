@@ -45,9 +45,9 @@
       <!-- tools -->
       <section class="tools">
         <!-- settings -->
-        <div class="tool-item invisible">
+        <router-link class="tool-item" to="/settings" @click="closeMenu()">
           <icon-ion-settings class="icon" />
-        </div>
+        </router-link>
 
         <!-- github link -->
         <a
