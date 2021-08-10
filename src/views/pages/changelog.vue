@@ -1,97 +1,12 @@
 <template>
   <article class="changelog-root">
-    <section class="content">
-      <h1 class="version">v0.7.8</h1>
-      <div class="release-date">公開日: 2021-07-31</div>
+    <section class="content" v-for="log in logs" :key="log.version">
+      <h1 class="version">v{{ log.version }}</h1>
+      <div class="release-date">公開日: {{ log.releaseDate }}</div>
       <ul class="changelogs">
-        <li class="log-item">
-          殿堂入りウマ娘のデータをバックアップ・インポートする機能を追加
+        <li class="log-item" v-for="change in log.changes" :key="change">
+          {{ change }}
         </li>
-      </ul>
-    </section>
-    <section class="content">
-      <h1 class="version">v0.7.7</h1>
-      <div class="release-date">公開日: 2021-07-29</div>
-      <ul class="changelogs">
-        <li class="log-item">
-          スペシャルウィーク[ほっぴん♪ビタミンハート] のデータを追加
-        </li>
-        <li class="log-item">
-          マルゼンスキー[ぶっとび☆さまーナイト] のデータを追加
-        </li>
-        <li class="log-item">天命士 のスキルデータを追加</li>
-        <li class="log-item">弱点系スキルのデータを4種類追加</li>
-      </ul>
-    </section>
-    <section class="content">
-      <h1 class="version">v0.7.6</h1>
-      <div class="release-date">公開日: 2021-07-20</div>
-      <ul class="changelogs">
-        <li class="log-item">
-          ゴールドシチー[オーセンティック/1928] のデータを追加
-        </li>
-        <li class="log-item">くじけぬ精神 のスキルデータを追加</li>
-        <li class="log-item">プランX のスキルデータが抜けていたので追加</li>
-      </ul>
-    </section>
-    <section class="content">
-      <h1 class="version">v0.7.5</h1>
-      <div class="release-date">公開日: 2021-07-18</div>
-      <ul class="changelogs">
-        <li class="log-item">
-          PWAに対応、アプリを端末にインストールすることが可能になった
-        </li>
-        <li class="log-item">仕掛け準備 のスキルデータが抜けていたので追加</li>
-        <li class="log-item">
-          殿堂入りウマ娘 データ管理の画面にて一部レイアウトを変更
-        </li>
-      </ul>
-    </section>
-    <section class="content">
-      <h1 class="version">v0.7.4</h1>
-      <div class="release-date">公開日: 2021-07-12</div>
-      <ul class="changelogs">
-        <li class="log-item">
-          フジキセキ[シューティンスタァ・ルヴュ] のデータを追加
-        </li>
-        <li class="log-item">勝利への執念 のスキルデータを追加</li>
-      </ul>
-    </section>
-    <section class="content">
-      <h1 class="version">v0.7.3</h1>
-      <div class="release-date">公開日: 2021-07-08</div>
-      <ul class="changelogs">
-        <li class="log-item">内的体験 のスキルデータを追加</li>
-        <li class="log-item">
-          ホーム画面と変更履歴画面のバックグラウンドにパーティクルアニメーションを追加
-        </li>
-        <li class="log-item">一部グラフィックの改善</li>
-      </ul>
-    </section>
-    <section class="content">
-      <h1 class="version">v0.7.2</h1>
-      <div class="release-date">公開日: 2021-06-29</div>
-      <ul class="changelogs">
-        <li class="log-item">
-          エルコンドルパサー[クルルカン・モンク] のデータを追加
-        </li>
-        <li class="log-item">
-          グラスワンダー[セイントジェード・ヒーラー] のデータを追加
-        </li>
-      </ul>
-    </section>
-    <section class="content">
-      <h1 class="version">v0.7.1</h1>
-      <div class="release-date">公開日: 2021-06-25</div>
-      <ul class="changelogs">
-        <li class="log-item">スキルにアイコンが表示されるようになった</li>
-      </ul>
-    </section>
-    <section class="content">
-      <h1 class="version">v0.7.0</h1>
-      <div class="release-date">公開日: 2021-06-23</div>
-      <ul class="changelogs">
-        <li class="log-item">新規公開</li>
       </ul>
     </section>
   </article>
@@ -107,11 +22,92 @@ import { useI18n } from "~/vue-i18n";
 import logo from "#/images/app/logo.svg";
 import HorseshoeParticles from "@/views/components/HorseshoeParticles.vue";
 
+type Changelog = {
+  version: string;
+  releaseDate: string;
+  changes: Array<string>;
+};
+
 export default defineComponent({
   components: { HorseshoeParticles },
   data() {
+    //TODO: jsonにして外部から読み込むようにする
+    //TODO: 余裕があれば国際化する
+    const logs: Array<Changelog> = [
+      {
+        version: "0.7.8",
+        releaseDate: "2021-07-31",
+        changes: [
+          "殿堂入りウマ娘のデータをバックアップ・インポートする機能を追加",
+        ],
+      },
+      {
+        version: "0.7.7",
+        releaseDate: "2021-07-29",
+        changes: [
+          "スペシャルウィーク[ほっぴん♪ビタミンハート] のデータを追加",
+          "マルゼンスキー[ぶっとび☆さまーナイト] のデータを追加",
+          "天命士 のスキルデータを追加",
+          "弱点系スキルのデータを4種類追加",
+        ],
+      },
+      {
+        version: "0.7.6",
+        releaseDate: "2021-07-20",
+        changes: [
+          "ゴールドシチー[オーセンティック/1928] のデータを追加",
+          "くじけぬ精神 のスキルデータを追加",
+          "プランX のスキルデータが抜けていたので追加",
+        ],
+      },
+      {
+        version: "0.7.5",
+        releaseDate: "2021-07-18",
+        changes: [
+          "PWAに対応、アプリを端末にインストールすることが可能になった",
+          "仕掛け準備 のスキルデータが抜けていたので追加",
+          "殿堂入りウマ娘 データ管理の画面にて一部レイアウトを変更",
+        ],
+      },
+      {
+        version: "0.7.4",
+        releaseDate: "2021-07-12",
+        changes: [
+          "フジキセキ[シューティンスタァ・ルヴュ] のデータを追加",
+          "勝利への執念 のスキルデータを追加",
+        ],
+      },
+      {
+        version: "0.7.3",
+        releaseDate: "2021-07-08",
+        changes: [
+          "内的体験 のスキルデータを追加",
+          "ホーム画面と変更履歴画面のバックグラウンドにパーティクルアニメーションを追加",
+          "一部グラフィックの改善",
+        ],
+      },
+      {
+        version: "0.7.2",
+        releaseDate: "2021-06-29",
+        changes: [
+          "エルコンドルパサー[クルルカン・モンク] のデータを追加",
+          "グラスワンダー[セイントジェード・ヒーラー] のデータを追加",
+        ],
+      },
+      {
+        version: "0.7.1",
+        releaseDate: "2021-06-25",
+        changes: ["スキルにアイコンが表示されるようになった"],
+      },
+      {
+        version: "0.7.0",
+        releaseDate: "2021-06-23",
+        changes: ["新規公開"],
+      },
+    ];
     return {
       logo,
+      logs,
     };
   },
   setup() {
