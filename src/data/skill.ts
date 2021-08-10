@@ -3197,8 +3197,6 @@ export function isUniqueSkillOwner(
   );
 }
 
-export const getUniqueSkill = _.memoize(
-  (owner: UniqueSkillOwner): UniqueSkill => {
-    return uniqueSkills.find((x) => isUniqueSkillOwner(owner, x)) || NULL_SKILL;
-  }
-);
+export const getUniqueSkill = (owner: UniqueSkillOwner): UniqueSkill => {
+  return uniqueSkills.find((x) => isUniqueSkillOwner(owner, x)) || NULL_SKILL;
+};
