@@ -177,11 +177,9 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, onMounted, reactive, ref } from "vue";
-import logo from "#/images/app/logo.svg";
+import { defineComponent, ref } from "vue";
 import HorseshoeParticles from "@/views/components/HorseshoeParticles.vue";
-import { useHead } from "~/@vueuse/head";
-import { useI18n } from "~/vue-i18n";
+import logo from "#/images/app/logo.svg";
 
 export default defineComponent({
   components: { HorseshoeParticles },
@@ -191,27 +189,7 @@ export default defineComponent({
     };
   },
   setup() {
-    const { t } = useI18n();
-    const pageInfo = reactive({
-      title: t("app.title"),
-      description: t("app.description"),
-    });
-    useHead({
-      title: computed(() => pageInfo.title),
-      meta: [
-        { name: "description", content: computed(() => pageInfo.description) },
-      ],
-    });
-
     const ja = ref(false);
-
-    onMounted(() => {
-      window.setTimeout(() => {
-        pageInfo.title = t("pages.home.title");
-        pageInfo.description = t("pages.home.description");
-      }, 500);
-    });
-
     return {
       ja,
     };
