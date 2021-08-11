@@ -800,6 +800,18 @@ const Skills: Array<Skill | UniqueSkill> = [
     matchTalentLevel: FROM_3_TO_5,
     inheritable: true,
   },
+  /* I Never Goof Up! */ {
+    skillID: 60,
+    sortID: 60,
+    point: 200,
+    type: BUFF_SPEED,
+    advanced: false,
+    unique: true,
+    characterID: 57,
+    monikerID: 0,
+    matchTalentLevel: FROM_3_TO_5,
+    inheritable: true,
+  },
   /* アガッてきた！ */ {
     skillID: 1024,
     sortID: 1024,

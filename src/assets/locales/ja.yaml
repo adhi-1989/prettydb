@@ -277,6 +277,11 @@ character:
     moniker:
       0:
         name: 運気上昇☆幸福万来
+  57:
+    name: メイショウドトウ
+    moniker:
+      0:
+        name: ブルー/レイジング
   59:
     name: ナイスネイチャ
     moniker:
@@ -514,6 +519,10 @@ skill:
   59:
     name: グッときて♪Chu
     description: 'スキルで持久力を回復すると\nレース後半で前のほうにいる時に\nレッツラゴー！と速度を上げる'
+    description-for-inheritor:
+  60:
+    name: 'I Never Goof Up!'
+    description: 'レース終盤のコーナーで\n中団以降のポジションから追い抜くと\nあきらめない心を発揮して前を目指す'
     description-for-inheritor:
   1024:
     name: アガッてきた！
@@ -1491,6 +1500,9 @@ factor:
   187:
     name: グッときて♪Chu
     description: 「グッときて♪Chu」のスキルヒントを得られる因子です
+  188:
+    name: 'I Never Goof Up!'
+    description: '「I Never Goof Up!」のスキルヒントを得られる因子です'
   1024:
     name: NHKマイルC
     description: スピードとパワーがアップする因子です

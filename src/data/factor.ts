@@ -300,6 +300,12 @@ const Factors: Array<Factor | UniqueSkillFactor> = [
     type: "uniqueSkill",
     skillID: 59,
   },
+  /* I Never Goof Up! */ {
+    factorID: 188,
+    sortID: 188,
+    type: "uniqueSkill",
+    skillID: 60,
+  },
   /* NHKマイルC */ { factorID: 1024, sortID: 1024, type: "race" },
   /* エリザベス女王杯 */ { factorID: 1025, sortID: 1025, type: "race" },
   /* オークス */ { factorID: 1026, sortID: 1026, type: "race" },

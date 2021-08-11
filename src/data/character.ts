@@ -57,6 +57,7 @@ const Characters: Array<Character> = [
   /* ヒシアマゾン */ { characterID: 11, sortID: 11 },
   /* フジキセキ */ { characterID: 4, sortID: 4 },
   /* ゴールドシチー */ { characterID: 39, sortID: 39 },
+  /* メイショウドトウ */ { characterID: 57, sortID: 57 },
 ];
 
 const Monikers: Array<Moniker> = [
@@ -278,6 +279,11 @@ const Monikers: Array<Moniker> = [
   /* マルゼンスキー:ぶっとび☆さまーナイト */ {
     characterID: 3,
     monikerID: 1,
+    initialTalentLevel: 3,
+  },
+  /* メイショウドトウ:ブルー/レイジング */ {
+    characterID: 57,
+    monikerID: 0,
     initialTalentLevel: 3,
   },
 ];
