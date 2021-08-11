@@ -34,9 +34,9 @@ export const RankIcons = {
 
 //TODO: スコアのグレードが決まる閾値が適当なのでちゃんとデータ集める
 export function getRankGradeIcon(score: number): string {
-  if (score >= 20000) {
+  if (score >= 16000) {
     return S_PLUS;
-  } else if (score >= 15000) {
+  } else if (score >= 14500) {
     return S;
   } else if (score >= 12000) {
     return A_PLUS;
