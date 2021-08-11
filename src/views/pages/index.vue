@@ -2,7 +2,7 @@
   <article class="home-root">
     <header class="header">
       <img class="logo" :src="logo" alt="" />
-      <span class="version">v0.7.8</span>
+      <span class="version">v0.7.9</span>
     </header>
 
     <main class="main">
