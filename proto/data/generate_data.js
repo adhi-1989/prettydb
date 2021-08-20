@@ -52,6 +52,7 @@ protobuf.load(path.resolve(__dirname, "character.proto"), function (err, root) {
       /* フジキセキ */ { characterID: 4, sortID: 4 },
       /* ゴールドシチー */ { characterID: 39, sortID: 39 },
       /* メイショウドトウ */ { characterID: 57, sortID: 57 },
+      /* エイシンフラッシュ */ { characterID: 36, sortID: 36 },
     ],
   });
 
@@ -293,6 +294,11 @@ protobuf.load(path.resolve(__dirname, "moniker.proto"), function (err, root) {
       },
       /* メイショウドトウ:ブルー/レイジング */ {
         characterID: 57,
+        monikerID: 0,
+        initialTalentLevel: 3,
+      },
+      /* エイシンフラッシュ:Meisterschaft */ {
+        characterID: 36,
         monikerID: 0,
         initialTalentLevel: 3,
       },
@@ -600,6 +606,12 @@ protobuf.load(path.resolve(__dirname, "factor.proto"), function (err, root) {
         sortID: 188,
         type: Type.UNIQUE_SKILL,
         skillID: 60,
+      },
+      /* Schwarze Schwert */ {
+        factorID: 189,
+        sortID: 189,
+        type: Type.UNIQUE_SKILL,
+        skillID: 61,
       },
       /* NHKマイルC */ { factorID: 1024, sortID: 1024, type: Type.RACE },
       /* エリザベス女王杯 */ {
@@ -1822,6 +1834,18 @@ protobuf.load(path.resolve(__dirname, "skill.proto"), function (err, root) {
         characterID: 57,
         monikerID: 0,
         talentLevelMatcher: TalentLevelMatcher.FROM_3_TO_5,
+        inheritable: true,
+      },
+      /* Schwarze Schwert */ {
+        skillID: 61,
+        sortID: 61,
+        point: 200,
+        type: Type.BUFF_SPEED,
+        advanced: false,
+        unique: true,
+        characterID: 36,
+        monikerID: 0,
+        matchTalentLevel: TalentLevelMatcher.FROM_3_TO_5,
         inheritable: true,
       },
       /* アガッてきた！ */ {

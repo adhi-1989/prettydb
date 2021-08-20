@@ -278,6 +278,11 @@ character:
     moniker:
       0:
         name: 'Go To Winning!'
+  36:
+    name: エイシンフラッシュ
+    moniker:
+      0:
+        name: Meisterschaft
   37:
     name: カレンチャン
     moniker:
@@ -564,6 +569,10 @@ skill:
   60:
     name: 'I Never Goof Up!'
     description: 'レース終盤のコーナーで\n中団以降のポジションから追い抜くと\nあきらめない心を発揮して前を目指す'
+    description-for-inheritor:
+  61:
+    name: Schwarze Schwert
+    description: '最終直線まで冷静に自身の計画通り\n走行出来れば、先頭目がけて鋭い脚で\n速度を上げる'
     description-for-inheritor:
   1024:
     name: アガッてきた！
@@ -1556,6 +1565,9 @@ factor:
   188:
     name: 'I Never Goof Up!'
     description: '「I Never Goof Up!」のスキルヒントを得られる因子です'
+  189:
+    name: Schwarze Schwert
+    description: 「Schwarze Schwert」のスキルヒントを得られる因子です
   1024:
     name: NHKマイルC
     description: スピードとパワーがアップする因子です
