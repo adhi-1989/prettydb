@@ -35,6 +35,14 @@ export default defineComponent({
     //TODO: 余裕があれば国際化する
     const logs: Array<Changelog> = [
       {
+        version: "0.7.10",
+        releaseDate: "2021-08-20",
+        changes: [
+          "エイシンフラッシュ[Meisterschaft] のデータを追加",
+          "殿堂入りウマ娘 データ管理画面をメインにレイアウト・機能の改修",
+        ],
+      },
+      {
         version: "0.7.9",
         releaseDate: "2021-08-11",
         changes: [
