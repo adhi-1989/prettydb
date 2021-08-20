@@ -1,119 +1,109 @@
 <template>
-  <!-- inherit -->
   <section class="inherit-view-root">
     <div class="inherit-view">
-      <!-- header -->
       <div class="header">
         {{ t("pages.hall-of-fame.viewer.inherit-view.label.factor") }}
       </div>
 
-      <!-- factor data that child -->
       <div class="data-child">
         <div class="portrait-container">
           <img class="rank" :src="getRankGradeIcon(history.score)" alt="" />
-          <img
-            class="portrait"
-            :src="getPortrait(character.characterID, character.monikerID)"
-            alt=""
-          />
+          <img class="portrait" :src="getPortrait(character)" alt="" />
         </div>
 
-        <!-- factor list -->
         <div class="factor-item-group">
-          <template v-for="factor in factors.values()" :key="factor.factorID">
-            <factor-card :character="character" :factor="factor" />
+          <template v-for="{ factor, level } in factors" :key="factor.factorID">
+            <factor-card :factor="factor" :level="level" />
           </template>
         </div>
       </div>
 
-      <!-- separator -->
-      <div class="">
+      <div class="invisible">
         <span>{{
           t("pages.hall-of-fame.viewer.inherit-view.label.parents")
         }}</span>
         <hr />
       </div>
-
-      <!-- parent 1 -->
-      <!-- parent 2 -->
     </div>
   </section>
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType, readonly } from "vue";
-import FactorCard from "@/views/hall-of-fame/components/widget/FactorCard.vue";
-import { Dto } from "@/views/hall-of-fame/logic/db";
-import { getPortrait, getRankGradeIcon } from "@/views/logic/resources/images";
+import { computed, defineComponent, inject } from "vue";
 import { useI18n } from "vue-i18n";
+import { Factor } from "@/data";
+import { getPortrait, getRankGradeIcon } from "@/views/logic/resources/images";
+import {
+  fallbackStateFactory,
+  stateInjectionKey,
+} from "@/views/hall-of-fame/logic/dependency";
+import FactorCard from "@/views/components/widget/FactorCard.vue";
 
 export default defineComponent({
   components: {
     FactorCard,
   },
-  props: {
-    viewData: {
-      type: Object as PropType<Dto>,
-      required: true,
-    },
-  },
   data() {
-    const { t } = useI18n();
     return {
       getPortrait,
       getRankGradeIcon,
-      t,
     };
   },
-  setup(props) {
+  setup() {
+    const { t } = useI18n();
+
+    const { viewData } = inject(stateInjectionKey, fallbackStateFactory, true);
+    const { character, factors, history } = viewData.value;
+    const _factors = computed(() => {
+      return factors
+        .map((x) => {
+          return { factor: Factor.get(x.factorID), level: x.factorLevel };
+        })
+        .sort((x, y) => x.factor.sortID - y.factor.sortID);
+    });
+
     return {
-      character: readonly(props.viewData.character),
-      factors: readonly(props.viewData.factors),
-      history: readonly(props.viewData.history),
+      t,
+      character,
+      factors: _factors,
+      history,
     };
   },
 });
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .inherit-view-root {
-  @apply rounded overflow-hidden h-full bg-[#f2f2f2] p-[0.5rem];
+  @apply rounded overflow-y-scroll h-full bg-[#f2f2f2] p-[0.5rem];
+
   > .inherit-view {
-    @apply overflow-y-scroll h-full;
+    @apply h-full;
+
     > .header {
-      @apply font-bold text-[#fefefe] text-[0.75rem] rounded-sm bg-gradient-to-t from-[#8ac73e] to-[#8ac73e] px-[0.25rem];
+      @apply font-bold text-[#fefefe] text-[0.75rem] rounded-sm bg-gradient-to-t from-[#8ac73e] to-[#8ac73e] pl-[0.25rem] py-[0.125rem];
+      @apply md:(text-[0.875rem] pl-[0.375rem] py-[0.25rem]);
     }
 
     > .data-child {
-      @apply flex;
+      @apply flex gap-x-[0.25rem];
+
       > .portrait-container {
-        @apply w-[20%] pt-[0.25rem] relative;
+        @apply pt-[0.25rem] relative;
+
         > .rank {
-          @apply absolute top-[0.375rem] right-0 w-[40%];
+          @apply absolute top-[0.375rem] right-0 w-[1.5rem];
+          @apply md:(w-[2.25rem]);
+        }
+
+        > .portrait {
+          @apply w-[3.25rem];
+          @apply md:(w-[5rem]);
         }
       }
 
       > .factor-item-group {
-        @apply flex-1 grid grid-cols-2 grid-flow-row auto-rows-min gap-[0.375rem] p-[0.5rem];
-      }
-    }
-  }
-}
-
-@screen xs {
-  .inherit-view-root {
-    > .inherit-view {
-      > .data-child {
-        > .portrait-container {
-          @apply w-[5rem];
-          > .rank {
-            @apply w-[2rem];
-          }
-        }
-
-        > .factor-item-group {
-          @apply gap-y-[0.5rem] py-[0.75rem];
-        }
+        @apply flex-1 grid grid-cols-2 grid-flow-row auto-rows-min gap-[0.375rem] py-[0.5rem];
+        @apply md:(gap-[0.5rem] py-[1rem]);
       }
     }
   }

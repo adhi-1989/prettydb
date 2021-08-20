@@ -1,5 +1,9 @@
-import { hashCode, createNumMap } from "@/util";
+import axios from "axios";
+import { CharacterList, MonikerList } from "@/data/_protobuf";
+import { maps, numbers, objects } from "@/util";
 import _ from "@/util/lodash";
+import characterDataUrl from "#/assets/data/character.dat?url";
+import monikerDataUrl from "#/assets/data/moniker.dat?url";
 
 export type CharacterIdentify = {
   characterID: number;
@@ -20,332 +24,157 @@ export type Moniker = Readonly<MonikerIdentify> & {
 
 export type TalentLevel = 1 | 2 | 3 | 4 | 5;
 
-const Characters: Array<Character> = [
-  /* スペシャルウィーク */ { characterID: 0, sortID: 0 },
-  /* サイレンススズカ */ { characterID: 1, sortID: 1 },
-  /* トウカイテイオー */ { characterID: 2, sortID: 2 },
-  /* マルゼンスキー */ { characterID: 3, sortID: 3 },
-  /* オグリキャップ */ { characterID: 5, sortID: 5 },
-  /* ゴールドシップ */ { characterID: 6, sortID: 6 },
-  /* ウオッカ */ { characterID: 7, sortID: 7 },
-  /* ダイワスカーレット */ { characterID: 8, sortID: 8 },
-  /* タイキシャトル */ { characterID: 9, sortID: 9 },
-  /* グラスワンダー */ { characterID: 10, sortID: 10 },
-  /* メジロマックイーン */ { characterID: 12, sortID: 12 },
-  /* エルコンドルパサー */ { characterID: 13, sortID: 13 },
-  /* テイエムオペラオー */ { characterID: 14, sortID: 14 },
-  /* ナリタブライアン */ { characterID: 15, sortID: 15 },
-  /* シンボリルドルフ */ { characterID: 16, sortID: 16 },
-  /* エアグルーヴ */ { characterID: 17, sortID: 17 },
-  /* セイウンスカイ */ { characterID: 20, sortID: 20 },
-  /* ビワハヤヒデ */ { characterID: 22, sortID: 22 },
-  /* マヤノトップガン */ { characterID: 23, sortID: 23 },
-  /* ミホノブルボン */ { characterID: 25, sortID: 25 },
-  /* メジロライアン */ { characterID: 26, sortID: 26 },
-  /* ライスシャワー */ { characterID: 29, sortID: 29 },
-  /* アグネスタキオン */ { characterID: 31, sortID: 31 },
-  /* ウイニングチケット */ { characterID: 34, sortID: 34 },
-  /* カレンチャン */ { characterID: 37, sortID: 37 },
-  /* サクラバクシンオー */ { characterID: 40, sortID: 40 },
-  /* スーパークリーク */ { characterID: 44, sortID: 44 },
-  /* スマートファルコン */ { characterID: 45, sortID: 45 },
-  /* ナリタタイシン */ { characterID: 49, sortID: 49 },
-  /* ハルウララ */ { characterID: 51, sortID: 51 },
-  /* マチカネフクキタル */ { characterID: 55, sortID: 55 },
-  /* ナイスネイチャ */ { characterID: 59, sortID: 59 },
-  /* キングヘイロー */ { characterID: 60, sortID: 60 },
-  /* ヒシアマゾン */ { characterID: 11, sortID: 11 },
-  /* フジキセキ */ { characterID: 4, sortID: 4 },
-  /* ゴールドシチー */ { characterID: 39, sortID: 39 },
-  /* メイショウドトウ */ { characterID: 57, sortID: 57 },
-];
+export type AwakeningLevel = 1 | 2 | 3 | 4 | 5;
 
-const Monikers: Array<Moniker> = [
-  /* スペシャルウィーク:スペシャルドリーマー */ {
-    characterID: 0,
-    monikerID: 0,
-    initialTalentLevel: 3,
-  },
-  /* サイレンススズカ:サイレントイノセンス */ {
-    characterID: 1,
-    monikerID: 0,
-    initialTalentLevel: 3,
-  },
-  /* トウカイテイオー:トップ・オブ・ジョイフル */ {
-    characterID: 2,
-    monikerID: 0,
-    initialTalentLevel: 3,
-  },
-  /* トウカイテイオー:ビヨンド・ザ・ホライズン */ {
-    characterID: 2,
-    monikerID: 1,
-    initialTalentLevel: 3,
-  },
-  /* マルゼンスキー:フォーミュラオブルージュ */ {
-    characterID: 3,
-    monikerID: 0,
-    initialTalentLevel: 3,
-  },
-  /* オグリキャップ:スターライトビート */ {
-    characterID: 5,
-    monikerID: 0,
-    initialTalentLevel: 3,
-  },
-  /* ゴールドシップ:レッドストライフ */ {
-    characterID: 6,
-    monikerID: 0,
-    initialTalentLevel: 2,
-  },
-  /* ウオッカ:ワイルドトップギア */ {
-    characterID: 7,
-    monikerID: 0,
-    initialTalentLevel: 2,
-  },
-  /* ダイワスカーレット:トップ・オブ・ブルー */ {
-    characterID: 8,
-    monikerID: 0,
-    initialTalentLevel: 2,
-  },
-  /* タイキシャトル:ワイルド・フロンティア */ {
-    characterID: 9,
-    monikerID: 0,
-    initialTalentLevel: 3,
-  },
-  /* グラスワンダー:岩穿つ青 */ {
-    characterID: 10,
-    monikerID: 0,
-    initialTalentLevel: 2,
-  },
-  /* メジロマックイーン:エレガンス・ライン */ {
-    characterID: 12,
-    monikerID: 0,
-    initialTalentLevel: 3,
-  },
-  /* メジロマックイーン:エンド・オブ・スカイ */ {
-    characterID: 12,
-    monikerID: 1,
-    initialTalentLevel: 3,
-  },
-  /* エルコンドルパサー:エル☆Número 1 */ {
-    characterID: 13,
-    monikerID: 0,
-    initialTalentLevel: 2,
-  },
-  /* テイエムオペラオー:オー・ソレ・スーオ！ */ {
-    characterID: 14,
-    monikerID: 0,
-    initialTalentLevel: 3,
-  },
-  /* ナリタブライアン:Maverick */ {
-    characterID: 15,
-    monikerID: 0,
-    initialTalentLevel: 3,
-  },
-  /* シンボリルドルフ:ロード・オブ・エンペラー */ {
-    characterID: 16,
-    monikerID: 0,
-    initialTalentLevel: 3,
-  },
-  /* エアグルーヴ:エンプレスロード */ {
-    characterID: 17,
-    monikerID: 0,
-    initialTalentLevel: 2,
-  },
-  /* エアグルーヴ:クエルクス・キウィーリス */ {
-    characterID: 17,
-    monikerID: 1,
-    initialTalentLevel: 3,
-  },
-  /* セイウンスカイ:あおぐもサミング */ {
-    characterID: 20,
-    monikerID: 0,
-    initialTalentLevel: 3,
-  },
-  /* ビワハヤヒデ:pf.Victory formula... */ {
-    characterID: 22,
-    monikerID: 0,
-    initialTalentLevel: 3,
-  },
-  /* マヤノトップガン:すくらんぶる☆ゾーン */ {
-    characterID: 23,
-    monikerID: 0,
-    initialTalentLevel: 2,
-  },
-  /* マヤノトップガン:サンライト・ブーケ */ {
-    characterID: 23,
-    monikerID: 1,
-    initialTalentLevel: 3,
-  },
-  /* ミホノブルボン:MB-19890425 */ {
-    characterID: 25,
-    monikerID: 0,
-    initialTalentLevel: 3,
-  },
-  /* メジロライアン:ストレート・ライン */ {
-    characterID: 26,
-    monikerID: 0,
-    initialTalentLevel: 1,
-  },
-  /* ライスシャワー:ローゼスドリーム */ {
-    characterID: 29,
-    monikerID: 0,
-    initialTalentLevel: 3,
-  },
-  /* アグネスタキオン:tach-nology */ {
-    characterID: 31,
-    monikerID: 0,
-    initialTalentLevel: 1,
-  },
-  /* ウイニングチケット:Go To Winning! */ {
-    characterID: 34,
-    monikerID: 0,
-    initialTalentLevel: 1,
-  },
-  /* カレンチャン:フィーユ・エクレール */ {
-    characterID: 37,
-    monikerID: 0,
-    initialTalentLevel: 3,
-  },
-  /* サクラバクシンオー:サクラ、すすめ！ */ {
-    characterID: 40,
-    monikerID: 0,
-    initialTalentLevel: 1,
-  },
-  /* スーパークリーク:マーマリングストリーム */ {
-    characterID: 44,
-    monikerID: 0,
-    initialTalentLevel: 2,
-  },
-  /* スマートファルコン:あぶそりゅーと☆LOVE */ {
-    characterID: 45,
-    monikerID: 0,
-    initialTalentLevel: 3,
-  },
-  /* ナリタタイシン:Nevertheless */ {
-    characterID: 49,
-    monikerID: 0,
-    initialTalentLevel: 3,
-  },
-  /* ハルウララ:うららん一等賞♪ */ {
-    characterID: 51,
-    monikerID: 0,
-    initialTalentLevel: 1,
-  },
-  /* マチカネフクキタル:運気上昇☆幸福万来 */ {
-    characterID: 55,
-    monikerID: 0,
-    initialTalentLevel: 1,
-  },
-  /* ナイスネイチャ:ポインセチア・リボン */ {
-    characterID: 59,
-    monikerID: 0,
-    initialTalentLevel: 1,
-  },
-  /* キングヘイロー:キング・オブ・エメラルド */ {
-    characterID: 60,
-    monikerID: 0,
-    initialTalentLevel: 1,
-  },
-  /* ヒシアマゾン:アマゾネス・ラピス */ {
-    characterID: 11,
-    monikerID: 0,
-    initialTalentLevel: 3,
-  },
-  /* エルコンドルパサー:クルルカン・モンク */ {
-    characterID: 13,
-    monikerID: 1,
-    initialTalentLevel: 3,
-  },
-  /* グラスワンダー:セイントジェード・ヒーラー */ {
-    characterID: 10,
-    monikerID: 1,
-    initialTalentLevel: 3,
-  },
-  /* フジキセキ:シューティンスタァ・ルヴュ */ {
-    characterID: 4,
-    monikerID: 0,
-    initialTalentLevel: 3,
-  },
-  /* ゴールドシチー:オーセンティック/1928 */ {
-    characterID: 39,
-    monikerID: 0,
-    initialTalentLevel: 3,
-  },
-  /* スペシャルウィーク:ほっぴん♪ビタミンハート */ {
-    characterID: 0,
-    monikerID: 1,
-    initialTalentLevel: 3,
-  },
-  /* マルゼンスキー:ぶっとび☆さまーナイト */ {
-    characterID: 3,
-    monikerID: 1,
-    initialTalentLevel: 3,
-  },
-  /* メイショウドトウ:ブルー/レイジング */ {
-    characterID: 57,
-    monikerID: 0,
-    initialTalentLevel: 3,
-  },
-];
+export interface CharacterStatic {
+  get all(): ReadonlyArray<Character>;
 
-export const NULL_CHARACTER: Character = Object.freeze({
+  get allMoniker(): ReadonlyArray<Moniker>;
+
+  get allTalentLevel(): ReadonlyArray<TalentLevel>;
+
+  get allAwakeningLevel(): ReadonlyArray<AwakeningLevel>;
+
+  get(characterID: number): Character;
+
+  get(identify: CharacterIdentify): Character;
+
+  getMoniker(characterID: number, monikerID: number): Moniker;
+
+  getMoniker(identify: MonikerIdentify): Moniker;
+
+  getAvailableMoniker(characterID: number): ReadonlyArray<Moniker>;
+
+  getAvailableMoniker(identify: CharacterIdentify): ReadonlyArray<Moniker>;
+
+  getNameKey(characterID: number): string;
+
+  getNameKey(identify: CharacterIdentify): string;
+
+  getMonikerNameKey(characterID: number, monikerID: number): string;
+
+  getMonikerNameKey(identify: MonikerIdentify): string;
+}
+
+export const NULL_CHARACTER = Object.freeze<Character>({
   characterID: -1,
   sortID: -1,
 });
 
-export const NULL_MONIKER: Moniker = Object.freeze({
+export const NULL_MONIKER = Object.freeze<Moniker>({
   characterID: -1,
   monikerID: -1,
   initialTalentLevel: 1,
 });
 
-export const AllTalentLevel: Readonly<Array<TalentLevel>> = Object.freeze([
-  1, 2, 3, 4, 5,
-]);
+const _allTalentLevel = Object.freeze<TalentLevel>([1, 2, 3, 4, 5]);
 
-export const AllCharacter: Readonly<Array<Character>> = Object.freeze(
-  Characters.sort((x, y) => x.sortID - y.sortID)
-);
+const _allAwakeningLevel = Object.freeze<AwakeningLevel>([1, 2, 3, 4, 5]);
 
-export const AllMoniker: Readonly<Array<Moniker>> = Object.freeze(
-  Monikers.sort((x, y) => {
-    if (x.characterID != y.characterID) {
-      return x.characterID - y.characterID;
+let _allCharacter: ReadonlyArray<Character>;
+let _characterByIdMap: Record<number, Character>;
+let _allMoniker: ReadonlyArray<Moniker>;
+let _monikerByIdMap: Record<number, Moniker>;
+let _monikersByCharacterMap: Record<number, ReadonlyArray<Moniker>>;
+(async () => {
+  const _talentLevel = (value: number | null | undefined): TalentLevel => {
+    const n = objects.orDefault(value, 1);
+    return (n >= 1 && n <= 5 ? n : 1) as TalentLevel;
+  };
+
+  const characterData = await axios
+    .get<ArrayBuffer>(characterDataUrl, { responseType: "arraybuffer" })
+    .then((x) => new Uint8Array(x.data));
+  const monikerData = await axios
+    .get<ArrayBuffer>(monikerDataUrl, { responseType: "arraybuffer" })
+    .then((x) => new Uint8Array(x.data));
+
+  _allCharacter = Object.freeze(
+    _.sortBy(
+      CharacterList.decode(characterData).data.map((x) => {
+        return objects.immutable<Character>({
+          characterID: objects.orDefault(x.characterID, -1),
+          sortID: objects.orDefault(x.sortID, -1),
+        });
+      }),
+      ["sortID"]
+    )
+  );
+  _characterByIdMap = maps.NumberMap(
+    _allCharacter.map((x) => [x.characterID, x])
+  );
+  _allMoniker = Object.freeze<Array<Moniker>>(
+    MonikerList.decode(monikerData)
+      .data.map((x) => {
+        return objects.immutable<Moniker>({
+          characterID: objects.orDefault(x.characterID, -1),
+          monikerID: objects.orDefault(x.monikerID, -1),
+          initialTalentLevel: _talentLevel(x.initialTalentLevel),
+        });
+      })
+      .sort((x, y) => {
+        if (x.characterID !== y.characterID) {
+          const xCharacter = _characterByIdMap[x.characterID];
+          const yCharacter = _characterByIdMap[y.characterID];
+          return xCharacter.sortID - yCharacter.sortID;
+        }
+        return x.monikerID - y.monikerID;
+      })
+  );
+  _monikerByIdMap = maps.NumberMap(
+    _allMoniker.map((x) => [numbers.hashCode(x.characterID, x.monikerID), x])
+  );
+  _monikersByCharacterMap = Object.freeze(
+    _.groupBy(_allMoniker, (x) => x.characterID)
+  );
+})();
+
+export const Character: CharacterStatic = {
+  get all(): ReadonlyArray<Character> {
+    return objects.orDefault(_allCharacter, () => Object.freeze([]));
+  },
+  get allMoniker(): ReadonlyArray<Moniker> {
+    return objects.orDefault(_allMoniker, () => Object.freeze([]));
+  },
+  get allTalentLevel(): ReadonlyArray<TalentLevel> {
+    return _allTalentLevel;
+  },
+  get allAwakeningLevel(): ReadonlyArray<AwakeningLevel> {
+    return _allAwakeningLevel;
+  },
+  get(arg: number | CharacterIdentify): Character {
+    const map = objects.orDefault(_characterByIdMap, []);
+    return objects.orDefault(
+      map[_.isNumber(arg) ? arg : arg.characterID],
+      NULL_CHARACTER
+    );
+  },
+  getMoniker(arg1: number | MonikerIdentify, arg2?: number): Moniker {
+    const map = objects.orDefault(_monikerByIdMap, []);
+    if (_.isNumber(arg1)) {
+      if (!_.isNumber(arg2)) throw Error(`arg2 must be number: ${arg2}`);
+      return objects.orDefault(map[numbers.hashCode(arg1, arg2)], NULL_MONIKER);
+    } else {
+      return objects.orDefault(
+        map[numbers.hashCode(arg1.characterID, arg1.monikerID)],
+        NULL_MONIKER
+      );
     }
-    return x.monikerID - y.monikerID;
-  })
-);
-
-const characterMap = Object.freeze(
-  createNumMap(AllCharacter.map((x) => [x.characterID, x]))
-);
-
-const monikerMap = Object.freeze(
-  createNumMap(AllMoniker.map((x) => [hashCode(x.characterID, x.monikerID), x]))
-);
-
-export function getCharacter(characterID: number): Character;
-export function getCharacter(identify: CharacterIdentify): Character;
-export function getCharacter(arg: number | CharacterIdentify): Character {
-  if (_.isNumber(arg)) {
-    return characterMap[arg];
-  }
-  return characterMap[arg.characterID];
-}
-
-export function getMoniker(characterID: number, monikerID: number): Moniker;
-export function getMoniker(identify: MonikerIdentify): Moniker;
-export function getMoniker(
-  arg1: number | MonikerIdentify,
-  arg2?: number
-): Moniker {
-  if (_.isNumber(arg1)) {
-    if (!_.isNumber(arg2)) throw Error(`arg2 must be number: ${arg2}`);
-    return monikerMap[hashCode(arg1, arg2)] || NULL_MONIKER;
-  }
-  return monikerMap[hashCode(arg1.characterID, arg1.monikerID)] || NULL_MONIKER;
-}
-
-export function getAllMoniker(characterID: number): Array<Moniker> {
-  return AllMoniker.filter((x) => x.characterID == characterID);
-}
+  },
+  getAvailableMoniker(arg: number | CharacterIdentify): ReadonlyArray<Moniker> {
+    const map = objects.orDefault(_monikersByCharacterMap, []);
+    return objects.orDefault(map[_.isNumber(arg) ? arg : arg.characterID], []);
+  },
+  getNameKey(arg: number | CharacterIdentify): string {
+    const characterID = _.isNumber(arg) ? arg : arg.characterID;
+    return `character.${characterID}.name`;
+  },
+  getMonikerNameKey(arg1: number | MonikerIdentify, arg2?: number): string {
+    if (_.isNumber(arg1)) {
+      if (!_.isNumber(arg2)) throw Error(`arg2 must be number: ${arg2}`);
+      return `character.${arg1}.moniker.${arg2}.name`;
+    } else {
+      return `character.${arg1.characterID}.moniker.${arg1.monikerID}.name`;
+    }
+  },
+};

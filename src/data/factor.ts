@@ -1,12 +1,15 @@
-import { createNumMap } from "@/util";
+import { FactorList, Factor as _Factor } from "@/data/_protobuf";
+import { maps, objects } from "@/util";
 import _ from "@/util/lodash";
+import factorDataUrl from "#/assets/data/factor.dat?url";
+import axios from "axios";
 
 export type FactorType =
   | "status"
   | "ability"
-  | "uniqueSkill"
-  | "skill"
+  | "unique-skill"
   | "race"
+  | "skill"
   | "scenario";
 
 export type FactorLevel = 1 | 2 | 3;
@@ -21,501 +24,124 @@ export type Factor = Readonly<FactorIdentify> & {
 };
 
 export type UniqueSkillFactor = Factor & {
-  readonly type: "uniqueSkill";
+  readonly type: "unique-skill";
   readonly skillID: number;
 };
 
-const Factors: Array<Factor | UniqueSkillFactor> = [
-  /* スピード */ { factorID: 0, sortID: 0, type: "status" },
-  /* スタミナ */ { factorID: 1, sortID: 1, type: "status" },
-  /* パワー */ { factorID: 2, sortID: 2, type: "status" },
-  /* 根性 */ { factorID: 3, sortID: 3, type: "status" },
-  /* 賢さ */ { factorID: 4, sortID: 4, type: "status" },
-  /* 芝 */ { factorID: 64, sortID: 64, type: "ability" },
-  /* ダート */ { factorID: 65, sortID: 65, type: "ability" },
-  /* 短距離 */ { factorID: 66, sortID: 66, type: "ability" },
-  /* マイル */ { factorID: 67, sortID: 67, type: "ability" },
-  /* 中距離 */ { factorID: 68, sortID: 68, type: "ability" },
-  /* 長距離 */ { factorID: 69, sortID: 69, type: "ability" },
-  /* 逃げ */ { factorID: 70, sortID: 70, type: "ability" },
-  /* 先行 */ { factorID: 71, sortID: 71, type: "ability" },
-  /* 差し */ { factorID: 72, sortID: 72, type: "ability" },
-  /* 追込 */ { factorID: 73, sortID: 73, type: "ability" },
-  /* シューティングスター */ {
-    factorID: 128,
-    sortID: 128,
-    type: "uniqueSkill",
-    skillID: 0,
-  },
-  /* 先頭の景色は譲らない…！ */ {
-    factorID: 129,
-    sortID: 129,
-    type: "uniqueSkill",
-    skillID: 1,
-  },
-  /* 究極テイオーステップ */ {
-    factorID: 130,
-    sortID: 130,
-    type: "uniqueSkill",
-    skillID: 2,
-  },
-  /* 絶対は、ボクだ */ {
-    factorID: 131,
-    sortID: 131,
-    type: "uniqueSkill",
-    skillID: 3,
-  },
-  /* 紅焔ギア/LP1211-M */ {
-    factorID: 132,
-    sortID: 132,
-    type: "uniqueSkill",
-    skillID: 4,
-  },
-  /* 勝利の鼓動 */ {
-    factorID: 133,
-    sortID: 133,
-    type: "uniqueSkill",
-    skillID: 5,
-  },
-  /* 不沈艦、抜錨ォッ！ */ {
-    factorID: 135,
-    sortID: 135,
-    type: "uniqueSkill",
-    skillID: 7,
-  },
-  /* カッティング☓DRIVE！ */ {
-    factorID: 137,
-    sortID: 137,
-    type: "uniqueSkill",
-    skillID: 9,
-  },
-  /* ブリリアント・レッドエース */ {
-    factorID: 139,
-    sortID: 139,
-    type: "uniqueSkill",
-    skillID: 11,
-  },
-  /* ヴィクトリーショット！ */ {
-    factorID: 140,
-    sortID: 140,
-    type: "uniqueSkill",
-    skillID: 12,
-  },
-  /* 精神一到何事か成らざらん */ {
-    factorID: 142,
-    sortID: 142,
-    type: "uniqueSkill",
-    skillID: 14,
-  },
-  /* 貴顕の使命を果たすべく */ {
-    factorID: 143,
-    sortID: 143,
-    type: "uniqueSkill",
-    skillID: 15,
-  },
-  /* 最強の名を懸けて */ {
-    factorID: 144,
-    sortID: 144,
-    type: "uniqueSkill",
-    skillID: 16,
-  },
-  /* プランチャ☆ガナドール */ {
-    factorID: 146,
-    sortID: 146,
-    type: "uniqueSkill",
-    skillID: 18,
-  },
-  /* ヴィットーリアに捧ぐ舞踏 */ {
-    factorID: 147,
-    sortID: 147,
-    type: "uniqueSkill",
-    skillID: 19,
-  },
-  /* Shadow Break */ {
-    factorID: 148,
-    sortID: 148,
-    type: "uniqueSkill",
-    skillID: 20,
-  },
-  /* 汝、皇帝の神威を見よ */ {
-    factorID: 149,
-    sortID: 149,
-    type: "uniqueSkill",
-    skillID: 21,
-  },
-  /* ブレイズ・オブ・プライド */ {
-    factorID: 151,
-    sortID: 151,
-    type: "uniqueSkill",
-    skillID: 23,
-  },
-  /* 薫風、永遠なる瞬間を */ {
-    factorID: 152,
-    sortID: 152,
-    type: "uniqueSkill",
-    skillID: 24,
-  },
-  /* ∴win Q.E.D. */ {
-    factorID: 153,
-    sortID: 153,
-    type: "uniqueSkill",
-    skillID: 25,
-  },
-  /* ひらめき☆ランディング */ {
-    factorID: 155,
-    sortID: 155,
-    type: "uniqueSkill",
-    skillID: 27,
-  },
-  /* フラワリー☆マニューバ */ {
-    factorID: 156,
-    sortID: 156,
-    type: "uniqueSkill",
-    skillID: 28,
-  },
-  /* G00 1st.F∞; */ {
-    factorID: 157,
-    sortID: 157,
-    type: "uniqueSkill",
-    skillID: 29,
-  },
-  /* レッツ・アナボリック！ */ {
-    factorID: 159,
-    sortID: 159,
-    type: "uniqueSkill",
-    skillID: 31,
-  },
-  /* ブルーローズチェイサー */ {
-    factorID: 160,
-    sortID: 160,
-    type: "uniqueSkill",
-    skillID: 32,
-  },
-  /* U=ma2 */ { factorID: 162, sortID: 162, type: "uniqueSkill", skillID: 34 },
-  /* 勝利のチケットを、君にッ！ */ {
-    factorID: 164,
-    sortID: 164,
-    type: "uniqueSkill",
-    skillID: 36,
-  },
-  /* #LookatCurren */ {
-    factorID: 165,
-    sortID: 165,
-    type: "uniqueSkill",
-    skillID: 37,
-  },
-  /* 優等生☓バクシン＝大勝利ッ */ {
-    factorID: 167,
-    sortID: 167,
-    type: "uniqueSkill",
-    skillID: 39,
-  },
-  /* ピュリティオブハート */ {
-    factorID: 169,
-    sortID: 169,
-    type: "uniqueSkill",
-    skillID: 41,
-  },
-  /* キラキラ☆STARDOM */ {
-    factorID: 170,
-    sortID: 170,
-    type: "uniqueSkill",
-    skillID: 42,
-  },
-  /* Nemesis */ {
-    factorID: 171,
-    sortID: 171,
-    type: "uniqueSkill",
-    skillID: 43,
-  },
-  /* ワクワククライマックス */ {
-    factorID: 173,
-    sortID: 173,
-    type: "uniqueSkill",
-    skillID: 45,
-  },
-  /* 来ます来てます来させます！ */ {
-    factorID: 175,
-    sortID: 175,
-    type: "uniqueSkill",
-    skillID: 47,
-  },
-  /* きっとその先へ…！ */ {
-    factorID: 177,
-    sortID: 177,
-    type: "uniqueSkill",
-    skillID: 49,
-  },
-  /* Pride of KING */ {
-    factorID: 179,
-    sortID: 179,
-    type: "uniqueSkill",
-    skillID: 51,
-  },
-  /* アングリング☓スキーミング */ {
-    factorID: 180,
-    sortID: 180,
-    type: "uniqueSkill",
-    skillID: 52,
-  },
-  /* タイマン！デッドヒート！ */ {
-    factorID: 181,
-    sortID: 181,
-    type: "uniqueSkill",
-    skillID: 53,
-  },
-  /* コンドル猛撃波 */ {
-    factorID: 182,
-    sortID: 182,
-    type: "uniqueSkill",
-    skillID: 54,
-  },
-  /* ゲインヒール・スペリアー */ {
-    factorID: 183,
-    sortID: 183,
-    type: "uniqueSkill",
-    skillID: 55,
-  },
-  /* 煌星のヴォードヴィル */ {
-    factorID: 184,
-    sortID: 184,
-    type: "uniqueSkill",
-    skillID: 56,
-  },
-  /* KEEP IT REAL. */ {
-    factorID: 185,
-    sortID: 185,
-    type: "uniqueSkill",
-    skillID: 57,
-  },
-  /* わやかわ♪マリンダイヴ */ {
-    factorID: 186,
-    sortID: 186,
-    type: "uniqueSkill",
-    skillID: 58,
-  },
-  /* グッときて♪Chu */ {
-    factorID: 187,
-    sortID: 187,
-    type: "uniqueSkill",
-    skillID: 59,
-  },
-  /* I Never Goof Up! */ {
-    factorID: 188,
-    sortID: 188,
-    type: "uniqueSkill",
-    skillID: 60,
-  },
-  /* NHKマイルC */ { factorID: 1024, sortID: 1024, type: "race" },
-  /* エリザベス女王杯 */ { factorID: 1025, sortID: 1025, type: "race" },
-  /* オークス */ { factorID: 1026, sortID: 1026, type: "race" },
-  /* ジャパンC */ { factorID: 1027, sortID: 1027, type: "race" },
-  /* スプリンターズS */ { factorID: 1028, sortID: 1028, type: "race" },
-  /* ホープフルS */ { factorID: 1029, sortID: 1029, type: "race" },
-  /* マイルCS */ { factorID: 1030, sortID: 1030, type: "race" },
-  /* 安田記念 */ { factorID: 1031, sortID: 1031, type: "race" },
-  /* 菊花賞 */ { factorID: 1032, sortID: 1032, type: "race" },
-  /* 高松宮記念 */ { factorID: 1033, sortID: 1033, type: "race" },
-  /* 阪神JF */ { factorID: 1034, sortID: 1034, type: "race" },
-  /* 桜花賞 */ { factorID: 1035, sortID: 1035, type: "race" },
-  /* 皐月賞 */ { factorID: 1036, sortID: 1036, type: "race" },
-  /* 秋華賞 */ { factorID: 1037, sortID: 1037, type: "race" },
-  /* 大阪杯 */ { factorID: 1038, sortID: 1038, type: "race" },
-  /* 朝日杯FS */ { factorID: 1039, sortID: 1039, type: "race" },
-  /* 天皇賞（秋） */ { factorID: 1040, sortID: 1040, type: "race" },
-  /* 天皇賞（春） */ { factorID: 1041, sortID: 1041, type: "race" },
-  /* 日本ダービー */ { factorID: 1042, sortID: 1042, type: "race" },
-  /* 宝塚記念 */ { factorID: 1043, sortID: 1043, type: "race" },
-  /* 有馬記念 */ { factorID: 1044, sortID: 1044, type: "race" },
-  /* アクセラレーション */ { factorID: 2048, sortID: 2048, type: "skill" },
-  /* イナズマステップ */ { factorID: 2049, sortID: 2049, type: "skill" },
-  /* ウマ好み */ { factorID: 2050, sortID: 2050, type: "skill" },
-  /* ウマ込み冷静 */ { factorID: 2051, sortID: 2051, type: "skill" },
-  /* おひとり様○ */ { factorID: 2052, sortID: 2052, type: "skill" },
-  /* お見通し */ { factorID: 2054, sortID: 2054, type: "skill" },
-  /* かく乱 */ { factorID: 2055, sortID: 2055, type: "skill" },
-  /* がんばり屋 */ { factorID: 2056, sortID: 2056, type: "skill" },
-  /* ギアシフト */ { factorID: 2057, sortID: 2057, type: "skill" },
-  /* コーナー加速○ */ { factorID: 2062, sortID: 2062, type: "skill" },
-  /* コーナー回復○ */ { factorID: 2063, sortID: 2063, type: "skill" },
-  /* コーナー巧者○ */ { factorID: 2064, sortID: 2064, type: "skill" },
-  /* ささやき */ { factorID: 2066, sortID: 2066, type: "skill" },
-  /* シンパシー */ { factorID: 2068, sortID: 2068, type: "skill" },
-  /* スタミナイーター */ { factorID: 2070, sortID: 2070, type: "skill" },
-  /* スタミナキープ */ { factorID: 2071, sortID: 2071, type: "skill" },
-  /* スピードイーター */ { factorID: 2072, sortID: 2072, type: "skill" },
-  /* スプリントギア */ { factorID: 2074, sortID: 2074, type: "skill" },
-  /* スリーセブン */ { factorID: 2076, sortID: 2076, type: "skill" },
-  /* スリップストリーム */ { factorID: 2077, sortID: 2077, type: "skill" },
-  /* テンポアップ */ { factorID: 2078, sortID: 2078, type: "skill" },
-  /* トリック（後） */ { factorID: 2080, sortID: 2080, type: "skill" },
-  /* トリック（前） */ { factorID: 2081, sortID: 2081, type: "skill" },
-  /* パス上手 */ { factorID: 2083, sortID: 2083, type: "skill" },
-  /* ふり絞り */ { factorID: 2085, sortID: 2085, type: "skill" },
-  /* ペースアップ */ { factorID: 2086, sortID: 2086, type: "skill" },
-  /* ペースキープ */ { factorID: 2087, sortID: 2087, type: "skill" },
-  /* ホークアイ */ { factorID: 2088, sortID: 2088, type: "skill" },
-  /* ポジションセンス */ { factorID: 2089, sortID: 2089, type: "skill" },
-  /* マイルコーナー○ */ { factorID: 2090, sortID: 2090, type: "skill" },
-  /* マイル直線○ */ { factorID: 2093, sortID: 2093, type: "skill" },
-  /* まき直し */ { factorID: 2095, sortID: 2095, type: "skill" },
-  /* まなざし */ { factorID: 2096, sortID: 2096, type: "skill" },
-  /* ラッキーセブン */ { factorID: 2097, sortID: 2097, type: "skill" },
-  /* リードキープ */ { factorID: 2098, sortID: 2098, type: "skill" },
-  /* リスタート */ { factorID: 2099, sortID: 2099, type: "skill" },
-  /* レコメンド */ { factorID: 2102, sortID: 2102, type: "skill" },
-  /* 位置取り押し上げ */ { factorID: 2104, sortID: 2104, type: "skill" },
-  /* 一匹狼 */ { factorID: 2106, sortID: 2106, type: "skill" },
-  /* 隠れ蓑 */ { factorID: 2107, sortID: 2107, type: "skill" },
-  /* 右回り○ */ { factorID: 2108, sortID: 2108, type: "skill" },
-  /* 雨の日○ */ { factorID: 2110, sortID: 2110, type: "skill" },
-  /* 栄養補給 */ { factorID: 2112, sortID: 2112, type: "skill" },
-  /* 鋭い眼光 */ { factorID: 2113, sortID: 2113, type: "skill" },
-  /* 押し切り準備 */ { factorID: 2115, sortID: 2115, type: "skill" },
-  /* 下校の楽しみ */ { factorID: 2116, sortID: 2116, type: "skill" },
-  /* 夏ウマ娘○ */ { factorID: 2118, sortID: 2118, type: "skill" },
-  /* 外差し準備 */ { factorID: 2121, sortID: 2121, type: "skill" },
-  /* 外枠得意○ */ { factorID: 2122, sortID: 2122, type: "skill" },
-  /* 危険回避 */ { factorID: 2124, sortID: 2124, type: "skill" },
-  /* 詰め寄り */ { factorID: 2127, sortID: 2127, type: "skill" },
-  /* 急ぎ足 */ { factorID: 2128, sortID: 2128, type: "skill" },
-  /* 京都レース場○ */ { factorID: 2129, sortID: 2129, type: "skill" },
-  /* 軽やかステップ */ { factorID: 2134, sortID: 2134, type: "skill" },
-  /* 後方待機 */ { factorID: 2137, sortID: 2137, type: "skill" },
-  /* 後方釘付 */ { factorID: 2138, sortID: 2138, type: "skill" },
-  /* 好位追走 */ { factorID: 2139, sortID: 2139, type: "skill" },
-  /* 巧みなステップ */ { factorID: 2141, sortID: 2141, type: "skill" },
-  /* 根幹距離○ */ { factorID: 2144, sortID: 2144, type: "skill" },
-  /* 左回り○ */ { factorID: 2146, sortID: 2146, type: "skill" },
-  /* 差しけん制 */ { factorID: 2148, sortID: 2148, type: "skill" },
-  /* 差しコーナー○ */ { factorID: 2149, sortID: 2149, type: "skill" },
-  /* 差しためらい */ { factorID: 2151, sortID: 2151, type: "skill" },
-  /* 差しのコツ○ */ { factorID: 2152, sortID: 2152, type: "skill" },
-  /* 差し駆け引き */ { factorID: 2154, sortID: 2154, type: "skill" },
-  /* 差し焦り */ { factorID: 2155, sortID: 2155, type: "skill" },
-  /* 差し切り体勢 */ { factorID: 2156, sortID: 2156, type: "skill" },
-  /* 差し直線○ */ { factorID: 2157, sortID: 2157, type: "skill" },
-  /* 阪神レース場○ */ { factorID: 2159, sortID: 2159, type: "skill" },
-  /* 策士 */ { factorID: 2161, sortID: 2161, type: "skill" },
-  /* 札幌レース場○ */ { factorID: 2162, sortID: 2162, type: "skill" },
-  /* 仕掛け抜群 */ { factorID: 2164, sortID: 2164, type: "skill" },
-  /* 秋ウマ娘○ */ { factorID: 2166, sortID: 2166, type: "skill" },
-  /* 集中力 */ { factorID: 2168, sortID: 2168, type: "skill" },
-  /* 十万バリキ */ { factorID: 2169, sortID: 2169, type: "skill" },
-  /* 春ウマ娘○ */ { factorID: 2170, sortID: 2170, type: "skill" },
-  /* 小休憩 */ { factorID: 2172, sortID: 2172, type: "skill" },
-  /* 小倉レース場○ */ { factorID: 2173, sortID: 2173, type: "skill" },
-  /* 上昇気流 */ { factorID: 2176, sortID: 2176, type: "skill" },
-  /* 食い下がり */ { factorID: 2179, sortID: 2179, type: "skill" },
-  /* 尻尾上がり */ { factorID: 2180, sortID: 2180, type: "skill" },
-  /* 深呼吸 */ { factorID: 2181, sortID: 2181, type: "skill" },
-  /* 垂れウマ回避 */ { factorID: 2183, sortID: 2183, type: "skill" },
-  /* 勢い任せ */ { factorID: 2184, sortID: 2184, type: "skill" },
-  /* 晴れの日○ */ { factorID: 2185, sortID: 2185, type: "skill" },
-  /* 積極策 */ { factorID: 2187, sortID: 2187, type: "skill" },
-  /* 雪の日○ */ { factorID: 2188, sortID: 2188, type: "skill" },
-  /* 先駆け */ { factorID: 2190, sortID: 2190, type: "skill" },
-  /* 先行けん制 */ { factorID: 2191, sortID: 2191, type: "skill" },
-  /* 先行コーナー○ */ { factorID: 2192, sortID: 2192, type: "skill" },
-  /* 先行ためらい */ { factorID: 2194, sortID: 2194, type: "skill" },
-  /* 先行のコツ○ */ { factorID: 2195, sortID: 2195, type: "skill" },
-  /* 先行駆け引き */ { factorID: 2197, sortID: 2197, type: "skill" },
-  /* 先行焦り */ { factorID: 2198, sortID: 2198, type: "skill" },
-  /* 先行直線○ */ { factorID: 2199, sortID: 2199, type: "skill" },
-  /* 先頭プライド */ { factorID: 2203, sortID: 2203, type: "skill" },
-  /* 前途洋々 */ { factorID: 2205, sortID: 2205, type: "skill" },
-  /* 善後策 */ { factorID: 2206, sortID: 2206, type: "skill" },
-  /* 束縛 */ { factorID: 2208, sortID: 2208, type: "skill" },
-  /* 対抗意識○ */ { factorID: 2209, sortID: 2209, type: "skill" },
-  /* 大きなリード */ { factorID: 2211, sortID: 2211, type: "skill" },
-  /* 大井レース場○ */ { factorID: 2212, sortID: 2212, type: "skill" },
-  /* 短距離コーナー○ */ { factorID: 2216, sortID: 2216, type: "skill" },
-  /* 短距離直線○ */ { factorID: 2218, sortID: 2218, type: "skill" },
-  /* 地固め */ { factorID: 2220, sortID: 2220, type: "skill" },
-  /* 中距離コーナー○ */ { factorID: 2221, sortID: 2221, type: "skill" },
-  /* 中距離直線○ */ { factorID: 2223, sortID: 2223, type: "skill" },
-  /* 中山レース場○ */ { factorID: 2225, sortID: 2225, type: "skill" },
-  /* 長距離コーナー○ */ { factorID: 2228, sortID: 2228, type: "skill" },
-  /* 長距離直線○ */ { factorID: 2230, sortID: 2230, type: "skill" },
-  /* 直滑降 */ { factorID: 2232, sortID: 2232, type: "skill" },
-  /* 直線一気 */ { factorID: 2233, sortID: 2233, type: "skill" },
-  /* 直線加速 */ { factorID: 2234, sortID: 2234, type: "skill" },
-  /* 直線回復 */ { factorID: 2235, sortID: 2235, type: "skill" },
-  /* 直線巧者 */ { factorID: 2236, sortID: 2236, type: "skill" },
-  /* 追い上げ */ { factorID: 2237, sortID: 2237, type: "skill" },
-  /* 追込けん制 */ { factorID: 2238, sortID: 2238, type: "skill" },
-  /* 追込コーナー○ */ { factorID: 2239, sortID: 2239, type: "skill" },
-  /* 追込ためらい */ { factorID: 2241, sortID: 2241, type: "skill" },
-  /* 追込のコツ○ */ { factorID: 2242, sortID: 2242, type: "skill" },
-  /* 追込駆け引き */ { factorID: 2244, sortID: 2244, type: "skill" },
-  /* 追込焦り */ { factorID: 2245, sortID: 2245, type: "skill" },
-  /* 追込直線○ */ { factorID: 2246, sortID: 2246, type: "skill" },
-  /* 徹底マーク○ */ { factorID: 2248, sortID: 2248, type: "skill" },
-  /* 展開窺い */ { factorID: 2250, sortID: 2250, type: "skill" },
-  /* 登山家 */ { factorID: 2252, sortID: 2252, type: "skill" },
-  /* 冬ウマ娘○ */ { factorID: 2254, sortID: 2254, type: "skill" },
-  /* 東京レース場○ */ { factorID: 2256, sortID: 2256, type: "skill" },
-  /* 逃げけん制 */ { factorID: 2258, sortID: 2258, type: "skill" },
-  /* 逃げコーナー○ */ { factorID: 2259, sortID: 2259, type: "skill" },
-  /* 逃げためらい */ { factorID: 2261, sortID: 2261, type: "skill" },
-  /* 逃げのコツ○ */ { factorID: 2262, sortID: 2262, type: "skill" },
-  /* 逃げ駆け引き */ { factorID: 2264, sortID: 2264, type: "skill" },
-  /* 逃げ焦り */ { factorID: 2265, sortID: 2265, type: "skill" },
-  /* 逃げ直線○ */ { factorID: 2266, sortID: 2266, type: "skill" },
-  /* 道悪○ */ { factorID: 2269, sortID: 2269, type: "skill" },
-  /* 読解力 */ { factorID: 2272, sortID: 2272, type: "skill" },
-  /* 曇りの日○ */ { factorID: 2273, sortID: 2273, type: "skill" },
-  /* 内弁慶 */ { factorID: 2275, sortID: 2275, type: "skill" },
-  /* 内枠得意○ */ { factorID: 2276, sortID: 2276, type: "skill" },
-  /* 二の矢 */ { factorID: 2278, sortID: 2278, type: "skill" },
-  /* 函館レース場○ */ { factorID: 2279, sortID: 2279, type: "skill" },
-  /* 抜け駆け禁止 */ { factorID: 2282, sortID: 2282, type: "skill" },
-  /* 抜け出し準備 */ { factorID: 2283, sortID: 2283, type: "skill" },
-  /* 非根幹距離○ */ { factorID: 2284, sortID: 2284, type: "skill" },
-  /* 布石 */ { factorID: 2287, sortID: 2287, type: "skill" },
-  /* 負けん気 */ { factorID: 2288, sortID: 2288, type: "skill" },
-  /* 伏兵○ */ { factorID: 2289, sortID: 2289, type: "skill" },
-  /* 別腹タンク */ { factorID: 2291, sortID: 2291, type: "skill" },
-  /* 末脚 */ { factorID: 2292, sortID: 2292, type: "skill" },
-  /* 目くらまし */ { factorID: 2294, sortID: 2294, type: "skill" },
-  /* 遊びはおしまいっ！ */ { factorID: 2295, sortID: 2295, type: "skill" },
-  /* 様子見 */ { factorID: 2297, sortID: 2297, type: "skill" },
-  /* 良バ場○ */ { factorID: 2298, sortID: 2298, type: "skill" },
-  /* 臨機応変 */ { factorID: 2300, sortID: 2300, type: "skill" },
-  /* 冷静 */ { factorID: 2301, sortID: 2301, type: "skill" },
-  /* 仕掛け準備 */ { factorID: 2305, sortID: 2305, type: "skill" },
-  /* URAシナリオ */ { factorID: 4096, sortID: 4096, type: "scenario" },
-];
+export interface FactorStatic {
+  get all(): ReadonlyArray<Factor>;
 
-export const NULL_FACTOR: Factor = Object.freeze({
+  get allType(): ReadonlyArray<FactorType>;
+
+  get allLevel(): ReadonlyArray<FactorLevel>;
+
+  get(factorID: number): Factor;
+
+  get(identify: FactorIdentify): Factor;
+
+  checkUniqueSkill(factor: Factor): factor is UniqueSkillFactor;
+
+  getNameKey(factorID: number): string;
+
+  getNameKey(identify: FactorIdentify): string;
+}
+
+export const NULL_FACTOR = Object.freeze<Factor>({
   factorID: -1,
   sortID: -1,
   type: "status",
 });
 
-export const AllFactorLevel: Readonly<Array<FactorLevel>> = Object.freeze([
-  1, 2, 3,
+const _allFactorType = Object.freeze<Array<FactorType>>([
+  "status",
+  "ability",
+  "unique-skill",
+  "race",
+  "skill",
+  "scenario",
 ]);
 
-export const AllFactor: Readonly<Array<Factor>> = Object.freeze(
-  Factors.sort((x, y) => x.sortID - y.sortID)
-);
+const _allFactorLevel = Object.freeze<Array<FactorLevel>>([1, 2, 3]);
 
-const factorMap = Object.freeze(
-  createNumMap(AllFactor.map((x) => [x.factorID, x]))
-);
+let _allFactor: ReadonlyArray<Factor>;
+let _factorByIdMap: Record<number, Factor>;
+(async () => {
+  const factorType = (value: _Factor.Type | null | undefined): FactorType => {
+    switch (objects.orDefault(value, _Factor.Type.STATUS)) {
+      case _Factor.Type.STATUS:
+        return "status";
+      case _Factor.Type.ABILITY:
+        return "ability";
+      case _Factor.Type.UNIQUE_SKILL:
+        return "unique-skill";
+      case _Factor.Type.RACE:
+        return "race";
+      case _Factor.Type.SKILL:
+        return "skill";
+      case _Factor.Type.SCENARIO:
+        return "scenario";
+      default:
+        return "status";
+    }
+  };
 
-export function getFactor(factorID: number): Factor;
-export function getFactor(identify: FactorIdentify): Factor;
-export function getFactor(arg: number | FactorIdentify): Factor {
-  if (_.isNumber(arg)) {
-    return factorMap[arg] || NULL_FACTOR;
+  const data = await axios
+    .get<ArrayBuffer>(factorDataUrl, { responseType: "arraybuffer" })
+    .then((x) => new Uint8Array(x.data));
+
+  _allFactor = Object.freeze<Array<Factor>>(
+    _.sortBy(
+      FactorList.decode(data).data.map((x) => {
+        const type = factorType(x.type);
+        if (type === "unique-skill") {
+          return objects.immutable<UniqueSkillFactor>({
+            factorID: objects.orDefault(x.factorID, -1),
+            sortID: objects.orDefault(x.sortID, -1),
+            type: type,
+            skillID: objects.orDefault(x.skillID, -1),
+          });
+        } else {
+          return objects.immutable<Factor>({
+            factorID: objects.orDefault(x.factorID, -1),
+            sortID: objects.orDefault(x.sortID, -1),
+            type: type,
+          });
+        }
+      }),
+      ["sortID"]
+    )
+  );
+  _factorByIdMap = Object.freeze(
+    maps.NumberMap(_allFactor.map((x) => [x.factorID, x]))
+  );
+})();
+
+const _checkUniqueSkill = _.memoize(
+  (factor: Factor): factor is UniqueSkillFactor => {
+    return factor.type === "unique-skill" && _.has(factor, "skillID");
   }
-  return factorMap[arg.factorID] || NULL_FACTOR;
-}
+);
 
-export function isUniqueSkillFactor(
-  factor: Factor
-): factor is UniqueSkillFactor {
-  return factor.type === "uniqueSkill" && _.has(factor, "skillID");
-}
+export const Factor: FactorStatic = {
+  get all(): ReadonlyArray<Factor> {
+    return objects.orDefault(_allFactor, () => Object.freeze([]));
+  },
+  get allType(): ReadonlyArray<FactorType> {
+    return _allFactorType;
+  },
+  get allLevel(): ReadonlyArray<FactorLevel> {
+    return _allFactorLevel;
+  },
+  get(arg: number | FactorIdentify): Factor {
+    const map = objects.orDefault(_factorByIdMap, []);
+    return objects.orDefault(
+      map[_.isNumber(arg) ? arg : arg.factorID],
+      NULL_FACTOR
+    );
+  },
+  checkUniqueSkill: _checkUniqueSkill,
+  getNameKey(arg: number | FactorIdentify): string {
+    const factorID = _.isNumber(arg) ? arg : arg.factorID;
+    return `factor.${factorID}.name`;
+  },
+};

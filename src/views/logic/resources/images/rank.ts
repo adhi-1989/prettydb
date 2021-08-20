@@ -14,7 +14,7 @@ import F_PLUS from "#/images/rank/f-plus.svg";
 import F from "#/images/rank/f.svg";
 import G_PLUS from "#/images/rank/g-plus.svg";
 
-export const RankIcons = {
+export const RankIcon = {
   S_PLUS,
   S,
   A_PLUS,
@@ -35,34 +35,34 @@ export const RankIcons = {
 //TODO: スコアのグレードが決まる閾値が適当なのでちゃんとデータ集める
 export function getRankGradeIcon(score: number): string {
   if (score >= 16000) {
-    return S_PLUS;
+    return RankIcon.S_PLUS;
   } else if (score >= 14500) {
-    return S;
+    return RankIcon.S;
   } else if (score >= 12000) {
-    return A_PLUS;
+    return RankIcon.A_PLUS;
   } else if (score >= 10000) {
-    return A;
+    return RankIcon.A;
   } else if (score >= 8200) {
-    return B_PLUS;
+    return RankIcon.B_PLUS;
   } else if (score >= 6500) {
-    return B;
+    return RankIcon.B;
   } else if (score >= 5000) {
-    return C_PLUS;
+    return RankIcon.C_PLUS;
   } else if (score >= 4000) {
-    return C;
+    return RankIcon.C;
   } else if (score >= 3000) {
-    return D_PLUS;
+    return RankIcon.D_PLUS;
   } else if (score >= 2500) {
-    return D;
+    return RankIcon.D;
   } else if (score >= 2000) {
-    return E_PLUS;
+    return RankIcon.E_PLUS;
   } else if (score >= 1300) {
-    return E;
+    return RankIcon.E;
   } else if (score >= 1000) {
-    return F_PLUS;
+    return RankIcon.F_PLUS;
   } else if (score >= 500) {
-    return F;
+    return RankIcon.F;
   } else {
-    return G_PLUS;
+    return RankIcon.G_PLUS;
   }
 }

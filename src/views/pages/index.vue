@@ -61,18 +61,12 @@
         <section class="section todo-list">
           <span class="heading level-4">やることリスト</span>
           <div class="block">
-            <span class="heading level-6">[ 殿堂入りデータ管理 ]</span>
+            <span class="heading level-6">[ 殿堂入りウマ娘 データ管理 ]</span>
             <ul class="list">
               <li class="list-item">
                 登録したデータの検索・ソート機能を追加する
               </li>
               <li class="list-item">登録したデータを削除できるようにする</li>
-              <li class="list-item">
-                登録したデータをダウンロード・インポートできるようにする
-              </li>
-              <li class="list-item">
-                スキル・因子一覧の絞り込み機能を強化する
-              </li>
               <li class="list-item">
                 データ入力時、キーボードで操作できるようにする
               </li>
@@ -80,7 +74,7 @@
                 スキルや因子などをクリックしたとき、詳細を見られるようにする
               </li>
               <li class="list-item">
-                スキル、因子の編集画面が重いので改善する
+                スキル、因子の編集画面を開くとき、若干カクつくので改善する
               </li>
               <li class="list-item">
                 データ登録画面のユーザビリティ向上。
@@ -126,12 +120,12 @@
           プリティーデービーはMITライセンスのもと、開発・公開されています。
           あなたはプリティーデービーを（MITライセンスの認める限り）自由に利用できますが、そこに一切の保証はありません。
         </p>
-        <section class="section license-article" @click="ja = !ja">
+        <section class="section license-article" @click="toggleLocalized()">
           <span class="heading level-6"
             >＊ クリック（タップ）で表示切り替え ＊</span
           >
           <transition name="license" mode="out-in">
-            <p class="text-block" v-if="!ja">
+            <p class="text-block" v-if="!isLocalized">
               The MIT License<br />
               Copyright 2021 adhi-1989<br />
               <br />
@@ -177,7 +171,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from "vue";
+import { defineComponent } from "vue";
+import { useToggle } from "@vueuse/core";
 import HorseshoeParticles from "@/views/components/HorseshoeParticles.vue";
 import logo from "#/images/app/logo.svg";
 
@@ -189,9 +184,10 @@ export default defineComponent({
     };
   },
   setup() {
-    const ja = ref(false);
+    const [isLocalized, toggleLocalized] = useToggle();
     return {
-      ja,
+      isLocalized,
+      toggleLocalized,
     };
   },
 });
@@ -200,68 +196,72 @@ export default defineComponent({
 <style lang="scss">
 .home-root {
   @apply text-[0.75rem] leading-tight;
-  @apply xs:(text-[0.875rem] leading-snug);
-  @apply sm:(text-[1rem] leading-normal);
+  @apply sm:(text-[0.875rem] leading-snug);
+  @apply xl:(text-[1rem] leading-normal);
   > .header {
-    @apply relative w-full max-w-[32rem] mx-auto px-[2rem] py-[1rem];
-    @apply xs:py-[2rem];
+    @apply relative w-full max-w-[18rem] mx-auto my-[1.5rem];
+    @apply sm:(max-w-[24.25rem] my-[2rem]);
+    @apply xl:(max-w-[32rem] my-[3rem]);
     > .logo {
-      @apply w-[28rem] mx-auto;
+      @apply w-[32rem] mx-auto;
     }
 
     > .version {
       @include text-stroke(#fefefe);
-      @apply absolute font-bold text-[1rem] right-[2rem] bottom-0;
-      @apply xs:text-[1.25rem] xs:bottom-[1rem];
+      @apply absolute font-bold text-[1rem] right-0 bottom-[-0.5rem];
+      @apply sm:(text-[1.25rem] bottom-[-0.5rem]);
+      @apply xl:(text-[1.5rem]);
     }
   }
 
   > .main {
-    @apply flex flex-col gap-y-[2rem] items-center mt-[1rem] mb-[1rem];
-    @apply xs:mb-[2rem];
-    @apply sm:mb-[3rem];
+    @apply flex flex-col gap-y-[2rem] my-[1rem];
+    @apply sm:(mb-[2rem]);
+    @apply xl:(mb-[3rem]);
     > .content {
-      @apply border-2 rounded-lg w-[90%] max-w-[40rem] mx-auto p-[0.75rem] shadow-sm bg-[#fefefe];
-      @apply xs:w-[70%] xs:p-[1.25rem];
+      @apply border-2 rounded-lg w-[18rem] mx-auto p-[0.75rem] shadow-sm bg-[#fefefe];
+      @apply sm:(w-[24.25rem] p-[1rem]);
+      @apply md:(w-[32rem] p-[1.5rem]);
+      @apply lg:(w-[40rem]);
       .heading {
         @apply font-bold;
       }
 
       .heading.level-1 {
         @apply text-[1.25rem] text-center block;
-        @apply xs:text-[1.5rem];
-        @apply sm:text-[1.75rem];
+        @apply sm:(text-[1.5rem]);
+        @apply md:(text-[1.75rem]);
       }
 
       .heading.level-2 {
         @apply text-[1.125rem];
-        @apply xs:text-[1.375rem];
-        @apply sm:text-[1.625rem];
+        @apply sm:(text-[1.375rem]);
+        @apply md:(text-[1.625rem]);
       }
 
       .heading.level-3 {
         @apply text-[1rem];
-        @apply xs:text-[1.25rem];
-        @apply sm:text-[1.5rem];
+        @apply sm:(text-[1.25rem]);
+        @apply md:(text-[1.5rem]);
       }
 
       .heading.level-4 {
         @apply text-[0.875rem];
-        @apply xs:text-[1.125rem];
-        @apply sm:text-[1.375rem];
+        @apply sm:(text-[1.125rem]);
+        @apply md:(text-[1.375rem]);
       }
 
       .heading.level-5 {
         @apply text-[0.75rem];
-        @apply xs:text-[1rem];
-        @apply sm:text-[1.25rem];
+        @apply sm:(text-[1rem]);
+        @apply md:(text-[1.25rem]);
       }
 
       .section,
       .block,
       .text-block {
         @apply mt-[0.75rem];
-        @apply xs:mt-[1rem];
+        @apply sm:(mt-[1rem]);
       }
 
       .list {
@@ -269,7 +269,7 @@ export default defineComponent({
         > .list-item {
           @apply list-disc list-inside;
           &.no-disc {
-            list-style: none;
+            @apply list-none;
           }
         }
       }

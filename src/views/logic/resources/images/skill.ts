@@ -1,4 +1,4 @@
-import { SkillType, SkillTypes } from "@/data";
+import { SkillType } from "@/data";
 import BUFF_SPEED from "#/images/skill/buff_speed.svg";
 import BUFF_ACCELERATION from "#/images/skill/buff_acceleration.svg";
 import BUFF_POSITIONING from "#/images/skill/buff_positioning.svg";
@@ -22,7 +22,7 @@ import WEAK_MENTAL from "#/images/skill/weak_mental.svg";
 import WEAK_WILL from "#/images/skill/weak_will.svg";
 import WEAK_RACE from "#/images/skill/weak_race.svg";
 
-export const SkillTypeIcons = {
+export const SkillTypeIcon = {
   BUFF_SPEED,
   BUFF_ACCELERATION,
   BUFF_POSITIONING,
@@ -49,52 +49,52 @@ export const SkillTypeIcons = {
 
 export function getSkillTypeIcon(type: SkillType): string {
   switch (type) {
-    case SkillTypes.BUFF_SPEED:
-      return BUFF_SPEED;
-    case SkillTypes.BUFF_ACCELERATION:
-      return BUFF_ACCELERATION;
-    case SkillTypes.BUFF_POSITIONING:
-      return BUFF_POSITIONING;
-    case SkillTypes.BUFF_VISION:
-      return BUFF_VISION;
-    case SkillTypes.BUFF_STARTING:
-      return BUFF_STARTING;
-    case SkillTypes.DEBUFF_SPEED:
-      return DEBUFF_SPEED;
-    case SkillTypes.DEBUFF_STAMINA:
-      return DEBUFF_STAMINA;
-    case SkillTypes.DEBUFF_AGITATION:
-      return DEBUFF_AGITATION;
-    case SkillTypes.DEBUFF_CALM:
-      return DEBUFF_CALM;
-    case SkillTypes.DEBUFF_VISION:
-      return DEBUFF_VISION;
-    case SkillTypes.RECOVERY_STAMINA:
-      return RECOVERY_STAMINA;
-    case SkillTypes.SUPPORT_SPEED:
-      return SUPPORT_SPEED;
-    case SkillTypes.SUPPORT_STAMINA:
-      return SUPPORT_STAMINA;
-    case SkillTypes.SUPPORT_POWER:
-      return SUPPORT_POWER;
-    case SkillTypes.SUPPORT_TENACITY:
-      return SUPPORT_TENACITY;
-    case SkillTypes.SUPPORT_GENERAL:
-      return SUPPORT_GENERAL;
-    case SkillTypes.SUPPORT_STRATEGY:
-      return SUPPORT_STRATEGY;
-    case SkillTypes.WEAK_FATIGUE:
-      return WEAK_FATIGUE;
-    case SkillTypes.WEAK_STARTING:
-      return WEAK_STARTING;
-    case SkillTypes.WEAK_MENTAL:
-      return WEAK_MENTAL;
-    case SkillTypes.WEAK_WILL:
-      return WEAK_WILL;
-    case SkillTypes.WEAK_RACE:
-      return WEAK_RACE;
+    case "buff-speed":
+      return SkillTypeIcon.BUFF_SPEED;
+    case "buff-acceleration":
+      return SkillTypeIcon.BUFF_ACCELERATION;
+    case "buff-positioning":
+      return SkillTypeIcon.BUFF_POSITIONING;
+    case "buff-vision":
+      return SkillTypeIcon.BUFF_VISION;
+    case "buff-starting":
+      return SkillTypeIcon.BUFF_STARTING;
+    case "debuff-speed":
+      return SkillTypeIcon.DEBUFF_SPEED;
+    case "debuff-stamina":
+      return SkillTypeIcon.DEBUFF_STAMINA;
+    case "debuff-agitation":
+      return SkillTypeIcon.DEBUFF_AGITATION;
+    case "debuff-calm":
+      return SkillTypeIcon.DEBUFF_CALM;
+    case "debuff-vision":
+      return SkillTypeIcon.DEBUFF_VISION;
+    case "recovery-stamina":
+      return SkillTypeIcon.RECOVERY_STAMINA;
+    case "support-speed":
+      return SkillTypeIcon.SUPPORT_SPEED;
+    case "support-stamina":
+      return SkillTypeIcon.SUPPORT_STAMINA;
+    case "support-power":
+      return SkillTypeIcon.SUPPORT_POWER;
+    case "support-tenacity":
+      return SkillTypeIcon.SUPPORT_TENACITY;
+    case "support-general":
+      return SkillTypeIcon.SUPPORT_GENERAL;
+    case "support-strategy":
+      return SkillTypeIcon.SUPPORT_STRATEGY;
+    case "weak-fatigue":
+      return SkillTypeIcon.WEAK_FATIGUE;
+    case "weak-starting":
+      return SkillTypeIcon.WEAK_STARTING;
+    case "weak-mental":
+      return SkillTypeIcon.WEAK_MENTAL;
+    case "weak-will":
+      return SkillTypeIcon.WEAK_WILL;
+    case "weak-race":
+      return SkillTypeIcon.WEAK_RACE;
     default:
       console.warn("Illegal skill type: " + type);
-      return BUFF_SPEED;
+      return SkillTypeIcon.BUFF_SPEED;
   }
 }

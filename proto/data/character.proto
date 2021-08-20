@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+message Character {
+  int32 characterID = 1;
+  int32 sortID = 2;
+}
+
+message CharacterList {
+  repeated Character data = 1;
+}

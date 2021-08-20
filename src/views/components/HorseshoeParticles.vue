@@ -6,7 +6,7 @@
 import { defineComponent, onMounted, ref } from "vue";
 import _ from "@/util/lodash";
 import * as THREE from "three";
-import horseshoe from "#/images/app/horseshoe.svg";
+import horseshoe from "#/images/app/horseshoe.svg?url";
 
 const spriteLimit = 16;
 
@@ -28,8 +28,8 @@ export default defineComponent({
     const initialize = (canvas: HTMLCanvasElement) => {
       const hasChangedCanvasSize = () => {
         return (
-          canvas.width != canvas.clientWidth ||
-          canvas.height != canvas.clientHeight
+          canvas.width !== canvas.clientWidth ||
+          canvas.height !== canvas.clientHeight
         );
       };
 
@@ -146,7 +146,7 @@ export default defineComponent({
     };
 
     onMounted(() => {
-      if (canvasRef.value != undefined) {
+      if (canvasRef.value !== undefined) {
         initialize(canvasRef.value as HTMLCanvasElement);
       }
     });

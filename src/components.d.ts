@@ -11,6 +11,7 @@ declare module 'vue' {
     IconIonCaretUp: typeof import('virtual:vite-icons/ion/caret-up')['default']
     IconIonCheckmark: typeof import('virtual:vite-icons/ion/checkmark')['default']
     IconIonClose: typeof import('virtual:vite-icons/ion/close')['default']
+    IconIonFilter: typeof import('virtual:vite-icons/ion/filter')['default']
     IconIonLogoGithub: typeof import('virtual:vite-icons/ion/logo-github')['default']
     IconIonMenu: typeof import('virtual:vite-icons/ion/menu')['default']
     IconIonReturnDownBack: typeof import('virtual:vite-icons/ion/return-down-back')['default']

@@ -1,42 +1,42 @@
-import { GradeIcons } from "./grade";
-import { getStatusGrade } from "@/data";
+import { GradeIcon } from "./grade";
+import { Status } from "@/data";
 
 export function getStatusGradeIcon(value: number): string {
-  const grade = getStatusGrade(value);
+  const grade = Status.getGrade(value);
   switch (grade) {
     case "ss+":
-      return GradeIcons.SS_PLUS;
+      return GradeIcon.SS_PLUS;
     case "ss":
-      return GradeIcons.SS;
+      return GradeIcon.SS;
     case "s+":
-      return GradeIcons.S_PLUS;
+      return GradeIcon.S_PLUS;
     case "s":
-      return GradeIcons.S;
+      return GradeIcon.S;
     case "a+":
-      return GradeIcons.A_PLUS;
+      return GradeIcon.A_PLUS;
     case "a":
-      return GradeIcons.A;
+      return GradeIcon.A;
     case "b+":
-      return GradeIcons.B_PLUS;
+      return GradeIcon.B_PLUS;
     case "b":
-      return GradeIcons.B;
+      return GradeIcon.B;
     case "c+":
-      return GradeIcons.C_PLUS;
+      return GradeIcon.C_PLUS;
     case "c":
-      return GradeIcons.C;
+      return GradeIcon.C;
     case "d+":
-      return GradeIcons.D_PLUS;
+      return GradeIcon.D_PLUS;
     case "d":
-      return GradeIcons.D;
+      return GradeIcon.D;
     case "e+":
-      return GradeIcons.E_PLUS;
+      return GradeIcon.E_PLUS;
     case "e":
-      return GradeIcons.E;
+      return GradeIcon.E;
     case "f+":
-      return GradeIcons.F_PLUS;
+      return GradeIcon.F_PLUS;
     case "f":
-      return GradeIcons.F;
+      return GradeIcon.F;
     case "g+":
-      return GradeIcons.G_PLUS;
+      return GradeIcon.G_PLUS;
   }
 }

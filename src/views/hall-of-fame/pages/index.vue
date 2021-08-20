@@ -1,6 +1,5 @@
 <template>
   <article class="hall-of-fame-root">
-    <!-- modal view -->
     <div class="modal-view">
       <transition name="view-container">
         <div class="view-container" v-if="!isViewActive('list')">
@@ -16,7 +15,6 @@
       </transition>
     </div>
 
-    <!-- standard view -->
     <div class="standard-view" :data-active="isViewActive('list')">
       <list />
     </div>
@@ -33,18 +31,18 @@ import {
   readonly,
   ref,
 } from "vue";
+import { useHead } from "@vueuse/head";
+import { useI18n } from "vue-i18n";
 import _ from "@/util/lodash";
 import { Dto, db, fetch, upsert } from "@/views/hall-of-fame/logic/db";
-import List from "@/views/hall-of-fame/components/list/List.vue";
-import Viewer from "@/views/hall-of-fame/components/viewer/Viewer.vue";
-import Editor from "@/views/hall-of-fame/components/editor/Editor.vue";
-import { useI18n } from "vue-i18n";
-import { useHead } from "~/@vueuse/head";
 import {
   ViewType,
   actionInjectionKey,
   stateInjectionKey,
 } from "@/views/hall-of-fame/logic/dependency";
+import List from "@/views/hall-of-fame/components/list/List.vue";
+import Viewer from "@/views/hall-of-fame/components/viewer/Viewer.vue";
+import Editor from "@/views/hall-of-fame/components/editor/Editor.vue";
 
 export default defineComponent({
   components: {
@@ -55,9 +53,9 @@ export default defineComponent({
   setup() {
     const { t } = useI18n();
     useHead({
-      title: t("pages.hall-of-fame.title"),
+      title: t("head.hall-of-fame.title"),
       meta: [
-        { name: "description", content: t("pages.hall-of-fame.description") },
+        { name: "description", content: t("head.hall-of-fame.description") },
       ],
     });
 
@@ -85,7 +83,7 @@ export default defineComponent({
     };
 
     const isViewActive = (type: ViewType) => {
-      return activeView.value == type;
+      return activeView.value === type;
     };
     const openView = (type: ViewType) => {
       if (type === "viewer") {
@@ -106,7 +104,7 @@ export default defineComponent({
       if (activeView.value === type) {
         if (type === "viewer") {
           viewDataIndex.value = -1;
-        } else if (type === "editor" && viewDataBackup.value != undefined) {
+        } else if (type === "editor" && viewDataBackup.value !== undefined) {
           viewData.value = viewDataBackup.value;
           viewDataBackup.value = undefined;
         }
@@ -150,14 +148,17 @@ export default defineComponent({
 <style lang="scss">
 .hall-of-fame-root {
   @apply relative overflow-hidden h-full;
+
   > .modal-view {
     @apply absolute overflow-hidden;
+
     &:not(:empty) {
-      @apply w-full h-full z-1;
+      @apply w-full h-full z-10;
     }
 
     > .view-container {
       @apply relative h-full w-full;
+
       &-enter-active {
         animation: zoomIn;
         animation-duration: 0.3s;
@@ -170,15 +171,16 @@ export default defineComponent({
 
       > .view {
         @apply overflow-hidden h-full w-full p-[1rem];
+
         &-enter-active {
           animation: flipInY;
           animation-duration: 0.25s;
         }
 
         &-leave-active {
+          @apply absolute;
           animation: flipOutY;
           animation-duration: 0.25s;
-          @apply absolute;
         }
       }
     }
@@ -186,6 +188,7 @@ export default defineComponent({
 
   > .standard-view {
     @apply overflow-hidden h-full;
+
     &[data-active="false"] {
       @apply filter blur-sm;
     }

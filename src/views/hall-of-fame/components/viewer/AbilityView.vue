@@ -1,74 +1,83 @@
 <template>
-  <!-- ability -->
   <section class="ability-view-root">
-    <template v-for="container in AllAbilityContainer" :key="container.type">
+    <template v-for="container in AllContainer" :key="container.type">
       <div class="ability-generic-term" :data-ability-type="container.type">
         {{ t(`game-system.ability.${container.type}.generic-term`) }}
       </div>
-      <div
-        class="ability-container"
-        :data-ability-type="container.type"
-        v-for="ability in container.abilities"
-        :key="ability"
-      >
-        <div class="ability-name">
-          {{ t(`game-system.ability.${container.type}.${ability}`) }}
+      <template v-for="identify in container.abilities" :key="identify">
+        <div class="ability-item" :data-ability-type="container.type">
+          <div class="name">
+            {{ t(`game-system.ability.${container.type}.${identify}`) }}
+          </div>
+          <img
+            class="grade"
+            :src="getAbilityGradeIcon(ability[identify])"
+            alt=""
+          />
         </div>
-        <img class="ability-value" :src="getGradeIcon(ability)" alt="" />
-      </div>
+      </template>
     </template>
   </section>
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType, readonly } from "vue";
-import { Dto } from "@/views/hall-of-fame/logic/db";
+import { defineComponent, inject } from "vue";
 import { getAbilityGradeIcon } from "@/views/logic/resources/images";
 import { useI18n } from "vue-i18n";
-import { Ability, AllAbilityContainer } from "@/data";
+import { Ability } from "@/data";
+import {
+  fallbackStateFactory,
+  stateInjectionKey,
+} from "@/views/hall-of-fame/logic/dependency";
 
 export default defineComponent({
-  props: {
-    viewData: {
-      type: Object as PropType<Dto>,
-      required: true,
-    },
-  },
   data() {
-    const { t } = useI18n();
     return {
-      AllAbilityContainer,
-      t,
+      AllContainer: Ability.allContainer,
+      getAbilityGradeIcon,
     };
   },
-  setup(props) {
-    const abilityDto = readonly(props.viewData.ability);
+  setup() {
+    const { t } = useI18n();
+
+    const { viewData } = inject(stateInjectionKey, fallbackStateFactory, true);
+    const { ability } = viewData.value;
+
     return {
-      getGradeIcon: (ability: Ability) =>
-        getAbilityGradeIcon(abilityDto[ability]),
+      t,
+      ability,
     };
   },
 });
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .ability-view-root {
-  @apply grid gap-x-[0.5rem] gap-y-[0.5rem] items-center px-[1rem];
-  grid-template-columns: 2.75rem repeat(4, 1fr);
+  @apply grid gap-[0.25rem] items-center px-[0.5rem];
+  @apply sm:(gap-[0.5rem] px-[1.5rem]);
 
   > .ability-generic-term {
-    @apply font-bold text-[0.625rem];
+    @apply font-bold text-[0.5rem];
+    @apply sm:(text-[0.75rem]);
+    @apply md:(text-[1rem]);
   }
 
-  > .ability-container {
-    @apply flex justify-between items-center border-[2px] border-[#dfd4c8] rounded px-[0.125rem] py-[0.125rem];
-    > .ability-name {
+  > .ability-item {
+    @apply flex justify-between items-center border-[1px] border-[#dfd4c8] rounded px-[0.125rem] py-[0.125rem];
+    @apply sm:(px-[0.175rem] py-[0.175rem]);
+    @apply md:(border-[2px] px-[0.25rem] py-[0.25rem]);
+
+    > .name {
       @include text-overflow-omit;
-      @apply font-bold text-[0.5rem] text-center w-full;
+      @apply flex-grow font-bold text-[0.5rem] text-center;
+      @apply sm:(text-[0.675rem]);
+      @apply md:(text-[0.95rem]);
     }
 
-    > .ability-value {
+    > .grade {
       @apply w-[0.875rem];
+      @apply sm:(w-[1rem]);
+      @apply md:(w-[1.5rem]);
     }
   }
 
@@ -82,28 +91,6 @@ export default defineComponent({
 
   > [data-ability-type="running-style"] {
     grid-row-start: 3;
-  }
-}
-
-@screen xs {
-  .ability-view-root {
-    @apply gap-x-[0.5rem] gap-y-[0.5rem] px-[2rem];
-    grid-template-columns: 4rem repeat(4, 1fr);
-
-    > .ability-generic-term {
-      @apply text-[0.8rem];
-    }
-
-    > .ability-container {
-      @apply px-[0.125rem] py-[0.125rem];
-      > .ability-name {
-        @apply text-[0.8rem];
-      }
-
-      > .ability-value {
-        @apply w-[1.25rem];
-      }
-    }
   }
 }
 </style>

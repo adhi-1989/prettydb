@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+message Factor {
+  int32 factorID = 1;
+  int32 sortID = 2;
+  enum Type {
+    STATUS = 0;
+    ABILITY = 1;
+    UNIQUE_SKILL = 2;
+    RACE = 3;
+    SKILL = 4;
+    SCENARIO = 5;
+  }
+  Type type = 3;
+  int32 skillID = 4; // Set only if the value of 'type' is 'UNIQUE_SKILL'
+}
+
+message FactorList {
+  repeated Factor data = 1;
+}

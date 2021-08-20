@@ -1,13 +1,11 @@
 <template>
-  <!-- multi content view -->
-  <section class="multi-content-root">
-    <!-- content selector -->
+  <section class="multi-content-view-root">
     <div class="content-selector">
       <div class="selector-item-group">
         <template v-for="content in AllContent" :key="content">
           <div
             class="selector-item-wrapper"
-            :data-active="isContentActive(content)"
+            :class="{ active: isContentActive(content) }"
           >
             <button class="selector-item" @click="setActiveContent(content)">
               {{ t(`pages.hall-of-fame.viewer.${content}.selector`) }}
@@ -17,30 +15,22 @@
       </div>
     </div>
 
-    <!-- content view -->
     <div class="content-view">
-      <component :is="activeContent" :view-data="viewData" />
+      <component :is="activeContent" />
     </div>
   </section>
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType, readonly, ref } from "vue";
-import { Dto } from "@/views/hall-of-fame/logic/db";
+import { defineComponent, readonly, ref } from "vue";
+import { useI18n } from "vue-i18n";
 import SkillView from "@/views/hall-of-fame/components/viewer/SkillView.vue";
 import InheritView from "@/views/hall-of-fame/components/viewer/InheritView.vue";
 import HistoryView from "@/views/hall-of-fame/components/viewer/HistoryView.vue";
-import { useI18n } from "vue-i18n";
 
-const Content = {
-  SKILL: "skill-view",
-  INHERIT: "inherit-view",
-  HISTORY: "history-view",
-} as const;
+const AllContent = ["skill-view", "inherit-view", "history-view"] as const;
 
-const AllContent = Object.freeze(Object.entries(Content).map((x) => x[1]));
-
-type ContentType = typeof Content[keyof typeof Content];
+type Content = typeof AllContent[number];
 
 export default defineComponent({
   components: {
@@ -48,29 +38,24 @@ export default defineComponent({
     InheritView,
     HistoryView,
   },
-  props: {
-    viewData: {
-      type: Object as PropType<Dto>,
-      required: true,
-    },
-  },
   data() {
-    const { t } = useI18n();
     return {
-      Content,
       AllContent,
-      t,
     };
   },
   setup() {
-    const activeContent = ref<ContentType>(Content.SKILL);
-    const isContentActive = (content: ContentType) => {
+    const { t } = useI18n();
+
+    const activeContent = ref<Content>("skill-view");
+    const isContentActive = (content: Content) => {
       return content === activeContent.value;
     };
-    const setActiveContent = (content: ContentType) => {
+    const setActiveContent = (content: Content) => {
       activeContent.value = content;
     };
+
     return {
+      t,
       activeContent: readonly(activeContent),
       isContentActive,
       setActiveContent,
@@ -79,23 +64,29 @@ export default defineComponent({
 });
 </script>
 
-<style lang="scss" scoped>
-.multi-content-root {
+<style lang="scss">
+.multi-content-view-root {
   @apply flex flex-col h-full;
+
   > .content-selector {
     @apply px-[0.375rem];
+
     > .selector-item-group {
       @apply flex rounded-full overflow-hidden;
-      box-shadow: 0 1px 2px 0 #b7b6c2;
 
       > .selector-item-wrapper {
         @apply text-[0.75rem] w-full;
+        @apply md:(text-[1rem]);
+
         > .selector-item {
-          @apply w-full border-[2px] border-[#0000] bg-clip-padding py-[0.125rem];
+          @apply font-bold w-full border-1 border-b-2 border-transparent rounded-none bg-clip-padding py-[0.125rem];
+          @apply sm:(py-[0.2rem]);
+          @apply md:(py-[0.25rem] border-2 border-b-3);
         }
 
         &:first-child {
           @apply rounded-l-full;
+
           > .selector-item {
             @apply rounded-l-full;
           }
@@ -103,30 +94,35 @@ export default defineComponent({
 
         &:last-child {
           @apply rounded-r-full;
+
           > .selector-item {
             @apply rounded-r-full;
           }
         }
 
-        &[data-active="false"] {
+        &:not(.active) {
           @apply bg-gradient-to-t from-[#97979e] to-[#d0cfd4];
+
           > .selector-item {
             @include button-gradient;
           }
 
           &:not(:last-child) > .selector-item {
-            @apply border-r-0 pr-[2px];
+            @apply border-r-0 pr-[1px];
+            @apply md:(pr-[2px]);
           }
         }
 
-        &[data-active="true"] {
+        &.active {
           @apply bg-gradient-to-t from-[#588728] via-[#96ce40] to-[#a8d944] text-[#fefefe];
+
           > .selector-item {
             @apply bg-gradient-to-t from-[#78bb3a] to-[#b1de46];
           }
 
-          & + .selector-item-wrapper[data-active="false"] > .selector-item {
-            @apply border-l-0 pl-[2px];
+          & + .selector-item-wrapper:not(.active) > .selector-item {
+            @apply border-l-0 pl-[1px];
+            @apply md:(pl-[2px]);
           }
         }
       }
@@ -135,26 +131,7 @@ export default defineComponent({
 
   > .content-view {
     @apply flex-grow overflow-hidden mt-[0.5rem] px-[0.75rem];
-  }
-}
-
-@screen xs {
-  .multi-content-root {
-    > .content-selector {
-      @apply px-[0.5rem];
-      > .selector-item-group {
-        @apply flex rounded-full overflow-hidden;
-        box-shadow: 0 0 0 transparent;
-
-        > .selector-item-wrapper {
-          @apply text-[1rem];
-        }
-      }
-    }
-
-    > .content-view {
-      @apply mt-[0.75rem] px-[0.75rem];
-    }
+    @apply sm:(mt-[0.75rem] px-[1rem]);
   }
 }
 </style>

@@ -1,74 +1,81 @@
 <template>
-  <!-- numpad -->
   <article class="numpad-root">
-    <input
-      ref="inputRef"
-      class="display"
-      type="number"
-      :value="value"
-      @focus="selectInputValueOnFocus"
-      @input="inputEventHook"
-      @keyup.enter="$emit('enterKeyPressed')"
-    />
-    <div
-      class="key"
-      v-for="key in OrderedKeys"
-      :key="key"
-      :data-key="key"
-      @click="keyClicked(key)"
-    >
-      <template v-if="key === Numpad.BACK_SPACE">
-        <icon-ion-backspace class="icon" />
-      </template>
-      <template v-else-if="key === Numpad.ENTER">
-        <icon-ion-return-down-back class="icon" />
-      </template>
-      <template v-else-if="key === Numpad.ZERO">
-        <div class="value">{{ key }}</div>
-        <div class="padding" />
-      </template>
-      <template v-else>
-        <div class="value">{{ key }}</div>
-      </template>
+    <div class="layout" :class="{ 'rows-4': hiddenNumberDisplay }">
+      <input
+        ref="inputRef"
+        class="display"
+        :class="{ hidden: hiddenNumberDisplay }"
+        type="number"
+        :value="value"
+        @focus="selectInputValueOnFocus"
+        @input="inputEventHook"
+        @keyup.enter="$emit('enterKeyPressed')"
+      />
+      <div
+        class="key"
+        v-for="key in OrderedKeys"
+        :key="key"
+        :class="`numpad-${key}`"
+        @click="keyClicked(key)"
+      >
+        <template v-if="key === 'backspace'">
+          <icon-ion-backspace class="icon" />
+        </template>
+        <template v-else-if="key === 'enter'">
+          <icon-ion-return-down-back class="icon" />
+        </template>
+        <template v-else-if="key === '0'">
+          <span class="value">{{ key }}</span>
+        </template>
+        <template v-else>
+          {{ key }}
+        </template>
+      </div>
     </div>
   </article>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from "vue";
+import { defineComponent, ref, PropType } from "vue";
+import { onStartTyping, onKeyStroke } from "@vueuse/core";
+import _ from "@/util/lodash";
+import { strings } from "@/util";
 import { selectInputValueOnFocus } from "@/views/logic/dom";
 
-const Numpad = {
-  ZERO: "0",
-  ONE: "1",
-  TWO: "2",
-  THREE: "3",
-  FOUR: "4",
-  FIVE: "5",
-  SIX: "6",
-  SEVEN: "7",
-  EIGHT: "8",
-  NINE: "9",
-  BACK_SPACE: "back-space",
-  ENTER: "enter",
-} as const;
+type NumpadKey =
+  | "0"
+  | "1"
+  | "2"
+  | "3"
+  | "4"
+  | "5"
+  | "6"
+  | "7"
+  | "8"
+  | "9"
+  | "backspace"
+  | "enter";
 
-const OrderedKeys = [
-  Numpad.SEVEN,
-  Numpad.EIGHT,
-  Numpad.NINE,
-  Numpad.BACK_SPACE,
-  Numpad.FOUR,
-  Numpad.FIVE,
-  Numpad.SIX,
-  Numpad.ONE,
-  Numpad.TWO,
-  Numpad.THREE,
-  Numpad.ENTER,
-  Numpad.ZERO,
-] as const;
+const OrderedKeys = Object.freeze<NumpadKey>([
+  "7",
+  "8",
+  "9",
+  "backspace",
+  "4",
+  "5",
+  "6",
+  "1",
+  "2",
+  "3",
+  "enter",
+  "0",
+]);
 
-type NumpadKey = typeof Numpad[keyof typeof Numpad];
+type Option = {
+  min?: number;
+  max?: number;
+  hiddenNumberDisplay?: boolean;
+};
 
 export default defineComponent({
   props: {
@@ -76,68 +83,100 @@ export default defineComponent({
       type: Number,
       required: true,
     },
-    minValue: {
-      type: Number,
-      default: Number.MIN_SAFE_INTEGER,
-    },
-    maxValue: {
-      type: Number,
-      default: Number.MAX_SAFE_INTEGER,
+    option: {
+      type: Object as PropType<Option>,
     },
   },
   emits: ["update:value", "enterKeyPressed"],
   data() {
     return {
-      Numpad,
       OrderedKeys,
       selectInputValueOnFocus,
     };
   },
   setup(props, { emit }) {
+    const option = Object.assign(
+      {
+        min: Number.MIN_SAFE_INTEGER,
+        max: Number.MAX_SAFE_INTEGER,
+        hiddenNumberDisplay: false,
+      },
+      props.option
+    );
+
     const inputRef = ref<HTMLInputElement>();
+
+    const valueChanged = (input: HTMLInputElement) => {
+      const value = _.clamp(Number(input.value), option.min, option.max);
+      emit("update:value", value);
+      input.value = value.toString();
+    };
+
     const inputEventHook = (event: Event) => {
-      if (event.target != null) {
+      if (event.target !== null) {
         valueChanged(event.target as HTMLInputElement);
       }
     };
-    const valueChanged = (input: HTMLInputElement) => {
-      let num = Number(input.value);
-      if (num < props.minValue) {
-        num = props.minValue;
-      } else if (num > props.maxValue) {
-        num = props.maxValue;
-      }
-      emit("update:value", num);
-      input.value = num.toString();
-    };
+
     const keyClicked = (key: NumpadKey) => {
-      if (inputRef.value == undefined || inputRef.value?.value == undefined) {
-        return;
-      }
       const input = inputRef.value;
-      switch (key) {
-        case "enter":
-          emit("enterKeyPressed");
-          return;
-        case "back-space":
-          input.value = input?.value.slice(0, -1);
-          break;
-        case "0":
-        case "1":
-        case "2":
-        case "3":
-        case "4":
-        case "5":
-        case "6":
-        case "7":
-        case "8":
-        case "9":
-          input.value += key;
-          break;
+      if (input !== undefined) {
+        switch (key) {
+          case "enter":
+            emit("enterKeyPressed");
+            return;
+          case "backspace":
+            input.value = input.value.slice(0, -1);
+            break;
+          case "0":
+          case "1":
+          case "2":
+          case "3":
+          case "4":
+          case "5":
+          case "6":
+          case "7":
+          case "8":
+          case "9":
+            input.value += key;
+            break;
+        }
+        valueChanged(input);
       }
-      valueChanged(input);
     };
+
+    if (!option.hiddenNumberDisplay) {
+      onStartTyping((event) => {
+        const input = inputRef.value;
+        if (input !== undefined && !isNaN(Number(event.key))) {
+          input.focus();
+        }
+      });
+    } else {
+      onKeyStroke(
+        (event: KeyboardEvent) =>
+          _.some(OrderedKeys, (x) => strings.equalsIgnoreCase(event.key, x)),
+        (event) => {
+          const key = OrderedKeys.find((x) =>
+            strings.equalsIgnoreCase(event.key, x)
+          );
+          if (key !== undefined) {
+            keyClicked(key);
+          }
+        }
+      );
+    }
+
+    onKeyStroke("Delete", () => {
+      const input = inputRef.value;
+      if (input !== undefined) {
+        input.value = "0";
+        valueChanged(input);
+      }
+    });
+
     return {
+      hiddenNumberDisplay: option.hiddenNumberDisplay,
       inputRef,
       inputEventHook,
       valueChanged,
@@ -149,29 +188,51 @@ export default defineComponent({
 
 <style lang="scss">
 .numpad-root {
-  @apply inline-grid grid-cols-4 border;
-  grid-template-columns: repeat(4, 3rem);
-  grid-template-rows: 2.5rem repeat(4, 3rem);
-  > .display {
-    @apply col-span-4 text-right border px-[0.5rem];
-  }
-  > .key {
-    @apply flex justify-center items-center border bg-[#fefefe] cursor-pointer;
-    &[data-key="back-space"],
-    &[data-key="enter"] {
-      @apply row-span-2;
+  @apply text-[1.125rem];
+  @apply sm:(text-[1.5rem]);
+
+  > .layout {
+    @apply grid grid-cols-[repeat(4,minmax(0,2.5rem))] grid-rows-[repeat(5,minmax(0,2.5rem))];
+    @apply sm:(grid-cols-[repeat(4,minmax(0,3.5rem))] grid-rows-[repeat(5,minmax(0,3.5rem))]);
+
+    &.rows-4 {
+      @apply grid-rows-[repeat(4,minmax(0,2.5rem))];
+      @apply sm:(grid-rows-[repeat(4,minmax(0,3.5rem))]);
     }
-    &[data-key="0"] {
-      @apply col-span-3 grid grid-cols-3;
-      > .value {
-        @apply text-center;
-      }
-      > .padding {
-        @apply col-span-2 h-full;
+
+    > .display {
+      @apply col-span-4 text-right px-[0.5rem] rounded-t-sm;
+      box-shadow: 0 0 0 1px #e0e0e0;
+
+      &.hidden {
+        @apply invisible absolute;
       }
     }
-    > .icon {
-      @apply w-[1.75rem] h-[1.75rem];
+
+    > .key {
+      @apply flex justify-center items-center bg-[#fefefe] cursor-pointer;
+      box-shadow: 0 0 0 1px #e0e0e0;
+
+      &.numpad-backspace {
+        @apply row-span-2 z-1;
+      }
+
+      &.numpad-enter {
+        @apply row-span-2 z-1 rounded-br-sm;
+      }
+
+      &.numpad-0 {
+        @apply col-span-3 grid grid-cols-3 rounded-bl-sm;
+
+        > .value {
+          @apply col-span-1 text-center;
+        }
+      }
+
+      > .icon {
+        @apply w-[1.25rem] h-[1.25rem];
+        @apply sm:(w-[1.75rem] h-[1.75rem]);
+      }
     }
   }
 }

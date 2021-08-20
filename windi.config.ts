@@ -8,7 +8,12 @@ export default defineConfig({
   theme: {
     extend: {
       screens: {
-        xs: "475px",
+        xs: { min: "320px", max: "419px" },
+        sm: "420px",
+        md: "768px",
+        lg: "1024px",
+        xl: "1366px",
+        "2xl": "3840px",
         portrait: { raw: '(orientation: portrait)' },
         landscape: { raw: '(orientation: landscape)' },
       },

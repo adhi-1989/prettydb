@@ -1,0 +1,51 @@
+syntax = "proto3";
+
+message Skill {
+  int32 skillID = 1;
+  int32 sortID = 2;
+  int32 point = 3;
+  enum Type {
+    BUFF_SPEED = 0;
+    BUFF_ACCELERATION = 1;
+    BUFF_POSITIONING = 2;
+    BUFF_VISION = 3;
+    BUFF_STARTING = 4;
+    DEBUFF_SPEED = 5;
+    DEBUFF_STAMINA = 6;
+    DEBUFF_AGITATION = 7;
+    DEBUFF_CALM = 8;
+    DEBUFF_VISION = 9;
+    RECOVERY_STAMINA = 10;
+    SUPPORT_SPEED = 11;
+    SUPPORT_STAMINA = 12;
+    SUPPORT_POWER = 13;
+    SUPPORT_TENACITY = 14;
+    SUPPORT_GENERAL = 15;
+    SUPPORT_STRATEGY = 16;
+    WEAK_FATIGUE = 17;
+    WEAK_STARTING = 18;
+    WEAK_MENTAL = 19;
+    WEAK_WILL = 20;
+    WEAK_RACE = 21;
+  }
+  Type type = 4;
+  int32 conflictID = 5; // optional
+  bool advanced = 6;
+  bool unique = 7;
+
+  /* Field of Unique Skills @ start */
+  int32 characterID = 8;
+  int32 monikerID = 9;
+  enum TalentLevelMatcher {
+    FROM_1_TO_5 = 0;
+    FROM_1_TO_2 = 1;
+    FROM_3_TO_5 = 2;
+  }
+  TalentLevelMatcher talentLevelMatcher = 10;
+  bool inheritable = 11;
+  /* Field of Unique Skills @ end */
+}
+
+message SkillList {
+  repeated Skill data = 1;
+}

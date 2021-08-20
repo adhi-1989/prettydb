@@ -3,36 +3,46 @@ app:
   title: ウマ娘のデータベースアプリ「プリティーデービー」
   description: 「プリティーデービー」とは？　ゲーム「ウマ娘プリティーダービー」に関するデータを参照したり登録したりできるデータベースアプリです。このアプリはブラウザで完結するため、インストール不要で使用可能です。
   navigation:
-    changelog: '📝　@:pages.changelog.name'
-    hall-of-fame: '🏛　@:pages.hall-of-fame.name'
-pages:
+    changelog: '📝　@:head.changelog.name'
+    hall-of-fame: '🏛　@:head.hall-of-fame.name'
+head:
   404:
-    name: 404 Not Found
     title: 'ありません！！ - @:app.name'
     description: このURLにコンテンツはありません。URLが間違っているか、コンテンツが削除された可能性があります。
-  settings:
-    name: 設定
-    title: '@:pages.settings.name - @:app.name'
-    description: プリティーデービーの設定を変更したり、データのバックアップ・インポートなどを行うことができます。
-    content:
-      toast:
-        import: データのインポートが完了しました
-      export-import:
-        label: 設定やデータのバックアップ・インポート
-        button:
-          export: バックアップ
-          import: インポート
-        file-name:
-          hall-of-fame:
-            data: 殿堂入りウマ娘データ
   changelog:
     name: 変更履歴
-    title: '@:pages.changelog.name - @:app.name'
+    title: '@:head.changelog.name - @:app.name'
     description: プリティーデービーの変更履歴を閲覧できます。さらに詳細な変更履歴が見たい場合はGithubのリポジトリを参照してください。
   hall-of-fame:
     name: 殿堂入りウマ娘
-    title: '@:pages.hall-of-fame.name データ管理 - @:app.name'
+    title: '@:head.hall-of-fame.name データ管理 - @:app.name'
     description: 殿堂入りしたウマ娘のデータを手動で入力することで、アプリにデータを保存・閲覧することができます。
+  settings:
+    name: 設定
+    title: '@:head.settings.name - @:app.name'
+    description: プリティーデービーの設定を変更したり、データのバックアップ・インポートなどを行うことができます。
+ui:
+  close: 閉じる
+  discard: 変更を破棄する
+  edit: 編集する
+  save: 保存する
+  select-all: すべて選択
+  deselect-all: すべて解除
+  remove: 削除
+  add: 追加
+pages:
+  settings:
+    toast:
+      import: データのインポートが完了しました
+    export-import:
+      label: 設定やデータのバックアップ・インポート
+      button:
+        export: バックアップ
+        import: インポート
+      file-name:
+        hall-of-fame:
+          data: '@:app.name - 殿堂入りウマ娘'
+  hall-of-fame:
     viewer:
       header: ウマ娘詳細
       skill-view:
@@ -46,11 +56,46 @@ pages:
         selector: 育成情報
         label:
           result: 戦績
-ui:
-  close: 閉じる
-  discard: 変更を破棄する
-  edit: 編集する
-  save: 保存する
+        format:
+          fans-number: '{fansNumber} 人'
+    editor:
+      character:
+        search-bar:
+          placeholder: キャラクター名で絞り込み
+        filter:
+          description: 一覧に表示するキャラクターを選択して下さい
+        level-selector:
+          label:
+            talent-level: 才能開花レベル
+            awakening-level: 覚醒レベル
+      skill:
+        search-bar:
+          placeholder: スキル名で絞り込み
+        filter:
+          description: 一覧に表示するスキルを選択して下さい
+          label:
+            standard: 通常スキル
+            advanced: 金スキル
+            unique: 固有スキル
+      factor:
+        search-bar:
+          placeholder: 因子名で絞り込み
+        filter:
+          description: 一覧に表示する因子を選択して下さい
+          label:
+            status: ステータス
+            ability: 適正
+            unique-skill: 固有スキル
+            race: レース場
+            skill: スキル
+            scenario: シナリオ
+      extra:
+        skill:
+          unique-skill: 固有スキルレベル
+components:
+  widget:
+    skill-card:
+      unique-level: 'Lv{uniqueSkillLevel}'
 game-system:
   status:
     generic-term: ステータス
@@ -1328,6 +1373,9 @@ skill:
     name: 切り開く者
     description: 'レース中盤に先頭だと\n疲れにくくなる＜中距離＞'
 factor:
+  '-1':
+    name: 指定なし
+    description: 因子取得エラー
   0:
     name: スピード
     description: スピードがアップする因子です

@@ -1,16 +1,12 @@
 <template>
-  <!-- application root -->
   <article class="application-root-default">
-    <!-- header -->
     <header class="header">
-      <!-- logo -->
       <section class="logo">
-        <router-link class="router-link" to="/" @click="closeMenu()">
+        <router-link class="router-link" to="/" @click="isMenuActive = false">
           <img class="image" :src="logo" alt="" />
         </router-link>
       </section>
 
-      <!-- toggle menu -->
       <section class="toggle-menu" @click="toggleMenu()">
         <transition name="icon">
           <template v-if="!isMenuActive">
@@ -23,11 +19,14 @@
       </section>
     </header>
 
-    <!-- menu -->
     <nav class="menu" :data-active="isMenuActive">
       <section class="menu-item-group">
         <div class="menu-item">
-          <router-link class="router-link" to="/changelog" @click="closeMenu()">
+          <router-link
+            class="router-link"
+            to="/changelog"
+            @click="isMenuActive = false"
+          >
             <span class="text">{{ t("app.navigation.changelog") }}</span>
           </router-link>
         </div>
@@ -35,21 +34,22 @@
           <router-link
             class="router-link"
             to="/hall-of-fame"
-            @click="closeMenu()"
+            @click="isMenuActive = false"
           >
             <span class="text">{{ t("app.navigation.hall-of-fame") }}</span>
           </router-link>
         </div>
       </section>
 
-      <!-- tools -->
       <section class="tools">
-        <!-- settings -->
-        <router-link class="tool-item" to="/settings" @click="closeMenu()">
+        <router-link
+          class="tool-item"
+          to="/settings"
+          @click="isMenuActive = false"
+        >
           <icon-ion-settings class="icon" />
         </router-link>
 
-        <!-- github link -->
         <a
           class="tool-item"
           href="https://github.com/adhi-1989/prettydb"
@@ -60,16 +60,17 @@
       </section>
     </nav>
 
-    <!-- main content -->
     <main class="main">
       <router-view />
+      <router-view name="bg" />
     </main>
   </article>
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, ref } from "vue";
-import { useI18n } from "~/vue-i18n";
+import { defineComponent } from "vue";
+import { useToggle } from "@vueuse/core";
+import { useI18n } from "vue-i18n";
 import logo from "#/images/app/logo.svg";
 
 export default defineComponent({
@@ -80,17 +81,12 @@ export default defineComponent({
   },
   setup() {
     const { t } = useI18n();
-
-    const activeFlag = ref(false);
-    const isMenuActive = computed(() => activeFlag.value);
-    const toggleMenu = () => (activeFlag.value = !activeFlag.value);
-    const closeMenu = () => (activeFlag.value = false);
+    const [isMenuActive, toggleMenu] = useToggle();
 
     return {
       t,
       isMenuActive,
       toggleMenu,
-      closeMenu,
     };
   },
 });
@@ -100,31 +96,28 @@ export default defineComponent({
 .application-root-default {
   @apply h-full overflow-hidden;
   > .header {
-    @apply select-none fixed flex justify-between w-full h-[2.5rem] shadow z-4;
-    @apply xs:h-[3.25rem];
-    @apply sm:h-[4rem];
-    transition: all 0.5s ease;
+    @apply transition-all duration-500 fixed flex justify-between w-full h-[2.5rem] shadow z-50;
+    @apply sm:(h-[3rem]);
+    @apply xl:(h-[4rem]);
 
     > .logo {
-      @apply h-full ml-[0.5rem];
-      @apply sm:ml-[1rem];
+      @apply h-full;
       > .router-link {
-        @apply flex items-center w-[calc(75%-0.5rem-0.5rem)] max-w-[16rem] h-full;
-        @apply xs:w-[calc(100%-0.5rem-0.5rem)];
-        @apply sm:w-[calc(100%-1rem-1rem)];
+        @apply flex items-center w-[13rem] px-[0.5rem] h-full;
+        @apply sm:(w-[17rem] px-[1rem]);
         > .image {
-          @apply object-contain;
+          @apply w-[16rem] mx-auto;
         }
       }
     }
 
     > .toggle-menu {
-      @apply cursor-pointer w-[2.5rem] h-[2.5rem];
-      @apply xs:(w-[3.25rem] h-[3.25rem]);
-      @apply sm:(w-[4rem] h-[4rem]);
-      @apply lg:hidden;
+      @apply cursor-pointer mr-[0.5rem];
+      @apply xl:(hidden);
+
       > .icon {
-        @apply w-full h-full;
+        @apply w-[2.5rem] h-[2.5rem];
+        @apply sm:(w-[3rem] h-[3rem]);
 
         &-enter-active {
           animation: fadeIn;
@@ -132,61 +125,57 @@ export default defineComponent({
         }
 
         &-leave-active {
+          @apply absolute;
           animation: fadeOut;
           animation-duration: 0.5s;
-          position: absolute;
         }
       }
     }
   }
 
   > .menu {
-    @apply select-none fixed top-[2.5rem] left-0 flex flex-col w-[65%] max-w-[16rem] h-[calc(100%-2.5rem)] shadow z-3 bg-[#fefefe];
-    @apply xs:(top-[3.25rem] h-[calc(100%-3.25rem)]);
-    @apply sm:(top-[4rem] h-[calc(100%-4rem)]);
-    transition: all 0.5s ease;
+    @apply transition-all duration-500 fixed top-[2.5rem] left-0 flex flex-col w-[13rem] h-[calc(100%-2.5rem)] shadow z-30 bg-[#fefefe];
+    @apply sm:(top-[3rem] w-[17rem] h-[calc(100%-3rem)]);
+    @apply xl:(top-[4rem] h-[calc(100%-4rem)]);
 
     &[data-active="false"] {
-      @apply left-[-65%];
-      @apply xs:left-[-16rem];
-      @apply lg:left-0;
+      @apply left-[-13rem];
+      @apply sm:(left-[-17rem])
+      @apply xl:(left-0);
     }
 
     > .menu-item-group {
       @apply flex-grow flex flex-col gap-y-[1.75rem] mt-[1.75rem];
-      @apply xs:(mt-[2.75rem] gap-y-[2.75rem]);
+      @apply sm:(mt-[2.75rem] gap-y-[2.75rem]);
       > .menu-item {
         @apply ml-[1.75rem];
-        @apply xs:(ml-[2rem] text-[1.25rem]);
+        @apply sm:(ml-[2rem] text-[1.25rem]);
       }
     }
 
     > .tools {
-      @apply flex justify-between items-center h-[2.5rem] px-[0.5rem];
-      @apply xs:(h-[3.5rem] py-[0.5rem]);
+      @apply flex justify-between h-[2.5rem] px-[0.5rem];
+      @apply sm:(h-[3.5rem] py-[0.5rem]);
       > .tool-item {
-        @apply w-[2rem] h-[2rem] cursor-pointer;
-        @apply xs:(w-[3rem] h-[3rem]);
+        @apply flex items-center cursor-pointer;
         > .icon {
-          @apply w-full h-full;
+          @apply w-[2rem] h-[2rem];
+          @apply sm:(w-[3rem] h-[3rem]);
         }
       }
     }
   }
 
   > .main {
-    @apply overflow-auto w-full h-[calc(100%-2.5rem)] mt-[2.5rem];
-    @apply xs:(h-[calc(100%-3.25rem)] mt-[3.25rem]);
-    @apply sm:(h-[calc(100%-4rem)] mt-[4rem]);
-    @apply lg:(w-[calc(100%-16rem)] ml-[16rem]);
-    transition: all 0.5s ease;
+    @apply transition-all duration-500 overflow-auto w-full h-[calc(100%-2.5rem)] mt-[2.5rem];
+    @apply sm:(h-[calc(100%-3rem)] mt-[3rem]);
+    @apply xl:(w-[calc(100%-17rem)] ml-[17rem] h-[calc(100%-4rem)] mt-[4rem]);
   }
 }
 
 #background {
   @apply fixed bottom-0 w-full h-[calc(100%-2.5rem)] mt-[2.5rem] -z-1;
-  @apply xs:(h-[calc(100%-3.25rem)] mt-[3.25rem]);
-  @apply sm:(h-[calc(100%-4rem)] mt-[4rem]);
-  @apply lg:(w-[calc(100%-16rem)] ml-[16rem]);
+  @apply sm:(h-[calc(100%-3rem)] mt-[3rem]);
+  @apply xl:(w-[calc(100%-17rem)] ml-[17rem] h-[calc(100%-4rem)] mt-[4rem]);
 }
 </style>

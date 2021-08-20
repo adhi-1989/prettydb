@@ -2,26 +2,26 @@
   <article class="settings-root">
     <section class="content export-import">
       <h1 class="label">
-        {{ t("pages.settings.content.export-import.label") }}
+        {{ t("pages.settings.export-import.label") }}
       </h1>
       <div class="items">
         <div class="item hall-of-fame">
-          <span class="label">{{ t("pages.hall-of-fame.name") }}</span>
+          <span class="label">{{ t("head.hall-of-fame.name") }}</span>
           <div class="button export" @click="exportData('hall-of-fame/data')">
-            {{ t("pages.settings.content.export-import.button.export") }}
+            {{ t("pages.settings.export-import.button.export") }}
           </div>
           <div
             class="button import"
             @click="openFileChooser('hall-of-fame/data')"
           >
-            {{ t("pages.settings.content.export-import.button.import") }}
+            {{ t("pages.settings.export-import.button.import") }}
           </div>
         </div>
       </div>
     </section>
     <transition name="toast">
       <section class="toast" v-if="showToast">
-        {{ t("pages.settings.content.toast.import") }}
+        {{ t("pages.settings.toast.import") }}
       </section>
     </transition>
     <section class="invisible">
@@ -33,16 +33,17 @@
 
 <script lang="ts">
 import { defineComponent, ref } from "vue";
-import { useI18n } from "~/vue-i18n";
-import { useHead } from "~/@vueuse/head";
+import { useHead } from "@vueuse/head";
+import { useI18n } from "vue-i18n";
+import dayjs from "dayjs";
 import { db } from "@/views/hall-of-fame/logic/db";
 
 export default defineComponent({
   setup() {
     const { t } = useI18n();
     useHead({
-      title: t("pages.settings.title"),
-      meta: [{ name: "description", content: t("pages.settings.description") }],
+      title: t("head.settings.title"),
+      meta: [{ name: "description", content: t("head.settings.description") }],
     });
 
     const showToast = ref(false);
@@ -62,16 +63,13 @@ export default defineComponent({
       if (downloadRef.value) {
         if (type === "hall-of-fame/data") {
           const baseName = t(
-            "pages.settings.content.export-import.file-name.hall-of-fame.data"
+            "pages.settings.export-import.file-name.hall-of-fame.data"
           );
-          const now = new Date();
-          const timestamp = `${now.getFullYear()}-${
-            now.getMonth() + 1
-          }-${now.getDate()}`;
+          const timestamp = dayjs().format("YYYY-MM-DD_HH-mm-ss");
           const blob = await exportDB(db);
           const link = downloadRef.value as HTMLAnchorElement;
           link.href = window.URL.createObjectURL(blob);
-          link.download = `${baseName}-${timestamp}.dat`;
+          link.download = `${baseName} ${timestamp}.dat`;
           link.click();
         }
       }
@@ -84,7 +82,10 @@ export default defineComponent({
           const file = input.files[0];
 
           if (dataType.value === "hall-of-fame/data") {
-            importInto(db, file, { clearTablesBeforeImport: true }).then(() => {
+            importInto(db, file, {
+              acceptVersionDiff: true,
+              clearTablesBeforeImport: true,
+            }).then(() => {
               toast();
             });
           }
@@ -116,10 +117,12 @@ export default defineComponent({
   @apply relative w-[20rem] h-full mx-auto py-[1rem];
   @apply sm:(w-[26.25rem] py-[1.5rem]);
   @apply md:(w-[32rem] py-[2rem]);
+
   > .content {
     @apply flex flex-col gap-y-[0.75rem];
     @apply sm:(gap-y-[1.25rem]);
     @apply md:(gap-y-[1.5rem]);
+
     > .label {
       @apply ml-[1rem] text-[1rem];
       @apply sm:(text-[1.25rem]);
@@ -130,10 +133,12 @@ export default defineComponent({
       @apply flex flex-col gap-y-[1rem] mx-[2rem] text-[0.875rem];
       @apply sm:(text-[1rem]);
       @apply md:(text-[1.25rem]);
+
       > .item {
         @apply flex gap-x-[0.75rem] items-center;
         @apply sm:(gap-x-[1rem]);
         @apply md:(gap-x-[1.25rem]);
+
         > .label {
           @apply flex-grow;
         }
@@ -152,6 +157,7 @@ export default defineComponent({
     @apply absolute bottom-0 inset-x-0 w-[fit-content] mx-auto mb-[1rem] px-[1.25rem] py-[0.75rem] rounded-sm font-bold text-[0.75rem] text-[#fefefe] bg-gradient-to-t from-[#7fbf3cff] via-[#90ca3fff] to-[#a2d543ff];
     @apply sm:(mb-[1.5rem] px-[1.5rem] py-[1rem] text-[1rem]);
     @apply md:(mb-[2rem] px-[1.75rem] py-[1.25rem] text-[1.25rem]);
+
     &-enter-active {
       animation: fadeInUp;
       animation-duration: 0.5s;

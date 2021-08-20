@@ -1,17 +1,15 @@
 <template>
-  <!-- status editor -->
   <section class="status-editor-root">
-    <!-- status preview -->
     <div class="status-preview">
       <div class="status-item-group">
-        <template v-for="key in AllStatus" :key="key">
+        <template v-for="identify in AllStatus" :key="identify">
           <div
             class="status-item"
-            :data-editing="isEditing(key)"
-            @click="setEditing(key)"
+            :class="{ editing: isEditing(identify) }"
+            @click="setEditing(identify)"
           >
-            <div class="label">{{ t(`game-system.status.${key}`) }}</div>
-            <div class="value">{{ status[key] }}</div>
+            <div class="label">{{ t(getNameKey(identify)) }}</div>
+            <div class="value">{{ status[identify] }}</div>
           </div>
         </template>
       </div>
@@ -20,8 +18,7 @@
     <div class="numpad-wrapper">
       <numpad
         v-model:value="status[editing]"
-        :min-value="0"
-        :max-value="1200"
+        :option="{ min: 0, max: 1200, hiddenNumberDisplay: true }"
         @enter-key-pressed="rotateEditing"
       />
     </div>
@@ -29,13 +26,16 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType, reactive, ref } from "vue";
-import { Dto } from "@/views/hall-of-fame/logic/db";
-import Numpad from "@/views/components/Numpad.vue";
+import { defineComponent, inject, ref } from "vue";
 import { useI18n } from "vue-i18n";
-import { Status, AllStatus } from "@/data";
+import { Status, StatusIdentify } from "@/data";
+import {
+  fallbackStateFactory,
+  stateInjectionKey,
+} from "@/views/hall-of-fame/logic/dependency";
+import Numpad from "@/views/components/Numpad.vue";
 
-const StatusRotation: Record<Status, Status> = {
+const StatusRotation: Record<StatusIdentify, StatusIdentify> = {
   speed: "stamina",
   stamina: "power",
   power: "tenacity",
@@ -47,33 +47,31 @@ export default defineComponent({
   components: {
     Numpad,
   },
-  props: {
-    editData: {
-      type: Object as PropType<Dto>,
-      required: true,
-    },
-  },
   data() {
-    const { t } = useI18n();
     return {
-      AllStatus,
-      t,
+      AllStatus: Status.all,
+      getNameKey: Status.getNameKey,
     };
   },
-  setup(props) {
-    const status = reactive(props.editData.status);
+  setup() {
+    const { t } = useI18n();
 
-    const editing = ref<Status>("speed");
-    const setEditing = (key: Status) => {
+    const { editData } = inject(stateInjectionKey, fallbackStateFactory, true);
+    const { status } = editData.value;
+
+    const editing = ref<StatusIdentify>("speed");
+    const setEditing = (key: StatusIdentify) => {
       editing.value = key;
     };
-    const isEditing = (key: Status) => {
-      return editing.value == key;
+    const isEditing = (key: StatusIdentify) => {
+      return editing.value === key;
     };
     const rotateEditing = () => {
       setEditing(StatusRotation[editing.value]);
     };
+
     return {
+      t,
       status,
       editing,
       setEditing,
@@ -84,23 +82,31 @@ export default defineComponent({
 });
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .status-editor-root {
+  @apply h-full;
+
   > .status-preview {
     > .status-item-group {
       @apply grid grid-cols-5 gap-[0.25rem];
+
       > .status-item {
-        @apply rounded border cursor-pointer;
-        &[data-editing="true"] {
-          @apply ring;
+        @apply cursor-pointer;
+
+        &.editing {
+          > .label {
+            @apply text-[#fafafa] bg-[#8fd54a] border-[#8fd54a];
+          }
         }
 
         > .label {
-          @apply text-center border-b;
+          @apply text-[0.875rem] text-center py-[0.125rem] rounded-t-md border;
+          @apply sm:(text-[1.125rem] py-[0.25rem]);
         }
 
         > .value {
-          @apply text-right mx-[0.25rem];
+          @apply text-right px-[0.25rem] py-[0.125rem] rounded-b-md border border-t-0;
+          @apply sm:(text-[1.25rem] px-[0.5rem] py-[0.25rem]);
         }
       }
     }

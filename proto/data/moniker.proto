@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+message Moniker {
+  int32 characterID = 1;
+  int32 monikerID = 2;
+  int32 initialTalentLevel = 3;
+}
+
+message MonikerList {
+  repeated Moniker data = 1;
+}

@@ -16,11 +16,11 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from "vue";
-import { useHead } from "~/@vueuse/head";
-import { useI18n } from "~/vue-i18n";
-import logo from "#/images/app/logo.svg";
+import { defineComponent } from "vue";
+import { useHead } from "@vueuse/head";
+import { useI18n } from "vue-i18n";
 import HorseshoeParticles from "@/views/components/HorseshoeParticles.vue";
+import logo from "#/images/app/logo.svg";
 
 type Changelog = {
   version: string;
@@ -125,15 +125,10 @@ export default defineComponent({
   setup() {
     const { t } = useI18n();
     useHead({
-      title: t("pages.changelog.title"),
-      meta: [
-        { name: "description", content: t("pages.changelog.description") },
-      ],
+      title: t("head.changelog.title"),
+      meta: [{ name: "description", content: t("head.changelog.description") }],
     });
-    const ja = ref(false);
-    return {
-      ja,
-    };
+    return {};
   },
 });
 </script>
@@ -141,23 +136,30 @@ export default defineComponent({
 <style lang="scss">
 .changelog-root {
   @apply flex flex-col gap-y-[1rem] py-[2rem];
+
   > .content {
-    @apply border-2 rounded-lg w-[90%] max-w-[40rem] mx-auto p-[0.75rem] shadow-sm bg-[#fefefe];
-    @apply xs:(w-[70%] p-[1.25rem]);
+    @apply border-2 rounded-lg w-[18rem] mx-auto p-[0.75rem] shadow-sm bg-[#fefefe];
+    @apply sm:(w-[24.25rem] p-[1rem]);
+    @apply md:(w-[32rem] p-[1.5rem]);
+    @apply lg:(w-[40rem]);
+
     > .version {
       @apply text-[1rem] leading-tight;
-      @apply xs:(text-[1.125rem] leading-snug);
+      @apply sm:(text-[1.125rem] leading-snug);
     }
+
     > .release-date {
       @apply text-[0.75rem] leading-tight;
-      @apply xs:(text-[0.875rem] leading-snug);
+      @apply sm:(text-[0.875rem] leading-snug);
     }
+
     > .changelogs {
       @apply flex flex-col gap-y-[0.375rem] mt-[0.75rem];
-      @apply xs:mt-[1rem];
+      @apply sm:mt-[1rem];
+
       > .log-item {
         @apply list-disc list-inside text-[0.875rem] leading-tight;
-        @apply xs:(text-[1rem] leading-snug);
+        @apply sm:(text-[1rem] leading-snug);
       }
     }
   }

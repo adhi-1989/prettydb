@@ -1,3 +1,5 @@
+import _ from "@/util/lodash";
+
 export type AbilityGrade = "g" | "f" | "e" | "d" | "c" | "b" | "a" | "s";
 
 export type AbilityType =
@@ -8,7 +10,7 @@ export type AbilityType =
   // 脚質適正
   | "running-style";
 
-export type Ability =
+export type AbilityIdentify =
   // バ場適正
   | "turf" // 芝
   | "dirt" // ダート
@@ -26,16 +28,34 @@ export type Ability =
 
 export type AbilityContainer = {
   type: AbilityType;
-  abilities: Array<Ability>;
+  abilities: Array<AbilityIdentify>;
 };
 
-export const AllAbilityType: Readonly<Array<AbilityType>> = Object.freeze([
+export interface AbilityStatic {
+  get all(): ReadonlyArray<AbilityIdentify>;
+
+  get allType(): ReadonlyArray<AbilityType>;
+
+  get allContainer(): ReadonlyArray<AbilityContainer>;
+
+  getType(identify: AbilityIdentify): AbilityType;
+
+  check(arg: string): arg is AbilityIdentify;
+
+  checkType(arg: string): arg is AbilityType;
+
+  getNameKey(identify: AbilityIdentify): string;
+
+  getTypeNameKey(type: AbilityType): string;
+}
+
+const _allAbilityType = Object.freeze<Array<AbilityType>>([
   "racetrack",
   "distance",
   "running-style",
 ]);
 
-export const AllAbility: Readonly<Array<Ability>> = Object.freeze([
+const _allAbility = Object.freeze<Array<AbilityIdentify>>([
   "turf",
   "dirt",
   "short",
@@ -48,18 +68,53 @@ export const AllAbility: Readonly<Array<Ability>> = Object.freeze([
   "oikomi",
 ]);
 
-export const AllAbilityContainer: Readonly<Array<AbilityContainer>> =
-  Object.freeze([
-    {
-      type: "racetrack",
-      abilities: ["turf", "dirt"],
-    },
-    {
-      type: "distance",
-      abilities: ["short", "mile", "middle", "long"],
-    },
-    {
-      type: "running-style",
-      abilities: ["nige", "senko", "sashi", "oikomi"],
-    },
-  ]);
+const _allAbilityContainer = Object.freeze<Array<AbilityContainer>>([
+  {
+    type: "racetrack",
+    abilities: ["turf", "dirt"],
+  },
+  {
+    type: "distance",
+    abilities: ["short", "mile", "middle", "long"],
+  },
+  {
+    type: "running-style",
+    abilities: ["nige", "senko", "sashi", "oikomi"],
+  },
+]);
+
+const _getType = _.memoize((identify: AbilityIdentify): AbilityType => {
+  const container = _allAbilityContainer.find((x) =>
+    x.abilities.includes(identify)
+  );
+  if (container === undefined) {
+    throw Error(`Illegal ability: ${identify}`);
+  }
+  return container.type;
+});
+
+export const Ability: AbilityStatic = {
+  get all(): ReadonlyArray<AbilityIdentify> {
+    return _allAbility;
+  },
+  get allType(): ReadonlyArray<AbilityType> {
+    return _allAbilityType;
+  },
+  get allContainer(): ReadonlyArray<AbilityContainer> {
+    return _allAbilityContainer;
+  },
+  getType: _getType,
+  check(arg: string): arg is AbilityIdentify {
+    return _.some(_allAbility, (x) => x === arg);
+  },
+  checkType(arg: string): arg is AbilityType {
+    return _.some(_allAbilityType, (x) => x === arg);
+  },
+  getNameKey(identify: AbilityIdentify): string {
+    const type = _getType(identify);
+    return `game-system.ability.${type}.${identify}`;
+  },
+  getTypeNameKey(type: AbilityType): string {
+    return `game-system.ability.${type}.generic-term`;
+  },
+};

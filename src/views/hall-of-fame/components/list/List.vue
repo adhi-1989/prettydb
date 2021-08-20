@@ -1,11 +1,12 @@
 <template>
-  <!-- data list -->
   <article class="data-list-root">
-    <!-- list items -->
+    <section class="toolbar">
+      <icon-ion-add class="button add" @click="openEditor()" />
+    </section>
+
     <section class="data-list">
       <div class="data-item-group">
         <template v-for="(data, index) in dataList" :key="data.id">
-          <!-- item -->
           <div class="data-item" @click="selectItem(index)">
             <div class="score">
               <img
@@ -17,7 +18,7 @@
             </div>
             <div class="name-card">
               <div class="moniker">
-                [{{ t(getMonikerKey(data.character)) }}]
+                [{{ t(getMonikerNameKey(data.character)) }}]
               </div>
               <div class="name">
                 {{ t(getCharacterNameKey(data.character)) }}
@@ -27,19 +28,14 @@
         </template>
       </div>
     </section>
-
-    <!-- toolbar -->
-    <section class="toolbar">
-      <icon-ion-add class="button add" @click="openEditor()" />
-    </section>
   </article>
 </template>
 
 <script lang="ts">
 import { defineComponent, inject } from "vue";
 import { useI18n } from "vue-i18n";
+import { Character } from "@/data";
 import { getRankGradeIcon } from "@/views/logic/resources/images";
-import { getCharacterNameKey, getMonikerKey } from "@/views/logic/i18n";
 import {
   actionInjectionKey,
   stateInjectionKey,
@@ -50,9 +46,9 @@ import {
 export default defineComponent({
   data() {
     return {
+      getCharacterNameKey: Character.getNameKey,
+      getMonikerNameKey: Character.getMonikerNameKey,
       getRankGradeIcon,
-      getCharacterNameKey,
-      getMonikerKey,
     };
   },
   setup() {
@@ -82,22 +78,38 @@ export default defineComponent({
 
 <style lang="scss">
 .data-list-root {
-  @apply flex gap-x-[1rem] h-full p-[1rem] max-w-screen-md mx-auto;
+  @apply h-full w-[18rem] mx-auto my-[1rem];
+  @apply sm:(w-[24.25rem]);
+  @apply md:(w-[32rem]);
+  @apply lg:(w-[40rem]);
+  @apply xl:(w-[64rem]);
+
+  > .toolbar {
+    @apply flex flex-row-reverse;
+
+    > .button {
+      @include button-gradient;
+      @apply w-[1.5rem] h-[1.5rem] rounded border cursor-pointer;
+      @apply sm:(w-[2.5rem] h-[2.5rem]);
+    }
+  }
+
   > .data-list {
-    @apply flex-grow overflow-hidden rounded h-full bg-[#00000030];
+    @apply overflow-hidden rounded h-[calc(100%-2rem-1.5rem-1rem)] mt-[1rem] bg-gray-300 p-[0.5rem] overflow-y-scroll;
+    @apply sm:(h-[calc(100%-2rem-2.5rem-1rem)]);
+
     > .data-item-group {
-      @apply grid gap-[0.5rem] auto-rows-max overflow-y-scroll h-full p-[0.5rem];
-      grid-template-columns: repeat(auto-fit, minmax(7rem, 1fr));
-      @screen sm {
-        @apply gap-[1rem] p-[1rem];
-        grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
-      }
+      @apply grid gap-[0.5rem] auto-rows-max grid-cols-2;
+      @apply lg:(grid-cols-3);
+      @apply xl:(grid-cols-5);
 
       > .data-item {
-        @apply select-none bg-[#fafafa] inline-flex flex-col rounded p-[0.375rem] cursor-pointer;
+        @apply bg-[#fafafa] inline-flex flex-col rounded p-[0.375rem] cursor-pointer;
         @apply sm:(p-[0.75rem]);
+
         > .score {
           @apply flex gap-x-[0.25rem] items-center;
+
           > .image {
             @apply w-[2.5rem];
             @apply sm:(w-[3.5rem]);
@@ -114,14 +126,6 @@ export default defineComponent({
           @apply sm:(text-[0.875rem] leading-normal);
         }
       }
-    }
-  }
-
-  > .toolbar {
-    > .button {
-      @include button-gradient;
-      @apply w-[1.5rem] h-[1.5rem] rounded border cursor-pointer;
-      @apply sm:(w-[2.5rem] h-[2.5rem]);
     }
   }
 }

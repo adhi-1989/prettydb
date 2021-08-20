@@ -1,10 +1,13 @@
 <template>
-  <!-- skill -->
   <section class="skill-view-root">
     <div class="skill-view">
       <div class="skill-item-group">
-        <template v-for="skill in skills.values()" :key="skill.skillID">
-          <skill-card :skill="skill" :character="character" />
+        <template v-for="skill in skills" :key="skill.skillID">
+          <skill-card
+            :skill="skill"
+            :owner="character"
+            :unique-skill-level="metadata.uniqueSkillLevel"
+          />
         </template>
       </div>
     </div>
@@ -12,46 +15,55 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType, readonly } from "vue";
-import SkillCard from "@/views/hall-of-fame/components/widget/SkillCard.vue";
-import { Dto } from "@/views/hall-of-fame/logic/db";
+import { computed, defineComponent, inject } from "vue";
+import { Skill } from "@/data";
+import {
+  fallbackStateFactory,
+  stateInjectionKey,
+} from "@/views/hall-of-fame/logic/dependency";
+import SkillCard from "@/views/components/widget/SkillCard.vue";
 
 export default defineComponent({
   components: {
     SkillCard,
   },
-  props: {
-    viewData: {
-      type: Object as PropType<Dto>,
-      required: true,
-    },
-  },
-  setup(props) {
+  setup() {
+    const { viewData } = inject(stateInjectionKey, fallbackStateFactory, true);
+    const { character, skills, metadata } = viewData.value;
+
+    const uniqueSkill = Skill.getUnique(character);
+    const _skills = computed(() => {
+      return skills.map(Skill.get).sort((x, y) => {
+        if (x === uniqueSkill) {
+          return -1;
+        } else if (y === uniqueSkill) {
+          return 1;
+        }
+        return x.sortID - y.sortID;
+      });
+    });
+
     return {
-      character: readonly(props.viewData.character),
-      skills: readonly(props.viewData.skills),
+      character,
+      skills: _skills,
+      metadata,
     };
   },
 });
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .skill-view-root {
-  @apply rounded overflow-hidden h-full bg-[#f2f2f2] p-[0.5rem];
+  @apply rounded overflow-hidden h-full bg-[#f2f2f2];
+
   > .skill-view {
-    @apply overflow-y-scroll h-full;
+    @apply overflow-y-scroll h-full p-[0.5rem];
+    @apply sm:(p-[0.75rem]);
+
     > .skill-item-group {
-      @apply grid grid-cols-2 auto-rows-min gap-[0.25rem] h-full;
-    }
-  }
-}
-@screen xs {
-  .skill-view-root {
-    @apply p-[0.75rem];
-    > .skill-view {
-      > .skill-item-group {
-        @apply gap-[0.5rem];
-      }
+      @apply grid grid-cols-2 auto-rows-min gap-[0.25rem];
+      @apply sm:(gap-[0.375rem]);
+      @apply md:(gap-x-[0.5rem] gap-y-[0.875rem]);
     }
   }
 }

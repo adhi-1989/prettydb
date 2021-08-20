@@ -1,16 +1,23 @@
 html {
   @apply h-full;
   body {
-    @apply font-sans antialiased overflow-hidden text-[#734065] h-full bg-[#fefefe];
+    @apply font-sans antialiased overflow-hidden select-none text-[1rem] text-[#734065] h-full bg-[#fefefe];
     #app {
       @apply h-full;
     }
 
     #root-level-modal {
-      @apply absolute top-0 left-0 overflow-hidden z-5;
+      @apply absolute top-0 left-0 overflow-hidden z-60;
       &:not(:empty) {
         @apply w-full h-full;
       }
     }
   }
+}
+button {
+  @include button-gradient;
+  @apply select-none rounded-md border;
+}
+input::placeholder {
+  @apply text-[#73406580];
 }

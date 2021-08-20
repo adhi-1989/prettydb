@@ -1,9 +1,12 @@
 import { toRaw } from "vue";
 import {
   AbilityGrade,
-  Ability as AbilityName,
+  AbilityIdentify,
+  AwakeningLevel,
   FactorLevel,
   TalentLevel,
+  UniqueSkillLevel,
+  UniqueSkillOwner,
 } from "@/data";
 import Dexie from "dexie";
 
@@ -15,8 +18,7 @@ type Character = Required<ID> & {
   characterID: number;
   monikerID: number;
   talentLevel: TalentLevel;
-  awakeLevel: number;
-  uniqueSkillLevel: number;
+  awakeningLevel: AwakeningLevel;
 };
 
 type Status = Required<ID> & {
@@ -27,7 +29,7 @@ type Status = Required<ID> & {
   intelligence: number;
 };
 
-type Ability = Required<ID> & Record<AbilityName, AbilityGrade>;
+type Ability = Required<ID> & Record<AbilityIdentify, AbilityGrade>;
 
 type Skill = Required<ID> & {
   skillID: number;
@@ -44,25 +46,24 @@ type History = Required<ID> & {
   registerDate: Date;
 };
 
+type Metadata = Required<ID> & {
+  uniqueSkillLevel: UniqueSkillLevel;
+};
+
 export type CharacterDto = Omit<Character, "id">;
 
-export function CharacterDto(
-  arg: Character | CharacterDto | undefined = undefined
-): CharacterDto {
+export function CharacterDto(arg?: Character | CharacterDto): CharacterDto {
   return {
     characterID: arg?.characterID || 0,
     monikerID: arg?.monikerID || 0,
     talentLevel: arg?.talentLevel || 3,
-    awakeLevel: arg?.awakeLevel || 1,
-    uniqueSkillLevel: arg?.uniqueSkillLevel || 1,
+    awakeningLevel: arg?.awakeningLevel || 1,
   };
 }
 
 export type StatusDto = Omit<Status, "id">;
 
-export function StatusDto(
-  arg: Status | StatusDto | undefined = undefined
-): StatusDto {
+export function StatusDto(arg?: Status | StatusDto): StatusDto {
   return {
     speed: arg?.speed || 0,
     stamina: arg?.stamina || 0,
@@ -74,9 +75,7 @@ export function StatusDto(
 
 export type AbilityDto = Omit<Ability, "id">;
 
-export function AbilityDto(
-  arg: Ability | AbilityDto | undefined = undefined
-): AbilityDto {
+export function AbilityDto(arg?: Ability | AbilityDto): AbilityDto {
   return {
     turf: arg?.turf || "g",
     dirt: arg?.dirt || "g",
@@ -93,9 +92,7 @@ export function AbilityDto(
 
 export type SkillDto = Omit<Skill, "id">;
 
-export function SkillDto(
-  arg: Skill | SkillDto | undefined = undefined
-): SkillDto {
+export function SkillDto(arg?: Skill | SkillDto): SkillDto {
   return {
     skillID: arg?.skillID || 0,
   };
@@ -103,9 +100,7 @@ export function SkillDto(
 
 export type FactorDto = Omit<Factor, "id">;
 
-export function FactorDto(
-  arg: Factor | FactorDto | undefined = undefined
-): FactorDto {
+export function FactorDto(arg?: Factor | FactorDto): FactorDto {
   return {
     factorID: arg?.factorID || 0,
     factorLevel: arg?.factorLevel || 1,
@@ -114,9 +109,7 @@ export function FactorDto(
 
 export type HistoryDto = Omit<History, "id">;
 
-export function HistoryDto(
-  arg: History | HistoryDto | undefined = undefined
-): HistoryDto {
+export function HistoryDto(arg?: History | HistoryDto): HistoryDto {
   return {
     fansNumber: arg?.fansNumber || 0,
     score: arg?.score || 0,
@@ -124,17 +117,25 @@ export function HistoryDto(
   };
 }
 
-export type Dto = {
-  id?: number;
+export type MetadataDto = Omit<Metadata, "id">;
+
+export function MetadataDto(arg?: Metadata | MetadataDto): MetadataDto {
+  return {
+    uniqueSkillLevel: arg?.uniqueSkillLevel || 1,
+  };
+}
+
+export type Dto = ID & {
   character: CharacterDto;
   status: StatusDto;
   ability: AbilityDto;
   skills: Array<SkillDto>;
   factors: Array<FactorDto>;
   history: HistoryDto;
+  metadata: MetadataDto;
 };
 
-export function Dto(arg: Dto | undefined = undefined): Dto {
+export function Dto(arg?: Dto): Dto {
   return {
     id: arg?.id,
     character: CharacterDto(arg?.character),
@@ -143,6 +144,7 @@ export function Dto(arg: Dto | undefined = undefined): Dto {
     skills: [...(arg?.skills || [])],
     factors: [...(arg?.factors || [])],
     history: HistoryDto(arg?.history),
+    metadata: MetadataDto(arg?.metadata),
   };
 }
 
@@ -154,19 +156,20 @@ class Database extends Dexie {
   public readonly skills: Dexie.Table<Skill, number>;
   public readonly factors: Dexie.Table<Factor, number>;
   public readonly histories: Dexie.Table<History, number>;
+  public readonly metadata: Dexie.Table<Metadata, number>;
 
   public constructor() {
     super("prettydb-hall-of-fame");
 
-    this.version(3).stores({
+    this.version(4).stores({
       IDs: "++id",
-      characters:
-        "&id,characterID,monikerID,talentLevel,awakeLevel,uniqueSkillLevel",
+      characters: "&id,characterID,monikerID,talentLevel,awakeningLevel",
       status: "&id,speed,stamina,power,tenacity,intelligence",
       ability: "&id,turf,dirt,short,mile,middle,long,nige,senko,sashi,oikomi",
       skills: "++,id,skillID",
       factors: "++,id,factorID,factorLevel",
       histories: "&id,fansNumber,score,registerDate",
+      metadata: "&id,uniqueSkillLevel",
     });
 
     this.IDs = this.table("IDs");
@@ -176,6 +179,7 @@ class Database extends Dexie {
     this.skills = this.table("skills");
     this.factors = this.table("factors");
     this.histories = this.table("histories");
+    this.metadata = this.table("metadata");
   }
 }
 
@@ -192,6 +196,7 @@ export async function fetch(id: number): Promise<Dto> {
       db.skills,
       db.factors,
       db.histories,
+      db.metadata,
     ],
     () => {
       return db.IDs.where("id")
@@ -205,19 +210,31 @@ export async function fetch(id: number): Promise<Dto> {
             db.skills.where("id").equals(id).toArray(),
             db.factors.where("id").equals(id).toArray(),
             db.histories.where("id").equals(id).first(),
-          ]).then(([character, status, ability, skills, factors, history]) => {
-            return Promise.resolve(
-              Dto({
-                id,
-                character: CharacterDto(character),
-                status: StatusDto(status),
-                ability: AbilityDto(ability),
-                skills: skills.map(SkillDto),
-                factors: factors.map(FactorDto),
-                history: HistoryDto(history),
-              })
-            );
-          });
+            db.metadata.where("id").equals(id).first(),
+          ]).then(
+            ([
+              character,
+              status,
+              ability,
+              skills,
+              factors,
+              history,
+              metadata,
+            ]) => {
+              return Promise.resolve(
+                Dto({
+                  id,
+                  character: CharacterDto(character),
+                  status: StatusDto(status),
+                  ability: AbilityDto(ability),
+                  skills: skills.map(SkillDto),
+                  factors: factors.map(FactorDto),
+                  history: HistoryDto(history),
+                  metadata: MetadataDto(metadata),
+                })
+              );
+            }
+          );
         });
     }
   );
@@ -234,6 +251,7 @@ export async function upsert(dto: Dto): Promise<void> {
       db.skills,
       db.factors,
       db.histories,
+      db.metadata,
     ],
     () => {
       return db.IDs.put({ id: dto.id }).then((id) => {
@@ -257,6 +275,7 @@ export async function upsert(dto: Dto): Promise<void> {
               db.factors.bulkPut(_dto.factors.map((x) => ({ id, ...x })))
             ),
           db.histories.put({ id, ..._dto.history }),
+          db.metadata.put({ id, ..._dto.metadata }),
         ])
           .then(() => {
             return Promise.resolve();

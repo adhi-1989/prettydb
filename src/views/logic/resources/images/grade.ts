@@ -17,7 +17,7 @@ import F from "#/images/grade/f.svg";
 import G_PLUS from "#/images/grade/g-plus.svg";
 import G from "#/images/grade/g.svg";
 
-export const GradeIcons = {
+export const GradeIcon = {
   SS_PLUS,
   SS,
   S_PLUS,

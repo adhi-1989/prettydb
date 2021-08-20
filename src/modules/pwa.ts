@@ -1,4 +1,4 @@
-import { ViteSSGContext } from "~/vite-ssg";
+import { ViteSSGContext } from "vite-ssg";
 
 export const install = ({ router, isClient }: ViteSSGContext): void => {
   if (isClient) {

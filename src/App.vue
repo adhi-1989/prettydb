@@ -4,8 +4,8 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import { useHead } from "~/@vueuse/head";
-import { useI18n } from "~/vue-i18n";
+import { useHead } from "@vueuse/head";
+import { useI18n } from "vue-i18n";
 import ogImage from "#/images/app/og-image.png";
 import twitterImage from "#/images/app/twitter-image.png";
 

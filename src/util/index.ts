@@ -1,2 +1,4 @@
-export * from "./map";
-export * from "./number";
+export { maps } from "./map";
+export { numbers } from "./number";
+export { objects } from "./object";
+export { strings } from "./strings";

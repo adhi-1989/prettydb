@@ -9,6 +9,7 @@ import components from "vite-plugin-components";
 import pages from "vite-plugin-pages";
 import layouts from "vite-plugin-vue-layouts";
 import { VitePWA } from "vite-plugin-pwa";
+import { visualizer } from "rollup-plugin-visualizer";
 
 // https://vitejs.dev/config/
 export default defineConfig(() => {
@@ -19,6 +20,22 @@ export default defineConfig(() => {
         "@/": `${path.resolve(__dirname, "src")}/`,
         "#/assets/": `${path.resolve(__dirname, "src/assets")}/`,
         "#/images/": `${path.resolve(__dirname, "src/assets/images")}/`,
+      },
+    },
+    build: {
+      rollupOptions: {
+        output: {
+          inlineDynamicImports: false,
+          manualChunks(id) {
+            //TODO: 余裕ができたらちゃんと設定する
+            if (id.includes("node_modules")) {
+              if (id.includes("three")) {
+                return "three";
+              }
+              return "vendor";
+            }
+          },
+        },
       },
     },
     plugins: [
@@ -87,6 +104,7 @@ export default defineConfig(() => {
           ],
         },
       }),
+      visualizer(),
     ],
     css: {
       preprocessorOptions: {

@@ -1,49 +1,90 @@
 <template>
-  <!-- ability editor -->
   <section class="ability-editor-root">
-    <!-- ability preview -->
-    <div class="ability-preview">
-      <template v-for="container in AllAbilityContainer" :key="container.type">
-        <div class="ability-generic-term" :data-ability-type="container.type">
-          {{ t(`game-system.ability.${container.type}.generic-term`) }}
+    <div class="view">
+      <template v-for="{ type, abilities } in AllAbilityContainer" :key="type">
+        <div class="ability-type-name">
+          <span class="text">{{ t(getAbilityTypeNameKey(type)) }}</span>
+          <hr class="horizontal" />
         </div>
-        <div
-          class="ability-container"
-          :data-ability-type="container.type"
-          v-for="ability in container.abilities"
-          :key="ability"
-          :data-selected="isEditing(ability)"
-          @click="setEditing(ability)"
-        >
-          <div class="ability-name">
-            {{ t(`game-system.ability.${container.type}.${ability}`) }}
-          </div>
-          <img class="ability-value" :src="getGradeIcon(ability)" alt="" />
+
+        <div class="ability-item-group">
+          <template v-for="identify in abilities" :key="identify">
+            <div
+              class="ability-item"
+              :class="{ focused: isAbilityFocused(identify) }"
+              @click="setFocus(type, identify)"
+            >
+              <div class="label">
+                {{ t(getAbilityNameKey(identify)) }}
+              </div>
+              <img
+                class="icon"
+                :src="getAbilityGradeIcon(getAbilityGrade(identify))"
+                alt=""
+              />
+            </div>
+          </template>
         </div>
       </template>
     </div>
 
-    <!-- grade selector -->
-    <div class="grade-selector">
-      <div class="grade-item-group">
-        <template v-for="grade in AbilityGrades" :key="grade">
-          <div class="grade-item" @click="setAbilityGrade(grade)">
-            <img class="grade-image" :src="getAbilityGradeIcon(grade)" alt="" />
+    <div class="editor">
+      <div class="label">{{ editorLabel }}</div>
+      <div class="grade-selector-container">
+        <div
+          class="grade-selector"
+          v-for="grade in OrderedAbilityGrades"
+          :key="grade"
+          :class="{ selected: isFocusedAbilityGradeEquals(grade) }"
+          @click="setFocusedAbilityGrade(grade)"
+        >
+          <img class="icon" :src="getAbilityGradeIcon(grade)" alt="" />
+        </div>
+      </div>
+    </div>
+
+    <div class="editor" v-if="false">
+      <template v-for="{ type, abilities } in AllAbilityContainer" :key="type">
+        <div class="generic-label">
+          <span class="text">{{ t(getAbilityTypeNameKey(type)) }}</span>
+          <hr class="horizontal" />
+        </div>
+        <template v-for="ability in abilities" :key="ability">
+          <div
+            class="ability-label"
+            :class="{ focused: isAbilityFocused(ability) }"
+            @click="setFocus(type, ability)"
+          >
+            {{ t(getAbilityNameKey(ability)) }}
+          </div>
+          <div class="grade-selector-container">
+            <div
+              class="grade-selector"
+              v-for="grade in OrderedAbilityGrades"
+              :key="grade"
+              :class="{ selected: isAbilityGradeEquals(ability, grade) }"
+              @click="setAbilityGrade(type, ability, grade)"
+            >
+              <img class="icon" :src="getAbilityGradeIcon(grade)" alt="" />
+            </div>
           </div>
         </template>
-      </div>
+      </template>
     </div>
   </section>
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType, reactive, ref } from "vue";
-import { AbilityGrade, Ability, AllAbilityContainer } from "@/data";
-import { getAbilityGradeIcon } from "@/views/logic/resources/images";
-import { Dto } from "@/views/hall-of-fame/logic/db";
+import { computed, defineComponent, inject, ref } from "vue";
 import { useI18n } from "vue-i18n";
+import { Ability, AbilityIdentify, AbilityGrade, AbilityType } from "@/data";
+import { getAbilityGradeIcon } from "@/views/logic/resources/images";
+import {
+  fallbackStateFactory,
+  stateInjectionKey,
+} from "@/views/hall-of-fame/logic/dependency";
 
-const AbilityGrades: Array<AbilityGrade> = [
+const OrderedAbilityGrades: Array<AbilityGrade> = [
   "s",
   "a",
   "b",
@@ -54,7 +95,7 @@ const AbilityGrades: Array<AbilityGrade> = [
   "g",
 ];
 
-const AbilityRotation: Record<Ability, Ability> = {
+const AbilityRotation: Record<AbilityIdentify, AbilityIdentify> = {
   turf: "dirt",
   dirt: "short",
   short: "mile",
@@ -68,113 +109,157 @@ const AbilityRotation: Record<Ability, Ability> = {
 };
 
 export default defineComponent({
-  props: {
-    editData: {
-      type: Object as PropType<Dto>,
-      required: true,
-    },
-  },
   data() {
-    const { t } = useI18n();
     return {
+      AllAbilityContainer: Ability.allContainer,
+      getAbilityNameKey: Ability.getNameKey,
+      getAbilityTypeNameKey: Ability.getTypeNameKey,
       getAbilityGradeIcon,
-      AllAbilityContainer,
-      AbilityGrades,
-      t,
+      OrderedAbilityGrades,
     };
   },
-  setup(props) {
-    const abilityDto = reactive(props.editData.ability);
+  setup() {
+    const { t } = useI18n();
 
-    const editing = ref<Ability>("turf");
-    const setEditing = (ability: Ability) => {
-      editing.value = ability;
+    const { editData } = inject(stateInjectionKey, fallbackStateFactory, true);
+    const { ability } = editData.value;
+
+    const getAbilityGrade = (identify: AbilityIdentify): AbilityGrade => {
+      return ability[identify];
     };
-    const isEditing = (ability: Ability) => {
-      return editing.value == ability;
+
+    const focus = ref<[AbilityType, AbilityIdentify]>(["racetrack", "turf"]);
+    const setFocus = (type: AbilityType, identify: AbilityIdentify) => {
+      focus.value = [type, identify];
     };
-    const rotateEditing = () => {
-      setEditing(AbilityRotation[editing.value]);
+    const isAbilityFocused = (identify: AbilityIdentify) => {
+      return focus.value[1] === identify;
     };
-    const setAbilityGrade = (grade: AbilityGrade) => {
-      abilityDto[editing.value] = grade;
-      rotateEditing();
+    const isAbilityGradeEquals = (
+      identify: AbilityIdentify,
+      grade: AbilityGrade
+    ) => {
+      return ability[identify] === grade;
     };
+    const setAbilityGrade = (
+      type: AbilityType,
+      identify: AbilityIdentify,
+      grade: AbilityGrade
+    ) => {
+      ability[identify] = grade;
+      setFocus(type, identify);
+    };
+
+    const editorLabel = computed(() => {
+      const [type, identify] = focus.value;
+      const typeName = t(Ability.getTypeNameKey(type));
+      const abilityName = t(Ability.getNameKey(identify));
+      return `${typeName} : ${abilityName}`;
+    });
+    const isFocusedAbilityGradeEquals = (grade: AbilityGrade) => {
+      return isAbilityGradeEquals(focus.value[1], grade);
+    };
+    const setFocusedAbilityGrade = (grade: AbilityGrade) => {
+      const identify = focus.value[1];
+      ability[identify] = grade;
+
+      const next = AbilityRotation[identify];
+      setFocus(Ability.getType(next), next);
+    };
+
     return {
-      getGradeIcon: (ability: Ability) =>
-        getAbilityGradeIcon(abilityDto[ability]),
-      setEditing,
-      isEditing,
-      rotateEditing,
+      t,
+      getAbilityGrade,
+      setFocus,
+      isAbilityFocused,
+      isAbilityGradeEquals,
       setAbilityGrade,
+      editorLabel,
+      isFocusedAbilityGradeEquals,
+      setFocusedAbilityGrade,
     };
   },
 });
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .ability-editor-root {
-  @apply font-bold p-[0.5rem] bg-[#fafafa];
-  > .ability-preview {
-    @apply grid grid-cols-2 gap-[0.75rem];
-    > .ability-generic-term {
-      @apply col-span-2 text-[0.875rem];
+  @apply flex flex-col gap-y-[0.5rem] h-full;
+  @apply sm:(gap-y-[1rem]);
+
+  > .view {
+    @apply p-[0.5rem] rounded-md bg-[#f2f2f2];
+
+    > .ability-type-name {
+      @apply flex gap-x-[0.375rem] items-center px-[0.5rem] py-[0.25rem];
+
+      > .text {
+        @apply text-[0.875rem];
+        @apply sm:(text-[1rem]);
+      }
+
+      > .horizontal {
+        @apply flex-grow border-[#d2d2d2];
+      }
     }
 
-    > .ability-container {
-      @apply flex justify-between items-center border rounded-md shadow-sm p-[0.25rem] bg-[#fefefe] cursor-pointer;
-      &[data-selected="true"] {
-        @apply ring;
-      }
+    > .ability-item-group {
+      @apply grid grid-cols-2 justify-items-center;
 
-      > .ability-name {
-        @apply flex-grow text-center text-[0.75rem];
-      }
+      > .ability-item {
+        @apply flex gap-x-[0.5rem] items-center h-[2.5rem] cursor-pointer;
+        @apply sm:(h-[3.5rem]);
 
-      > .ability-value {
-        @apply w-[1.25rem];
+        &:not(.focused):hover {
+          > .label {
+            @apply border-[#8fd54a];
+          }
+        }
+
+        &.focused {
+          > .label {
+            @apply text-[#fafafa] bg-[#8fd54a];
+          }
+        }
+
+        > .label {
+          @apply text-center text-[0.875rem] w-[5rem] px-[0.25rem] py-[0.25rem] rounded-md bg-[#fafafa] border;
+          @apply sm:(text-[1rem] w-[7rem] px-[0.5rem] py-[0.5rem]);
+        }
+
+        > .icon {
+          @apply w-[1.5rem] h-[1.5rem];
+          @apply sm:(w-[2rem] h-[2rem]);
+        }
       }
     }
   }
 
-  > .grade-selector {
-    @apply mt-[1.5rem] bg-[#f2f2f2] rounded-md;
-    > .grade-item-group {
-      @apply grid grid-cols-4 gap-[1rem] h-full p-[1rem];
-      place-items: center;
+  > .editor {
+    @apply flex flex-col gap-y-[1rem] p-[0.5rem] rounded-md border;
 
-      > .grade-item {
-        @apply h-[2rem] w-[2rem] p-[0.25rem] bg-[#fefefe] rounded-md cursor-pointer;
-      }
-    }
-  }
-}
-
-@screen xs {
-  .ability-editor-root {
-    > .ability-preview {
-      @apply grid grid-cols-4 gap-[1rem];
-      > .ability-generic-term {
-        @apply col-span-4 text-[1rem];
-      }
-
-      > .ability-container {
-        > .ability-name {
-          @apply text-[0.875rem];
-        }
-
-        > .ability-value {
-          @apply w-[1.5rem];
-        }
-      }
+    > .label {
+      @apply flex text-[0.875rem] px-[0.5rem] py-[0.25rem];
+      @apply sm:(text-[1rem]);
     }
 
-    > .grade-selector {
-      @apply mt-[2rem];
-      > .grade-item-group {
-        @apply flex gap-[1rem] justify-between h-full p-[1rem];
-        > .grade-item {
-          @apply h-[2.5rem] w-[2.5rem] p-[0.25rem];
+    > .grade-selector-container {
+      @apply grid grid-cols-4 gap-y-[1.25rem] justify-items-center py-[0.25rem];
+      @apply sm:(gap-y-[1.75rem]);
+
+      > .grade-selector {
+        @apply cursor-pointer rounded-md;
+
+        > .icon {
+          @apply w-[2rem] h-[2rem];
+        }
+
+        &:not(.selected):hover {
+          @apply ring;
+        }
+
+        &.selected {
+          @apply ring ring-[#8fd54a];
         }
       }
     }
