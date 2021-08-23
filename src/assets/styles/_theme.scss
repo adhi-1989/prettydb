@@ -6,7 +6,7 @@ html {
       @apply h-full;
     }
 
-    #root-level-modal {
+    > #top-level-overlay {
       @apply absolute top-0 left-0 overflow-hidden z-60;
       &:not(:empty) {
         @apply w-full h-full;
