@@ -91,13 +91,34 @@ export default defineConfig(() => {
           navigationPreload: true,
           runtimeCaching: [
             {
-              urlPattern: /https:\/\/prettydb\.adhi\.jp\/.+\.(svg|png)$/,
+              urlPattern: /^https:\/\/prettydb\.adhi\.jp\/.+\.(svg|png)$/i,
               handler: "CacheFirst",
               options: {
-                cacheName: "assets",
+                cacheName: "images",
                 expiration: {
-                  maxEntries: 128,
                   maxAgeSeconds: 60 * 60 * 24 * 30,
+                  maxEntries: 128,
+                },
+              },
+            },
+            {
+              urlPattern: /^https:\/\/fonts\.googleapis\.com\/.*/i,
+              handler: "StaleWhileRevalidate",
+              options: {
+                cacheName: "google-fonts-stylesheets",
+              },
+            },
+            {
+              urlPattern: /^https:\/\/fonts\.gstatic\.com\/.*/i,
+              handler: "CacheFirst",
+              options: {
+                cacheName: "google-fonts-webfonts",
+                cacheableResponse: {
+                  statuses: [0, 200],
+                },
+                expiration: {
+                  maxAgeSeconds: 60 * 60 * 24 * 365,
+                  maxEntries: 30,
                 },
               },
             },
