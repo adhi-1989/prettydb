@@ -1,11 +1,10 @@
 <template>
-  <canvas ref="canvasRef"></canvas>
+  <article ref="elementRef"></article>
 </template>
 
 <script lang="ts">
 import { defineComponent, onMounted, ref } from "vue";
 import _ from "@/util/lodash";
-import * as THREE from "three";
 import horseshoe from "#/images/app/horseshoe.svg?url";
 
 const spriteLimit = 16;
@@ -15,7 +14,6 @@ const Colors = [
 ] as const;
 
 type SpriteProperty = {
-  size: number;
   rotate: number;
   moveX: number;
   moveY: number;
@@ -23,135 +21,96 @@ type SpriteProperty = {
 
 export default defineComponent({
   setup() {
-    const canvasRef = ref<Element>();
+    const elementRef = ref<Element>();
 
-    const initialize = (canvas: HTMLCanvasElement) => {
-      const hasChangedCanvasSize = () => {
-        return (
-          canvas.width !== canvas.clientWidth ||
-          canvas.height !== canvas.clientHeight
-        );
+    const initialize = async (element: HTMLElement) => {
+      const PIXI = await import("pixi.js");
+
+      const loader = PIXI.Loader.shared;
+      const app = new PIXI.Application({
+        autoStart: false,
+        resizeTo: element,
+        backgroundAlpha: 0,
+      });
+      const container = new PIXI.Container();
+
+      element.appendChild(app.view);
+      app.stage.addChild(container);
+
+      const sprites: Array<InstanceType<typeof PIXI.Sprite>> = [];
+      const properties: Array<SpriteProperty> = [];
+
+      const createSprite = (createOnScreen = false) => {
+        const sprite = new PIXI.Sprite(loader.resources["horseshoe"].texture);
+        sprite.alpha = 0.625;
+        sprite.tint = Colors[_.random(0, Colors.length - 1, false)];
+        sprite.anchor.set(0.5);
+        sprite.scale.set(_.random(0.1, 0.25, true));
+
+        const { width, height } = app.screen;
+        if (createOnScreen) {
+          sprite.x = _.random(0, width - sprite.width);
+          sprite.y = _.random(0, height);
+        } else {
+          if (Math.random() > 0.5) {
+            sprite.x = -sprite.width;
+            sprite.y = _.random(0, height + sprite.height);
+          } else {
+            sprite.x = _.random(-sprite.width, width);
+            sprite.y = height + sprite.height;
+          }
+        }
+
+        sprites.push(sprite);
+        properties.push({
+          rotate: _.random(0.01, 0.05, true),
+          moveX: _.random(0.25, 1, true),
+          moveY: _.random(-1, -0.25, true),
+        });
+        container.addChild(sprite);
       };
 
-      new THREE.TextureLoader().load(horseshoe, (texture) => {
-        const sprites: Array<THREE.Object3D> = [];
-        const properties: Array<SpriteProperty> = [];
-        const scene = new THREE.Scene();
-
-        const createSprite = () => {
-          const sprite = new THREE.Object3D();
-          const size = _.random(64, 128, false);
-          const color = Colors[_.random(0, Colors.length - 1, false)];
-          const property: SpriteProperty = {
-            size,
-            rotate: _.random(0.01, 0.05, true),
-            moveX: _.random(0.25, 1, true),
-            moveY: _.random(-1, -0.25, true),
-          };
-
-          const geometry = new THREE.PlaneGeometry(size, size);
-          const material = new THREE.MeshBasicMaterial({
-            side: THREE.DoubleSide,
-            map: texture,
-            transparent: true,
-            opacity: 0.65,
-            alphaTest: 0.65,
-            depthTest: false,
-            color,
-          });
-          const mesh = new THREE.Mesh(geometry, material);
-
-          sprite.add(mesh);
-          sprites.push(sprite);
-          properties.push(property);
-          scene.add(sprite);
-          return { sprite, property };
-        };
-
-        const camera = new THREE.OrthographicCamera(
-          0,
-          canvas.clientWidth,
-          0,
-          canvas.clientHeight,
-          -1,
-          1
-        );
-        camera.zoom = 1;
-
-        const renderer = new THREE.WebGLRenderer({
-          antialias: true,
-          alpha: true,
-          canvas,
-        });
-        renderer.setClearColor(0, 0);
-        renderer.setAnimationLoop(() => {
-          if (hasChangedCanvasSize()) {
-            renderer.setSize(canvas.clientWidth, canvas.clientHeight, false);
-            camera.right = canvas.clientWidth;
-            camera.bottom = canvas.clientHeight;
-            camera.updateProjectionMatrix();
-          }
-
-          const removeIndices: Array<number> = [];
-          sprites.forEach((sprite, index) => {
-            const { size, rotate, moveX, moveY } = properties[index];
-            sprite.rotateZ(rotate);
-            sprite.position.x += moveX;
-            sprite.position.y += moveY;
-
-            if (
-              sprite.position.x > canvas.clientWidth + size ||
-              sprite.position.y < -size
-            ) {
-              removeIndices.push(index);
-            }
-          });
-
-          removeIndices.forEach((index) => {
-            scene.remove(sprites[index]);
-            _.remove(sprites, sprites[index]);
-            _.remove(properties, properties[index]);
-            const { sprite, property } = createSprite();
-            const { size } = property;
-            if (Math.random() > 0.5) {
-              sprite.position.set(
-                -size,
-                _.random(0, canvas.clientHeight + size),
-                0
-              );
-            } else {
-              sprite.position.set(
-                _.random(-size, canvas.clientWidth),
-                canvas.clientHeight + size,
-                0
-              );
-            }
-          });
-
-          renderer.render(scene, camera);
-        });
-
+      const doInit = () => {
         _.range(spriteLimit).forEach(() => {
-          const { sprite, property } = createSprite();
-          const { size } = property;
-          sprite.position.set(
-            _.random(-size, canvas.clientWidth - size),
-            _.random(0, canvas.clientHeight + size),
-            0
-          );
+          createSprite(true);
         });
+        app.start();
+      };
 
-        renderer.render(scene, camera);
+      if (!loader.resources["horseshoe"]) {
+        loader.add("horseshoe", horseshoe).load(doInit);
+      } else {
+        doInit();
+      }
+
+      app.ticker.add(() => {
+        _.range(spriteLimit).forEach((i) => {
+          const sprite = sprites[i];
+          sprite.rotation += properties[i].rotate;
+          sprite.x += properties[i].moveX;
+          sprite.y += properties[i].moveY;
+
+          const offscreenX = app.screen.width + sprite.width;
+          const offscreenY = 0 - sprite.height;
+          if (sprite.x > offscreenX || sprite.y < offscreenY) {
+            container.removeChild(sprite);
+            sprite.destroy();
+            sprites.splice(i, 1);
+            properties.splice(i, 1);
+            createSprite();
+          }
+        });
       });
     };
 
     onMounted(() => {
-      if (canvasRef.value !== undefined) {
-        initialize(canvasRef.value as HTMLCanvasElement);
+      if (elementRef.value !== undefined) {
+        initialize(elementRef.value as HTMLElement);
       }
     });
+
     return {
-      canvasRef,
+      elementRef,
     };
   },
 });

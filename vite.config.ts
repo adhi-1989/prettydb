@@ -29,8 +29,8 @@ export default defineConfig(() => {
           manualChunks(id) {
             //TODO: 余裕ができたらちゃんと設定する
             if (id.includes("node_modules")) {
-              if (id.includes("three")) {
-                return "three";
+              if (id.includes("pixi")) {
+                return "pixi";
               }
               return "vendor";
             }
