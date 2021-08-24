@@ -3,6 +3,7 @@
 
 declare module 'vue' {
   export interface GlobalComponents {
+    IconFaSolidCarrot: typeof import('virtual:vite-icons/fa-solid/carrot')['default']
     IconIonAdd: typeof import('virtual:vite-icons/ion/add')['default']
     IconIonBackspace: typeof import('virtual:vite-icons/ion/backspace')['default']
     IconIonCaretBack: typeof import('virtual:vite-icons/ion/caret-back')['default']
@@ -14,6 +15,7 @@ declare module 'vue' {
     IconIonFilter: typeof import('virtual:vite-icons/ion/filter')['default']
     IconIonLogoGithub: typeof import('virtual:vite-icons/ion/logo-github')['default']
     IconIonMenu: typeof import('virtual:vite-icons/ion/menu')['default']
+    IconIonNewspaper: typeof import('virtual:vite-icons/ion/newspaper')['default']
     IconIonReturnDownBack: typeof import('virtual:vite-icons/ion/return-down-back')['default']
     IconIonSearch: typeof import('virtual:vite-icons/ion/search')['default']
     IconIonSettings: typeof import('virtual:vite-icons/ion/settings')['default']

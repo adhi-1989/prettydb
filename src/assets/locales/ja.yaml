@@ -3,8 +3,9 @@ app:
   title: ウマ娘のデータベースアプリ「プリティーデービー」
   description: 「プリティーデービー」とは？　ゲーム「ウマ娘プリティーダービー」に関するデータを参照したり登録したりできるデータベースアプリです。このアプリはブラウザで完結するため、インストール不要で使用可能です。
   navigation:
-    changelog: '📝　@:head.changelog.name'
-    hall-of-fame: '🏛　@:head.hall-of-fame.name'
+    changelog: '@:head.changelog.name'
+    hall-of-fame: '@:head.hall-of-fame.name'
+    settings: '@:head.settings.name'
 head:
   404:
     title: 'ありません！！ - @:app.name'
