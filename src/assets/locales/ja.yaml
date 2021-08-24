@@ -16,11 +16,11 @@ head:
   hall-of-fame:
     name: 殿堂入りウマ娘
     title: '@:head.hall-of-fame.name データ管理 - @:app.name'
-    description: 殿堂入りしたウマ娘のデータを手動で入力することで、アプリにデータを保存・閲覧することができます。
+    description: 殿堂入りしたウマ娘のデータを管理できます。データを手動で入力してアプリに保存したり、保存したデータを閲覧することができます。保存したデータは設定画面からダウンロードすることが可能です。
   settings:
     name: 設定
     title: '@:head.settings.name - @:app.name'
-    description: プリティーデービーの設定を変更したり、データのバックアップ・インポートなどを行うことができます。
+    description: プリティーデービーに保存したデータのバックアップ・インポートなどを行うことができます。
 ui:
   close: 閉じる
   discard: 変更を破棄する
