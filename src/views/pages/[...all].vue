@@ -1,11 +1,12 @@
 <template>
-  <article class="notfound-root">
-    <main class="notfound">
-      <div class="my-container">
-        <img class="image" :src="notfound" alt="" />
+  <article :class="$style.notfound">
+    <div :class="$style.screen">
+      <img :class="$style.image" :src="notfound" alt="" />
+      <div :class="$style.caption">
+        <span :class="$style.text">そんなページはありません！！</span>
       </div>
-      <div class="caption">そんなページはありません！！</div>
-    </main>
+      <div :class="$style.padding"></div>
+    </div>
   </article>
 </template>
 
@@ -23,36 +24,39 @@ export default defineComponent({
   },
   setup() {
     const { t } = useI18n();
+
     useHead({
       title: t("head.404.title"),
       meta: [{ name: "description", content: t("head.404.description") }],
     });
+
     return {};
   },
 });
 </script>
 
-<style lang="scss">
-.notfound-root {
+<style lang="scss" module>
+.notfound {
   @apply select-none h-full;
 
-  > .notfound {
-    @apply h-full flex flex-col;
+  > .screen {
+    @apply flex flex-col h-full;
 
-    > .my-container {
-      @apply bg-[#1b164e];
-      @apply portrait:max-h-[calc(100%-6vh)];
-      @apply landscape:max-h-[calc(100%-6vw)];
-
-      > .image {
-        @apply w-full h-full object-contain object-left-top;
-      }
+    > .image {
+      @apply object-contain object-left-top w-full pr-[10%] bg-[#1b164e];
+      @apply landscape:(h-[calc(100%-4vw-3vw)]);
     }
 
     > .caption {
-      @apply bg-[#000] text-center text-[#fefefe];
-      @apply portrait:(text-[4vh] py-[1.1vh]);
-      @apply landscape:(text-[4vw] py-[1.1vw]);
+      @apply bg-[#000] text-center text-[#fefefe] py-[1rem];
+      @apply portrait:(text-[2vh] py-[1.5vh]);
+      @apply portrait:sm:(text-[3vh]);
+      @apply landscape:(text-[4vw] py-[1.5vw]);
+    }
+
+    > .padding {
+      @apply flex-grow h-full;
+      @apply landscape:(bg-[#000]);
     }
   }
 }
