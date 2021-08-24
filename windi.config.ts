@@ -10,6 +10,14 @@ export default defineConfig({
       sans: ["'Noto Sans JP'", "ui-sans-serif", "system-ui", "sans-serif"],
     },
     extend: {
+      fontSize: {
+        xxs: [
+          "0.5rem",
+          {
+            lineHeight: "0.875rem",
+          },
+        ],
+      },
       screens: {
         xs: { min: "320px", max: "419px" },
         sm: "420px",

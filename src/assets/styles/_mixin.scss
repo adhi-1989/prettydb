@@ -1,13 +1,49 @@
-@mixin button-gradient {
-  @apply bg-gradient-to-t from-[#e9e6ee] via-[#f5f5f7] to-[#fefefe];
+@mixin button-gradient($primaryColor: true) {
+  @apply bg-gradient-to-t;
+  @if ($primaryColor) {
+    @apply from-[#ececec] to-[#fefefe];
+  } @else {
+    @apply from-[#88c842] via-[#94d042] to-[#c8f058];
+  }
 }
 
-@mixin text-stroke($color) {
-  text-shadow: -1px 0 $color, 1px 0 $color, 0 -1px $color, 0 1px $color;
+@mixin button-border($primaryColor: true, $withShadow: true) {
+  @apply bg-gradient-to-t;
+  @if ($primaryColor) {
+    @apply from-[#787888] to-[#cfcfcf];
+  } @else {
+    @apply from-[#588728] to-[#a8d944];
+  }
+  @if ($withShadow) {
+    box-shadow: #b8b6c3 0 1px 1px;
+  }
 }
 
-@mixin text-overflow-omit {
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
+@mixin button-content($primaryColor: true, $borderSize: 1px) {
+  @include button-gradient($primaryColor);
+  @apply w-full h-full bg-clip-padding;
+  border: transparent solid $borderSize;
+  @if (not $primaryColor) {
+    @apply text-[#fefefe];
+  }
+}
+
+@mixin text-stroke($color: #fefefe, $size: 1px) {
+  text-shadow: -$size 0 $color, $size 0 $color, 0 (-$size) $color, 0 $size $color;
+}
+
+@mixin enter-active {
+  &:global(-enter-active) {
+    :global {
+      @content;
+    }
+  }
+}
+
+@mixin leave-active {
+  &:global(-leave-active) {
+    :global {
+      @content;
+    }
+  }
 }
