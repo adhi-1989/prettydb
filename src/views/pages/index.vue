@@ -1,46 +1,46 @@
 <template>
-  <article class="home-root">
-    <header class="header">
-      <img class="logo" :src="logo" alt="" />
-      <span class="version">v0.7.10</span>
+  <article :class="$style.home">
+    <header :class="$style.header">
+      <img :class="$style.logo" :src="logo" alt="" />
+      <span :class="$style.version">v0.7.10</span>
     </header>
 
-    <main class="main">
-      <section class="outline content">
-        <span class="heading level-1">「プリティーデービー」とは？</span>
-        <p class="text-block">
+    <main :class="$style.main">
+      <section :class="[$style.content, $style.outline]">
+        <h1 :class="[$style.heading, $style.level1, $style.centering]">
+          「プリティーデービー」とは？
+        </h1>
+        <p :class="$style.paragraph">
           「株式会社Cygames」様より提供・運営されているアプリケーション 「ウマ娘
           プリティーダービー」に関するデータを参照したり登録したりできるデータベースアプリです。
         </p>
-        <section class="section warning">
-          <span class="heading level-4">＊＊ 注意 ＊＊</span>
-          <p class="text-block">
+
+        <section :class="[$style.section, $style.warning]">
+          <h2 :class="[$style.heading, $style.level2]">＊＊ 注意 ＊＊</h2>
+          <p :class="$style.paragraph">
             このアプリはブラウザにデータを保存します。
             そのため、プライベートウィンドウでこのアプリを利用するとデータが正常に保存されない恐れがあります。
             このアプリを利用する際はプライベートウィンドウをつかわないようにお願いします。
           </p>
         </section>
-        <section class="section features">
-          <span class="heading level-4">公開中の機能一覧</span>
-          <ul class="list block">
-            <li class="list-item">
-              <router-link class="link" to="/hall-of-fame">
+
+        <section :class="$style.section">
+          <h2 :class="[$style.heading, $style.level2]">公開中の機能一覧</h2>
+          <ul :class="[$style.block, $style.list]">
+            <li :class="$style.item">
+              <router-link :class="$style.link" to="/hall-of-fame">
                 殿堂入りウマ娘
               </router-link>
-            </li>
-            <li class="list-item no-disc">
-              <p>
+              <p :class="$style.paragraph">
                 殿堂入りしたウマ娘のデータを手動で入力することで、アプリにデータを保存・閲覧することができます。
               </p>
             </li>
-            <li class="list-item">
-              <router-link class="link" to="/settings">
-                <icon-ion-settings class="icon" />
-                (設定)
+
+            <li :class="$style.item">
+              <router-link :class="$style.link" to="/settings">
+                設定
               </router-link>
-            </li>
-            <li class="list-item no-disc">
-              <p>
+              <p :class="$style.paragraph">
                 入力した殿堂入りウマ娘のデータをバックアップ・インポートすることができます。
               </p>
             </li>
@@ -48,35 +48,41 @@
         </section>
       </section>
 
-      <section class="content development">
-        <span class="heading level-1">開発について</span>
-        <section class="section changelog">
-          <span class="heading level-4">変更履歴</span>
-          <div class="block">
-            <router-link class="link" to="/changelog">
+      <section :class="$style.content">
+        <h1 :class="[$style.heading, $style.level1, $style.centering]">
+          開発について
+        </h1>
+
+        <section :class="[$style.section, $style.changelog]">
+          <h2 :class="[$style.heading, $style.level2]">変更履歴</h2>
+          <div :class="$style.block">
+            <router-link :class="$style.link" to="/changelog">
               変更履歴（別ページ）へ移動します
             </router-link>
           </div>
         </section>
-        <section class="section todo-list">
-          <span class="heading level-4">やることリスト</span>
-          <div class="block">
-            <span class="heading level-6">[ 殿堂入りウマ娘 データ管理 ]</span>
-            <ul class="list">
-              <li class="list-item">
+
+        <section :class="[$style.section]">
+          <h2 :class="[$style.heading, $style.level2]">やることリスト</h2>
+          <div :class="$style.block">
+            <h3 :class="[$style.heading, $style.level3]">
+              [ 殿堂入りウマ娘 データ管理 ]
+            </h3>
+            <ul :class="[$style.list, $style.block]">
+              <li :class="$style.item">
                 登録したデータの検索・ソート機能を追加する
               </li>
-              <li class="list-item">登録したデータを削除できるようにする</li>
-              <li class="list-item">
+              <li :class="$style.item">登録したデータを削除できるようにする</li>
+              <li :class="$style.item">
                 データ入力時、キーボードで操作できるようにする
               </li>
-              <li class="list-item">
+              <li :class="$style.item">
                 スキルや因子などをクリックしたとき、詳細を見られるようにする
               </li>
-              <li class="list-item">
+              <li :class="$style.item">
                 スキル、因子の編集画面を開くとき、若干カクつくので改善する
               </li>
-              <li class="list-item">
+              <li :class="$style.item">
                 データ登録画面のユーザビリティ向上。
                 <!-- キャラクターを選択したときに各種適性やユニークスキルを自動でセットするなど -->
               </li>
@@ -85,28 +91,34 @@
         </section>
       </section>
 
-      <section class="content issues">
-        <span class="heading level-1">要望・バグについて</span>
-        <p class="text-block">
-          要望やバグ報告はつねに歓迎しております。 Twitter( @Adhi_1989
-          )までメンションかDMを送っていただくか、
+      <section :class="$style.content">
+        <h1 :class="[$style.heading, $style.level1, $style.centering]">
+          要望・バグについて
+        </h1>
+        <p :class="$style.paragraph">
+          要望やバグ報告はつねに歓迎しております。
+          TwitterまでメンションかDMを送っていただくか、
           Issuesから新規にissueを作成していただけると助かります。
         </p>
-        <ul class="list block">
-          <li class="list-item">
+
+        <ul :class="[$style.section, $style.list]">
+          <li :class="$style.item">
             <a
-              class="link"
+              :class="$style.link"
               href="https://twitter.com/Adhi_1989"
               target="_blank"
+              rel="noreferrer"
             >
               Twitterを別タブで開きます
             </a>
           </li>
-          <li class="list-item">
+
+          <li :class="$style.item">
             <a
-              class="link"
+              :class="$style.link"
               href="https://github.com/adhi-1989/prettydb/issues"
               target="_blank"
+              rel="noreferrer"
             >
               Issuesを別タブで開きます
             </a>
@@ -114,18 +126,29 @@
         </ul>
       </section>
 
-      <section class="content license">
-        <span class="heading level-1">ライセンス</span>
-        <p class="text-block">
+      <section :class="[$style.content, $style.license]">
+        <h1 :class="[$style.heading, $style.level1, $style.centering]">
+          ライセンス
+        </h1>
+        <p :class="$style.paragraph">
           プリティーデービーはMITライセンスのもと、開発・公開されています。
           あなたはプリティーデービーを（MITライセンスの認める限り）自由に利用できますが、そこに一切の保証はありません。
         </p>
-        <section class="section license-article" @click="toggleLocalized()">
-          <span class="heading level-6"
-            >＊ クリック（タップ）で表示切り替え ＊</span
+
+        <section
+          :class="[$style.section, $style.article]"
+          @click="toggleLocalized()"
+        >
+          <h2 :class="[$style.heading, $style.level4, $style.centering]">
+            ＊ クリック（タップ）で表示切り替え ＊
+          </h2>
+          <transition
+            name="license"
+            mode="out-in"
+            @enter="fadeIn"
+            @leave="fadeOut"
           >
-          <transition name="license" mode="out-in">
-            <p class="text-block" v-if="!isLocalized">
+            <p :class="$style.paragraph" v-if="!isLocalized">
               The MIT License<br />
               Copyright 2021 adhi-1989<br />
               <br />
@@ -149,7 +172,7 @@
               OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
               DEALINGS IN THE SOFTWARE.
             </p>
-            <p class="text-block" v-else>
+            <p :class="$style.paragraph" v-else>
               The MIT License<br />
               Copyright (c) 2021 adhi-1989<br />
               <br />
@@ -165,26 +188,40 @@
       </section>
     </main>
   </article>
+
   <teleport to="#background">
-    <horseshoe-particles class="h-full w-full" />
+    <horseshoe-particles :class="$style.background" />
   </teleport>
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, defineAsyncComponent } from "vue";
 import { useToggle } from "@vueuse/core";
-import HorseshoeParticles from "@/views/components/HorseshoeParticles.vue";
+import { fadeIn, fadeOut } from "@/views/logic/dom/animation";
 import logo from "#/images/app/logo.svg";
 
 export default defineComponent({
-  components: { HorseshoeParticles },
+  components: {
+    HorseshoeParticles: defineAsyncComponent(
+      () => import("@/views/components/HorseshoeParticles.vue")
+    ),
+  },
   data() {
     return {
+      fadeIn: fadeIn({
+        duration: 125,
+        easing: "ease",
+      }),
+      fadeOut: fadeOut({
+        duration: 125,
+        easing: "ease",
+      }),
       logo,
     };
   },
   setup() {
     const [isLocalized, toggleLocalized] = useToggle();
+
     return {
       isLocalized,
       toggleLocalized,
@@ -193,24 +230,32 @@ export default defineComponent({
 });
 </script>
 
-<style lang="scss">
-.home-root {
-  @apply text-[0.75rem] leading-tight;
-  @apply sm:(text-[0.875rem] leading-snug);
-  @apply xl:(text-[1rem] leading-normal);
+<style lang="scss" module>
+.background {
+  @apply w-full h-full;
+}
+
+.home {
+  @apply text-xs leading-tight;
+  @apply sm:(text-sm leading-snug);
+  @apply xl:(text-base leading-normal);
+
   > .header {
-    @apply relative w-full max-w-[18rem] mx-auto my-[1.5rem];
-    @apply sm:(max-w-[24.25rem] my-[2rem]);
-    @apply xl:(max-w-[32rem] my-[3rem]);
+    @apply relative w-[18rem] mx-auto my-[1.5rem];
+    @apply sm:(w-[24.25rem] my-[2rem]);
+    @apply xl:(w-[32rem] my-[3rem]);
+
     > .logo {
-      @apply w-[32rem] mx-auto;
+      @apply w-[18rem] h-[2.25rem];
+      @apply sm:(w-[24.25rem] h-[3rem]);
+      @apply xl:(w-[32rem] h-[4rem]);
     }
 
     > .version {
       @include text-stroke(#fefefe);
-      @apply absolute font-bold text-[1rem] right-0 bottom-[-0.5rem];
-      @apply sm:(text-[1.25rem] bottom-[-0.5rem]);
-      @apply xl:(text-[1.5rem]);
+      @apply absolute font-bold text-xs right-0 bottom-[-0.5rem];
+      @apply sm:(text-base bottom-[-0.75rem]);
+      @apply xl:(text-xl bottom-[-0.875rem]);
     }
   }
 
@@ -218,104 +263,87 @@ export default defineComponent({
     @apply flex flex-col gap-y-[2rem] my-[1rem];
     @apply sm:(mb-[2rem]);
     @apply xl:(mb-[3rem]);
+
     > .content {
       @apply border-2 rounded-lg w-[18rem] mx-auto p-[0.75rem] shadow-sm bg-[#fefefe];
       @apply sm:(w-[24.25rem] p-[1rem]);
       @apply md:(w-[32rem] p-[1.5rem]);
       @apply lg:(w-[40rem]);
+
+      .centering {
+        @apply text-center;
+      }
+
       .heading {
         @apply font-bold;
       }
 
-      .heading.level-1 {
-        @apply text-[1.25rem] text-center block;
-        @apply sm:(text-[1.5rem]);
-        @apply md:(text-[1.75rem]);
+      .heading.level1 {
+        @apply text-lg;
+        @apply sm:(text-xl);
+        @apply md:(text-2xl);
       }
 
-      .heading.level-2 {
-        @apply text-[1.125rem];
-        @apply sm:(text-[1.375rem]);
-        @apply md:(text-[1.625rem]);
+      .heading.level2 {
+        @apply text-base;
+        @apply sm:(text-lg);
+        @apply md:(text-xl);
       }
 
-      .heading.level-3 {
-        @apply text-[1rem];
-        @apply sm:(text-[1.25rem]);
-        @apply md:(text-[1.5rem]);
+      .heading.level3 {
+        @apply text-sm;
+        @apply sm:(text-base);
+        @apply md:(text-lg);
       }
 
-      .heading.level-4 {
-        @apply text-[0.875rem];
-        @apply sm:(text-[1.125rem]);
-        @apply md:(text-[1.375rem]);
+      .heading.level4 {
+        @apply text-xs;
+        @apply sm:(text-sm);
+        @apply md:(text-base);
       }
 
-      .heading.level-5 {
-        @apply text-[0.75rem];
-        @apply sm:(text-[1rem]);
-        @apply md:(text-[1.25rem]);
+      .section {
+        @apply mt-[1rem];
+        @apply sm:(mt-[1.25rem]);
       }
 
-      .section,
-      .block,
-      .text-block {
-        @apply mt-[0.75rem];
-        @apply sm:(mt-[1rem]);
+      .block {
+        @apply mt-[0.5rem];
+        @apply sm:(mt-[0.75rem]);
+      }
+
+      .paragraph {
+        @apply mt-[0.25rem];
+        @apply sm:(mt-[0.5rem]);
       }
 
       .list {
-        @apply flex flex-col gap-y-[0.375rem];
-        > .list-item {
+        @apply flex flex-col gap-y-[1rem];
+
+        > .item {
           @apply list-disc list-inside;
-          &.no-disc {
-            @apply list-none;
-          }
         }
       }
 
       .link {
-        @apply text-blue-400;
+        @apply text-[#01579b];
       }
 
       &.outline {
         > .warning {
           > .heading {
-            @apply text-red-500;
+            @apply text-[#b71c1c];
           }
 
-          > .text-block {
-            @apply text-red-400;
+          > .paragraph {
+            @apply text-[#f05545];
           }
-        }
-
-        > .features {
-          > .list {
-            > .list-item > .link {
-              @apply inline-flex items-center;
-            }
-          }
-        }
-      }
-
-      &.issues {
-        > .list > .list-item {
-          @apply mt-[1rem];
         }
       }
 
       &.license {
-        > .license-article {
-          @apply bg-[#f2f2f2] p-[0.5rem] leading-normal rounded-md cursor-pointer;
-          > .license-enter-active {
-            animation: fadeIn;
-            animation-duration: 0.25s;
-          }
-
-          > .license-leave-active {
-            animation: fadeOut;
-            animation-duration: 0.25s;
-          }
+        > .article {
+          @apply bg-[#f2f2f2] p-[0.5rem] rounded-md cursor-pointer;
         }
       }
     }
