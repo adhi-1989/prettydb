@@ -1,109 +1,162 @@
 <template>
-  <article class="settings-root">
-    <section class="content export-import">
-      <h1 class="label">
+  <article :class="$style.settings">
+    <section :class="$style.content">
+      <h1 :class="$style.label">
         {{ t("pages.settings.export-import.label") }}
       </h1>
-      <div class="items">
-        <div class="item hall-of-fame">
-          <span class="label">{{ t("head.hall-of-fame.name") }}</span>
-          <div class="button export" @click="exportData('hall-of-fame/data')">
-            {{ t("pages.settings.export-import.button.export") }}
+
+      <div :class="$style.items">
+        <div :class="$style.item">
+          <div :class="$style.label">
+            <span :class="$style.text">{{ t("head.hall-of-fame.name") }}</span>
+            <hr :class="$style.separator" />
           </div>
-          <div
-            class="button import"
-            @click="openFileChooser('hall-of-fame/data')"
-          >
-            {{ t("pages.settings.export-import.button.import") }}
+
+          <div :class="$style.buttons">
+            <div
+              :class="$style.button"
+              @click="exportData('hall-of-fame/data')"
+            >
+              <div :class="$style.content">
+                <icon-mdi-download :class="$style.icon" />
+                <span :class="$style.text">
+                  {{ t("pages.settings.export-import.button.export") }}
+                </span>
+              </div>
+            </div>
+            <div
+              :class="$style.button"
+              @click="openFileChooser('hall-of-fame/data')"
+            >
+              <div :class="$style.content">
+                <icon-mdi-database-import :class="$style.icon" />
+                <span :class="$style.text">
+                  {{ t("pages.settings.export-import.button.import") }}
+                </span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
+
+      <section :class="$style.hidden">
+        <input ref="importRef" type="file" @change="importData" />
+        <a ref="downloadRef" href="#" download="dummy.dat"></a>
+      </section>
     </section>
-    <transition name="toast">
-      <section class="toast" v-if="showToast">
+
+    <transition name="toast" @enter="fadeInUp" @leave="fadeOut">
+      <section :class="$style.toast" v-if="isToastDisplay">
         {{ t("pages.settings.toast.import") }}
       </section>
     </transition>
-    <section class="invisible">
-      <input ref="importRef" type="file" @change="importData" />
-      <a ref="downloadRef" href="#" :download="fileName"></a>
-    </section>
   </article>
 </template>
 
 <script lang="ts">
 import { defineComponent, ref } from "vue";
 import { useHead } from "@vueuse/head";
+import { useToggle } from "@vueuse/core";
 import { useI18n } from "vue-i18n";
 import dayjs from "dayjs";
 import { db } from "@/views/hall-of-fame/logic/db";
+import { fadeInUp, fadeOut } from "@/views/logic/dom/animation";
+
+type DataType = "hall-of-fame/data";
 
 export default defineComponent({
+  data() {
+    return {
+      fadeInUp: fadeInUp({
+        duration: 250,
+      }),
+      fadeOut: fadeOut({
+        duration: 500,
+      }),
+    };
+  },
   setup() {
     const { t } = useI18n();
+
     useHead({
       title: t("head.settings.title"),
       meta: [{ name: "description", content: t("head.settings.description") }],
     });
 
-    const showToast = ref(false);
+    const [isToastDisplay, toggleToast] = useToggle();
+
     const importRef = ref<Element>();
     const downloadRef = ref<Element>();
-    const fileName = ref("dummy.dat");
-    const dataType = ref("hall-of-fame/data");
-    const openFileChooser = (type: string) => {
-      dataType.value = type;
-      if (importRef.value) {
+
+    const dataType = ref<DataType>("hall-of-fame/data");
+
+    const openFileChooser = (type: DataType) => {
+      if (importRef.value !== undefined) {
+        dataType.value = type;
         const input = importRef.value as HTMLElement;
         input.click();
       }
     };
-    const exportData = async (type: string) => {
-      const { exportDB } = await import("dexie-export-import");
-      if (downloadRef.value) {
+
+    const exportData = async (type: DataType) => {
+      if (downloadRef.value !== undefined) {
+        const { exportDB } = await import("dexie-export-import");
+
         if (type === "hall-of-fame/data") {
           const baseName = t(
             "pages.settings.export-import.file-name.hall-of-fame.data"
           );
           const timestamp = dayjs().format("YYYY-MM-DD_HH-mm-ss");
-          const blob = await exportDB(db);
-          const link = downloadRef.value as HTMLAnchorElement;
-          link.href = window.URL.createObjectURL(blob);
-          link.download = `${baseName} ${timestamp}.dat`;
-          link.click();
+          exportDB(db)
+            .then((blob) => {
+              const link = downloadRef.value as HTMLAnchorElement;
+              link.href = window.URL.createObjectURL(blob);
+              link.download = `${baseName} ${timestamp}.dat`;
+              link.click();
+              //TODO: 成功時のトーストを表示する
+            })
+            .catch(() => {
+              //TODO: エラー時のトーストを表示する
+            });
         }
       }
     };
     const importData = async () => {
-      const { importInto } = await import("dexie-export-import");
-      if (importRef.value) {
+      if (importRef.value !== undefined) {
         const input = importRef.value as HTMLInputElement;
         if (input.files) {
+          const { importInto } = await import("dexie-export-import");
+
           const file = input.files[0];
 
           if (dataType.value === "hall-of-fame/data") {
             importInto(db, file, {
               acceptVersionDiff: true,
               clearTablesBeforeImport: true,
-            }).then(() => {
-              toast();
-            });
+            })
+              .then(() => {
+                toast();
+              })
+              .catch(() => {
+                //TODO: エラー時のトーストを表示する
+              });
           }
         }
       }
     };
+
     const toast = () => {
-      showToast.value = true;
+      toggleToast(true);
       window.setTimeout(() => {
-        showToast.value = false;
+        toggleToast(false);
       }, 3000);
     };
+
     return {
       t,
-      showToast,
+      isToastDisplay,
       importRef,
       downloadRef,
-      fileName,
       openFileChooser,
       exportData,
       importData,
@@ -112,10 +165,10 @@ export default defineComponent({
 });
 </script>
 
-<style lang="scss">
-.settings-root {
-  @apply relative w-[20rem] h-full mx-auto py-[1rem];
-  @apply sm:(w-[26.25rem] py-[1.5rem]);
+<style lang="scss" module>
+.settings {
+  @apply relative w-[18rem] h-full mx-auto py-[1rem] overflow-hidden;
+  @apply sm:(w-[24.25rem] py-[1.5rem]);
   @apply md:(w-[32rem] py-[2rem]);
 
   > .content {
@@ -124,49 +177,62 @@ export default defineComponent({
     @apply md:(gap-y-[1.5rem]);
 
     > .label {
-      @apply ml-[1rem] text-[1rem];
-      @apply sm:(text-[1.25rem]);
-      @apply md:(text-[1.5rem]);
+      @apply text-center text-base;
+      @apply sm:(text-lg);
+      @apply md:(text-xl);
     }
 
     > .items {
-      @apply flex flex-col gap-y-[1rem] mx-[2rem] text-[0.875rem];
-      @apply sm:(text-[1rem]);
-      @apply md:(text-[1.25rem]);
+      @apply text-xs flex flex-col gap-y-[1rem] p-[0.5rem] rounded-md border-2;
+      @apply sm:(text-sm p-[0.75rem]);
+      @apply md:(text-base p-[1rem]);
 
       > .item {
-        @apply flex gap-x-[0.75rem] items-center;
-        @apply sm:(gap-x-[1rem]);
-        @apply md:(gap-x-[1.25rem]);
+        @apply flex flex-col gap-y-[0.25rem];
+        @apply sm:(gap-y-[0.375rem]);
+        @apply md:(gap-y-[0.5rem]);
 
         > .label {
-          @apply flex-grow;
+          @apply flex gap-x-[0.5rem] items-center px-[0.5rem] py-[0.25rem];
+
+          > .separator {
+            @apply flex-grow border-[#d2d2d2];
+          }
         }
 
-        > .button {
-          @include button-gradient;
-          @apply px-[0.25rem] py-[0.125rem] rounded-sm border-1 cursor-pointer;
-          @apply sm:(px-[0.5rem] py-[0.25rem]);
-          @apply md:(px-[0.75rem] py-[0.375rem]);
+        > .buttons {
+          @apply flex justify-around;
+
+          > .button {
+            @include button-border;
+            @apply rounded-lg cursor-pointer;
+
+            > .content {
+              @include button-content;
+              @apply flex gap-x-[0.25rem] items-center w-full h-full px-[0.5rem] py-[0.25rem] rounded-lg;
+              @apply sm:(gap-x-[0.75rem] px-[0.75rem] py-[0.375rem]);
+              @apply md:(gap-x-[1rem] px-[1rem] border-2);
+
+              > .icon {
+                @apply w-[1rem] h-[1rem];
+                @apply sm:(w-[1.5rem] h-[1.5rem]);
+                @apply md:(w-[2rem] h-[2rem]);
+              }
+            }
+          }
         }
       }
+    }
+
+    > .hidden {
+      @apply invisible absolute left-0 top-0 w-0 h-0;
     }
   }
 
   > .toast {
-    @apply absolute bottom-0 inset-x-0 w-[fit-content] mx-auto mb-[1rem] px-[1.25rem] py-[0.75rem] rounded-sm font-bold text-[0.75rem] text-[#fefefe] bg-gradient-to-t from-[#7fbf3cff] via-[#90ca3fff] to-[#a2d543ff];
-    @apply sm:(mb-[1.5rem] px-[1.5rem] py-[1rem] text-[1rem]);
-    @apply md:(mb-[2rem] px-[1.75rem] py-[1.25rem] text-[1.25rem]);
-
-    &-enter-active {
-      animation: fadeInUp;
-      animation-duration: 0.5s;
-    }
-
-    &-leave-active {
-      animation: fadeOut;
-      animation-duration: 0.75s;
-    }
+    @apply absolute bottom-0 inset-x-0 w-[fit-content] mx-auto mb-[1rem] px-[1.25rem] py-[0.75rem] rounded-md font-bold text-[0.75rem] text-[#fefefe] bg-gradient-to-t from-[#7fbf3cff] via-[#90ca3fff] to-[#a2d543ff];
+    @apply sm:(mb-[1.5rem] px-[1.5rem] py-[1rem] text-base);
+    @apply md:(mb-[2rem] px-[1.75rem] py-[1.25rem] text-lg);
   }
 }
 </style>

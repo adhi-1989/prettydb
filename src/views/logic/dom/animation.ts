@@ -3,38 +3,58 @@ type Transition = (element: HTMLElement, done: () => void) => void;
 // type TransitionAfter = (element: HTMLElement) => void;
 // type TransitionCancelled = (element: HTMLElement) => void;
 
-export function fadeIn(option: KeyframeAnimationOptions): Transition {
+function createTransition(
+  keyframes: Keyframe[] | PropertyIndexedKeyframes,
+  option: KeyframeAnimationOptions
+): Transition {
   return (element, done) => {
-    const animation = element.animate(
-      [
-        {
-          opacity: 0,
-        },
-        {
-          opacity: 1,
-        },
-      ],
-      option
-    );
+    const animation = element.animate(keyframes, option);
     animation.onfinish = done;
   };
 }
 
+export function fadeIn(option: KeyframeAnimationOptions): Transition {
+  return createTransition(
+    [
+      {
+        opacity: 0,
+      },
+      {
+        opacity: 1,
+      },
+    ],
+    option
+  );
+}
+
 export function fadeOut(option: KeyframeAnimationOptions): Transition {
-  return (element, done) => {
-    const animation = element.animate(
-      [
-        {
-          opacity: 1,
-        },
-        {
-          opacity: 0,
-        },
-      ],
-      option
-    );
-    animation.onfinish = done;
-  };
+  return createTransition(
+    [
+      {
+        opacity: 1,
+      },
+      {
+        opacity: 0,
+      },
+    ],
+    option
+  );
+}
+
+export function fadeInUp(option: KeyframeAnimationOptions): Transition {
+  return createTransition(
+    [
+      {
+        opacity: 0,
+        transform: "translateY(100%)",
+      },
+      {
+        opacity: 1,
+        transform: "translateY(0)",
+      },
+    ],
+    option
+  );
 }
 
 export function slideInRight(option: KeyframeAnimationOptions): Transition {

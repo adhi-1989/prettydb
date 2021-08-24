@@ -19,6 +19,8 @@ declare module 'vue' {
     IconIonReturnDownBack: typeof import('virtual:vite-icons/ion/return-down-back')['default']
     IconIonSearch: typeof import('virtual:vite-icons/ion/search')['default']
     IconIonSettings: typeof import('virtual:vite-icons/ion/settings')['default']
+    IconMdiDatabaseImport: typeof import('virtual:vite-icons/mdi/database-import')['default']
+    IconMdiDownload: typeof import('virtual:vite-icons/mdi/download')['default']
   }
 }
 
