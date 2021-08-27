@@ -157,20 +157,20 @@ import { computed, defineComponent, inject, onMounted, ref, watch } from "vue";
 import { useStorage, useToggle } from "@vueuse/core";
 import { useI18n } from "vue-i18n";
 import {
-  Character,
-  Skill,
   AwakeningLevel,
+  Character,
   CharacterIdentify,
   MonikerIdentify,
+  Skill,
   TalentLevel,
 } from "@/data";
 import { numbers, objects } from "@/util";
 import _ from "@/util/lodash";
-import { selectInputValueOnFocus } from "@/views/logic/dom";
-import { fadeIn, fadeOut } from "@/views/logic/dom/animation";
+import { selectInputValueOnFocus } from "@/views/_common/logic/dom";
+import { fadeIn, fadeOut } from "@/views/_common/logic/dom/animation";
 import { CharacterDto, SkillDto } from "@/views/hall-of-fame/logic/db";
 import { State } from "@/views/hall-of-fame/logic/dependency";
-import SearchBar from "@/views/components/widget/SearchBar.vue";
+import SearchBar from "@/views/_common/components/widget/SearchBar.vue";
 import starFill from "#/images/level/star-fill.svg";
 import starEmpty from "#/images/level/star-empty.svg";
 

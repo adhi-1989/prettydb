@@ -35,11 +35,11 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, useCssModule, PropType, ref, computed } from "vue";
-import { onStartTyping, onKeyStroke } from "@vueuse/core";
+import { computed, defineComponent, PropType, ref, useCssModule } from "vue";
+import { onKeyStroke, onStartTyping } from "@vueuse/core";
 import _ from "@/util/lodash";
 import { strings } from "@/util";
-import { selectInputValueOnFocus } from "@/views/logic/dom";
+import { selectInputValueOnFocus } from "@/views/_common/logic/dom";
 
 type NumpadKey =
   | "0"

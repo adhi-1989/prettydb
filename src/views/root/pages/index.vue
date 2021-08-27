@@ -195,15 +195,15 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, defineAsyncComponent } from "vue";
+import { defineAsyncComponent, defineComponent } from "vue";
 import { useToggle } from "@vueuse/core";
-import { fadeIn, fadeOut } from "@/views/logic/dom/animation";
+import { fadeIn, fadeOut } from "@/views/_common/logic/dom/animation";
 import logo from "#/images/app/logo.svg";
 
 export default defineComponent({
   components: {
     HorseshoeParticles: defineAsyncComponent(
-      () => import("@/views/components/HorseshoeParticles.vue")
+      () => import("@/views/_common/components/screen/HorseshoeParticles.vue")
     ),
   },
   data() {

@@ -226,14 +226,19 @@ import { useI18n } from "vue-i18n";
 import { Skill, SkillType } from "@/data";
 import { objects } from "@/util";
 import _ from "@/util/lodash";
-import { selectInputValueOnFocus } from "@/views/logic/dom";
-import { getSkillTypeIcon } from "@/views/logic/resources/images";
+import { selectInputValueOnFocus } from "@/views/_common/logic/dom";
+import {
+  fadeIn,
+  fadeOut,
+  zoomIn,
+  zoomOut,
+} from "@/views/_common/logic/dom/animation";
+import { getSkillTypeIcon } from "@/views/_common/logic/resources/images";
 import { SkillDto } from "@/views/hall-of-fame/logic/db";
 import { State } from "@/views/hall-of-fame/logic/dependency";
-import SearchBar from "@/views/components/widget/SearchBar.vue";
-import Pagination from "@/views/components/widget/Pagination.vue";
-import SkillCard from "@/views/components/widget/SkillCard.vue";
-import { fadeIn, fadeOut, zoomIn, zoomOut } from "@/views/logic/dom/animation";
+import SearchBar from "@/views/_common/components/widget/SearchBar.vue";
+import Pagination from "@/views/_common/components/widget/Pagination.vue";
+import SkillCard from "@/views/_common/components/widget/SkillCard.vue";
 
 type FilterRaw = [number, boolean];
 type FilterStore = Array<FilterRaw>;

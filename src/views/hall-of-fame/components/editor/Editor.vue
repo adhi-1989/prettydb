@@ -50,9 +50,9 @@ import {
   slideInRight,
   slideOutLeft,
   slideOutRight,
-} from "@/views/logic/dom/animation";
+} from "@/views/_common/logic/dom/animation";
 import { Action, State } from "@/views/hall-of-fame/logic/dependency";
-import Pagination from "@/views/components/widget/Pagination.vue";
+import Pagination from "@/views/_common/components/widget/Pagination.vue";
 import CharacterEditor from "@/views/hall-of-fame/components/editor/CharacterEditor.vue";
 import StatusEditor from "@/views/hall-of-fame/components/editor/StatusEditor.vue";
 import AbilityEditor from "@/views/hall-of-fame/components/editor/AbilityEditor.vue";

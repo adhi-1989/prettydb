@@ -59,8 +59,8 @@ import { useHead } from "@vueuse/head";
 import { useToggle } from "@vueuse/core";
 import { useI18n } from "vue-i18n";
 import dayjs from "dayjs";
+import { fadeInUp, fadeOut } from "@/views/_common/logic/dom/animation";
 import { db } from "@/views/hall-of-fame/logic/db";
-import { fadeInUp, fadeOut } from "@/views/logic/dom/animation";
 
 type DataType = "hall-of-fame/data";
 

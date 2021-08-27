@@ -42,12 +42,12 @@ import {
   flipOutY,
   zoomIn,
   zoomOut,
-} from "@/views/logic/dom/animation";
-import { Dto, db, upsert } from "@/views/hall-of-fame/logic/db";
+} from "@/views/_common/logic/dom/animation";
+import { db, Dto } from "@/views/hall-of-fame/logic/db";
 import {
-  ViewType,
   actionInjectionKey,
   stateInjectionKey,
+  ViewType,
 } from "@/views/hall-of-fame/logic/dependency";
 import List from "@/views/hall-of-fame/components/list/List.vue";
 import Viewer from "@/views/hall-of-fame/components/viewer/Viewer.vue";

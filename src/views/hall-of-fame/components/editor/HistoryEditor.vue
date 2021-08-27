@@ -88,13 +88,13 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed, inject } from "vue";
+import { computed, defineComponent, inject } from "vue";
 import { useI18n } from "vue-i18n";
 import _ from "@/util/lodash";
-import type { UniqueSkillLevel } from "@/data";
-import { selectInputValueOnFocus } from "@/views/logic/dom";
-import { State } from "@/views/hall-of-fame/logic/dependency";
 import dayjs from "dayjs";
+import type { UniqueSkillLevel } from "@/data";
+import { selectInputValueOnFocus } from "@/views/_common/logic/dom";
+import { State } from "@/views/hall-of-fame/logic/dependency";
 
 const today = dayjs().format("YYYY-MM-DD");
 

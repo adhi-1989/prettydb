@@ -53,12 +53,12 @@
 import { computed, inject, ref, watch } from "vue";
 import { useI18n } from "vue-i18n";
 import dayjs from "dayjs";
-import { Character } from "@/data";
 import type { CharacterIdentify, MonikerIdentify } from "@/data";
-import { getRankGradeIcon } from "@/views/logic/resources/images";
+import { Character } from "@/data";
+import { getRankGradeIcon } from "@/views/_common/logic/resources/images";
 import { Dto } from "@/views/hall-of-fame/logic/db";
 import { Action, State } from "@/views/hall-of-fame/logic/dependency";
-import Pagination from "@/views/components/widget/Pagination.vue";
+import Pagination from "@/views/_common/components/widget/Pagination.vue";
 
 const { t } = useI18n();
 

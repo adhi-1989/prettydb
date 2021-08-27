@@ -83,14 +83,14 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import { useToggle, useMediaQuery } from "@vueuse/core";
+import { useMediaQuery, useToggle } from "@vueuse/core";
 import { useI18n } from "vue-i18n";
 import {
   fadeIn,
   fadeOut,
   slideInRight,
   slideOutLeft,
-} from "@/views/logic/dom/animation";
+} from "@/views/_common/logic/dom/animation";
 import logo from "#/images/app/logo.svg";
 
 export default defineComponent({

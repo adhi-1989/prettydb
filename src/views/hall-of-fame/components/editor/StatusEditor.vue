@@ -60,8 +60,8 @@ import { inject, ref } from "vue";
 import { useI18n } from "vue-i18n";
 import { Status } from "@/data";
 import { State } from "@/views/hall-of-fame/logic/dependency";
-import { getStatusGradeIcon } from "@/views/logic/resources/images";
-import Numpad from "@/views/components/widget/Numpad.vue";
+import { getStatusGradeIcon } from "@/views/_common/logic/resources/images";
+import Numpad from "@/views/_common/components/widget/Numpad.vue";
 
 const { t } = useI18n();
 

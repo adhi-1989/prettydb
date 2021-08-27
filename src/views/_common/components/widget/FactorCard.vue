@@ -12,7 +12,7 @@
 </template>
 
 <script lang="ts" setup>
-import { defineProps, withDefaults, useCssModule, computed } from "vue";
+import { computed, defineProps, useCssModule, withDefaults } from "vue";
 import { useI18n } from "vue-i18n";
 import type { FactorLevel } from "@/data";
 import { Factor } from "@/data";

@@ -34,7 +34,7 @@ type Changelog = {
 export default defineComponent({
   components: {
     HorseshoeParticles: defineAsyncComponent(
-      () => import("@/views/components/HorseshoeParticles.vue")
+      () => import("@/views/_common/components/screen/HorseshoeParticles.vue")
     ),
   },
   data() {

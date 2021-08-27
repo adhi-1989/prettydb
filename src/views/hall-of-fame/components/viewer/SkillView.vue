@@ -17,7 +17,7 @@
 import { computed, defineComponent, inject } from "vue";
 import { Skill } from "@/data";
 import { State } from "@/views/hall-of-fame/logic/dependency";
-import SkillCard from "@/views/components/widget/SkillCard.vue";
+import SkillCard from "@/views/_common/components/widget/SkillCard.vue";
 
 export default defineComponent({
   components: {

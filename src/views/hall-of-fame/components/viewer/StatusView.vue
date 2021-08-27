@@ -24,7 +24,7 @@
 import { defineComponent, inject } from "vue";
 import { useI18n } from "vue-i18n";
 import { Status } from "@/data";
-import { getStatusGradeIcon } from "@/views/logic/resources/images";
+import { getStatusGradeIcon } from "@/views/_common/logic/resources/images";
 import { State } from "@/views/hall-of-fame/logic/dependency";
 
 export default defineComponent({

@@ -25,7 +25,10 @@
 import { defineComponent, inject } from "vue";
 import { useI18n } from "vue-i18n";
 import { Character } from "@/data";
-import { getPortrait, getRankGradeIcon } from "@/views/logic/resources/images";
+import {
+  getPortrait,
+  getRankGradeIcon,
+} from "@/views/_common/logic/resources/images";
 import { State } from "@/views/hall-of-fame/logic/dependency";
 import starFill from "#/images/level/star-fill.svg";
 import starEmpty from "#/images/level/star-empty.svg";

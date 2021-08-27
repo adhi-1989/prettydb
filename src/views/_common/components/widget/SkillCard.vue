@@ -38,7 +38,7 @@ export default {
 import { defineProps, withDefaults, useCssModule, computed } from "vue";
 import { useI18n } from "vue-i18n";
 import { Skill } from "@/data";
-import { getSkillTypeIcon } from "@/views/logic/resources/images";
+import { getSkillTypeIcon } from "@/views/_common/logic/resources/images";
 
 const props = withDefaults(
   defineProps<{ skill: Skill; unique?: UniqueSkillInfo }>(),

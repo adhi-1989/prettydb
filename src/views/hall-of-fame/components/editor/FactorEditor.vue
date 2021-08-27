@@ -212,14 +212,19 @@ import { useI18n } from "vue-i18n";
 import { Factor, FactorLevel, FactorType, Skill } from "@/data";
 import { numbers, objects } from "@/util";
 import _ from "@/util/lodash";
-import { selectInputValueOnFocus } from "@/views/logic/dom";
+import { selectInputValueOnFocus } from "@/views/_common/logic/dom";
 import { FactorDto } from "@/views/hall-of-fame/logic/db";
 import { State } from "@/views/hall-of-fame/logic/dependency";
-import FactorCard from "@/views/components/widget/FactorCard.vue";
+import FactorCard from "@/views/_common/components/widget/FactorCard.vue";
 import starFill from "#/images/level/star-fill.svg";
-import { fadeIn, fadeOut, zoomIn, zoomOut } from "@/views/logic/dom/animation";
-import SearchBar from "@/views/components/widget/SearchBar.vue";
-import Pagination from "@/views/components/widget/Pagination.vue";
+import {
+  fadeIn,
+  fadeOut,
+  zoomIn,
+  zoomOut,
+} from "@/views/_common/logic/dom/animation";
+import SearchBar from "@/views/_common/components/widget/SearchBar.vue";
+import Pagination from "@/views/_common/components/widget/Pagination.vue";
 
 type FilterRaw = [number, boolean];
 type FilterStore = Array<FilterRaw>;

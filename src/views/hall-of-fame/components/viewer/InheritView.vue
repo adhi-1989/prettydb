@@ -40,12 +40,15 @@
 import { computed, defineComponent, inject } from "vue";
 import { useI18n } from "vue-i18n";
 import { Factor } from "@/data";
-import { getPortrait, getRankGradeIcon } from "@/views/logic/resources/images";
+import {
+  getPortrait,
+  getRankGradeIcon,
+} from "@/views/_common/logic/resources/images";
 import {
   fallbackStateFactory,
   stateInjectionKey,
 } from "@/views/hall-of-fame/logic/dependency";
-import FactorCard from "@/views/components/widget/FactorCard.vue";
+import FactorCard from "@/views/_common/components/widget/FactorCard.vue";
 
 export default defineComponent({
   components: {

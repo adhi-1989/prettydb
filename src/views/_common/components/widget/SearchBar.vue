@@ -14,8 +14,8 @@
 </template>
 
 <script lang="ts" setup>
-import { defineEmits, defineProps, withDefaults, computed } from "vue";
-import { selectInputValueOnFocus } from "@/views/logic/dom";
+import { computed, defineEmits, defineProps, withDefaults } from "vue";
+import { selectInputValueOnFocus } from "@/views/_common/logic/dom";
 
 const props = withDefaults(
   defineProps<{ modelValue: string; placeholder?: string }>(),

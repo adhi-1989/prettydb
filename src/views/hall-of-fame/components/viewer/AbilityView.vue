@@ -22,7 +22,7 @@
 
 <script lang="ts">
 import { defineComponent, inject } from "vue";
-import { getAbilityGradeIcon } from "@/views/logic/resources/images";
+import { getAbilityGradeIcon } from "@/views/_common/logic/resources/images";
 import { useI18n } from "vue-i18n";
 import { Ability, AbilityType } from "@/data";
 import { State } from "@/views/hall-of-fame/logic/dependency";

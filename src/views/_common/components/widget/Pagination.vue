@@ -17,7 +17,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, useCssModule, computed } from "vue";
+import { computed, defineComponent, useCssModule } from "vue";
 import _ from "@/util/lodash";
 
 type Page = number | string;

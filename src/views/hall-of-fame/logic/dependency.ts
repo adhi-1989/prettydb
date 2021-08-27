@@ -1,12 +1,12 @@
 import {
+  computed,
   ComputedRef,
   DeepReadonly,
-  InjectionKey,
-  Ref,
   inject as InjectMethod,
-  ref,
+  InjectionKey,
   readonly,
-  computed,
+  Ref,
+  ref,
 } from "vue";
 import { Dto } from "@/views/hall-of-fame/logic/db";
 

@@ -52,8 +52,8 @@
 <script lang="ts">
 import { computed, defineComponent, inject, ref } from "vue";
 import { useI18n } from "vue-i18n";
-import { Ability, AbilityIdentify, AbilityGrade, AbilityType } from "@/data";
-import { getAbilityGradeIcon } from "@/views/logic/resources/images";
+import { Ability, AbilityGrade, AbilityIdentify, AbilityType } from "@/data";
+import { getAbilityGradeIcon } from "@/views/_common/logic/resources/images";
 import { State } from "@/views/hall-of-fame/logic/dependency";
 
 const OrderedAbilityGrades: Array<AbilityGrade> = [
