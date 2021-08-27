@@ -350,7 +350,7 @@ character:
 skill:
   '-1':
     name: 指定なし
-    description: 固有スキル取得エラー
+    description: スキル取得エラー
   0:
     name: シューティングスター
     description: 'レース終盤に前の方で相手を抜くと\n勢いに乗って速度が上がる'
@@ -366,15 +366,15 @@ skill:
   3:
     name: 絶対は、ボクだ
     description: '最終直線で前の方で追いすがっていると\n不屈の闘志で速度が上がる'
-    description-for-inheritor:
+    description-for-inheritor: ''
   4:
     name: '紅焔ギア/LP1211-M'
     description: '最終コーナー以降で前の方にいると\nギアを変えて加速力が上がる'
-    description-for-inheritor:
+    description-for-inheritor: ''
   5:
     name: 勝利の鼓動
     description: '残り200m地点で前の方にいると\n道を開いてすごく抜け出しやすくなる'
-    description-for-inheritor:
+    description-for-inheritor: ''
   6:
     name: 波乱注意砲！
     description: 'レース中間からロングスパートをかけて\n速度がわずかに上がる'
@@ -388,14 +388,14 @@ skill:
   9:
     name: カッティング☓DRIVE！
     description: '残り200mを切って前の方にいると\n競り合いに強くなり速度が上がる'
-    description-for-inheritor:
+    description-for-inheritor: ''
   10:
     name: レッドエース
     description: 'レース後半で1番を\nキープし続ける力をわずかに発揮する'
   11:
     name: ブリリアント・レッドエース
     description: 'レース後半で\n1番をキープし続ける力を発揮する'
-    description-for-inheritor:
+    description-for-inheritor: ''
   12:
     name: ヴィクトリーショット！
     description: '最終コーナーで好位置にいると\n弾みを付けて加速力が上がる'
@@ -406,7 +406,7 @@ skill:
   14:
     name: 精神一到何事か成らざらん
     description: '最終直線で後ろの方から追い抜くと\n末脚を使って速度が上がる'
-    description-for-inheritor:
+    description-for-inheritor: ''
   15:
     name: 貴顕の使命を果たすべく
     description: '最終コーナーで前の方にいると\n抜かさせない覚悟を決めて速度が上がる'
@@ -414,181 +414,181 @@ skill:
   16:
     name: 最強の名を懸けて
     description: '最終コーナー以降に前めで力が尽きかけ\n詰め寄られると速度が上がる'
-    description-for-inheritor:
+    description-for-inheritor: ''
   17:
     name: 熱血☆アミーゴ
     description: '最終直線で余力を持って前にいると\nわずかに優位を保ちやすくなる'
   18:
     name: プランチャ☆ガナドール
     description: '最終直線で余力を持って前にいると\nより優位を保ちやすくなる'
-    description-for-inheritor:
+    description-for-inheritor: ''
   19:
     name: ヴィットーリアに捧ぐ舞踏
     description: '最終コーナーで前の方で競り合うと\n王たる輝きで速度が上がる'
-    description-for-inheritor:
+    description-for-inheritor: ''
   20:
     name: Shadow Break
     description: '最終コーナー以降で外から追い抜くと\n怪物的な力で、速度を上げる'
-    description-for-inheritor:
+    description-for-inheritor: ''
   21:
     name: 汝、皇帝の神威を見よ
     description: 'レース終盤に3回追い抜くと\n最終直線で速度がすごく上がる'
-    description-for-inheritor:
+    description-for-inheritor: ''
   22:
     name: エンプレス・プライド
     description: '最終コーナーで後ろから追い抜くと\n女帝たる走りで速度が少し上がる'
   23:
     name: ブレイズ・オブ・プライド
     description: '最終コーナーで後ろから追い抜くと\n女帝たる走りで速度が上がる'
-    description-for-inheritor:
+    description-for-inheritor: ''
   24:
     name: 薫風、永遠なる瞬間を
     description: 'レース中盤で前の方から\n仕掛け始める時に速度が上がる'
-    description-for-inheritor:
+    description-for-inheritor: ''
   25:
     name: ∴win Q.E.D.
     description: '最終コーナーで前の方で追い抜くと\n勝利の方程式を導き、速度を上げる'
-    description-for-inheritor:
+    description-for-inheritor: ''
   26:
     name: 勝利のキッス☆
     description: '最終コーナーで前の方で競り合うと\n直線でわずかに抜け出しやすくなる'
   27:
     name: ひらめき☆ランディング
     description: '最終コーナーで前の方で競り合うと\n直線で抜け出しやすくなる'
-    description-for-inheritor:
+    description-for-inheritor: ''
   28:
     name: フラワリー☆マニューバ
     description: '最終コーナーで前の方で抜くと速度が\n後ろの方で抜くと加速力が上がる'
-    description-for-inheritor:
+    description-for-inheritor: ''
   29:
     name: G00 1st.F∞;
     description: '最終直線までみずから崩れることなく\n前の方にいると速度が上がる'
-    description-for-inheritor:
+    description-for-inheritor: ''
   30:
     name: 燃えろ筋肉！
     description: 'レース終盤のコーナーで前の位置に\nつこうとして加速力が少し上がる'
   31:
     name: レッツ・アナボリック！
     description: 'レース終盤のコーナーで前の位置に\nつこうとして加速力が上がる'
-    description-for-inheritor:
+    description-for-inheritor: ''
   32:
     name: ブルーローズチェイサー
     description: '最終直線で抜け出した時に\n強い意志を持って速度が上がる'
-    description-for-inheritor:
+    description-for-inheritor: ''
   33:
     name: 'introduction : My body'
     description: 'レース後半のコーナーで控えていると\n持久力が少し回復する'
   34:
     name: U=ma2
     description: 'レース後半のコーナーで控えていると\n持久力が回復する'
-    description-for-inheritor:
+    description-for-inheritor: ''
   35:
     name: 全力Vサインッ！
     description: '最終直線で競り合いに負けない\n気持ちが湧き、速度が少し上がる'
   36:
     name: 勝利のチケットを、君にッ！
     description: '最終直線で競り合いに負けない\n強い気持ちが湧き、速度が上がる'
-    description-for-inheritor:
+    description-for-inheritor: ''
   37:
     name: '#LookatCurren'
     description: 'レース中間付近で好位置にいる時に\n追い抜くと勢いづき進出を開始する'
-    description-for-inheritor:
+    description-for-inheritor: ''
   38:
     name: 学級委員長+速さ＝バクシン
     description: 'レース後半に前の方で競り合うとバク\nシン力（？）を発揮、速度が少し上がる'
   39:
     name: 優等生☓バクシン＝大勝利ッ
     description: 'レース後半に前の方で競り合うと\nバクシン力（？）を発揮、速度が上がる'
-    description-for-inheritor:
+    description-for-inheritor: ''
   40:
     name: クリアハート
     description: 'レース中盤で好位置にいる時に\n持久力が少し回復する'
   41:
     name: ピュリティオブハート
     description: 'レース中盤で好位置にいる時に\n持久力が回復する'
-    description-for-inheritor:
+    description-for-inheritor: ''
   42:
     name: キラキラ☆STARDOM
     description: 'レース中盤の直線で先頭を奪われそうに\nなると譲らない想いが力になる'
-    description-for-inheritor:
+    description-for-inheritor: ''
   43:
     name: Nemesis
     description: '最終コーナーで集団の後方の位置から\n前へ出る時、切れ味が増し速度が上がる'
-    description-for-inheritor:
+    description-for-inheritor: ''
   44:
     name: ワクワクよーいドン
     description: '最終コーナーで後ろの方にいると近くの\nウマ娘を見て持久力を少し回復する'
   45:
     name: ワクワククライマックス
     description: '最終コーナーで後ろの方にいると近くの\nウマ娘を見て持久力を回復する'
-    description-for-inheritor:
+    description-for-inheritor: ''
   46:
     name: 来てください来てください！
     description: 'レース終盤に前方が詰まると\nお告げの力で少し道を切り開く'
   47:
     name: 来ます来てます来させます！
     description: 'レース終盤に前方が詰まると\nお告げの力で道を切り開く'
-    description-for-inheritor:
+    description-for-inheritor: ''
   48:
     name: アタシもたまには、ね？
     description: 'レース終盤で3番手の時に負けそうに\nなると闘志に火が付き速度が少し上がる'
   49:
     name: きっとその先へ…！
     description: 'レース終盤で3番手の時に負けそうにな\nると秘めた闘志に火が付き速度が上がる'
-    description-for-inheritor:
+    description-for-inheritor: ''
   50:
     name: Call me KING
     description: 'レースを冷静に運ぶことができると\n残り200mで実力発揮、速度が上がる'
   51:
     name: Pride of KING
     description: 'レースを冷静に運ぶことができると残り\n200mで実力発揮、速度がすごく上がる'
-    description-for-inheritor:
+    description-for-inheritor: ''
   52:
     name: アングリング☓スキーミング
     description: 'レース終盤のコーナーで先頭にいると\nこれ幸いと加速力を上げる'
-    description-for-inheritor:
+    description-for-inheritor: ''
   53:
     name: タイマン！デッドヒート！
     description: '最終直線で後ろの方から外を回って\n追い抜く時、速度を上げる'
-    description-for-inheritor:
+    description-for-inheritor: ''
   54:
     name: コンドル猛撃波
     description: '最終コーナーで中団から前を狙う時\n魂を燃え滾らせて加速力を上げる'
-    description-for-inheritor:
+    description-for-inheritor: ''
   55:
     name: ゲインヒール・スペリアー
     description: '中盤に後ろの方で順位を下げた時に\n優しい光で持久力を回復する'
-    description-for-inheritor:
+    description-for-inheritor: ''
   56:
     name: 煌星のヴォードヴィル
     description: '最終直線で前の方で少し抜け出ていると\n輝きを増し速度がすごく上がる'
-    description-for-inheritor:
+    description-for-inheritor: ''
   57:
     name: KEEP IT REAL.
     description: 'レース後半に中団から仕掛け始める時に\n持てるパフォーマンスを発揮して\n加速力を少しずつ上げる'
-    description-for-inheritor:
+    description-for-inheritor: ''
   58:
     name: わやかわ♪マリンダイヴ
     description: '中盤で2回スキルと使うと\nよりリラックスして持久力が回復する'
-    description-for-inheritor:
+    description-for-inheritor: ''
   59:
     name: グッときて♪Chu
     description: 'スキルで持久力を回復すると\nレース後半で前のほうにいる時に\nレッツラゴー！と速度を上げる'
-    description-for-inheritor:
+    description-for-inheritor: ''
   60:
     name: 'I Never Goof Up!'
     description: 'レース終盤のコーナーで\n中団以降のポジションから追い抜くと\nあきらめない心を発揮して前を目指す'
-    description-for-inheritor:
+    description-for-inheritor: ''
   61:
     name: Schwarze Schwert
     description: '最終直線まで冷静に自身の計画通り\n走行出来れば、先頭目がけて鋭い脚で\n速度を上げる'
-    description-for-inheritor:
+    description-for-inheritor: ''
   1024:
     name: アガッてきた！
     description: 'レース中盤に追い抜くと\n速度が上がる'
   1025:
     name: アクセラレーション
-    description: 'レース中盤に追い抜くと\n加速力がわずかにあがる＜マイル＞'
+    description: 'レース中盤に追い抜くと\n加速力がわずかに上がる＜マイル＞'
   1026:
     name: イナズマステップ
     description: 'レース中盤に後ろの方にいると\n少し囲まれにくくなる＜中距離＞'
@@ -603,7 +603,7 @@ skill:
     description: '自分と同じ作戦のウマ娘がいないと\n能力を少し発揮しやすい'
   1030:
     name: おひとり様◎
-    description:
+    description: ''
   1031:
     name: お見通し
     description: '左右に移動すると状況を把握して\n視野がわずかに広くなる＜作戦・追込＞'
@@ -717,7 +717,7 @@ skill:
     description: 'コーナーで速度がわずかに上がる\n＜マイル＞'
   1068:
     name: マイルコーナー◎
-    description:
+    description: ''
   1069:
     name: マイルの支配者
     description: 'レース序盤に先頭だと\n差を広げやすくなる＜マイル＞'
@@ -726,7 +726,7 @@ skill:
     description: 直線で速度がわずかに上がる＜マイル＞
   1071:
     name: マイル直線◎
-    description:
+    description: ''
   1072:
     name: まき直し
     description: 'レース中盤に後ろの方にいると\n加速力がわずかに上がる＜作戦・先行＞'
@@ -777,7 +777,7 @@ skill:
     description: 雨の日のレースが少し得意になる
   1088:
     name: 雨の日◎
-    description:
+    description: ''
   1089:
     name: 栄養補給
     description: 'レース中盤に持久力がわずかに回復する\n＜作戦・先行＞'
@@ -813,7 +813,7 @@ skill:
     description: 枠番が6～8のレースが少し得意になる
   1100:
     name: 外枠得意◎
-    description:
+    description: ''
   1101:
     name: 危険回避
     description: 'レース序盤に少し囲まれにくくなる\n＜作戦・逃げ＞'
@@ -1002,7 +1002,7 @@ skill:
     description: 晴れの日のレース場が少し得意になる
   1163:
     name: 晴れの日◎
-    description:
+    description: ''
   1164:
     name: 積極策
     description: 'レース序盤に先頭だとわずかに\n差を広げやすくなる＜マイル＞'
@@ -1011,7 +1011,7 @@ skill:
     description: 雪の日のレースが少し得意になる
   1166:
     name: 雪の日◎
-    description:
+    description: ''
   1167:
     name: 先駆け
     description: 'レース序盤でわずかに\n前に行きやすくなる＜作戦・逃げ＞'
@@ -1095,13 +1095,13 @@ skill:
     description: 'コーナーで速度がわずかに上がる\n＜短距離＞'
   1194:
     name: 短距離コーナー◎
-    description:
+    description: ''
   1195:
     name: 短距離直線○
     description: 直線で速度がわずかに上がる＜短距離＞
   1196:
     name: 短距離直線◎
-    description:
+    description: ''
   1197:
     name: 地固め
     description: 'レース序盤にスキルを多く発動すると\n加速力がわずかに上がる'
@@ -1110,13 +1110,13 @@ skill:
     description: 'コーナーで速度がわずかに上がる\n＜中距離＞'
   1199:
     name: 中距離コーナー◎
-    description:
+    description: ''
   1200:
     name: 中距離直線○
     description: 直線で速度がわずかに上がる＜中距離＞
   1201:
     name: 中距離直線◎
-    description:
+    description: ''
   1202:
     name: 中山レース場○
     description: 中山レース場が少し得意になる
@@ -1131,13 +1131,13 @@ skill:
     description: 'コーナーで速度がわずかに上がる\n＜長距離＞'
   1206:
     name: 長距離コーナー◎
-    description:
+    description: ''
   1207:
     name: 長距離直線○
     description: 直線で速度がわずかに上がる＜長距離＞
   1208:
     name: 長距離直線◎
-    description:
+    description: ''
   1209:
     name: 直滑降
     description: '下り坂がわずかに得意になる\n＜作戦・先行＞'
@@ -1191,7 +1191,7 @@ skill:
     description: '1番人気のウマ娘と作戦が同じだと\n能力を発揮しやすい'
   1226:
     name: 徹底マーク◎
-    description:
+    description: ''
   1227:
     name: 展開窺い
     description: 'レース序盤に後ろの方だと\nわずかに疲れにくくなる＜マイル＞'
@@ -1254,7 +1254,7 @@ skill:
     description: '「稍重」「重」「不良」のバ場状態が\n少し得意になる'
   1247:
     name: 道悪◎
-    description:
+    description: ''
   1248:
     name: 独占力
     description: 'レース終盤に後ろの方にいると\n前の速度を下げる＜中距離＞'
@@ -1266,7 +1266,7 @@ skill:
     description: 曇りの日のレースが少し得意になる
   1251:
     name: 曇りの日◎
-    description:
+    description: ''
   1252:
     name: 内弁慶
     description: '最終コーナーで内ラチ側にいると\n速度がわずかに上がる＜長距離＞'
@@ -1275,7 +1275,7 @@ skill:
     description: 枠番が1～3のレースが少し得意になる
   1254:
     name: 内枠得意◎
-    description:
+    description: ''
   1255:
     name: 二の矢
     description: 'レース中盤に後ろにいると\n加速力がわずかに上がる＜作戦・逃げ＞'
@@ -1314,7 +1314,7 @@ skill:
     description: '4番人気以下のレースで\n能力を少し発揮しやすい'
   1267:
     name: 伏兵◎
-    description:
+    description: ''
   1268:
     name: 別腹タンク
     description: '力を出し切った時に\n走る気力がわずかに復活する＜長距離＞'
