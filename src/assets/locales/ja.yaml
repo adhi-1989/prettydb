@@ -64,7 +64,7 @@ pages:
         search-bar:
           placeholder: キャラクター名で絞り込み
         filter:
-          description: 一覧に表示するキャラクターを選択して下さい
+          description: 一覧に表示するキャラクター
         level-selector:
           label:
             talent-level: 才能開花レベル
@@ -73,7 +73,10 @@ pages:
         search-bar:
           placeholder: スキル名で絞り込み
         filter:
-          description: 一覧に表示するスキルを選択して下さい
+          description: 一覧に表示するスキル
+          category:
+            general-classification: 一般的な分類
+            skill-type: スキルタイプ
           label:
             standard: 通常スキル
             advanced: 金スキル
@@ -82,7 +85,10 @@ pages:
         search-bar:
           placeholder: 因子名で絞り込み
         filter:
-          description: 一覧に表示する因子を選択して下さい
+          description: 一覧に表示する因子
+          category:
+            level: 因子レベル
+            factor-type: 因子タイプ
           label:
             status: ステータス
             ability: 適正
@@ -91,8 +97,10 @@ pages:
             skill: スキル
             scenario: シナリオ
       extra:
-        skill:
+        metadata:
           unique-skill: 固有スキルレベル
+          transferred: 移籍済み
+          rental: レンタルウマ娘
 components:
   widget:
     skill-card:

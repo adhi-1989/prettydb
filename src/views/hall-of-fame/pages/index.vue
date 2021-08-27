@@ -1,23 +1,26 @@
 <template>
-  <article class="hall-of-fame-root">
-    <div class="modal-view">
-      <transition name="view-container">
-        <div class="view-container" v-if="!isViewActive('list')">
-          <transition name="view" mode="out-in">
-            <div class="view" v-if="isViewActive('viewer')">
-              <viewer />
-            </div>
-            <div class="view" v-else-if="isViewActive('editor')">
-              <editor />
-            </div>
+  <article :class="$style.hallOfFame">
+    <section :class="$style.overlay">
+      <transition @enter="zoomIn" @leave="zoomOut" :css="false">
+        <div :class="$style.container" v-if="!isViewActive('list')">
+          <transition
+            mode="out-in"
+            @enter="flipInY"
+            @leave="flipOutY"
+            :css="false"
+          >
+            <viewer v-if="isViewActive('viewer')" />
+            <editor v-else-if="isViewActive('editor')" />
           </transition>
         </div>
       </transition>
-    </div>
+    </section>
 
-    <div class="standard-view" :data-active="isViewActive('list')">
+    <section
+      :class="[$style.main, { [$style.background]: !isViewActive('list') }]"
+    >
       <list />
-    </div>
+    </section>
   </article>
 </template>
 
@@ -34,7 +37,13 @@ import {
 import { useHead } from "@vueuse/head";
 import { useI18n } from "vue-i18n";
 import _ from "@/util/lodash";
-import { Dto, db, fetch, upsert } from "@/views/hall-of-fame/logic/db";
+import {
+  flipInY,
+  flipOutY,
+  zoomIn,
+  zoomOut,
+} from "@/views/logic/dom/animation";
+import { Dto, db, upsert } from "@/views/hall-of-fame/logic/db";
 import {
   ViewType,
   actionInjectionKey,
@@ -50,8 +59,29 @@ export default defineComponent({
     Viewer,
     Editor,
   },
+  data() {
+    return {
+      zoomIn: zoomIn({
+        duration: 250,
+        easing: "ease-out",
+      }),
+      zoomOut: zoomOut({
+        duration: 250,
+        easing: "ease-out",
+      }),
+      flipInY: flipInY({
+        duration: 250,
+        easing: "ease-in-out",
+      }),
+      flipOutY: flipOutY({
+        duration: 250,
+        easing: "ease-in-out",
+      }),
+    };
+  },
   setup() {
     const { t } = useI18n();
+
     useHead({
       title: t("head.hall-of-fame.title"),
       meta: [
@@ -59,27 +89,48 @@ export default defineComponent({
       ],
     });
 
+    const isDataEmpty = ref(false);
+    const dataCount = ref(0);
+    const dataList = reactive<Array<Dto>>([]);
+    const listOffset = ref(0);
+    const orderType = ref("register-date");
+
     const activeView = ref<ViewType>("list");
     const parentView: Array<ViewType> = [];
-    const dataList = reactive<Array<Dto>>([]);
     const viewDataIndex = ref(-1);
     const viewData = ref(Dto());
     const viewDataBackup = ref<Dto | undefined>(undefined);
     const editData = ref(Dto());
 
     const refreshList = () => {
+      dataCount.value = 0;
       dataList.splice(0);
-      db.histories
-        .orderBy("registerDate")
-        .limit(200)
-        .toArray()
+
+      db.IDs.toCollection()
+        .first()
         .then((x) => {
-          x.forEach((y) => {
-            fetch(y.id).then((dto) => {
-              dataList.push(dto);
+          isDataEmpty.value = x === undefined;
+        });
+
+      if (orderType.value === "register-date") {
+        db.histories
+          .orderBy("registerDate")
+          .offset(listOffset.value)
+          .limit(32)
+          .toArray()
+          .then((x) => {
+            x.forEach((y) => {
+              db.fetch(y.id).then((dto) => {
+                dataList.push(dto);
+              });
+            });
+          })
+          .finally(() => {
+            db.histories.count().then((x) => {
+              dataCount.value = x;
             });
           });
-        });
+      }
     };
 
     const isViewActive = (type: ViewType) => {
@@ -119,15 +170,21 @@ export default defineComponent({
         viewDataIndex.value = index;
       },
       saveEditData: () => {
-        return upsert(editData.value).then(() => {
+        return db.upsert(editData.value).then(() => {
           refreshList();
           viewDataBackup.value = undefined;
           return Promise.resolve();
         });
       },
+      setDataListOffset: (offset: number) => {
+        listOffset.value = offset;
+        refreshList();
+      },
     });
 
     provide(stateInjectionKey, {
+      isDataEmpty: computed(() => isDataEmpty.value),
+      dataCount: computed(() => dataCount.value),
       dataList: computed(() => dataList.map(readonly)),
       viewData: readonly(viewData),
       editData: editData,
@@ -145,51 +202,35 @@ export default defineComponent({
 });
 </script>
 
-<style lang="scss">
-.hall-of-fame-root {
-  @apply relative overflow-hidden h-full;
+<style lang="scss" module>
+.content {
+  @apply w-[18rem] min-h-[32rem] h-[calc(100%-2rem)] mx-auto my-[1rem];
+  @apply sm:(w-[24.25rem] min-h-[43rem]);
+  @apply md:(w-[32rem] min-h-[54rem]);
+  @apply lg:(w-[40rem]);
+  @apply xl:(w-[48rem]);
+}
 
-  > .modal-view {
-    @apply absolute overflow-hidden;
+.hallOfFame {
+  @apply relative h-full overflow-auto;
+
+  > .overlay {
+    @apply absolute;
 
     &:not(:empty) {
-      @apply w-full h-full z-10;
+      @extend .content;
+      @apply inset-0 z-10;
     }
 
-    > .view-container {
-      @apply relative h-full w-full;
-
-      &-enter-active {
-        animation: zoomIn;
-        animation-duration: 0.3s;
-      }
-
-      &-leave-active {
-        animation: zoomOut;
-        animation-duration: 0.3s;
-      }
-
-      > .view {
-        @apply overflow-hidden h-full w-full p-[1rem];
-
-        &-enter-active {
-          animation: flipInY;
-          animation-duration: 0.25s;
-        }
-
-        &-leave-active {
-          @apply absolute;
-          animation: flipOutY;
-          animation-duration: 0.25s;
-        }
-      }
+    > .container {
+      @apply h-full w-full overflow-hidden;
     }
   }
 
-  > .standard-view {
-    @apply overflow-hidden h-full;
+  > .main {
+    @extend .content;
 
-    &[data-active="false"] {
+    &.background {
       @apply filter blur-sm;
     }
   }

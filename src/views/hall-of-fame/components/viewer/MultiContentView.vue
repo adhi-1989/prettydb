@@ -1,13 +1,15 @@
 <template>
-  <section class="multi-content-view-root">
-    <div class="content-selector">
-      <div class="selector-item-group">
+  <section :class="$style.view">
+    <div :class="$style.selectorBar">
+      <div :class="$style.items">
         <template v-for="content in AllContent" :key="content">
           <div
-            class="selector-item-wrapper"
-            :class="{ active: isContentActive(content) }"
+            :class="[
+              $style.item,
+              { [$style.active]: isContentActive(content) },
+            ]"
           >
-            <button class="selector-item" @click="setActiveContent(content)">
+            <button :class="$style.button" @click="setActiveContent(content)">
               {{ t(`pages.hall-of-fame.viewer.${content}.selector`) }}
             </button>
           </div>
@@ -15,7 +17,7 @@
       </div>
     </div>
 
-    <div class="content-view">
+    <div :class="$style.content">
       <component :is="activeContent" />
     </div>
   </section>
@@ -64,30 +66,30 @@ export default defineComponent({
 });
 </script>
 
-<style lang="scss">
-.multi-content-view-root {
+<style lang="scss" module>
+.view {
   @apply flex flex-col h-full;
 
-  > .content-selector {
+  > .selectorBar {
     @apply px-[0.375rem];
 
-    > .selector-item-group {
+    > .items {
       @apply flex rounded-full overflow-hidden;
+      box-shadow: 0 1px 1px 0 #b8b6c3;
 
-      > .selector-item-wrapper {
-        @apply text-[0.75rem] w-full;
-        @apply md:(text-[1rem]);
+      > .item {
+        @apply text-xs w-full;
+        @apply md:(text-base);
 
-        > .selector-item {
-          @apply font-bold w-full border-1 border-b-2 border-transparent rounded-none bg-clip-padding py-[0.125rem];
-          @apply sm:(py-[0.2rem]);
-          @apply md:(py-[0.25rem] border-2 border-b-3);
+        > .button {
+          @apply font-bold w-full p-[0.075rem] rounded-none border-1 border-transparent bg-clip-padding;
+          @apply sm:(py-[0.125rem] border-2);
         }
 
         &:first-child {
           @apply rounded-l-full;
 
-          > .selector-item {
+          > .button {
             @apply rounded-l-full;
           }
         }
@@ -95,7 +97,7 @@ export default defineComponent({
         &:last-child {
           @apply rounded-r-full;
 
-          > .selector-item {
+          > .button {
             @apply rounded-r-full;
           }
         }
@@ -103,34 +105,34 @@ export default defineComponent({
         &:not(.active) {
           @apply bg-gradient-to-t from-[#97979e] to-[#d0cfd4];
 
-          > .selector-item {
+          > .button {
             @include button-gradient;
           }
 
-          &:not(:last-child) > .selector-item {
+          &:not(:last-child) > .button {
             @apply border-r-0 pr-[1px];
-            @apply md:(pr-[2px]);
+            @apply sm:(pr-[2px]);
           }
         }
 
         &.active {
           @apply bg-gradient-to-t from-[#588728] via-[#96ce40] to-[#a8d944] text-[#fefefe];
 
-          > .selector-item {
-            @apply bg-gradient-to-t from-[#78bb3a] to-[#b1de46];
+          > .button {
+            @apply bg-gradient-to-t from-[#78bb3a] via-[#99cf41] to-[#b1de46];
           }
 
-          & + .selector-item-wrapper:not(.active) > .selector-item {
+          & + .selector:not(.active) > .button {
             @apply border-l-0 pl-[1px];
-            @apply md:(pl-[2px]);
+            @apply sm:(pl-[2px]);
           }
         }
       }
     }
   }
 
-  > .content-view {
-    @apply flex-grow overflow-hidden mt-[0.5rem] px-[0.75rem];
+  > .content {
+    @apply flex-grow mt-[0.5rem] px-[0.75rem] overflow-hidden;
     @apply sm:(mt-[0.75rem] px-[1rem]);
   }
 }

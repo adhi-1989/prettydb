@@ -1,78 +1,86 @@
 <template>
-  <div class="skill-card" :class="frameType" v-bind="$attrs">
-    <div class="content">
-      <div class="icon">
+  <section :class="[$style.card, frameType]" v-bind="$attrs">
+    <div :class="$style.content">
+      <div :class="$style.icon">
         <img :src="skillTypeIcon" alt="" />
       </div>
-      <div class="label">{{ t(getNameKey(skill)) }}</div>
-      <div class="level" v-if="isOwnUnique && uniqueSkillLevel !== -1">
-        {{
-          t("components.widget.skill-card.unique-level", { uniqueSkillLevel })
-        }}
+      <div :class="$style.label">{{ skillName }}</div>
+      <div :class="$style.level" v-if="isOwnUnique">
+        {{ uniqueSkillLevel }}
       </div>
     </div>
-  </div>
+  </section>
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, PropType } from "vue";
+import type { UniqueSkillLevel, UniqueSkillOwner } from "@/data";
+
+type UniqueSkillInfo = {
+  owner: UniqueSkillOwner;
+  level: UniqueSkillLevel;
+};
+
+const defaultInfo = Object.freeze<UniqueSkillInfo>({
+  owner: {
+    characterID: -1,
+    monikerID: -1,
+    talentLevel: 1,
+  },
+  level: 1,
+});
+
+export default {
+  defaultInfo,
+};
+</script>
+
+<script lang="ts" setup>
+import { defineProps, withDefaults, useCssModule, computed } from "vue";
 import { useI18n } from "vue-i18n";
-import { Skill, UniqueSkillLevel, UniqueSkillOwner } from "@/data";
+import { Skill } from "@/data";
 import { getSkillTypeIcon } from "@/views/logic/resources/images";
 
-export default defineComponent({
-  props: {
-    skill: {
-      type: Object as PropType<Skill>,
-      required: true,
-    },
-    owner: {
-      type: Object as PropType<UniqueSkillOwner>,
-      required: true,
-    },
-    uniqueSkillLevel: {
-      type: Number as PropType<UniqueSkillLevel>,
-      default: -1,
-    },
-  },
-  data() {
-    return {
-      getNameKey: Skill.getNameKey,
-    };
-  },
-  setup(props) {
-    const { t } = useI18n();
+const props = withDefaults(
+  defineProps<{ skill: Skill; unique?: UniqueSkillInfo }>(),
+  {
+    unique: () => defaultInfo,
+  }
+);
 
-    const frameType = computed(() => {
-      if (props.skill === Skill.getUnique(props.owner)) {
-        return "unique";
-      }
-      return props.skill.advanced ? "advanced" : "standard";
-    });
-    const skillTypeIcon = computed(() => {
-      return getSkillTypeIcon(props.skill.type);
-    });
-    const isOwnUnique = computed(() => {
-      return props.skill === Skill.getUnique(props.owner);
-    });
+const _style = useCssModule();
+const { t } = useI18n();
 
-    return {
-      t,
-      frameType,
-      skillTypeIcon,
-      isOwnUnique,
-    };
-  },
+const skillName = computed(() => {
+  return t(Skill.getNameKey(props.skill));
+});
+const uniqueSkillLevel = computed(() => {
+  return t("components.widget.skill-card.unique-level", {
+    uniqueSkillLevel: props.unique.level,
+  });
+});
+
+const isOwnUnique = computed(() => {
+  return props.skill === Skill.getUnique(props.unique.owner);
+});
+const frameType = computed(() => {
+  const { standard, advanced, unique } = _style;
+  if (isOwnUnique.value) {
+    return unique;
+  }
+  return props.skill.advanced ? advanced : standard;
+});
+const skillTypeIcon = computed(() => {
+  return getSkillTypeIcon(props.skill.type);
 });
 </script>
 
-<style lang="scss">
-.skill-card {
+<style lang="scss" module>
+.card {
   @apply rounded-md;
-  @apply md:(rounded-lg);
-  box-shadow: rgba(0, 0, 0, 0.33) 0 1px 1px;
+  box-shadow: 0 1px 1px 0 #b8b6c3;
   @screen md {
-    box-shadow: rgba(0, 0, 0, 0.33) 0 2px 1px;
+    @apply rounded-lg;
+    box-shadow: 0 2px 1px 0 #b8b6c3;
   }
 
   &.standard {
@@ -140,26 +148,24 @@ export default defineComponent({
 
   > .content {
     @include text-stroke(#fefefe);
-    @apply font-bold text-[0.5rem] flex items-center rounded-md py-[0.2rem] border-1 border-transparent;
-    @apply sm:(py-[0.25rem]);
-    @apply md:(text-[0.875rem] rounded-lg border-2);
+    @apply relative font-bold text-xxs flex items-center py-[0.125rem] rounded-md border-1 border-transparent;
+    @apply sm:(py-[0.25rem] gap-x-[0.25rem]);
+    @apply md:(text-xs border-2);
 
     > .icon {
-      @apply flex-shrink-0 w-[1rem] h-[1rem] ml-[0.2rem];
-      @apply sm:(w-[1.375rem] h-[1.375rem] ml-[0.25rem]);
-      @apply md:(w-[2rem] h-[2rem] ml-[0.3rem]);
+      @apply flex-shrink-0 w-[1.125rem] h-[1.125rem] ml-[0.2rem];
+      @apply sm:(w-[1.25rem] h-[1.25rem]);
+      @apply md:(w-[1.75rem] h-[1.75rem]);
     }
 
     > .label {
-      @include text-overflow-omit;
-      @apply flex-1 ml-[0.2rem];
-      @apply sm:(ml-[0.25rem]);
+      @apply absolute left-[0.5rem] truncate transform scale-75 w-full;
+      @apply sm:(static transform-none w-auto);
     }
 
     > .level {
-      @apply mr-[0.2rem];
-      @apply sm:(mr-[0.25rem]);
-      @apply md:(mr-[0.3rem]);
+      @apply absolute right-0 transform scale-75;
+      @apply sm:(transform-none right-[0.125rem]);
     }
   }
 }

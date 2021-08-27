@@ -1,18 +1,17 @@
 <template>
-  <section class="status-view-root">
-    <div class="status-view-wrapper">
-      <div class="status-item-group">
+  <section :class="$style.status">
+    <div :class="$style.container">
+      <div :class="$style.items">
         <template v-for="identify in AllStatus" :key="identify">
-          <div class="status-container" :class="identify">
-            <div class="status-label">{{ t(getNameKey(identify)) }}</div>
-
-            <div class="status-score">
+          <div :class="$style.item">
+            <div :class="$style.label">{{ t(getNameKey(identify)) }}</div>
+            <div :class="$style.score">
               <img
-                class="grade"
+                :class="$style.grade"
                 :src="getStatusGradeIcon(status[identify])"
                 alt=""
               />
-              <div class="value">{{ status[identify] }}</div>
+              <div :class="$style.value">{{ status[identify] }}</div>
             </div>
           </div>
         </template>
@@ -26,10 +25,7 @@ import { defineComponent, inject } from "vue";
 import { useI18n } from "vue-i18n";
 import { Status } from "@/data";
 import { getStatusGradeIcon } from "@/views/logic/resources/images";
-import {
-  fallbackStateFactory,
-  stateInjectionKey,
-} from "@/views/hall-of-fame/logic/dependency";
+import { State } from "@/views/hall-of-fame/logic/dependency";
 
 export default defineComponent({
   data() {
@@ -42,7 +38,7 @@ export default defineComponent({
   setup() {
     const { t } = useI18n();
 
-    const { viewData } = inject(stateInjectionKey, fallbackStateFactory, true);
+    const { viewData } = State(inject);
     const { status } = viewData.value;
 
     return {
@@ -53,59 +49,51 @@ export default defineComponent({
 });
 </script>
 
-<style lang="scss">
-@mixin status-separator {
-  background-image: linear-gradient(
-    to bottom,
-    #70bd3c,
-    #70bd3c 2px,
-    transparent 1px,
-    transparent 4px
-  );
-  background-size: 1.625px 5px;
-  background-position: left;
-  background-repeat: repeat-y;
-}
-
-.status-view-root {
-  @apply font-bold text-center px-[0.5rem];
+<style lang="scss" module>
+.status {
+  @apply text-center px-[0.5rem];
   @apply sm:(px-[0.75rem]);
 
-  > .status-view-wrapper {
-    @apply rounded-md overflow-hidden bg-gradient-to-t from-[#91ce50] to-[#80c53f];
+  > .container {
+    @apply rounded-md bg-gradient-to-t from-[#91ce50] to-[#80c53f] overflow-hidden;
 
-    > .status-item-group {
-      @apply flex rounded-md overflow-hidden bg-[#8fd54a] border-[1px] border-transparent bg-clip-padding;
+    > .items {
+      @apply flex rounded-md bg-[#8fd54a] bg-clip-padding border-1 border-transparent overflow-hidden;
 
-      > .status-container {
+      > .item {
         @apply w-full;
 
         &:not(:first-child) {
-          > .status-label,
-          > .status-score {
-            @include status-separator;
+          > .label,
+          > .score {
+            background-image: linear-gradient(
+              to bottom,
+              #70bd3c,
+              #70bd3c 2px,
+              transparent 1px,
+              transparent 4px
+            );
+            background-size: 1.625px 5px;
+            background-position: left;
+            background-repeat: repeat-y;
           }
         }
 
-        > .status-label {
-          @apply text-[0.75rem] text-[#fefefe] py-[0.25rem] tracking-wider;
-          @apply sm:(text-[0.875rem]);
-          @apply md:(text-[1rem]);
+        > .label {
+          @apply text-xxs text-[#fefefe] py-[0.125rem] tracking-wider;
+          @apply sm:(text-xs);
+          @apply md:(text-base);
         }
 
-        > .status-score {
-          @apply flex items-center bg-[#fefefe] py-[0.25rem];
+        > .score {
+          @apply font-bold text-xs flex justify-around items-center w-full py-[0.25rem] bg-[#fefefe];
+          @apply sm:(text-sm);
+          @apply md:(text-lg);
 
           > .grade {
-            @apply object-scale-down w-[1rem] ml-[0.375rem];
-            @apply sm:(w-[1.5rem]);
-            @apply md:(w-[2rem]);
-          }
-
-          > .value {
-            @apply flex-grow text-[0.75rem];
-            @apply sm:(text-[1rem]);
-            @apply md:(text-[1.25rem]);
+            @apply w-[1rem] h-[1rem];
+            @apply sm:(w-[1.5rem] h-[1.5rem]);
+            @apply md:(w-[2rem] h-[2rem]);
           }
         }
       }

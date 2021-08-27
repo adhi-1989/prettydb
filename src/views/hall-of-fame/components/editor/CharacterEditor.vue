@@ -1,86 +1,80 @@
 <template>
-  <section class="character-editor-root">
-    <div class="tools">
-      <label class="search-bar">
-        <icon-ion-search class="icon" />
-        <input
-          class="input"
-          type="text"
-          :placeholder="
-            t('pages.hall-of-fame.editor.character.search-bar.placeholder')
-          "
-          v-model="searchQuery"
-          @focus="selectInputValueOnFocus"
-        />
-      </label>
+  <section :class="$style.characterEditor">
+    <div :class="$style.tools">
+      <search-bar
+        :class="$style.searchBar"
+        v-model="searchQuery"
+        :placeholder="
+          t('pages.hall-of-fame.editor.character.search-bar.placeholder')
+        "
+      />
 
-      <button class="filter-button" @click="toggleFilterSettingsActive()">
-        <transition name="fade">
+      <div :class="$style.filterButton" @click="toggleFilterSettingsActive()">
+        <transition :name="$style.icon" @enter="fadeIn" @leave="fadeOut">
           <template v-if="!isFilterSettingsActive">
-            <icon-ion-filter class="icon" />
+            <icon-ion-filter :class="$style.icon" />
           </template>
           <template v-else-if="isFilterSettingsActive">
-            <icon-ion-close class="icon" />
+            <icon-ion-close :class="$style.icon" />
           </template>
         </transition>
-      </button>
+      </div>
     </div>
 
-    <div class="content">
-      <div class="filter-settings-container" v-if="isFilterSettingsActive">
-        <div class="main">
-          <div class="header">
-            <span class="description">{{
-              t("pages.hall-of-fame.editor.character.filter.description")
-            }}</span>
-            <hr class="horizontal" />
+    <div :class="$style.content">
+      <div :class="$style.filterSettings" v-if="isFilterSettingsActive">
+        <div :class="$style.main">
+          <div :class="$style.header">
+            {{ t("pages.hall-of-fame.editor.character.filter.description") }}
           </div>
 
-          <div class="filter-selector">
-            <div class="selector-item-group">
+          <div :class="$style.main">
+            <div :class="$style.selectors">
               <template
                 v-for="item in allFilterItems"
                 :key="hashCode(item.characterID, item.monikerID)"
               >
-                <div class="selector-item" @click="toggleFilterActive(item)">
+                <div :class="$style.selector" @click="toggleFilterActive(item)">
                   <div
-                    class="checkbox"
-                    :class="{ checked: isFilterActive(item) }"
+                    :class="[
+                      $style.checkbox,
+                      { [$style.checked]: isFilterActive(item) },
+                    ]"
                   >
-                    <icon-ion-checkmark class="icon" />
+                    <icon-fa-solid-check :class="$style.icon" />
                   </div>
-                  <span class="label">{{
-                    `${t(getCharacterNameKey(item))} [${t(
-                      getMonikerNameKey(item)
-                    )}]`
-                  }}</span>
+                  <span :class="$style.label">
+                    {{ filterItemName(item) }}
+                  </span>
                 </div>
               </template>
             </div>
           </div>
         </div>
 
-        <div class="controller-container">
-          <button class="controller" @click="setAllFilter(true)">
+        <div :class="$style.controllers">
+          <button :class="$style.controller" @click="setAllFilter(true)">
             {{ t("ui.select-all") }}
           </button>
-          <button class="controller" @click="setAllFilter(false)">
+          <button :class="$style.controller" @click="setAllFilter(false)">
             {{ t("ui.deselect-all") }}
           </button>
         </div>
       </div>
 
-      <div class="editor-container" v-else>
-        <div class="character-selector-container">
-          <div class="character-selector">
-            <div class="selector-item-group">
+      <div :class="$style.editors" v-else>
+        <div :class="$style.character">
+          <div :class="$style.container">
+            <div :class="$style.selectors">
               <template
                 v-for="identify in characters"
                 :key="identify.characterID"
               >
                 <div
-                  class="selector-item"
-                  :class="{ selected: isCharacterSelected(identify) }"
+                  :class="[
+                    $style.selector,
+                    { [$style.selected]: isCharacterSelected(identify) },
+                  ]"
                   @click="setCharacter(identify)"
                 >
                   <span>{{ t(getCharacterNameKey(identify)) }}</span>
@@ -90,13 +84,15 @@
           </div>
         </div>
 
-        <div class="moniker-selector-container">
-          <div class="moniker-selector">
-            <div class="selector-item-group">
+        <div :class="$style.moniker">
+          <div :class="$style.container">
+            <div :class="$style.selectors">
               <template v-for="identify in monikers" :key="identify.monikerID">
                 <div
-                  class="selector-item"
-                  :class="{ selected: isMonikerSelected(identify) }"
+                  :class="[
+                    $style.selector,
+                    { [$style.selected]: isMonikerSelected(identify) },
+                  ]"
                   @click="setMonikerID(identify)"
                 >
                   {{ t(getMonikerNameKey(identify)) }}
@@ -106,40 +102,48 @@
           </div>
         </div>
 
-        <div class="level-selector-container">
-          <div class="label">
+        <div :class="$style.level">
+          <div :class="$style.label">
             {{
               t(
                 "pages.hall-of-fame.editor.character.level-selector.label.talent-level"
               )
             }}
           </div>
-          <div class="level-item-group">
+          <div :class="$style.selectors">
             <div
-              class="level-item"
+              :class="$style.selector"
               v-for="level in AllTalentLevel"
               :key="level"
               @click="setTalentLevel(level)"
             >
-              <img class="icon" :src="getTalentLevelIcon(level)" alt="" />
+              <img
+                :class="$style.icon"
+                :src="getTalentLevelIcon(level)"
+                alt=""
+              />
             </div>
           </div>
 
-          <div class="label">
+          <div :class="$style.label">
             {{
               t(
                 "pages.hall-of-fame.editor.character.level-selector.label.awakening-level"
               )
             }}
           </div>
-          <div class="level-item-group">
+          <div :class="$style.selectors">
             <div
-              class="level-item"
+              :class="$style.selector"
               v-for="level in AllAwakeningLevel"
               :key="level"
               @click="setAwakeningLevel(level)"
             >
-              <img class="icon" :src="getAwakeningLevelIcon(level)" alt="" />
+              <img
+                :class="$style.icon"
+                :src="getAwakeningLevelIcon(level)"
+                alt=""
+              />
             </div>
           </div>
         </div>
@@ -163,11 +167,10 @@ import {
 import { numbers, objects } from "@/util";
 import _ from "@/util/lodash";
 import { selectInputValueOnFocus } from "@/views/logic/dom";
+import { fadeIn, fadeOut } from "@/views/logic/dom/animation";
 import { CharacterDto, SkillDto } from "@/views/hall-of-fame/logic/db";
-import {
-  fallbackStateFactory,
-  stateInjectionKey,
-} from "@/views/hall-of-fame/logic/dependency";
+import { State } from "@/views/hall-of-fame/logic/dependency";
+import SearchBar from "@/views/components/widget/SearchBar.vue";
 import starFill from "#/images/level/star-fill.svg";
 import starEmpty from "#/images/level/star-empty.svg";
 
@@ -198,6 +201,9 @@ const filterStore = useStorage<FilterStore>(
 const allFilter = () => filterStore.value.map(rawToFilter);
 
 export default defineComponent({
+  components: {
+    SearchBar,
+  },
   data() {
     const { hashCode } = numbers;
 
@@ -208,12 +214,18 @@ export default defineComponent({
       getMonikerNameKey: Character.getMonikerNameKey,
       hashCode,
       selectInputValueOnFocus,
+      fadeIn: fadeIn({
+        duration: 250,
+      }),
+      fadeOut: fadeOut({
+        duration: 250,
+      }),
     };
   },
   setup() {
     const { t } = useI18n();
 
-    const { editData } = inject(stateInjectionKey, fallbackStateFactory, true);
+    const { editData } = State(inject);
     const { character, skills } = editData.value;
 
     const searchQuery = ref("");
@@ -226,6 +238,12 @@ export default defineComponent({
         );
       });
     });
+
+    const filterItemName = (identify: MonikerIdentify): string => {
+      const characterName = t(Character.getNameKey(identify));
+      const monikerName = t(Character.getMonikerNameKey(identify));
+      return `${characterName} [${monikerName}]`;
+    };
 
     const [isFilterSettingsActive, toggleFilterSettingsActive] = useToggle();
 
@@ -404,6 +422,7 @@ export default defineComponent({
       t,
       searchQuery,
       allFilterItems,
+      filterItemName,
       isFilterSettingsActive,
       toggleFilterSettingsActive,
       isFilterActive,
@@ -424,8 +443,8 @@ export default defineComponent({
 });
 </script>
 
-<style lang="scss">
-.character-editor-root {
+<style lang="scss" module>
+.characterEditor {
   @apply h-full;
 
   > .tools {
@@ -433,32 +452,23 @@ export default defineComponent({
     @apply sm:(h-[2rem]);
     @apply md:(h-[2.5rem]);
 
-    > .search-bar {
-      @apply flex-grow flex gap-x-[0.5rem] items-center h-[1.75rem] rounded-md bg-[#fefefe] border;
+    > .searchBar {
+      @apply flex-grow h-[1.75rem];
       @apply sm:(h-[2rem]);
       @apply md:(h-[2.5rem]);
+    }
+
+    > .filterButton {
+      @apply flex-shrink-0 rounded-md border bg-[#fefefe] cursor-pointer;
 
       > .icon {
         @apply w-[1.75rem] h-[1.75rem] p-[0.25rem];
-        @apply sm:(w-[2rem] h-[2rem] p-[0.375rem]);
+        @apply sm:(w-[2rem] h-[2rem]);
         @apply md:(w-[2.5rem] h-[2.5rem]);
-      }
 
-      > .input {
-        @apply flex-grow bg-transparent;
-        @apply md:(text-[1.25rem]);
-      }
-    }
-
-    > .filter-button {
-      @apply w-[1.75rem] h-[1.75rem];
-      @apply sm:(w-[2rem] h-[2rem]);
-      @apply md:(w-[2.5rem] h-[2.5rem]);
-
-      > .icon {
-        @apply w-full h-full p-[0.125rem];
-        @apply sm:(p-[0.25rem]);
-        @apply md:(p-[0.375rem]);
+        @include leave-active {
+          @apply absolute;
+        }
       }
     }
   }
@@ -468,106 +478,92 @@ export default defineComponent({
     @apply sm:(h-[calc(100%-2rem-0.75rem)] mt-[0.75rem]);
     @apply md:(h-[calc(100%-2.5rem-1rem)] mt-[1rem]);
 
-    > .filter-settings-container {
-      @apply flex flex-col gap-y-[0.5rem] h-full;
-      @apply sm:(gap-y-[0.75rem]);
-      @apply md:(gap-y-[1rem]);
+    > .filterSettings {
+      @apply h-full;
 
       > .main {
         @apply h-[calc(100%-0.5rem-1.5rem)] p-[0.5rem] rounded-md bg-[#f2f2f2];
-        @apply sm:(h-[calc(100%-0.75rem-1.75rem)] p-[0.75rem]);
-        @apply md:(h-[calc(100%-1rem-2rem)] p-[1rem]);
+        @apply sm:(h-[calc(100%-0.75rem-2rem)] p-[0.75rem]);
+        @apply md:(h-[calc(100%-1rem-2.5rem)] p-[1rem]);
 
         > .header {
-          @apply flex items-center gap-x-[0.375rem] h-[1rem];
-          @apply sm:(gap-x-[0.5rem]);
-          @apply md:(gap-x-[0.75rem]);
-
-          > .description {
-            @apply text-[0.5rem];
-            @apply sm:(text-[0.75rem]);
-            @apply md:(text-[1rem]);
-          }
-
-          > .horizontal {
-            @apply flex-grow border-[#d2d2d2];
-          }
+          @apply text-xxs text-[#8fd54a] h-[0.875rem] border-b-1 border-[#8fd54a];
+          @apply sm:(text-xs h-[1rem]);
+          @apply md:(text-base h-[1.5rem]);
         }
 
-        > .filter-selector {
-          @apply overflow-hidden h-[calc(100%-1rem-0.25rem)] mt-[0.25rem];
+        > .main {
+          @apply overflow-hidden h-[calc(100%-0.875rem-0.25rem)] mt-[0.25rem];
           @apply sm:(h-[calc(100%-1rem-0.5rem)] mt-[0.5rem]);
-          @apply md:(h-[calc(100%-1rem-1rem)] mt-[1rem]);
+          @apply md:(h-[calc(100%-1.5rem-1rem)] mt-[1rem]);
 
-          > .selector-item-group {
-            @apply flex flex-col gap-y-[0.5rem] overflow-y-scroll h-full pt-[0.25rem];
+          > .selectors {
+            @apply flex flex-col gap-y-[0.5rem] h-full pt-[0.25rem] overflow-y-scroll;
             @apply sm:(gap-y-[0.75rem]);
             @apply md:(gap-y-[1rem]);
 
-            > .selector-item {
-              @apply flex gap-x-[0.25rem] h-[1rem];
-              @apply md:(h-[1.5rem]);
+            > .selector {
+              @apply text-xxs flex gap-x-[0.25rem] h-[1rem] cursor-pointer;
+              @apply sm:(text-sm h-[1.25rem]);
+              @apply md:(text-lg h-[1.75rem]);
 
               > .checkbox {
-                @apply border rounded-md w-[1rem] h-[1rem] text-[#f2f2f2] bg-[#8fd54a];
-                @apply md:(w-[1.5rem] h-[1.5rem]);
+                @apply w-[1rem] h-[1rem] rounded border bg-[#fefefe];
+                @apply sm:(w-[1.5rem] h-[1.5rem]);
+                @apply md:(w-[2rem] h-[2rem] border-2);
 
                 > .icon {
-                  @apply invisible w-full h-full p-[0.0625rem];
+                  @apply text-[#e0e0e0] w-full h-full p-[0.125rem];
+                  @apply sm:(p-[0.2rem]);
+                  @apply md:(p-[0.25rem]);
                 }
 
                 &.checked {
                   > .icon {
-                    @apply visible;
+                    @apply text-[#8fd54a];
                   }
                 }
-              }
-
-              > .label {
-                @apply text-[0.75rem] leading-[1rem];
-                @apply md:(text-[1rem] leading-[1.5rem]);
               }
             }
           }
         }
       }
 
-      > .controller-container {
-        @apply flex gap-x-[1rem] h-[1.5rem];
-        @apply sm:(h-[1.75rem]);
-        @apply md:(h-[2rem]);
+      > .controllers {
+        @apply flex justify-around gap-x-[1rem] mt-[0.5rem];
+        @apply sm:(mt-[0.75rem]);
+        @apply md:(mt-[1rem]);
 
         > .controller {
-          @apply font-bold text-[0.5rem] px-[0.5rem];
-          @apply sm:(text-[0.75rem]);
-          @apply md:(font-bold text-[1rem] px-[1rem] py-[0.5rem]);
+          @apply font-bold text-xxs h-[1.5rem] px-[0.5rem] rounded-full border bg-[#fefefe];
+          @apply sm:(text-sm h-[2rem] px-[1rem]);
+          @apply md:(text-lg h-[2.5rem] px-[1.5rem]);
         }
       }
     }
 
-    > .editor-container {
+    > .editors {
       @apply flex flex-col gap-y-[0.5rem] h-full;
       @apply sm:(gap-y-[0.75rem]);
       @apply md:(gap-y-[1rem]);
 
-      > .character-selector-container {
+      > .character {
         @apply h-[calc(100%-0.5rem-8rem-0.5rem-4.75rem)] rounded-md bg-[#f2f2f2] overflow-hidden;
         @apply sm:(h-[calc(100%-0.75rem-10rem-0.75rem-5.75rem)]);
         @apply md:(h-[calc(100%-1rem-10rem-1rem-7rem)]);
 
-        > .character-selector {
+        > .container {
           @apply h-full overflow-y-scroll;
 
-          > .selector-item-group {
+          > .selectors {
             @apply grid grid-cols-2 gap-[0.5rem] p-[0.5rem];
             @apply sm:(gap-[0.75rem] p-[0.75rem]);
             @apply md:(gap-[1rem] p-[1rem]);
 
-            > .selector-item {
-              @include text-overflow-omit;
-              @apply py-[0.25rem] text-[0.875rem] text-center rounded-md bg-[#fefefe] border cursor-pointer;
-              @apply sm:(py-[0.5rem]);
-              @apply md:(text-[1rem]);
+            > .selector {
+              @apply truncate text-xs text-center py-[0.25rem] rounded-md bg-[#fefefe] border cursor-pointer;
+              @apply sm:(text-sm);
+              @apply md:(text-base);
 
               &.selected {
                 @apply text-[#f2f2f2] bg-[#8fd54a];
@@ -581,23 +577,22 @@ export default defineComponent({
         }
       }
 
-      > .moniker-selector-container {
-        @apply rounded-md bg-[#f2f2f2] h-[8rem] overflow-hidden;
+      > .moniker {
+        @apply h-[8rem] rounded-md bg-[#f2f2f2] overflow-hidden;
         @apply sm:(h-[10rem]);
 
-        > .moniker-selector {
+        > .container {
           @apply h-full overflow-y-scroll;
 
-          > .selector-item-group {
+          > .selectors {
             @apply grid grid-cols-1 gap-[0.5rem] p-[0.5rem];
             @apply sm:(gap-[0.75rem] p-[0.75rem]);
             @apply md:(grid-cols-2 gap-[1rem] p-[1rem]);
 
-            > .selector-item {
-              @include text-overflow-omit;
-              @apply py-[0.25rem] text-[0.875rem] text-center rounded-md bg-[#fefefe] border cursor-pointer;
-              @apply sm:(py-[0.5rem]);
-              @apply md:(text-[1rem]);
+            > .selector {
+              @apply truncate text-xs text-center py-[0.25rem] rounded-md bg-[#fefefe] border cursor-pointer;
+              @apply sm:(text-sm);
+              @apply md:(py-[0.5rem]);
 
               &.selected {
                 @apply text-[#f2f2f2] bg-[#8fd54a];
@@ -611,23 +606,23 @@ export default defineComponent({
         }
       }
 
-      > .level-selector-container {
+      > .level {
         @apply grid grid-cols-[max-content,1fr] gap-[0.75rem] h-[calc(0.5rem+1.5rem+0.75rem+1.5rem+0.5rem)] p-[0.5rem] overflow-hidden bg-[#f2f2f2] rounded-md;
         @apply sm:(h-[calc(0.75rem+1.75rem+0.75rem+1.75rem+0.75rem)] p-[0.75rem]);
         @apply md:(gap-[1rem] h-[calc(1rem+2rem+1rem+2rem+1rem)] p-[1rem]);
 
         > .label {
-          @apply flex justify-center items-center text-[0.75rem] h-[1.5rem] px-[0.375rem] border bg-[#fafafa] rounded-md;
-          @apply sm:(text-[1rem] h-[1.75rem] px-[0.5rem]);
-          @apply md:(text-[1.125rem] h-[2rem] px-[0.75rem]);
+          @apply text-xxs flex justify-center items-center h-[1.5rem] px-[0.375rem] rounded-md border bg-[#fafafa];
+          @apply sm:(text-base h-[1.75rem] px-[0.5rem]);
+          @apply md:(text-lg h-[2rem] px-[0.75rem]);
         }
 
-        > .level-item-group {
+        > .selectors {
           @apply flex-grow flex items-center gap-x-[0.5rem] h-[1.5rem];
           @apply sm:(h-[1.75rem] gap-x-[0.75rem]);
           @apply md:(h-[2rem]);
 
-          > .level-item {
+          > .selector {
             @apply cursor-pointer;
 
             > .icon {

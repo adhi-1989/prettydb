@@ -1,30 +1,30 @@
 <template>
-  <section class="history-view-root">
-    <div class="history-view">
-      <div class="header">
-        <span class="text">{{
+  <section :class="$style.history">
+    <div :class="$style.view">
+      <div :class="$style.header">
+        <span :class="$style.text">{{
           t("pages.hall-of-fame.viewer.history-view.label.result")
         }}</span>
-        <hr class="horizontal" />
+        <hr :class="$style.horizontal" />
       </div>
 
-      <div class="result-view">
-        <div class="result-label fans-number">
+      <div :class="$style.result">
+        <div :class="$style.label">
           {{ t("game-system.history.fans-number") }}
         </div>
-        <div class="result-value fans-number">
+        <div :class="$style.value">
           {{ fansNumber }}
         </div>
 
-        <div class="result-label score">
+        <div :class="$style.label">
           {{ t("game-system.history.score") }}
         </div>
-        <div class="result-value score">{{ score }}</div>
+        <div :class="$style.value">{{ score }}</div>
 
-        <div class="result-label register-date">
+        <div :class="$style.label">
           {{ t("game-system.history.register-date") }}
         </div>
-        <div class="result-value register-date">
+        <div :class="$style.value">
           {{ registerDate }}
         </div>
       </div>
@@ -36,16 +36,13 @@
 import { computed, defineComponent, inject } from "vue";
 import { useI18n } from "vue-i18n";
 import dayjs from "dayjs";
-import {
-  fallbackStateFactory,
-  stateInjectionKey,
-} from "@/views/hall-of-fame/logic/dependency";
+import { State } from "@/views/hall-of-fame/logic/dependency";
 
 export default defineComponent({
   setup() {
     const { t, locale } = useI18n();
 
-    const { viewData } = inject(stateInjectionKey, fallbackStateFactory, true);
+    const { viewData } = State(inject);
     const { history } = viewData.value;
     const fansNumber = computed(() => {
       const fansNumber = new Intl.NumberFormat(locale.value).format(
@@ -72,41 +69,43 @@ export default defineComponent({
 });
 </script>
 
-<style lang="scss">
-.history-view-root {
-  @apply rounded overflow-hidden h-full bg-[#f2f2f2] p-[0.5rem];
+<style lang="scss" module>
+.history {
+  @apply h-full px-[0.5rem] rounded bg-[#f2f2f2] overflow-hidden;
+  @apply md:(px-[0.75rem] py-[0.125rem]);
 
-  > .history-view {
+  > .view {
     @apply overflow-y-scroll;
 
     > .header {
-      @apply flex items-center gap-x-[0.375rem];
+      @apply flex gap-x-[0.375rem] items-center;
 
       > .text {
-        @apply font-bold text-[0.5rem] py-[0.25rem];
-        @apply sm:(text-[0.65rem]);
-        @apply md:(text-[0.875rem]);
+        @apply font-bold text-xxs py-[0.25rem];
+        @apply sm:(text-xs);
+        @apply md:(text-base);
       }
 
       > .horizontal {
-        @apply flex-grow;
+        @apply flex-grow border-[#d2d2d2];
       }
     }
 
-    > .result-view {
-      @apply font-bold grid gap-x-[0.5rem] gap-y-[0.25rem] items-center p-[0.25rem] grid-cols-[max-content,1fr];
-      @apply sm:(gap-x-[0.75rem] gap-y-[0.5rem]);
+    > .result {
+      @apply font-bold grid grid-cols-[max-content,1fr] gap-x-[0.5rem] gap-y-[0.25rem] items-center p-[0.25rem];
+      @apply sm:(gap-x-[0.75rem]);
+      @apply md:(gap-y-[0.5rem]);
 
-      > .result-label {
-        @apply text-center text-[0.65rem] rounded-full px-[0.5rem] py-[0.25rem] bg-[#fefefe];
-        @apply sm:(text-[0.75rem]);
-        @apply md:(text-[1rem] px-[0.75rem]);
+      > .label {
+        @apply text-center text-xxs px-[0.5rem] py-[0.075rem] rounded-full bg-[#fefefe];
+        @apply sm:(text-xs);
+        @apply md:(text-base px-[0.75rem]);
       }
 
-      > .result-value {
-        @apply text-[0.875rem];
-        @apply sm:(text-[1rem]);
-        @apply md:(text-[1.25rem]);
+      > .value {
+        @apply text-sm;
+        @apply sm:(text-base);
+        @apply md:(text-xl);
       }
     }
   }

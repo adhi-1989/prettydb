@@ -1,27 +1,22 @@
 <template>
-  <section class="profile-view-root">
-    <div class="portrait-container">
-      <img class="portrait" :src="getPortrait(character)" alt="" />
-      <div class="talent-level-container">
+  <section :class="$style.profile">
+    <div :class="$style.portrait">
+      <img :class="$style.image" :src="getPortrait(character)" alt="" />
+      <div :class="$style.talent">
         <template v-for="level in AllTalentLevel" :key="level">
-          <img
-            class="talent-level"
-            :class="`level-${level}`"
-            :src="getLevelIcon(level)"
-            alt=""
-          />
+          <img :class="$style.level" :src="getLevelIcon(level)" alt="" />
         </template>
       </div>
     </div>
 
-    <div class="score-and-rank">
-      <img class="rank" :src="getRankGradeIcon(history.score)" alt="" />
-      <span class="score">{{ history.score }}</span>
+    <div :class="$style.score">
+      <img :class="$style.rank" :src="getRankGradeIcon(history.score)" alt="" />
+      <span :class="$style.text">{{ history.score }}</span>
     </div>
 
-    <div class="name-card">
-      <div class="moniker">[{{ t(getMonikerNameKey(character)) }}]</div>
-      <div class="name">{{ t(getCharacterNameKey(character)) }}</div>
+    <div :class="$style.identify">
+      <div :class="$style.moniker">[{{ t(getMonikerNameKey(character)) }}]</div>
+      <div :class="$style.name">{{ t(getCharacterNameKey(character)) }}</div>
     </div>
   </section>
 </template>
@@ -31,10 +26,7 @@ import { defineComponent, inject } from "vue";
 import { useI18n } from "vue-i18n";
 import { Character } from "@/data";
 import { getPortrait, getRankGradeIcon } from "@/views/logic/resources/images";
-import {
-  fallbackStateFactory,
-  stateInjectionKey,
-} from "@/views/hall-of-fame/logic/dependency";
+import { State } from "@/views/hall-of-fame/logic/dependency";
 import starFill from "#/images/level/star-fill.svg";
 import starEmpty from "#/images/level/star-empty.svg";
 
@@ -51,8 +43,9 @@ export default defineComponent({
   setup() {
     const { t } = useI18n();
 
-    const { viewData } = inject(stateInjectionKey, fallbackStateFactory, true);
+    const { viewData } = State(inject);
     const { character, history } = viewData.value;
+
     const getLevelIcon = (level: number): string => {
       return level <= character.talentLevel ? starFill : starEmpty;
     };
@@ -67,51 +60,59 @@ export default defineComponent({
 });
 </script>
 
-<style lang="scss">
-.profile-view-root {
-  @apply flex gap-x-[0.5rem] px-[0.5rem] pb-[0.5rem];
-  @apply sm:(gap-x-[1rem] px-[0.5rem] pb-[0.5rem]);
+<style lang="scss" module>
+.profile {
+  @apply flex gap-x-[0.5rem] px-[0.5rem];
+  @apply sm:(px-[0.75rem] my-[0.25rem]);
+  @apply md:(px-[1rem] my-[0.5rem]);
 
-  > .portrait-container {
+  > .portrait {
     @apply relative;
 
-    > .portrait {
-      @apply w-[4.5rem];
-      @apply sm:(w-[7rem]);
+    > .image {
+      @apply w-[4rem] h-[4rem];
+      @apply sm:(w-[5rem] h-[5rem]);
+      @apply md:(w-[7rem] h-[7rem]);
     }
 
-    > .talent-level-container {
+    > .talent {
       @apply absolute inset-x-0 mx-auto bottom-0 flex flex-row-reverse justify-center;
+      @apply sm:(bottom-[-0.125rem]);
 
-      > .talent-level {
-        @apply w-[1rem] object-scale-down;
-        @apply sm:(w-[1.5rem]);
+      > .level {
+        @apply w-[1rem] h-[1rem];
+        @apply sm:(w-[1.25rem] h-[1.25rem]);
+        @apply md:(w-[1.675rem] h-[1.675rem]);
 
-        &:not(.level-1) {
+        &:not(:last-child) {
           @apply ml-[-0.25rem];
           @apply sm:(ml-[-0.375rem]);
+          @apply md:(ml-[-0.5rem]);
         }
       }
     }
   }
 
-  > .score-and-rank {
-    @apply flex flex-col justify-center text-center;
+  > .score {
+    @apply text-center flex flex-col justify-center;
 
     > .rank {
-      @apply object-scale-down w-[2.25rem];
-      @apply sm:(w-[3.5rem]);
+      @apply w-[1.875rem] h-[1.875rem];
+      @apply sm:(w-[2.5rem] h-[2.5rem]);
+      @apply md:(w-[3.5rem] h-[3.5rem]);
     }
 
-    > .score {
-      @apply font-bold text-[0.75rem];
-      @apply sm:(text-[1rem]);
+    > .text {
+      @apply font-bold text-xxs;
+      @apply sm:(text-xs);
+      @apply md:(text-base);
     }
   }
 
-  > .name-card {
-    @apply flex-grow flex flex-col justify-center font-bold text-center text-[0.75rem];
-    @apply sm:(text-[1rem]);
+  > .identify {
+    @apply flex-grow font-bold text-center text-xxs flex flex-col justify-center;
+    @apply sm:(text-xs);
+    @apply md:(text-base);
   }
 }
 </style>

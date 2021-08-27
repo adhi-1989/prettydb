@@ -1,24 +1,26 @@
 <template>
-  <section class="ability-editor-root">
-    <div class="view">
+  <section :class="$style.abilityEditor">
+    <div :class="$style.view">
       <template v-for="{ type, abilities } in AllAbilityContainer" :key="type">
-        <div class="ability-type-name">
-          <span class="text">{{ t(getAbilityTypeNameKey(type)) }}</span>
-          <hr class="horizontal" />
+        <div :class="$style.abilityType">
+          <span :class="$style.text">{{ t(getAbilityTypeNameKey(type)) }}</span>
+          <hr :class="$style.horizontal" />
         </div>
 
-        <div class="ability-item-group">
+        <div :class="$style.abilities">
           <template v-for="identify in abilities" :key="identify">
             <div
-              class="ability-item"
-              :class="{ focused: isAbilityFocused(identify) }"
+              :class="[
+                $style.ability,
+                { [$style.focused]: isAbilityFocused(identify) },
+              ]"
               @click="setFocus(type, identify)"
             >
-              <div class="label">
+              <div :class="$style.label">
                 {{ t(getAbilityNameKey(identify)) }}
               </div>
               <img
-                class="icon"
+                :class="$style.icon"
                 :src="getAbilityGradeIcon(getAbilityGrade(identify))"
                 alt=""
               />
@@ -28,48 +30,21 @@
       </template>
     </div>
 
-    <div class="editor">
-      <div class="label">{{ editorLabel }}</div>
-      <div class="grade-selector-container">
+    <div :class="$style.editor">
+      <div :class="$style.label">{{ editorLabel }}</div>
+      <div :class="$style.gradeSelectors">
         <div
-          class="grade-selector"
           v-for="grade in OrderedAbilityGrades"
           :key="grade"
-          :class="{ selected: isFocusedAbilityGradeEquals(grade) }"
+          :class="[
+            $style.selector,
+            { [$style.selected]: isFocusedAbilityGradeEquals(grade) },
+          ]"
           @click="setFocusedAbilityGrade(grade)"
         >
-          <img class="icon" :src="getAbilityGradeIcon(grade)" alt="" />
+          <img :class="$style.icon" :src="getAbilityGradeIcon(grade)" alt="" />
         </div>
       </div>
-    </div>
-
-    <div class="editor" v-if="false">
-      <template v-for="{ type, abilities } in AllAbilityContainer" :key="type">
-        <div class="generic-label">
-          <span class="text">{{ t(getAbilityTypeNameKey(type)) }}</span>
-          <hr class="horizontal" />
-        </div>
-        <template v-for="ability in abilities" :key="ability">
-          <div
-            class="ability-label"
-            :class="{ focused: isAbilityFocused(ability) }"
-            @click="setFocus(type, ability)"
-          >
-            {{ t(getAbilityNameKey(ability)) }}
-          </div>
-          <div class="grade-selector-container">
-            <div
-              class="grade-selector"
-              v-for="grade in OrderedAbilityGrades"
-              :key="grade"
-              :class="{ selected: isAbilityGradeEquals(ability, grade) }"
-              @click="setAbilityGrade(type, ability, grade)"
-            >
-              <img class="icon" :src="getAbilityGradeIcon(grade)" alt="" />
-            </div>
-          </div>
-        </template>
-      </template>
     </div>
   </section>
 </template>
@@ -79,10 +54,7 @@ import { computed, defineComponent, inject, ref } from "vue";
 import { useI18n } from "vue-i18n";
 import { Ability, AbilityIdentify, AbilityGrade, AbilityType } from "@/data";
 import { getAbilityGradeIcon } from "@/views/logic/resources/images";
-import {
-  fallbackStateFactory,
-  stateInjectionKey,
-} from "@/views/hall-of-fame/logic/dependency";
+import { State } from "@/views/hall-of-fame/logic/dependency";
 
 const OrderedAbilityGrades: Array<AbilityGrade> = [
   "s",
@@ -121,7 +93,7 @@ export default defineComponent({
   setup() {
     const { t } = useI18n();
 
-    const { editData } = inject(stateInjectionKey, fallbackStateFactory, true);
+    const { editData } = State(inject);
     const { ability } = editData.value;
 
     const getAbilityGrade = (identify: AbilityIdentify): AbilityGrade => {
@@ -182,15 +154,15 @@ export default defineComponent({
 });
 </script>
 
-<style lang="scss">
-.ability-editor-root {
+<style lang="scss" module>
+.abilityEditor {
   @apply flex flex-col gap-y-[0.5rem] h-full;
   @apply sm:(gap-y-[1rem]);
 
   > .view {
     @apply p-[0.5rem] rounded-md bg-[#f2f2f2];
 
-    > .ability-type-name {
+    > .abilityType {
       @apply flex gap-x-[0.375rem] items-center px-[0.5rem] py-[0.25rem];
 
       > .text {
@@ -203,10 +175,10 @@ export default defineComponent({
       }
     }
 
-    > .ability-item-group {
+    > .abilities {
       @apply grid grid-cols-2 justify-items-center;
 
-      > .ability-item {
+      > .ability {
         @apply flex gap-x-[0.5rem] items-center h-[2.5rem] cursor-pointer;
         @apply sm:(h-[3.5rem]);
 
@@ -243,11 +215,11 @@ export default defineComponent({
       @apply sm:(text-[1rem]);
     }
 
-    > .grade-selector-container {
+    > .gradeSelectors {
       @apply grid grid-cols-4 gap-y-[1.25rem] justify-items-center py-[0.25rem];
       @apply sm:(gap-y-[1.75rem]);
 
-      > .grade-selector {
+      > .selector {
         @apply cursor-pointer rounded-md;
 
         > .icon {

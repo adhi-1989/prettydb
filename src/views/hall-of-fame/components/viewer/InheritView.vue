@@ -1,24 +1,32 @@
 <template>
-  <section class="inherit-view-root">
-    <div class="inherit-view">
-      <div class="header">
+  <section :class="$style.inherit">
+    <div :class="$style.view">
+      <div :class="$style.header">
         {{ t("pages.hall-of-fame.viewer.inherit-view.label.factor") }}
       </div>
 
-      <div class="data-child">
-        <div class="portrait-container">
-          <img class="rank" :src="getRankGradeIcon(history.score)" alt="" />
-          <img class="portrait" :src="getPortrait(character)" alt="" />
+      <div :class="$style.main">
+        <div :class="$style.portrait">
+          <img
+            :class="$style.rank"
+            :src="getRankGradeIcon(history.score)"
+            alt=""
+          />
+          <img :class="$style.image" :src="getPortrait(character)" alt="" />
         </div>
 
-        <div class="factor-item-group">
-          <template v-for="{ factor, level } in factors" :key="factor.factorID">
+        <div :class="$style.factors">
+          <div
+            :class="$style.factor"
+            v-for="{ factor, level } in factors"
+            :key="factor.factorID"
+          >
             <factor-card :factor="factor" :level="level" />
-          </template>
+          </div>
         </div>
       </div>
 
-      <div class="invisible">
+      <div :class="$style.invisible">
         <span>{{
           t("pages.hall-of-fame.viewer.inherit-view.label.parents")
         }}</span>
@@ -72,38 +80,38 @@ export default defineComponent({
 });
 </script>
 
-<style lang="scss">
-.inherit-view-root {
+<style lang="scss" module>
+.inherit {
   @apply rounded overflow-y-scroll h-full bg-[#f2f2f2] p-[0.5rem];
 
-  > .inherit-view {
+  > .view {
     @apply h-full;
 
     > .header {
-      @apply font-bold text-[#fefefe] text-[0.75rem] rounded-sm bg-gradient-to-t from-[#8ac73e] to-[#8ac73e] pl-[0.25rem] py-[0.125rem];
-      @apply md:(text-[0.875rem] pl-[0.375rem] py-[0.25rem]);
+      @apply font-bold text-[#fefefe] text-xs rounded-sm bg-gradient-to-t from-[#8ac73e] to-[#8ac73e] pl-[0.25rem] py-[0.125rem];
     }
 
-    > .data-child {
+    > .main {
       @apply flex gap-x-[0.25rem];
 
-      > .portrait-container {
-        @apply pt-[0.25rem] relative;
+      > .portrait {
+        @apply flex-shrink-0 pt-[0.25rem] relative;
 
         > .rank {
-          @apply absolute top-[0.375rem] right-0 w-[1.5rem];
-          @apply md:(w-[2.25rem]);
+          @apply absolute top-[0.375rem] right-0 w-[1.5rem] h-[1.5rem];
+          @apply md:(w-[2.25rem] h-[2.25rem]);
         }
 
-        > .portrait {
-          @apply w-[3.25rem];
-          @apply md:(w-[5rem]);
+        > .image {
+          @apply w-[3.75rem] h-[3.75rem];
+          @apply md:(w-[5rem] h-[5rem]);
         }
       }
 
-      > .factor-item-group {
-        @apply flex-1 grid grid-cols-2 grid-flow-row auto-rows-min gap-[0.375rem] py-[0.5rem];
-        @apply md:(gap-[0.5rem] py-[1rem]);
+      > .factors {
+        @apply flex-1 grid grid-cols-1 grid-flow-row auto-rows-min gap-y-[0.5rem] py-[0.5rem];
+        @apply sm:(grid-cols-2 gap-x-[0.375rem]);
+        @apply md:(py-[0.75rem] gap-y-[0.75rem]);
       }
     }
   }

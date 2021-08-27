@@ -1,42 +1,41 @@
 <template>
-  <article class="numpad-root">
-    <div class="layout" :class="{ 'rows-4': hiddenNumberDisplay }">
+  <section :class="$style.numpad" v-bind="$attrs">
+    <div
+      :class="[$style.layout, { [$style.hiddenDisplay]: hiddenNumberDisplay }]"
+    >
       <input
         ref="inputRef"
-        class="display"
-        :class="{ hidden: hiddenNumberDisplay }"
+        :class="$style.display"
         type="number"
-        :value="value"
+        v-model="value"
         @focus="selectInputValueOnFocus"
-        @input="inputEventHook"
         @keyup.enter="$emit('enterKeyPressed')"
       />
       <div
-        class="key"
         v-for="key in OrderedKeys"
         :key="key"
-        :class="`numpad-${key}`"
+        :class="getKeyClasses(key)"
         @click="keyClicked(key)"
       >
         <template v-if="key === 'backspace'">
-          <icon-ion-backspace class="icon" />
+          <icon-ion-backspace :class="$style.icon" />
         </template>
         <template v-else-if="key === 'enter'">
-          <icon-ion-return-down-back class="icon" />
+          <icon-ion-return-down-back :class="$style.icon" />
         </template>
         <template v-else-if="key === '0'">
-          <span class="value">{{ key }}</span>
+          <span :class="$style.value">{{ key }}</span>
         </template>
         <template v-else>
           {{ key }}
         </template>
       </div>
     </div>
-  </article>
+  </section>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, PropType } from "vue";
+import { defineComponent, useCssModule, PropType, ref, computed } from "vue";
 import { onStartTyping, onKeyStroke } from "@vueuse/core";
 import _ from "@/util/lodash";
 import { strings } from "@/util";
@@ -79,7 +78,7 @@ type Option = {
 
 export default defineComponent({
   props: {
-    value: {
+    modelValue: {
       type: Number,
       required: true,
     },
@@ -87,7 +86,7 @@ export default defineComponent({
       type: Object as PropType<Option>,
     },
   },
-  emits: ["update:value", "enterKeyPressed"],
+  emits: ["update:modelValue", "enterKeyPressed"],
   data() {
     return {
       OrderedKeys,
@@ -95,6 +94,10 @@ export default defineComponent({
     };
   },
   setup(props, { emit }) {
+    const value = computed({
+      get: () => props.modelValue,
+      set: (value: number) => emit("update:modelValue", value),
+    });
     const option = Object.assign(
       {
         min: Number.MIN_SAFE_INTEGER,
@@ -104,29 +107,31 @@ export default defineComponent({
       props.option
     );
 
+    const _style = useCssModule();
     const inputRef = ref<HTMLInputElement>();
 
-    const valueChanged = (input: HTMLInputElement) => {
-      const value = _.clamp(Number(input.value), option.min, option.max);
-      emit("update:value", value);
-      input.value = value.toString();
-    };
-
-    const inputEventHook = (event: Event) => {
-      if (event.target !== null) {
-        valueChanged(event.target as HTMLInputElement);
+    const getKeyClasses = (arg: NumpadKey) => {
+      const { key, backspace, enter, zero } = _style;
+      const result = [key];
+      if (arg === "backspace") {
+        result.push(backspace);
+      } else if (arg === "enter") {
+        result.push(enter);
+      } else if (arg === "0") {
+        result.push(zero);
       }
+      return result;
     };
-
     const keyClicked = (key: NumpadKey) => {
       const input = inputRef.value;
       if (input !== undefined) {
+        let _value = value.value;
         switch (key) {
           case "enter":
             emit("enterKeyPressed");
             return;
           case "backspace":
-            input.value = input.value.slice(0, -1);
+            _value = Math.floor(_value / 10);
             break;
           case "0":
           case "1":
@@ -138,10 +143,10 @@ export default defineComponent({
           case "7":
           case "8":
           case "9":
-            input.value += key;
+            _value = _value * 10 + Number(key);
             break;
         }
-        valueChanged(input);
+        value.value = _.clamp(Number(_value), option.min, option.max);
       }
     };
 
@@ -168,60 +173,60 @@ export default defineComponent({
     }
 
     onKeyStroke("Delete", () => {
-      const input = inputRef.value;
-      if (input !== undefined) {
-        input.value = "0";
-        valueChanged(input);
-      }
+      value.value = 0;
     });
 
     return {
+      value,
       hiddenNumberDisplay: option.hiddenNumberDisplay,
       inputRef,
-      inputEventHook,
-      valueChanged,
+      getKeyClasses,
       keyClicked,
     };
   },
 });
 </script>
 
-<style lang="scss">
-.numpad-root {
-  @apply text-[1.125rem];
-  @apply sm:(text-[1.5rem]);
+<style lang="scss" module>
+.numpad {
+  @apply text-lg;
+  @apply sm:(text-xl);
 
   > .layout {
     @apply grid grid-cols-[repeat(4,minmax(0,2.5rem))] grid-rows-[repeat(5,minmax(0,2.5rem))];
     @apply sm:(grid-cols-[repeat(4,minmax(0,3.5rem))] grid-rows-[repeat(5,minmax(0,3.5rem))]);
 
-    &.rows-4 {
+    &.hiddenDisplay {
       @apply grid-rows-[repeat(4,minmax(0,2.5rem))];
       @apply sm:(grid-rows-[repeat(4,minmax(0,3.5rem))]);
+
+      > .display {
+        @apply invisible absolute;
+      }
     }
 
     > .display {
       @apply col-span-4 text-right px-[0.5rem] rounded-t-sm;
       box-shadow: 0 0 0 1px #e0e0e0;
-
-      &.hidden {
-        @apply invisible absolute;
-      }
     }
 
     > .key {
       @apply flex justify-center items-center bg-[#fefefe] cursor-pointer;
       box-shadow: 0 0 0 1px #e0e0e0;
 
-      &.numpad-backspace {
+      &:hover {
+        @apply bg-[#f2f2f2];
+      }
+
+      &.backspace {
         @apply row-span-2 z-1;
       }
 
-      &.numpad-enter {
+      &.enter {
         @apply row-span-2 z-1 rounded-br-sm;
       }
 
-      &.numpad-0 {
+      &.zero {
         @apply col-span-3 grid grid-cols-3 rounded-bl-sm;
 
         > .value {

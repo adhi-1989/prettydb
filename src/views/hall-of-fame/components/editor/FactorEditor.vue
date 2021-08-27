@@ -1,80 +1,101 @@
 <template>
-  <section class="factor-editor-root">
-    <div class="tools">
-      <label class="search-bar" :class="{ disabled: isFilterSettingsActive }">
-        <icon-ion-search class="icon" />
-        <input
-          class="input"
-          type="text"
-          :placeholder="
-            t('pages.hall-of-fame.editor.factor.search-bar.placeholder')
-          "
-          v-model="searchQuery"
-          @focus="selectInputValueOnFocus"
-          :disabled="isFilterSettingsActive"
-        />
-      </label>
+  <section :class="$style.factorEditor">
+    <div :class="$style.tools">
+      <search-bar
+        :class="$style.searchBar"
+        v-model="searchQuery"
+        :placeholder="
+          t('pages.hall-of-fame.editor.factor.search-bar.placeholder')
+        "
+      />
 
-      <button class="filter-button" @click="toggleFilterSettingsActive()">
-        <transition name="fade">
+      <button
+        :class="$style.filterButton"
+        @click="toggleFilterSettingsActive()"
+      >
+        <transition :name="$style.icon" @enter="fadeIn" @leave="fadeOut">
           <template v-if="!isFilterSettingsActive">
-            <icon-ion-filter class="icon" />
+            <icon-ion-filter :class="$style.icon" />
           </template>
           <template v-else-if="isFilterSettingsActive">
-            <icon-ion-close class="icon" />
+            <icon-ion-close :class="$style.icon" />
           </template>
         </transition>
       </button>
     </div>
 
-    <div class="content">
-      <div class="filter-settings-container" v-if="isFilterSettingsActive">
-        <div class="main">
-          <div class="header">
-            <span class="description">{{
-              t("pages.hall-of-fame.editor.factor.filter.description")
-            }}</span>
-            <hr class="horizontal" />
+    <div :class="$style.content">
+      <div :class="$style.filterSettings" v-if="isFilterSettingsActive">
+        <div :class="$style.main">
+          <div :class="$style.header">
+            {{ t("pages.hall-of-fame.editor.factor.filter.description") }}
           </div>
 
-          <div class="filter-selector">
-            <div class="secondary-selector-item-group">
-              <template
-                v-for="item in SecondaryFilterMetadata"
-                :key="item.filterID"
-              >
-                <div class="selector-item" @click="toggleFilterActive(item)">
+          <div :class="$style.filterContainer">
+            <div :class="$style.secondarySelectors">
+              <div :class="$style.header">
+                {{
+                  t("pages.hall-of-fame.editor.factor.filter.category.level")
+                }}
+              </div>
+
+              <div :class="$style.selectors">
+                <template
+                  v-for="item in SecondaryFilterMetadata"
+                  :key="item.filterID"
+                >
                   <div
-                    class="checkbox"
-                    :class="{ checked: isFilterActive(item) }"
+                    :class="$style.selector"
+                    @click="toggleFilterActive(item)"
                   >
-                    <icon-ion-checkmark class="icon" />
-                  </div>
-                  <template v-if="isLevelFilter(item)">
-                    <div class="level">
+                    <div
+                      :class="[
+                        $style.checkbox,
+                        { [$style.checked]: isFilterActive(item) },
+                      ]"
+                    >
+                      <icon-fa-solid-check :class="$style.icon" />
+                    </div>
+                    <div :class="$style.level" v-if="isLevelFilter(item)">
                       <template
                         v-for="level in getFilterLevel(item)"
                         :key="level"
                       >
-                        <img class="icon" :src="starFill" alt="" />
+                        <img :class="$style.icon" :src="starFill" alt="" />
                       </template>
                     </div>
-                  </template>
-                </div>
-              </template>
+                  </div>
+                </template>
+              </div>
             </div>
-            <div class="factor-type-selector-item-group">
-              <template
-                v-for="item in FactorTypeFilterMetadata"
-                :key="item.filterID"
-              >
-                <template v-if="isFactorTypeFilter(item)">
+
+            <div :class="$style.factorTypeSelectors">
+              <div :class="$style.header">
+                {{
+                  t(
+                    "pages.hall-of-fame.editor.factor.filter.category.factor-type"
+                  )
+                }}
+              </div>
+
+              <div :class="$style.selectors">
+                <template
+                  v-for="item in FactorTypeFilterMetadata"
+                  :key="item.filterID"
+                >
                   <div
-                    class="selector-item"
-                    :class="{ active: isFilterActive(item) }"
+                    :class="$style.selector"
                     @click="toggleFilterActive(item)"
                   >
-                    <span class="label">
+                    <div
+                      :class="[
+                        $style.checkbox,
+                        { [$style.checked]: isFilterActive(item) },
+                      ]"
+                    >
+                      <icon-fa-solid-check :class="$style.icon" />
+                    </div>
+                    <span :class="$style.label">
                       {{
                         t(
                           `pages.hall-of-fame.editor.factor.filter.label.${item.factorType}`
@@ -83,53 +104,43 @@
                     </span>
                   </div>
                 </template>
-              </template>
+              </div>
             </div>
           </div>
         </div>
 
-        <div class="controller-container">
-          <button class="controller" @click="setAllFilter(true)">
+        <div :class="$style.controllers">
+          <button :class="$style.controller" @click="setAllFilter(true)">
             {{ t("ui.select-all") }}
           </button>
-          <button class="controller" @click="setAllFilter(false)">
+          <button :class="$style.controller" @click="setAllFilter(false)">
             {{ t("ui.deselect-all") }}
           </button>
         </div>
       </div>
 
-      <div class="editor-container" v-else>
-        <div class="factor-list-container">
-          <div class="navigation">
-            <div class="button-container" @click="movePage(-1)">
-              <icon-ion-caret-back class="transition-button" />
-            </div>
-            <div class="pages">
-              <template v-for="page in pages" :key="page">
-                <div
-                  class="page"
-                  :class="pageClass(page)"
-                  @click="setPage(page)"
-                >
-                  {{ page }}
-                </div>
-              </template>
-            </div>
-            <div class="button-container" @click="movePage(1)">
-              <icon-ion-caret-forward class="transition-button" />
-            </div>
+      <div :class="$style.editorContainer" v-else>
+        <div :class="$style.factorListContainer">
+          <div :class="$style.pages">
+            <pagination v-model="page" :max="maxPage" />
           </div>
 
-          <div class="factor-list">
-            <div class="factor-item-group">
-              <transition-group name="factor-item">
+          <div :class="$style.factorList">
+            <div :class="$style.factors">
+              <transition-group
+                :name="$style.factor"
+                @enter="zoomIn"
+                @leave="zoomOut"
+              >
                 <template
                   v-for="(item, index) in displayFactorList"
                   :key="item.hashCode"
                 >
                   <div
-                    class="factor-item"
-                    :class="{ marked: isMarked('upper', item) }"
+                    :class="[
+                      $style.factor,
+                      { [$style.marked]: isMarked('upper', item) },
+                    ]"
                     :style="{ gridArea: calcGridArea(index) }"
                     @click="toggleMark('upper', item)"
                   >
@@ -141,27 +152,37 @@
           </div>
         </div>
 
-        <div class="factor-transfer-controller">
-          <div class="transfer-button" @click="transferMarkedItems('upper')">
-            <icon-ion-caret-up class="icon" />
-            <span class="label">{{ t("ui.remove") }}</span>
+        <div :class="$style.controllers">
+          <div :class="$style.button" @click="transferMarkedItems('upper')">
+            <div :class="$style.content">
+              <icon-ion-arrow-up :class="$style.icon" />
+              <span :class="$style.label">{{ t("ui.remove") }}</span>
+            </div>
           </div>
-          <div class="transfer-button" @click="transferMarkedItems('lower')">
-            <icon-ion-caret-down class="icon" />
-            <span class="label">{{ t("ui.add") }}</span>
+          <div :class="$style.button" @click="transferMarkedItems('lower')">
+            <div :class="$style.content">
+              <icon-ion-arrow-down :class="$style.icon" />
+              <span :class="$style.label">{{ t("ui.add") }}</span>
+            </div>
           </div>
         </div>
 
-        <div class="expressed-factor-list">
-          <div class="factor-item-group">
-            <transition-group name="factor-item">
+        <div :class="$style.acquiredFactorList">
+          <div :class="$style.factors">
+            <transition-group
+              :name="$style.factor"
+              @enter="zoomIn"
+              @leave="zoomOut"
+            >
               <template
                 v-for="(item, index) in expressedFactorList"
                 :key="item.hashCode"
               >
                 <div
-                  class="factor-item"
-                  :class="{ marked: isMarked('lower', item) }"
+                  :class="[
+                    $style.factor,
+                    { [$style.marked]: isMarked('lower', item) },
+                  ]"
                   :style="{ gridArea: calcGridArea(index) }"
                   @click="toggleMark('lower', item)"
                 >
@@ -183,7 +204,6 @@ import {
   inject,
   onMounted,
   reactive,
-  readonly,
   ref,
   watch,
 } from "vue";
@@ -194,12 +214,12 @@ import { numbers, objects } from "@/util";
 import _ from "@/util/lodash";
 import { selectInputValueOnFocus } from "@/views/logic/dom";
 import { FactorDto } from "@/views/hall-of-fame/logic/db";
-import {
-  fallbackStateFactory,
-  stateInjectionKey,
-} from "@/views/hall-of-fame/logic/dependency";
+import { State } from "@/views/hall-of-fame/logic/dependency";
 import FactorCard from "@/views/components/widget/FactorCard.vue";
 import starFill from "#/images/level/star-fill.svg";
+import { fadeIn, fadeOut, zoomIn, zoomOut } from "@/views/logic/dom/animation";
+import SearchBar from "@/views/components/widget/SearchBar.vue";
+import Pagination from "@/views/components/widget/Pagination.vue";
 
 type FilterRaw = [number, boolean];
 type FilterStore = Array<FilterRaw>;
@@ -342,6 +362,8 @@ const ExclusiveTypes = Object.freeze<FactorType>([
 
 export default defineComponent({
   components: {
+    SearchBar,
+    Pagination,
     FactorCard,
   },
   data() {
@@ -353,12 +375,24 @@ export default defineComponent({
       isLevelFilter,
       getFilterLevel,
       isFactorTypeFilter,
+      fadeIn: fadeIn({
+        duration: 250,
+      }),
+      fadeOut: fadeOut({
+        duration: 250,
+      }),
+      zoomIn: zoomIn({
+        duration: 250,
+      }),
+      zoomOut: zoomOut({
+        duration: 250,
+      }),
     };
   },
   setup() {
     const { t } = useI18n();
 
-    const { editData } = inject(stateInjectionKey, fallbackStateFactory, true);
+    const { editData } = State(inject);
     const { character, factors } = editData.value;
 
     const [isFilterSettingsActive, toggleFilterSettingsActive] = useToggle();
@@ -454,55 +488,16 @@ export default defineComponent({
       return _.sortBy(result, ["factor.sortID", "level"]);
     });
 
-    const _currentPage = ref(1);
-
-    const displayFactorList = computed<Array<FactorItem>>(() => {
-      return _filteredFactorList.value.slice(
-        (_currentPage.value - 1) * 32,
-        _currentPage.value * 32
-      );
-    });
-
+    const _page = ref(1);
     const maxPage = computed<number>(() => {
       return Math.ceil(_filteredFactorList.value.length / 32);
     });
-    const setPage = (page: number | string) => {
-      if (_.isNumber(page)) {
-        _currentPage.value = page;
-      }
-    };
-    const movePage = (n: number) => {
-      setPage(_.clamp(_currentPage.value + n, 1, maxPage.value));
-    };
-    const pageClass = (page: number | string) => {
-      return {
-        button: _.isNumber(page),
-        selected: _currentPage.value === page,
-      };
-    };
-    const pages = computed<Array<number | string>>(() => {
-      const max = maxPage.value;
-      if (max <= 1) {
-        return max === 1 ? [1] : [];
-      } else if (max < 6) {
-        return _.range(1, max + 1);
-      }
-      const page = _currentPage.value;
-      if (page <= 4) {
-        return [1, 2, 3, 4, 5, "...", max];
-      } else if (page > 4 && page <= max - 4) {
-        return [1, "...", page - 1, page, page + 1, "...", max];
-      } else {
-        return [
-          1,
-          "...",
-          maxPage.value - 4,
-          maxPage.value - 3,
-          maxPage.value - 2,
-          maxPage.value - 1,
-          maxPage.value,
-        ];
-      }
+
+    const displayFactorList = computed<Array<FactorItem>>(() => {
+      return _filteredFactorList.value.slice(
+        (_page.value - 1) * 32,
+        _page.value * 32
+      );
     });
 
     const _markedItems = reactive<Record<TransferDirection, MarkedFactorList>>({
@@ -580,9 +575,9 @@ export default defineComponent({
       () => maxPage.value,
       (newValue, oldValue) => {
         if (oldValue === 0 && oldValue !== newValue) {
-          _currentPage.value = 1;
-        } else if (newValue < _currentPage.value) {
-          _currentPage.value = newValue;
+          _page.value = 1;
+        } else if (newValue < _page.value) {
+          _page.value = newValue;
         }
       }
     );
@@ -610,10 +605,8 @@ export default defineComponent({
       expressedFactorList,
       searchQuery,
       displayFactorList,
-      setPage,
-      movePage,
-      pageClass,
-      pages,
+      page: _page,
+      maxPage,
       toggleMark,
       isMarked,
       transferMarkedItems,
@@ -623,45 +616,52 @@ export default defineComponent({
 });
 </script>
 
-<style lang="scss">
-.factor-editor-root {
+<style lang="scss" module>
+@mixin factorList {
+  @apply relative grid grid-cols-2 gap-[0.5rem] p-[0.5rem];
+  @apply sm:(p-[0.75rem]);
+  @apply md:(gap-[0.75rem]);
+
+  > .factor {
+    @apply w-full cursor-pointer;
+
+    &:global(-move) {
+      transition: transform 0.5s;
+    }
+
+    @include leave-active {
+      @apply absolute;
+    }
+
+    &.marked {
+      @apply rounded-sm ring ring-[#8fd54a];
+    }
+  }
+}
+
+.factorEditor {
   @apply h-full;
 
   > .tools {
-    @apply flex gap-x-[0.5rem] overflow-hidden h-[1.75rem];
+    @apply flex gap-x-[0.5rem] h-[1.75rem] overflow-hidden;
     @apply sm:(h-[2rem]);
     @apply md:(h-[2.5rem]);
 
-    > .search-bar {
-      @apply flex-grow flex gap-x-[0.5rem] items-center h-[1.75rem] rounded-md bg-[#fefefe] border;
-      @apply sm:(h-[2rem]);
-      @apply md:(h-[2.5rem]);
-
-      > .icon {
-        @apply w-[1.75rem] h-[1.75rem] p-[0.25rem];
-        @apply sm:(w-[2rem] h-[2rem] p-[0.375rem]);
-        @apply md:(w-[2.5rem] h-[2.5rem]);
-      }
-
-      > .input {
-        @apply flex-grow bg-transparent;
-        @apply md:(text-[1.25rem]);
-      }
-
-      &.disabled {
-        @apply bg-[#e0e0e0];
-      }
+    > .searchBar {
+      @apply flex-grow;
     }
 
-    > .filter-button {
-      @apply w-[1.75rem] h-[1.75rem];
-      @apply sm:(w-[2rem] h-[2rem]);
-      @apply md:(w-[2.5rem] h-[2.5rem]);
+    > .filterButton {
+      @apply rounded-md bg-[#fefefe] border;
 
       > .icon {
-        @apply w-full h-full p-[0.125rem];
-        @apply sm:(p-[0.25rem]);
-        @apply md:(p-[0.375rem]);
+        @apply w-[1.75rem] h-[1.75rem] p-[0.125rem];
+        @apply sm:(w-[2rem] h-[2rem] p-[0.25rem]);
+        @apply md:(w-[2.5rem] h-[2.5rem] p-[0.375rem]);
+
+        @include leave-active {
+          @apply absolute;
+        }
       }
     }
   }
@@ -671,245 +671,190 @@ export default defineComponent({
     @apply sm:(h-[calc(100%-2rem-0.75rem)] mt-[0.75rem]);
     @apply md:(h-[calc(100%-2.5rem-1rem)] mt-[1rem]);
 
-    > .filter-settings-container {
+    > .filterSettings {
       @apply flex flex-col gap-y-[0.5rem] h-full;
       @apply sm:(gap-y-[0.75rem]);
       @apply md:(gap-y-[1rem]);
 
       > .main {
         @apply h-[calc(100%-0.5rem-1.5rem)] p-[0.5rem] rounded-md bg-[#f2f2f2];
-        @apply sm:(h-[calc(100%-0.75rem-1.75rem)] p-[0.75rem]);
-        @apply md:(h-[calc(100%-1rem-2rem)] p-[1rem]);
+        @apply sm:(h-[calc(100%-0.75rem-2rem)] p-[0.75rem]);
+        @apply md:(h-[calc(100%-1rem-2.5rem)] p-[1rem]);
 
         > .header {
-          @apply flex items-center gap-x-[0.375rem] h-[1rem];
-          @apply sm:(gap-x-[0.5rem]);
-          @apply md:(gap-x-[0.75rem]);
-
-          > .description {
-            @apply text-[0.5rem];
-            @apply sm:(text-[0.75rem]);
-            @apply md:(text-[1rem]);
-          }
-
-          > .horizontal {
-            @apply flex-grow border-[#d2d2d2];
-          }
+          @apply text-xxs text-[#8fd54a] h-[0.875rem] border-b-1 border-[#8fd54a];
+          @apply sm:(text-xs h-[1rem]);
+          @apply md:(text-base h-[1.5rem]);
         }
 
-        > .filter-selector {
+        > .filterContainer {
           @apply flex flex-col gap-y-[1rem] overflow-y-scroll h-[calc(100%-1rem-0.5rem)] mt-[0.5rem];
-          @apply sm:(gap-y-[1.5rem] h-[calc(100%-1rem-0.75rem)] mt-[0.75rem]);
-          @apply md:(gap-y-[2rem] h-[calc(100%-1rem-1rem)] mt-[1rem]);
+          @apply sm:(h-[calc(100%-1rem-0.75rem)] mt-[0.75rem]);
+          @apply md:(h-[calc(100%-1rem-1rem)] mt-[1rem]);
 
-          > .secondary-selector-item-group {
-            @apply grid grid-cols-3 gap-x-[0.75rem];
+          > .secondarySelectors {
+            @apply px-[0.5rem];
 
-            > .selector-item {
-              @apply flex items-center gap-x-[0.25rem] cursor-pointer;
+            > .header {
+              @apply text-xxs border-b-1 border-[#d0d0d0];
+              @apply sm:(text-xs);
+              @apply md:(text-base);
+            }
 
-              > .checkbox {
-                @apply border rounded-md w-[1rem] h-[1rem] bg-gradient-to-t from-[#7fbf3cff] via-[#90ca3fff] to-[#a2d543ff] text-[#fafafa];
-                @apply md:(w-[1.5rem] h-[1.5rem]);
+            > .selectors {
+              @apply grid grid-cols-2 gap-[0.75rem] pt-[0.5rem];
+              @apply sm:(gap-y-[1rem]);
 
-                > .icon {
-                  @apply invisible w-full h-full p-[0.0625rem];
-                }
+              > .selector {
+                @apply text-center text-xxs flex items-center gap-x-[0.375rem] items-center cursor-pointer;
+                @apply sm:(text-xs gap-x-[0.5rem]);
+                @apply md:(text-base gap-x-[0.75rem]);
 
-                &.checked {
+                > .checkbox {
+                  @apply w-[1rem] h-[1rem] rounded border bg-[#fefefe];
+                  @apply sm:(w-[1.5rem] h-[1.5rem]);
+                  @apply md:(w-[2rem] h-[2rem] border-2);
+
                   > .icon {
-                    @apply visible;
+                    @apply text-[#e0e0e0] w-full h-full p-[0.125rem];
+                    @apply sm:(p-[0.2rem]);
+                    @apply md:(p-[0.25rem]);
+                  }
+
+                  &.checked {
+                    > .icon {
+                      @apply text-[#8fd54a];
+                    }
                   }
                 }
-              }
 
-              > .level {
-                @apply flex gap-x-[0.125rem];
+                > .level {
+                  @apply flex gap-x-[0.125rem];
+                  @apply sm:(gap-x-[0.25rem]);
 
-                > .icon {
-                  @apply w-[1rem] h-[1rem];
-                  @apply sm:(w-[1.5rem] h-[1.5rem]);
+                  > .icon {
+                    @apply w-[1.25rem] h-[1.25rem]
+                    @apply sm:(w-[1.75rem] h-[1.75rem]);
+                    @apply md:(w-[2.25rem] h-[2.25rem]);
+                  }
                 }
               }
             }
           }
 
-          > .factor-type-selector-item-group {
-            @apply grid grid-cols-3 gap-[0.75rem];
+          > .factorTypeSelectors {
+            @apply px-[0.5rem];
 
-            > .selector-item {
-              @apply text-center text-[0.75rem] py-[0.25rem] bg-[#fafafa] rounded-md border cursor-pointer;
-              @apply sm:(py-[0.5rem]);
-              @apply md:(text-[1rem]);
+            > .header {
+              @apply text-xxs border-b-1 border-[#d0d0d0];
+              @apply sm:(text-xs);
+              @apply md:(text-base);
+            }
 
-              &.active {
-                @apply bg-[#8fd54a] border-[#8fd54a];
+            > .selectors {
+              @apply grid grid-cols-2 gap-[0.75rem] pt-[0.5rem];
+              @apply sm:(gap-y-[1rem]);
 
-                > .label {
-                  @apply text-[#fafafa];
+              > .selector {
+                @apply text-center text-xs flex gap-x-[0.375rem] items-center cursor-pointer;
+                @apply sm:(text-sm gap-x-[0.5rem]);
+                @apply md:(text-lg gap-x-[0.75rem]);
+
+                > .checkbox {
+                  @apply w-[1rem] h-[1rem] rounded border bg-[#fefefe];
+                  @apply sm:(w-[1.5rem] h-[1.5rem]);
+                  @apply md:(w-[2rem] h-[2rem] border-2);
+
+                  > .icon {
+                    @apply text-[#e0e0e0] w-full h-full p-[0.125rem];
+                    @apply sm:(p-[0.2rem]);
+                    @apply md:(p-[0.25rem]);
+                  }
+
+                  &.checked {
+                    > .icon {
+                      @apply text-[#8fd54a];
+                    }
+                  }
                 }
-              }
-
-              &:not(.active):hover {
-                @apply border-[#8fd54a];
               }
             }
           }
         }
       }
 
-      > .controller-container {
-        @apply flex gap-x-[1rem] h-[1.5rem];
-        @apply sm:(h-[1.75rem]);
-        @apply md:(h-[2rem]);
+      > .controllers {
+        @apply flex justify-around gap-x-[1rem];
 
         > .controller {
-          @apply font-bold text-[0.5rem] px-[0.5rem];
-          @apply sm:(text-[0.75rem]);
-          @apply md:(font-bold text-[1rem] px-[1rem] py-[0.5rem]);
+          @apply font-bold text-xxs h-[1.5rem] px-[0.5rem] rounded-full border bg-[#fefefe];
+          @apply sm:(text-sm h-[2rem] px-[1rem]);
+          @apply md:(text-lg h-[2.5rem] px-[1.5rem]);
         }
       }
     }
 
-    > .editor-container {
+    > .editorContainer {
       @apply flex flex-col gap-y-[0.5rem] h-full;
       @apply sm:(gap-y-[0.75rem]);
       @apply md:(gap-y-[1rem]);
 
-      > .factor-list-container {
+      > .factorListContainer {
         @apply h-[calc(((100%-2rem-(0.5rem*2))/2)+2rem)] overflow-hidden;
         @apply sm:(h-[calc(((100%-2.25rem-(0.75rem*2))/2)+2.5rem)]);
         @apply md:(h-[calc(((100%-2.25rem-(0.75rem*2))/2)+3rem)]);
 
-        > .navigation {
-          @apply flex justify-between items-center h-[2rem];
-          @apply sm:(h-[2.5rem]);
-          @apply md:(h-[3rem]);
-
-          > .button-container {
-            @apply cursor-pointer;
-
-            > .transition-button {
-              @apply w-[1.5rem] h-[1.5rem];
-              @apply sm:(w-[1.75rem] h-[1.75rem]);
-              @apply md:(w-[2rem] h-[2rem]);
-            }
-          }
-
-          > .pages {
-            @apply flex-1 flex justify-evenly;
-
-            > .page {
-              @apply flex justify-center items-center w-[1.25rem] h-[1.25rem] rounded-md;
-              @apply sm:(text-[1.125rem] w-[1.5rem] h-[1.5rem]);
-              @apply md:(text-[1.25rem] w-[1.75rem] h-[1.75rem]);
-
-              &.button {
-                @apply cursor-pointer;
-
-                &:not(.selected):hover {
-                  @apply border;
-                }
-              }
-
-              &.selected {
-                @apply bg-[#c0c0c0] text-[#fafafa];
-              }
-            }
-          }
+        > .pages {
+          @apply w-full;
         }
 
-        > .factor-list {
+        > .factorList {
           @apply h-[calc(100%-2rem)] bg-[#f2f2f2] rounded-md overflow-y-scroll;
           @apply sm:(h-[calc(100%-2.5rem)]);
           @apply md:(h-[calc(100%-3rem)]);
 
-          > .factor-item-group {
-            @apply relative grid grid-cols-2 gap-x-[0.5rem] gap-y-[0.75rem] p-[0.5rem] pb-[0.75rem];
-            @apply sm:(p-[0.75rem]);
-            @apply md:(gap-[1rem]);
+          > .factors {
+            @include factorList;
+          }
+        }
+      }
 
-            > .factor-item {
-              @apply cursor-pointer;
+      > .controllers {
+        @apply flex justify-evenly items-center;
 
-              &-move {
-                transition: transform 0.5s;
-              }
+        > .button {
+          @include button-border;
+          @apply h-[2rem] rounded-md cursor-pointer;
+          @apply sm:(h-[2.25rem]);
+          @apply md:(h-[2.5rem]);
 
-              &-enter-active {
-                animation: zoomIn;
-                animation-duration: 0.5s;
-              }
+          > .content {
+            @include button-content;
+            @apply flex items-center px-[0.5rem] rounded-md;
+            @apply md:(border-2);
 
-              &-leave-active {
-                @apply absolute;
-                animation: zoomOut;
-                animation-duration: 0.5s;
-              }
+            > .icon {
+              @apply w-[1.5rem] h-[1.5rem];
+              @apply sm:(w-[1.75rem] h-[1.75rem]);
+              @apply md:(w-[2rem] h-[2rem]);
+            }
 
-              &.marked {
-                @apply ring rounded-sm;
-              }
+            > .label {
+              @apply font-bold text-sm px-[0.5rem];
+              @apply sm:(text-base);
+              @apply md:(text-lg);
             }
           }
         }
       }
 
-      > .factor-transfer-controller {
-        @apply flex justify-evenly items-center h-[2rem];
-        @apply sm:(h-[2.25rem]);
-        @apply md:(h-[2.5rem]);
-
-        > .transfer-button {
-          @include button-gradient;
-          @apply flex justify-evenly items-center px-[0.5rem] py-[0.125rem] rounded-md border cursor-pointer;
-
-          > .icon {
-            @apply w-[1.5rem] h-[1.5rem];
-            @apply sm:(w-[1.75rem] h-[1.75rem]);
-            @apply md:(w-[2rem] h-[2rem]);
-          }
-
-          > .label {
-            @apply font-bold text-[0.875rem] px-[0.5rem];
-            @apply sm:(text-[1rem]);
-            @apply md:(text-[1.125rem]);
-          }
-        }
-      }
-
-      > .expressed-factor-list {
+      > .acquiredFactorList {
         @apply h-[calc(((100%-2rem-(0.5rem*2))/2)-2rem)] bg-[#f2f2f2] rounded-md overflow-y-scroll;
         @apply sm:(h-[calc(((100%-2.25rem-(0.75rem*2))/2)-2.5rem)]);
         @apply md:(h-[calc(((100%-2.25rem-(0.75rem*2))/2)-3rem)]);
 
-        > .factor-item-group {
-          @apply relative grid grid-cols-2 gap-x-[0.5rem] gap-y-[0.75rem] p-[0.5rem] pb-[0.75rem];
-          @apply sm:(p-[0.75rem]);
-          @apply md:(gap-[1rem]);
-
-          > .factor-item {
-            @apply cursor-pointer;
-
-            &-move {
-              transition: transform 0.5s;
-            }
-
-            &-enter-active {
-              animation: zoomIn;
-              animation-duration: 0.5s;
-            }
-
-            &-leave-active {
-              @apply absolute;
-              animation: zoomOut;
-              animation-duration: 0.5s;
-            }
-
-            &.marked {
-              @apply ring rounded-sm;
-            }
-          }
+        > .factors {
+          @include factorList;
         }
       }
     }
