@@ -36,12 +36,12 @@ message Skill {
   /* Field of Unique Skills @ start */
   int32 characterID = 8;
   int32 monikerID = 9;
-  enum TalentLevelMatcher {
+  enum Levels {
     FROM_1_TO_5 = 0;
     FROM_1_TO_2 = 1;
     FROM_3_TO_5 = 2;
   }
-  TalentLevelMatcher talentLevelMatcher = 10;
+  Levels matchingTalentLevels = 10;
   bool inheritable = 11;
   /* Field of Unique Skills @ end */
 }

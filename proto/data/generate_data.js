@@ -1099,7 +1099,7 @@ protobuf.load(path.resolve(__dirname, "factor.proto"), function (err, root) {
 protobuf.load(path.resolve(__dirname, "skill.proto"), function (err, root) {
   if (err) throw err;
 
-  const { Type, TalentLevelMatcher } = root.lookupType("Skill");
+  const { Type, Levels } = root.lookupType("Skill");
   const SkillList = root.lookupType("SkillList");
 
   const skills = SkillList.create({
@@ -1113,7 +1113,7 @@ protobuf.load(path.resolve(__dirname, "skill.proto"), function (err, root) {
         unique: true,
         characterID: 0,
         monikerID: 0,
-        talentLevelMatcher: TalentLevelMatcher.FROM_3_TO_5,
+        matchingTalentLevels: Levels.FROM_3_TO_5,
         inheritable: true,
       },
       /* 先頭の景色は譲らない…！ */ {
@@ -1125,7 +1125,7 @@ protobuf.load(path.resolve(__dirname, "skill.proto"), function (err, root) {
         unique: true,
         characterID: 1,
         monikerID: 0,
-        talentLevelMatcher: TalentLevelMatcher.FROM_3_TO_5,
+        matchingTalentLevels: Levels.FROM_3_TO_5,
         inheritable: true,
       },
       /* 究極テイオーステップ */ {
@@ -1137,7 +1137,7 @@ protobuf.load(path.resolve(__dirname, "skill.proto"), function (err, root) {
         unique: true,
         characterID: 2,
         monikerID: 0,
-        talentLevelMatcher: TalentLevelMatcher.FROM_3_TO_5,
+        matchingTalentLevels: Levels.FROM_3_TO_5,
         inheritable: true,
       },
       /* 絶対は、ボクだ */ {
@@ -1149,7 +1149,7 @@ protobuf.load(path.resolve(__dirname, "skill.proto"), function (err, root) {
         unique: true,
         characterID: 2,
         monikerID: 1,
-        talentLevelMatcher: TalentLevelMatcher.FROM_3_TO_5,
+        matchingTalentLevels: Levels.FROM_3_TO_5,
         inheritable: true,
       },
       /* 紅焔ギア/LP1211-M */ {
@@ -1161,7 +1161,7 @@ protobuf.load(path.resolve(__dirname, "skill.proto"), function (err, root) {
         unique: true,
         characterID: 3,
         monikerID: 0,
-        talentLevelMatcher: TalentLevelMatcher.FROM_3_TO_5,
+        matchingTalentLevels: Levels.FROM_3_TO_5,
         inheritable: true,
       },
       /* 勝利の鼓動 */ {
@@ -1173,7 +1173,7 @@ protobuf.load(path.resolve(__dirname, "skill.proto"), function (err, root) {
         unique: true,
         characterID: 5,
         monikerID: 0,
-        talentLevelMatcher: TalentLevelMatcher.FROM_3_TO_5,
+        matchingTalentLevels: Levels.FROM_3_TO_5,
         inheritable: true,
       },
       /* 波乱注意砲！ */ {
@@ -1185,7 +1185,7 @@ protobuf.load(path.resolve(__dirname, "skill.proto"), function (err, root) {
         unique: true,
         characterID: 6,
         monikerID: 0,
-        talentLevelMatcher: TalentLevelMatcher.FROM_1_TO_2,
+        matchingTalentLevels: Levels.FROM_1_TO_2,
         inheritable: false,
       },
       /* 不沈艦、抜錨ォッ！ */ {
@@ -1197,7 +1197,7 @@ protobuf.load(path.resolve(__dirname, "skill.proto"), function (err, root) {
         unique: true,
         characterID: 6,
         monikerID: 0,
-        talentLevelMatcher: TalentLevelMatcher.FROM_3_TO_5,
+        matchingTalentLevels: Levels.FROM_3_TO_5,
         inheritable: true,
       },
       /* アクセルX */ {
@@ -1209,7 +1209,7 @@ protobuf.load(path.resolve(__dirname, "skill.proto"), function (err, root) {
         unique: true,
         characterID: 7,
         monikerID: 0,
-        talentLevelMatcher: TalentLevelMatcher.FROM_1_TO_2,
+        matchingTalentLevels: Levels.FROM_1_TO_2,
         inheritable: false,
       },
       /* カッティング☓DRIVE！ */ {
@@ -1221,7 +1221,7 @@ protobuf.load(path.resolve(__dirname, "skill.proto"), function (err, root) {
         unique: true,
         characterID: 7,
         monikerID: 0,
-        talentLevelMatcher: TalentLevelMatcher.FROM_3_TO_5,
+        matchingTalentLevels: Levels.FROM_3_TO_5,
         inheritable: true,
       },
       /* レッドエース */ {
@@ -1233,7 +1233,7 @@ protobuf.load(path.resolve(__dirname, "skill.proto"), function (err, root) {
         unique: true,
         characterID: 8,
         monikerID: 0,
-        talentLevelMatcher: TalentLevelMatcher.FROM_1_TO_2,
+        matchingTalentLevels: Levels.FROM_1_TO_2,
         inheritable: false,
       },
       /* ブリリアント・レッドエース */ {
@@ -1245,7 +1245,7 @@ protobuf.load(path.resolve(__dirname, "skill.proto"), function (err, root) {
         unique: true,
         characterID: 8,
         monikerID: 0,
-        talentLevelMatcher: TalentLevelMatcher.FROM_3_TO_5,
+        matchingTalentLevels: Levels.FROM_3_TO_5,
         inheritable: true,
       },
       /* ヴィクトリーショット！ */ {
@@ -1257,7 +1257,7 @@ protobuf.load(path.resolve(__dirname, "skill.proto"), function (err, root) {
         unique: true,
         characterID: 9,
         monikerID: 0,
-        talentLevelMatcher: TalentLevelMatcher.FROM_3_TO_5,
+        matchingTalentLevels: Levels.FROM_3_TO_5,
         inheritable: true,
       },
       /* 精神一到 */ {
@@ -1269,7 +1269,7 @@ protobuf.load(path.resolve(__dirname, "skill.proto"), function (err, root) {
         unique: true,
         characterID: 10,
         monikerID: 0,
-        talentLevelMatcher: TalentLevelMatcher.FROM_1_TO_2,
+        matchingTalentLevels: Levels.FROM_1_TO_2,
         inheritable: false,
       },
       /* 精神一到何事か成らざらん */ {
@@ -1281,7 +1281,7 @@ protobuf.load(path.resolve(__dirname, "skill.proto"), function (err, root) {
         unique: true,
         characterID: 10,
         monikerID: 0,
-        talentLevelMatcher: TalentLevelMatcher.FROM_3_TO_5,
+        matchingTalentLevels: Levels.FROM_3_TO_5,
         inheritable: true,
       },
       /* 貴顕の使命を果たすべく */ {
@@ -1293,7 +1293,7 @@ protobuf.load(path.resolve(__dirname, "skill.proto"), function (err, root) {
         unique: true,
         characterID: 12,
         monikerID: 0,
-        talentLevelMatcher: TalentLevelMatcher.FROM_3_TO_5,
+        matchingTalentLevels: Levels.FROM_3_TO_5,
         inheritable: true,
       },
       /* 最強の名を懸けて */ {
@@ -1305,7 +1305,7 @@ protobuf.load(path.resolve(__dirname, "skill.proto"), function (err, root) {
         unique: true,
         characterID: 12,
         monikerID: 1,
-        talentLevelMatcher: TalentLevelMatcher.FROM_3_TO_5,
+        matchingTalentLevels: Levels.FROM_3_TO_5,
         inheritable: true,
       },
       /* 熱血☆アミーゴ */ {
@@ -1317,7 +1317,7 @@ protobuf.load(path.resolve(__dirname, "skill.proto"), function (err, root) {
         unique: true,
         characterID: 13,
         monikerID: 0,
-        talentLevelMatcher: TalentLevelMatcher.FROM_1_TO_2,
+        matchingTalentLevels: Levels.FROM_1_TO_2,
         inheritable: false,
       },
       /* プランチャ☆ガナドール */ {
@@ -1329,7 +1329,7 @@ protobuf.load(path.resolve(__dirname, "skill.proto"), function (err, root) {
         unique: true,
         characterID: 13,
         monikerID: 0,
-        talentLevelMatcher: TalentLevelMatcher.FROM_3_TO_5,
+        matchingTalentLevels: Levels.FROM_3_TO_5,
         inheritable: true,
       },
       /* ヴィットーリアに捧ぐ舞踏 */ {
@@ -1341,7 +1341,7 @@ protobuf.load(path.resolve(__dirname, "skill.proto"), function (err, root) {
         unique: true,
         characterID: 14,
         monikerID: 0,
-        talentLevelMatcher: TalentLevelMatcher.FROM_3_TO_5,
+        matchingTalentLevels: Levels.FROM_3_TO_5,
         inheritable: true,
       },
       /* Shadow Break */ {
@@ -1353,7 +1353,7 @@ protobuf.load(path.resolve(__dirname, "skill.proto"), function (err, root) {
         unique: true,
         characterID: 15,
         monikerID: 0,
-        talentLevelMatcher: TalentLevelMatcher.FROM_3_TO_5,
+        matchingTalentLevels: Levels.FROM_3_TO_5,
         inheritable: true,
       },
       /* 汝、皇帝の神威を見よ */ {
@@ -1365,7 +1365,7 @@ protobuf.load(path.resolve(__dirname, "skill.proto"), function (err, root) {
         unique: true,
         characterID: 16,
         monikerID: 0,
-        talentLevelMatcher: TalentLevelMatcher.FROM_3_TO_5,
+        matchingTalentLevels: Levels.FROM_3_TO_5,
         inheritable: true,
       },
       /* エンプレス・プライド */ {
@@ -1377,7 +1377,7 @@ protobuf.load(path.resolve(__dirname, "skill.proto"), function (err, root) {
         unique: true,
         characterID: 17,
         monikerID: 0,
-        talentLevelMatcher: TalentLevelMatcher.FROM_1_TO_2,
+        matchingTalentLevels: Levels.FROM_1_TO_2,
         inheritable: false,
       },
       /* ブレイズ・オブ・プライド */ {
@@ -1389,7 +1389,7 @@ protobuf.load(path.resolve(__dirname, "skill.proto"), function (err, root) {
         unique: true,
         characterID: 17,
         monikerID: 0,
-        talentLevelMatcher: TalentLevelMatcher.FROM_3_TO_5,
+        matchingTalentLevels: Levels.FROM_3_TO_5,
         inheritable: true,
       },
       /* 薫風、永遠なる瞬間を */ {
@@ -1401,7 +1401,7 @@ protobuf.load(path.resolve(__dirname, "skill.proto"), function (err, root) {
         unique: true,
         characterID: 17,
         monikerID: 1,
-        talentLevelMatcher: TalentLevelMatcher.FROM_3_TO_5,
+        matchingTalentLevels: Levels.FROM_3_TO_5,
         inheritable: true,
       },
       /* ∴win Q.E.D. */ {
@@ -1413,7 +1413,7 @@ protobuf.load(path.resolve(__dirname, "skill.proto"), function (err, root) {
         unique: true,
         characterID: 22,
         monikerID: 0,
-        talentLevelMatcher: TalentLevelMatcher.FROM_3_TO_5,
+        matchingTalentLevels: Levels.FROM_3_TO_5,
         inheritable: true,
       },
       /* 勝利のキッス☆ */ {
@@ -1425,7 +1425,7 @@ protobuf.load(path.resolve(__dirname, "skill.proto"), function (err, root) {
         unique: true,
         characterID: 23,
         monikerID: 0,
-        talentLevelMatcher: TalentLevelMatcher.FROM_1_TO_2,
+        matchingTalentLevels: Levels.FROM_1_TO_2,
         inheritable: false,
       },
       /* ひらめき☆ランディング */ {
@@ -1437,7 +1437,7 @@ protobuf.load(path.resolve(__dirname, "skill.proto"), function (err, root) {
         unique: true,
         characterID: 23,
         monikerID: 0,
-        talentLevelMatcher: TalentLevelMatcher.FROM_3_TO_5,
+        matchingTalentLevels: Levels.FROM_3_TO_5,
         inheritable: true,
       },
       /* フラワリー☆マニューバ */ {
@@ -1449,7 +1449,7 @@ protobuf.load(path.resolve(__dirname, "skill.proto"), function (err, root) {
         unique: true,
         characterID: 23,
         monikerID: 1,
-        talentLevelMatcher: TalentLevelMatcher.FROM_3_TO_5,
+        matchingTalentLevels: Levels.FROM_3_TO_5,
         inheritable: true,
       },
       /* G00 1st.F∞; */ {
@@ -1461,7 +1461,7 @@ protobuf.load(path.resolve(__dirname, "skill.proto"), function (err, root) {
         unique: true,
         characterID: 25,
         monikerID: 0,
-        talentLevelMatcher: TalentLevelMatcher.FROM_3_TO_5,
+        matchingTalentLevels: Levels.FROM_3_TO_5,
         inheritable: true,
       },
       /* 燃えろ筋肉！ */ {
@@ -1473,7 +1473,7 @@ protobuf.load(path.resolve(__dirname, "skill.proto"), function (err, root) {
         unique: true,
         characterID: 26,
         monikerID: 0,
-        talentLevelMatcher: TalentLevelMatcher.FROM_1_TO_2,
+        matchingTalentLevels: Levels.FROM_1_TO_2,
         inheritable: false,
       },
       /* レッツ・アナボリック！ */ {
@@ -1485,7 +1485,7 @@ protobuf.load(path.resolve(__dirname, "skill.proto"), function (err, root) {
         unique: true,
         characterID: 26,
         monikerID: 0,
-        talentLevelMatcher: TalentLevelMatcher.FROM_3_TO_5,
+        matchingTalentLevels: Levels.FROM_3_TO_5,
         inheritable: true,
       },
       /* ブルーローズチェイサー */ {
@@ -1497,7 +1497,7 @@ protobuf.load(path.resolve(__dirname, "skill.proto"), function (err, root) {
         unique: true,
         characterID: 29,
         monikerID: 0,
-        talentLevelMatcher: TalentLevelMatcher.FROM_3_TO_5,
+        matchingTalentLevels: Levels.FROM_3_TO_5,
         inheritable: true,
       },
       /* introduction : My body */ {
@@ -1509,7 +1509,7 @@ protobuf.load(path.resolve(__dirname, "skill.proto"), function (err, root) {
         unique: true,
         characterID: 31,
         monikerID: 0,
-        talentLevelMatcher: TalentLevelMatcher.FROM_1_TO_2,
+        matchingTalentLevels: Levels.FROM_1_TO_2,
         inheritable: false,
       },
       /* U=ma2 */ {
@@ -1521,7 +1521,7 @@ protobuf.load(path.resolve(__dirname, "skill.proto"), function (err, root) {
         unique: true,
         characterID: 31,
         monikerID: 0,
-        talentLevelMatcher: TalentLevelMatcher.FROM_3_TO_5,
+        matchingTalentLevels: Levels.FROM_3_TO_5,
         inheritable: true,
       },
       /* 全力Vサインッ！ */ {
@@ -1533,7 +1533,7 @@ protobuf.load(path.resolve(__dirname, "skill.proto"), function (err, root) {
         unique: true,
         characterID: 34,
         monikerID: 0,
-        talentLevelMatcher: TalentLevelMatcher.FROM_1_TO_2,
+        matchingTalentLevels: Levels.FROM_1_TO_2,
         inheritable: false,
       },
       /* 勝利のチケットを、君にッ！ */ {
@@ -1545,7 +1545,7 @@ protobuf.load(path.resolve(__dirname, "skill.proto"), function (err, root) {
         unique: true,
         characterID: 34,
         monikerID: 0,
-        talentLevelMatcher: TalentLevelMatcher.FROM_3_TO_5,
+        matchingTalentLevels: Levels.FROM_3_TO_5,
         inheritable: true,
       },
       /* #LookatCurren */ {
@@ -1557,7 +1557,7 @@ protobuf.load(path.resolve(__dirname, "skill.proto"), function (err, root) {
         unique: true,
         characterID: 37,
         monikerID: 0,
-        talentLevelMatcher: TalentLevelMatcher.FROM_3_TO_5,
+        matchingTalentLevels: Levels.FROM_3_TO_5,
         inheritable: true,
       },
       /* 学級委員長+速さ＝バクシン */ {
@@ -1569,7 +1569,7 @@ protobuf.load(path.resolve(__dirname, "skill.proto"), function (err, root) {
         unique: true,
         characterID: 40,
         monikerID: 0,
-        talentLevelMatcher: TalentLevelMatcher.FROM_1_TO_2,
+        matchingTalentLevels: Levels.FROM_1_TO_2,
         inheritable: false,
       },
       /* 優等生☓バクシン＝大勝利ッ */ {
@@ -1581,7 +1581,7 @@ protobuf.load(path.resolve(__dirname, "skill.proto"), function (err, root) {
         unique: true,
         characterID: 40,
         monikerID: 0,
-        talentLevelMatcher: TalentLevelMatcher.FROM_3_TO_5,
+        matchingTalentLevels: Levels.FROM_3_TO_5,
         inheritable: true,
       },
       /* クリアハート */ {
@@ -1593,7 +1593,7 @@ protobuf.load(path.resolve(__dirname, "skill.proto"), function (err, root) {
         unique: true,
         characterID: 44,
         monikerID: 0,
-        talentLevelMatcher: TalentLevelMatcher.FROM_1_TO_2,
+        matchingTalentLevels: Levels.FROM_1_TO_2,
         inheritable: false,
       },
       /* ピュリティオブハート */ {
@@ -1605,7 +1605,7 @@ protobuf.load(path.resolve(__dirname, "skill.proto"), function (err, root) {
         unique: true,
         characterID: 44,
         monikerID: 0,
-        talentLevelMatcher: TalentLevelMatcher.FROM_3_TO_5,
+        matchingTalentLevels: Levels.FROM_3_TO_5,
         inheritable: true,
       },
       /* キラキラ☆STARDOM */ {
@@ -1617,7 +1617,7 @@ protobuf.load(path.resolve(__dirname, "skill.proto"), function (err, root) {
         unique: true,
         characterID: 45,
         monikerID: 0,
-        talentLevelMatcher: TalentLevelMatcher.FROM_3_TO_5,
+        matchingTalentLevels: Levels.FROM_3_TO_5,
         inheritable: true,
       },
       /* Nemesis */ {
@@ -1629,7 +1629,7 @@ protobuf.load(path.resolve(__dirname, "skill.proto"), function (err, root) {
         unique: true,
         characterID: 49,
         monikerID: 0,
-        talentLevelMatcher: TalentLevelMatcher.FROM_3_TO_5,
+        matchingTalentLevels: Levels.FROM_3_TO_5,
         inheritable: true,
       },
       /* ワクワクよーいドン */ {
@@ -1641,7 +1641,7 @@ protobuf.load(path.resolve(__dirname, "skill.proto"), function (err, root) {
         unique: true,
         characterID: 51,
         monikerID: 0,
-        talentLevelMatcher: TalentLevelMatcher.FROM_1_TO_2,
+        matchingTalentLevels: Levels.FROM_1_TO_2,
         inheritable: false,
       },
       /* ワクワククライマックス */ {
@@ -1653,7 +1653,7 @@ protobuf.load(path.resolve(__dirname, "skill.proto"), function (err, root) {
         unique: true,
         characterID: 51,
         monikerID: 0,
-        talentLevelMatcher: TalentLevelMatcher.FROM_3_TO_5,
+        matchingTalentLevels: Levels.FROM_3_TO_5,
         inheritable: true,
       },
       /* 来てください来てください！ */ {
@@ -1665,7 +1665,7 @@ protobuf.load(path.resolve(__dirname, "skill.proto"), function (err, root) {
         unique: true,
         characterID: 55,
         monikerID: 0,
-        talentLevelMatcher: TalentLevelMatcher.FROM_1_TO_2,
+        matchingTalentLevels: Levels.FROM_1_TO_2,
         inheritable: false,
       },
       /* 来ます来てます来させます！ */ {
@@ -1677,7 +1677,7 @@ protobuf.load(path.resolve(__dirname, "skill.proto"), function (err, root) {
         unique: true,
         characterID: 55,
         monikerID: 0,
-        talentLevelMatcher: TalentLevelMatcher.FROM_3_TO_5,
+        matchingTalentLevels: Levels.FROM_3_TO_5,
         inheritable: true,
       },
       /* アタシもたまには、ね？ */ {
@@ -1689,7 +1689,7 @@ protobuf.load(path.resolve(__dirname, "skill.proto"), function (err, root) {
         unique: true,
         characterID: 59,
         monikerID: 0,
-        talentLevelMatcher: TalentLevelMatcher.FROM_1_TO_2,
+        matchingTalentLevels: Levels.FROM_1_TO_2,
         inheritable: false,
       },
       /* きっとその先へ…！ */ {
@@ -1701,7 +1701,7 @@ protobuf.load(path.resolve(__dirname, "skill.proto"), function (err, root) {
         unique: true,
         characterID: 59,
         monikerID: 0,
-        talentLevelMatcher: TalentLevelMatcher.FROM_3_TO_5,
+        matchingTalentLevels: Levels.FROM_3_TO_5,
         inheritable: true,
       },
       /* Call me KING */ {
@@ -1713,7 +1713,7 @@ protobuf.load(path.resolve(__dirname, "skill.proto"), function (err, root) {
         unique: true,
         characterID: 60,
         monikerID: 0,
-        talentLevelMatcher: TalentLevelMatcher.FROM_1_TO_2,
+        matchingTalentLevels: Levels.FROM_1_TO_2,
         inheritable: false,
       },
       /* Pride of KING */ {
@@ -1725,7 +1725,7 @@ protobuf.load(path.resolve(__dirname, "skill.proto"), function (err, root) {
         unique: true,
         characterID: 60,
         monikerID: 0,
-        talentLevelMatcher: TalentLevelMatcher.FROM_3_TO_5,
+        matchingTalentLevels: Levels.FROM_3_TO_5,
         inheritable: true,
       },
       /* アングリング☓スキーミング */ {
@@ -1737,7 +1737,7 @@ protobuf.load(path.resolve(__dirname, "skill.proto"), function (err, root) {
         unique: true,
         characterID: 20,
         monikerID: 0,
-        talentLevelMatcher: TalentLevelMatcher.FROM_3_TO_5,
+        matchingTalentLevels: Levels.FROM_3_TO_5,
         inheritable: true,
       },
       /* タイマン！デッドヒート！ */ {
@@ -1749,7 +1749,7 @@ protobuf.load(path.resolve(__dirname, "skill.proto"), function (err, root) {
         unique: true,
         characterID: 11,
         monikerID: 0,
-        talentLevelMatcher: TalentLevelMatcher.FROM_3_TO_5,
+        matchingTalentLevels: Levels.FROM_3_TO_5,
         inheritable: true,
       },
       /* コンドル猛撃波 */ {
@@ -1761,7 +1761,7 @@ protobuf.load(path.resolve(__dirname, "skill.proto"), function (err, root) {
         unique: true,
         characterID: 13,
         monikerID: 1,
-        talentLevelMatcher: TalentLevelMatcher.FROM_3_TO_5,
+        matchingTalentLevels: Levels.FROM_3_TO_5,
         inheritable: true,
       },
       /* ゲインヒール・スペリアー */ {
@@ -1773,7 +1773,7 @@ protobuf.load(path.resolve(__dirname, "skill.proto"), function (err, root) {
         unique: true,
         characterID: 10,
         monikerID: 1,
-        talentLevelMatcher: TalentLevelMatcher.FROM_3_TO_5,
+        matchingTalentLevels: Levels.FROM_3_TO_5,
         inheritable: true,
       },
       /* 煌星のヴォードヴィル */ {
@@ -1785,7 +1785,7 @@ protobuf.load(path.resolve(__dirname, "skill.proto"), function (err, root) {
         unique: true,
         characterID: 4,
         monikerID: 0,
-        talentLevelMatcher: TalentLevelMatcher.FROM_3_TO_5,
+        matchingTalentLevels: Levels.FROM_3_TO_5,
         inheritable: true,
       },
       /* KEEP IT REAL. */ {
@@ -1797,7 +1797,7 @@ protobuf.load(path.resolve(__dirname, "skill.proto"), function (err, root) {
         unique: true,
         characterID: 39,
         monikerID: 0,
-        talentLevelMatcher: TalentLevelMatcher.FROM_3_TO_5,
+        matchingTalentLevels: Levels.FROM_3_TO_5,
         inheritable: true,
       },
       /* わやかわ♪マリンダイヴ */ {
@@ -1809,7 +1809,7 @@ protobuf.load(path.resolve(__dirname, "skill.proto"), function (err, root) {
         unique: true,
         characterID: 0,
         monikerID: 1,
-        talentLevelMatcher: TalentLevelMatcher.FROM_3_TO_5,
+        matchingTalentLevels: Levels.FROM_3_TO_5,
         inheritable: true,
       },
       /* グッときて♪Chu */ {
@@ -1821,7 +1821,7 @@ protobuf.load(path.resolve(__dirname, "skill.proto"), function (err, root) {
         unique: true,
         characterID: 3,
         monikerID: 1,
-        talentLevelMatcher: TalentLevelMatcher.FROM_3_TO_5,
+        matchingTalentLevels: Levels.FROM_3_TO_5,
         inheritable: true,
       },
       /* I Never Goof Up! */ {
@@ -1833,7 +1833,7 @@ protobuf.load(path.resolve(__dirname, "skill.proto"), function (err, root) {
         unique: true,
         characterID: 57,
         monikerID: 0,
-        talentLevelMatcher: TalentLevelMatcher.FROM_3_TO_5,
+        matchingTalentLevels: Levels.FROM_3_TO_5,
         inheritable: true,
       },
       /* Schwarze Schwert */ {
@@ -1845,7 +1845,7 @@ protobuf.load(path.resolve(__dirname, "skill.proto"), function (err, root) {
         unique: true,
         characterID: 36,
         monikerID: 0,
-        matchTalentLevel: TalentLevelMatcher.FROM_3_TO_5,
+        matchingTalentLevels: Levels.FROM_3_TO_5,
         inheritable: true,
       },
       /* アガッてきた！ */ {

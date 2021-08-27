@@ -1,9 +1,9 @@
-import { SkillList, Skill as _Skill } from "@/data/_protobuf";
-import { MonikerIdentify } from "@/data";
+import axios from "axios";
 import { maps, objects } from "@/util";
 import _ from "@/util/lodash";
+import { Skill as _Skill, SkillList } from "@/data/_protobuf";
+import { MonikerIdentify, TalentLevel } from "@/data";
 import skillDataUrl from "#/assets/data/skill.dat?url";
-import axios from "axios";
 
 export type SkillType =
   | "buff-speed"
@@ -42,24 +42,22 @@ export type Skill = Readonly<SkillIdentify> & {
   readonly unique: boolean;
 };
 
-type TalentLevelMatcher = (id: number) => boolean;
-
 export type UniqueSkill = Skill & {
   readonly unique: true;
   readonly characterID: number;
   readonly monikerID: number;
-  readonly isMatchedTalentLevel: TalentLevelMatcher;
+  readonly matchingTalentLevels: ReadonlyArray<TalentLevel>;
   readonly inheritable: boolean;
 };
 
-const _from_1_to_5: TalentLevelMatcher = (id) => id >= 1 && id <= 5;
-const _from_1_to_2: TalentLevelMatcher = (id) => id >= 1 && id <= 2;
-const _from_3_to_5: TalentLevelMatcher = (id) => id >= 3 && id <= 5;
+const _from_1_to_5: ReadonlyArray<TalentLevel> = Object.freeze([1, 2, 3, 4, 5]);
+const _from_1_to_2: ReadonlyArray<TalentLevel> = Object.freeze([1, 2]);
+const _from_3_to_5: ReadonlyArray<TalentLevel> = Object.freeze([3, 4, 5]);
 
 export type UniqueSkillLevel = 1 | 2 | 3 | 4 | 5 | 6;
 
 export type UniqueSkillOwner = MonikerIdentify & {
-  talentLevel: number;
+  talentLevel: TalentLevel;
 };
 
 export interface SkillStatic {
@@ -91,7 +89,7 @@ export const NULL_SKILL = Object.freeze<UniqueSkill>({
   unique: true,
   characterID: -1,
   monikerID: -1,
-  isMatchedTalentLevel: _from_1_to_5,
+  matchingTalentLevels: _from_1_to_5,
   inheritable: false,
 });
 
@@ -100,7 +98,7 @@ const _checkUnique = _.memoize(
     skill.unique &&
     _.has(skill, "characterID") &&
     _.has(skill, "monikerID") &&
-    _.has(skill, "isMatchedTalentLevel") &&
+    _.has(skill, "matchingTalentLevels") &&
     _.has(skill, "inheritable")
 );
 
@@ -159,14 +157,14 @@ let _skillByIdMap: Record<number, Skill>;
     }
   };
   const talentLevelMatcher = (
-    value: _Skill.TalentLevelMatcher | null | undefined
-  ): TalentLevelMatcher => {
-    switch (objects.orDefault(value, _Skill.TalentLevelMatcher.FROM_1_TO_5)) {
-      case _Skill.TalentLevelMatcher.FROM_1_TO_5:
+    value: _Skill.Levels | null | undefined
+  ): ReadonlyArray<TalentLevel> => {
+    switch (objects.orDefault(value, _Skill.Levels.FROM_1_TO_5)) {
+      case _Skill.Levels.FROM_1_TO_5:
         return _from_1_to_5;
-      case _Skill.TalentLevelMatcher.FROM_1_TO_2:
+      case _Skill.Levels.FROM_1_TO_2:
         return _from_1_to_2;
-      case _Skill.TalentLevelMatcher.FROM_3_TO_5:
+      case _Skill.Levels.FROM_3_TO_5:
         return _from_3_to_5;
     }
   };
@@ -200,7 +198,7 @@ let _skillByIdMap: Record<number, Skill>;
             unique: true,
             characterID: objects.orDefault(x.characterID, -1),
             monikerID: objects.orDefault(x.monikerID, -1),
-            isMatchedTalentLevel: talentLevelMatcher(x.talentLevelMatcher),
+            matchingTalentLevels: talentLevelMatcher(x.matchingTalentLevels),
             inheritable: objects.orDefault(x.inheritable, false),
           });
         } else {
@@ -260,7 +258,7 @@ export const Skill: SkillStatic = {
     return (
       skill.characterID === owner.characterID &&
       skill.monikerID === owner.monikerID &&
-      skill.isMatchedTalentLevel(owner.talentLevel)
+      skill.matchingTalentLevels.includes(owner.talentLevel)
     );
   },
   getUnique(owner: UniqueSkillOwner): UniqueSkill {

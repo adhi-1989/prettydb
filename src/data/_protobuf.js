@@ -1381,7 +1381,7 @@ export const Skill = ($root.Skill = (() => {
    * @property {boolean|null} [unique] Skill unique
    * @property {number|null} [characterID] Skill characterID
    * @property {number|null} [monikerID] Skill monikerID
-   * @property {Skill.TalentLevelMatcher|null} [talentLevelMatcher] Skill talentLevelMatcher
+   * @property {Skill.Levels|null} [matchingTalentLevels] Skill matchingTalentLevels
    * @property {boolean|null} [inheritable] Skill inheritable
    */
 
@@ -1472,12 +1472,12 @@ export const Skill = ($root.Skill = (() => {
   Skill.prototype.monikerID = 0;
 
   /**
-   * Skill talentLevelMatcher.
-   * @member {Skill.TalentLevelMatcher} talentLevelMatcher
+   * Skill matchingTalentLevels.
+   * @member {Skill.Levels} matchingTalentLevels
    * @memberof Skill
    * @instance
    */
-  Skill.prototype.talentLevelMatcher = 0;
+  Skill.prototype.matchingTalentLevels = 0;
 
   /**
    * Skill inheritable.
@@ -1544,12 +1544,12 @@ export const Skill = ($root.Skill = (() => {
     )
       writer.uint32(/* id 9, wireType 0 =*/ 72).int32(message.monikerID);
     if (
-      message.talentLevelMatcher != null &&
-      Object.hasOwnProperty.call(message, "talentLevelMatcher")
+      message.matchingTalentLevels != null &&
+      Object.hasOwnProperty.call(message, "matchingTalentLevels")
     )
       writer
         .uint32(/* id 10, wireType 0 =*/ 80)
-        .int32(message.talentLevelMatcher);
+        .int32(message.matchingTalentLevels);
     if (
       message.inheritable != null &&
       Object.hasOwnProperty.call(message, "inheritable")
@@ -1617,7 +1617,7 @@ export const Skill = ($root.Skill = (() => {
           message.monikerID = reader.int32();
           break;
         case 10:
-          message.talentLevelMatcher = reader.int32();
+          message.matchingTalentLevels = reader.int32();
           break;
         case 11:
           message.inheritable = reader.bool();
@@ -1706,12 +1706,12 @@ export const Skill = ($root.Skill = (() => {
       if (!$util.isInteger(message.monikerID))
         return "monikerID: integer expected";
     if (
-      message.talentLevelMatcher != null &&
-      message.hasOwnProperty("talentLevelMatcher")
+      message.matchingTalentLevels != null &&
+      message.hasOwnProperty("matchingTalentLevels")
     )
-      switch (message.talentLevelMatcher) {
+      switch (message.matchingTalentLevels) {
         default:
-          return "talentLevelMatcher: enum value expected";
+          return "matchingTalentLevels: enum value expected";
         case 0:
         case 1:
         case 2:
@@ -1833,18 +1833,18 @@ export const Skill = ($root.Skill = (() => {
     if (object.characterID != null)
       message.characterID = object.characterID | 0;
     if (object.monikerID != null) message.monikerID = object.monikerID | 0;
-    switch (object.talentLevelMatcher) {
+    switch (object.matchingTalentLevels) {
       case "FROM_1_TO_5":
       case 0:
-        message.talentLevelMatcher = 0;
+        message.matchingTalentLevels = 0;
         break;
       case "FROM_1_TO_2":
       case 1:
-        message.talentLevelMatcher = 1;
+        message.matchingTalentLevels = 1;
         break;
       case "FROM_3_TO_5":
       case 2:
-        message.talentLevelMatcher = 2;
+        message.matchingTalentLevels = 2;
         break;
     }
     if (object.inheritable != null)
@@ -1874,7 +1874,8 @@ export const Skill = ($root.Skill = (() => {
       object.unique = false;
       object.characterID = 0;
       object.monikerID = 0;
-      object.talentLevelMatcher = options.enums === String ? "FROM_1_TO_5" : 0;
+      object.matchingTalentLevels =
+        options.enums === String ? "FROM_1_TO_5" : 0;
       object.inheritable = false;
     }
     if (message.skillID != null && message.hasOwnProperty("skillID"))
@@ -1899,13 +1900,13 @@ export const Skill = ($root.Skill = (() => {
     if (message.monikerID != null && message.hasOwnProperty("monikerID"))
       object.monikerID = message.monikerID;
     if (
-      message.talentLevelMatcher != null &&
-      message.hasOwnProperty("talentLevelMatcher")
+      message.matchingTalentLevels != null &&
+      message.hasOwnProperty("matchingTalentLevels")
     )
-      object.talentLevelMatcher =
+      object.matchingTalentLevels =
         options.enums === String
-          ? $root.Skill.TalentLevelMatcher[message.talentLevelMatcher]
-          : message.talentLevelMatcher;
+          ? $root.Skill.Levels[message.matchingTalentLevels]
+          : message.matchingTalentLevels;
     if (message.inheritable != null && message.hasOwnProperty("inheritable"))
       object.inheritable = message.inheritable;
     return object;
@@ -1978,14 +1979,14 @@ export const Skill = ($root.Skill = (() => {
   })();
 
   /**
-   * TalentLevelMatcher enum.
-   * @name Skill.TalentLevelMatcher
+   * Levels enum.
+   * @name Skill.Levels
    * @enum {number}
    * @property {number} FROM_1_TO_5=0 FROM_1_TO_5 value
    * @property {number} FROM_1_TO_2=1 FROM_1_TO_2 value
    * @property {number} FROM_3_TO_5=2 FROM_3_TO_5 value
    */
-  Skill.TalentLevelMatcher = (function () {
+  Skill.Levels = (function () {
     const valuesById = {},
       values = Object.create(valuesById);
     values[(valuesById[0] = "FROM_1_TO_5")] = 0;

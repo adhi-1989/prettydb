@@ -684,8 +684,8 @@ export interface ISkill {
   /** Skill monikerID */
   monikerID?: number | null;
 
-  /** Skill talentLevelMatcher */
-  talentLevelMatcher?: Skill.TalentLevelMatcher | null;
+  /** Skill matchingTalentLevels */
+  matchingTalentLevels?: Skill.Levels | null;
 
   /** Skill inheritable */
   inheritable?: boolean | null;
@@ -726,8 +726,8 @@ export class Skill implements ISkill {
   /** Skill monikerID. */
   public monikerID: number;
 
-  /** Skill talentLevelMatcher. */
-  public talentLevelMatcher: Skill.TalentLevelMatcher;
+  /** Skill matchingTalentLevels. */
+  public matchingTalentLevels: Skill.Levels;
 
   /** Skill inheritable. */
   public inheritable: boolean;
@@ -842,8 +842,8 @@ export namespace Skill {
     WEAK_RACE = 21,
   }
 
-  /** TalentLevelMatcher enum. */
-  enum TalentLevelMatcher {
+  /** Levels enum. */
+  enum Levels {
     FROM_1_TO_5 = 0,
     FROM_1_TO_2 = 1,
     FROM_3_TO_5 = 2,
