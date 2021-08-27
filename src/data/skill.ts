@@ -171,7 +171,8 @@ let _skillByIdMap: Record<number, Skill>;
 
   const data = await axios
     .get<ArrayBuffer>(skillDataUrl, { responseType: "arraybuffer" })
-    .then((x) => new Uint8Array(x.data));
+    .then((x) => new Uint8Array(x.data))
+    .catch(() => Promise.resolve(new Uint8Array()));
 
   _allSkill = Object.freeze(
     _.sortBy(

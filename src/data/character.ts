@@ -84,10 +84,12 @@ let _monikersByCharacterMap: Record<number, ReadonlyArray<Moniker>>;
 
   const characterData = await axios
     .get<ArrayBuffer>(characterDataUrl, { responseType: "arraybuffer" })
-    .then((x) => new Uint8Array(x.data));
+    .then((x) => new Uint8Array(x.data))
+    .catch(() => Promise.resolve(new Uint8Array()));
   const monikerData = await axios
     .get<ArrayBuffer>(monikerDataUrl, { responseType: "arraybuffer" })
-    .then((x) => new Uint8Array(x.data));
+    .then((x) => new Uint8Array(x.data))
+    .catch(() => Promise.resolve(new Uint8Array()));
 
   _allCharacter = Object.freeze(
     _.sortBy(

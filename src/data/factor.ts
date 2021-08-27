@@ -87,7 +87,8 @@ let _factorByIdMap: Record<number, Factor>;
 
   const data = await axios
     .get<ArrayBuffer>(factorDataUrl, { responseType: "arraybuffer" })
-    .then((x) => new Uint8Array(x.data));
+    .then((x) => new Uint8Array(x.data))
+    .catch(() => Promise.resolve(new Uint8Array()));
 
   _allFactor = Object.freeze<Array<Factor>>(
     _.sortBy(
