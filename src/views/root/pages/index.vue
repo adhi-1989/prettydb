@@ -2,7 +2,7 @@
   <article :class="$style.home">
     <header :class="$style.header">
       <img :class="$style.logo" :src="logo" alt="" />
-      <span :class="$style.version">v0.7.10</span>
+      <span :class="$style.version">v0.8.0</span>
     </header>
 
     <main :class="$style.main">
@@ -33,6 +33,15 @@
               </router-link>
               <p :class="$style.paragraph">
                 殿堂入りしたウマ娘のデータを手動で入力することで、アプリにデータを保存・閲覧することができます。
+                <br />
+                ＊
+                <a
+                  :class="$style.link"
+                  href="https://youtu.be/m5GLTsTuD-Y"
+                  target="_blank"
+                  rel="noreferrer"
+                  >YouTube</a
+                >でデータを登録するまでの一連の流れを確認できます。 ＊
               </p>
             </li>
 
@@ -78,9 +87,6 @@
               </li>
               <li :class="$style.item">
                 スキルや因子などをクリックしたとき、詳細を見られるようにする
-              </li>
-              <li :class="$style.item">
-                スキル、因子の編集画面を開くとき、若干カクつくので改善する
               </li>
               <li :class="$style.item">
                 データ登録画面のユーザビリティ向上。
