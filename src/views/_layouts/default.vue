@@ -78,57 +78,41 @@
     <main :class="$style.main">
       <router-view />
     </main>
+
+    <client-only>
+      <reload-prompt />
+    </client-only>
   </article>
 </template>
 
-<script lang="ts">
-import { defineComponent } from "vue";
+<script lang="ts" setup>
 import { useMediaQuery, useToggle } from "@vueuse/core";
 import { useI18n } from "vue-i18n";
-import {
-  fadeIn,
-  fadeOut,
-  slideInRight,
-  slideOutLeft,
-} from "@/views/_common/logic/dom/animation";
+import { animations } from "@/views/_common/logic/dom/animation";
+import ReloadPrompt from "./components/ReloadPrompt.vue";
 import logo from "#/images/app/logo.svg";
 
-export default defineComponent({
-  data() {
-    return {
-      fadeIn: fadeIn({
-        duration: 250,
-        easing: "ease",
-      }),
-      fadeOut: fadeOut({
-        duration: 250,
-        easing: "ease",
-      }),
-      slideInRight: slideInRight({
-        duration: 500,
-        easing: "ease",
-      }),
-      slideOutLeft: slideOutLeft({
-        duration: 500,
-        easing: "ease",
-      }),
-      logo,
-    };
-  },
-  setup() {
-    const { t } = useI18n();
-
-    const [isMenuActive, toggleMenu] = useToggle();
-    const isXlScreen = useMediaQuery("(min-width: 1366px)");
-
-    return {
-      t,
-      isMenuActive,
-      toggleMenu,
-      isXlScreen,
-    };
-  },
+const fadeIn = animations.fadeIn({
+  duration: 250,
+  easing: "ease",
 });
+const fadeOut = animations.fadeOut({
+  duration: 250,
+  easing: "ease",
+});
+const slideInRight = animations.slideInRight({
+  duration: 500,
+  easing: "ease",
+});
+const slideOutLeft = animations.slideOutLeft({
+  duration: 500,
+  easing: "ease",
+});
+
+const { t } = useI18n();
+
+const [isMenuActive, toggleMenu] = useToggle();
+const isXlScreen = useMediaQuery("(min-width: 1366px)");
 </script>
 
 <style lang="scss" module>

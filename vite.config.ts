@@ -64,9 +64,10 @@ export default defineConfig(() => {
       }),
       layouts({
         layoutsDir: "src/views/_layouts",
+        exclude: ["**/components/*.vue"],
       }),
       VitePWA({
-        registerType: "autoUpdate",
+        registerType: "prompt",
         includeAssets: ["favicon.svg", "robots.txt", "sitemap.xml"],
         manifest: {
           name: "プリティーデービー",
@@ -88,6 +89,7 @@ export default defineConfig(() => {
           ],
         },
         workbox: {
+          skipWaiting: true,
           navigationPreload: true,
           runtimeCaching: [
             {

@@ -184,3 +184,17 @@ export function flipOutY(option: KeyframeAnimationOptions): Transition {
     option
   );
 }
+
+export const animations = Object.freeze({
+  fadeIn,
+  fadeOut,
+  fadeInUp,
+  slideInRight,
+  slideOutRight,
+  slideInLeft,
+  slideOutLeft,
+  zoomIn,
+  zoomOut,
+  flipInY,
+  flipOutY,
+});

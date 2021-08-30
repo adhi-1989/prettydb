@@ -6,6 +6,8 @@ app:
     changelog: '@:head.changelog.name'
     hall-of-fame: '@:head.hall-of-fame.name'
     settings: '@:head.settings.name'
+  pwa:
+    needRefresh: アプリがアップデートされました。リロードボタンを押してアプリを最新の状態にしてください。
 head:
   404:
     title: 'ありません！！ - @:app.name'
@@ -31,6 +33,7 @@ ui:
   deselect-all: すべて解除
   remove: 削除
   add: 追加
+  reload: リロード
 pages:
   settings:
     toast:
