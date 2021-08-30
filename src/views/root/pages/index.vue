@@ -195,9 +195,11 @@
     </main>
   </article>
 
-  <teleport to="#background">
-    <horseshoe-particles :class="$style.background" />
-  </teleport>
+  <client-only>
+    <teleport to="#background">
+      <horseshoe-particles :class="$style.background" />
+    </teleport>
+  </client-only>
 </template>
 
 <script lang="ts">
