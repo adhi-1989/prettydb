@@ -44,6 +44,15 @@ export default defineComponent({
     //TODO: 余裕があれば国際化する
     const changelog: Array<Changelog> = [
       {
+        version: "0.8.1",
+        releaseDate: "2021-08-30",
+        logs: [
+          "マチカネフクキタル[吉兆・初あらし] のデータを追加",
+          "怒涛の追い上げ のスキルデータを追加",
+          "アオハル点火（燃焼） のスキルデータを追加",
+        ],
+      },
+      {
         version: "0.8.0",
         releaseDate: "2021-08-28",
         logs: [
