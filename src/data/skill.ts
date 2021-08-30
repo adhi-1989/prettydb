@@ -1,9 +1,11 @@
+import { Skill as _Skill, SkillList } from "@/data/_protobuf";
+import type { MonikerIdentify, TalentLevel } from "@/data";
 import axios from "axios";
 import { maps, objects } from "@/util";
 import _ from "@/util/lodash";
-import { Skill as _Skill, SkillList } from "@/data/_protobuf";
-import { MonikerIdentify, TalentLevel } from "@/data";
 import skillDataUrl from "#/assets/data/skill.dat?url";
+
+const { orDefault, immutable } = objects;
 
 export type SkillType =
   | "buff-speed"
@@ -27,7 +29,10 @@ export type SkillType =
   | "weak-starting"
   | "weak-mental"
   | "weak-will"
-  | "weak-race";
+  | "weak-race"
+  | "buff-speed-team"
+  | "buff-acceleration-team"
+  | "recovery-stamina-team";
 
 export type SkillIdentify = {
   skillID: number;
@@ -107,7 +112,7 @@ let _allUniqueSkill: ReadonlyArray<UniqueSkill>;
 let _skillByIdMap: Record<number, Skill>;
 (async () => {
   const skillType = (value: _Skill.Type | null | undefined): SkillType => {
-    switch (objects.orDefault(value, _Skill.Type.BUFF_SPEED)) {
+    switch (orDefault(value, _Skill.Type.BUFF_SPEED)) {
       case _Skill.Type.BUFF_SPEED:
         return "buff-speed";
       case _Skill.Type.BUFF_ACCELERATION:
@@ -152,6 +157,12 @@ let _skillByIdMap: Record<number, Skill>;
         return "weak-will";
       case _Skill.Type.WEAK_RACE:
         return "weak-race";
+      case _Skill.Type.BUFF_SPEED_TEAM:
+        return "buff-speed-team";
+      case _Skill.Type.BUFF_ACCELERATION_TEAM:
+        return "buff-acceleration-team";
+      case _Skill.Type.RECOVERY_STAMINA_TEAM:
+        return "recovery-stamina-team";
       default:
         return "buff-speed";
     }
@@ -159,7 +170,7 @@ let _skillByIdMap: Record<number, Skill>;
   const talentLevelMatcher = (
     value: _Skill.Levels | null | undefined
   ): ReadonlyArray<TalentLevel> => {
-    switch (objects.orDefault(value, _Skill.Levels.FROM_1_TO_5)) {
+    switch (orDefault(value, _Skill.Levels.FROM_1_TO_5)) {
       case _Skill.Levels.FROM_1_TO_5:
         return _from_1_to_5;
       case _Skill.Levels.FROM_1_TO_2:
@@ -178,12 +189,12 @@ let _skillByIdMap: Record<number, Skill>;
     _.sortBy(
       SkillList.decode(data).data.map((x) => {
         let skill = Object.freeze<Skill>({
-          skillID: objects.orDefault(x.skillID, -1),
-          sortID: objects.orDefault(x.sortID, -1),
-          point: objects.orDefault(x.point, 0),
+          skillID: orDefault(x.skillID, -1),
+          sortID: orDefault(x.sortID, -1),
+          point: orDefault(x.point, 0),
           type: skillType(x.type),
-          advanced: objects.orDefault(x.advanced, false),
-          unique: objects.orDefault(x.unique, false),
+          advanced: orDefault(x.advanced, false),
+          unique: orDefault(x.unique, false),
         });
 
         if (_.has(x, "conflictID") && _.isNumber(x.conflictID)) {
@@ -194,16 +205,16 @@ let _skillByIdMap: Record<number, Skill>;
         }
 
         if (skill.unique) {
-          return objects.immutable<UniqueSkill>({
+          return immutable<UniqueSkill>({
             ...skill,
             unique: true,
-            characterID: objects.orDefault(x.characterID, -1),
-            monikerID: objects.orDefault(x.monikerID, -1),
+            characterID: orDefault(x.characterID, -1),
+            monikerID: orDefault(x.monikerID, -1),
             matchingTalentLevels: talentLevelMatcher(x.matchingTalentLevels),
-            inheritable: objects.orDefault(x.inheritable, false),
+            inheritable: orDefault(x.inheritable, false),
           });
         } else {
-          return objects.immutable<Skill>(skill);
+          return immutable<Skill>(skill);
         }
       }),
       ["sortID"]
@@ -238,21 +249,21 @@ const _allSkillType = Object.freeze<Array<SkillType>>([
   "weak-mental",
   "weak-will",
   "weak-race",
+  "buff-speed-team",
+  "buff-acceleration-team",
+  "recovery-stamina-team",
 ]);
 
 export const Skill: SkillStatic = {
   get all(): ReadonlyArray<Skill> {
-    return objects.orDefault(_allSkill, () => Object.freeze([]));
+    return orDefault(_allSkill, () => Object.freeze([]));
   },
   get allType(): ReadonlyArray<SkillType> {
     return _allSkillType;
   },
   get(arg: number | SkillIdentify): Skill {
-    const map = objects.orDefault(_skillByIdMap, []);
-    return objects.orDefault(
-      map[_.isNumber(arg) ? arg : arg.skillID],
-      NULL_SKILL
-    );
+    const map = orDefault(_skillByIdMap, []);
+    return orDefault(map[_.isNumber(arg) ? arg : arg.skillID], NULL_SKILL);
   },
   checkUnique: _checkUnique,
   isMatchedOwner(skill: UniqueSkill, owner: UniqueSkillOwner): boolean {
@@ -263,8 +274,8 @@ export const Skill: SkillStatic = {
     );
   },
   getUnique(owner: UniqueSkillOwner): UniqueSkill {
-    const map = objects.orDefault(_allUniqueSkill, []);
-    return objects.orDefault(
+    const map = orDefault(_allUniqueSkill, []);
+    return orDefault(
       map.find((x) => this.isMatchedOwner(x, owner)),
       NULL_SKILL
     );

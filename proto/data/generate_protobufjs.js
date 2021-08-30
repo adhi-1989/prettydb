@@ -18,7 +18,7 @@ files.forEach((x) => {
 const paths = files.join(" ");
 const jsFile = "src/data/_protobuf.js";
 const tsFile = "src/data/_protobuf.d.ts";
-const pbjs = `pbjs -t static-module -w es6 --es6 -o ${jsFile} ${paths}`;
+const pbjs = `pbjs -t static-module --no-create --no-encode --no-verify --no-convert --no-delimited -w es6 --es6 -o ${jsFile} ${paths}`;
 const pbts = `pbts -o ${tsFile} ${jsFile}`;
 
 const exec = util.promisify(childProcess.exec);

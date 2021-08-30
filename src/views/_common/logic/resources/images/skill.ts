@@ -21,6 +21,9 @@ import WEAK_STARTING from "#/images/skill/weak_starting.svg";
 import WEAK_MENTAL from "#/images/skill/weak_mental.svg";
 import WEAK_WILL from "#/images/skill/weak_will.svg";
 import WEAK_RACE from "#/images/skill/weak_race.svg";
+import BUFF_SPEED_TEAM from "#/images/skill/buff_speed_team.svg";
+import BUFF_ACCELERATION_TEAM from "#/images/skill/buff_acceleration_team.svg";
+import RECOVERY_STAMINA_TEAM from "#/images/skill/recovery_stamina_team.svg";
 
 export const SkillTypeIcon = {
   BUFF_SPEED,
@@ -45,6 +48,9 @@ export const SkillTypeIcon = {
   WEAK_MENTAL,
   WEAK_WILL,
   WEAK_RACE,
+  BUFF_SPEED_TEAM,
+  BUFF_ACCELERATION_TEAM,
+  RECOVERY_STAMINA_TEAM,
 };
 
 export function getSkillTypeIcon(type: SkillType): string {
@@ -93,6 +99,12 @@ export function getSkillTypeIcon(type: SkillType): string {
       return SkillTypeIcon.WEAK_WILL;
     case "weak-race":
       return SkillTypeIcon.WEAK_RACE;
+    case "buff-speed-team":
+      return SkillTypeIcon.BUFF_SPEED_TEAM;
+    case "buff-acceleration-team":
+      return SkillTypeIcon.BUFF_ACCELERATION_TEAM;
+    case "recovery-stamina-team":
+      return SkillTypeIcon.RECOVERY_STAMINA_TEAM;
     default:
       console.warn("Illegal skill type: " + type);
       return SkillTypeIcon.BUFF_SPEED;

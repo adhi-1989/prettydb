@@ -1,9 +1,13 @@
-import axios from "axios";
 import { CharacterList, MonikerList } from "@/data/_protobuf";
+//import type { AbilityGrade, AbilityIdentify } from "@/data/ability";
+//import type { StatusIdentify } from "@/data/status";
+import axios from "axios";
 import { maps, numbers, objects } from "@/util";
 import _ from "@/util/lodash";
 import characterDataUrl from "#/assets/data/character.dat?url";
 import monikerDataUrl from "#/assets/data/moniker.dat?url";
+
+const { orDefault, immutable } = objects;
 
 export type CharacterIdentify = {
   characterID: number;
@@ -20,6 +24,9 @@ export type MonikerIdentify = {
 
 export type Moniker = Readonly<MonikerIdentify> & {
   readonly initialTalentLevel: TalentLevel;
+  //readonly initialStatus: Record<TalentLevel, Record<StatusIdentify, number>>;
+  //readonly initialAbility: Record<AbilityIdentify, AbilityGrade>;
+  //readonly growthRate: Record<StatusIdentify, number>;
 };
 
 export type TalentLevel = 1 | 2 | 3 | 4 | 5;
@@ -78,7 +85,7 @@ let _monikerByIdMap: Record<number, Moniker>;
 let _monikersByCharacterMap: Record<number, ReadonlyArray<Moniker>>;
 (async () => {
   const _talentLevel = (value: number | null | undefined): TalentLevel => {
-    const n = objects.orDefault(value, 1);
+    const n = orDefault(value, 1);
     return (n >= 1 && n <= 5 ? n : 1) as TalentLevel;
   };
 
@@ -94,9 +101,9 @@ let _monikersByCharacterMap: Record<number, ReadonlyArray<Moniker>>;
   _allCharacter = Object.freeze(
     _.sortBy(
       CharacterList.decode(characterData).data.map((x) => {
-        return objects.immutable<Character>({
-          characterID: objects.orDefault(x.characterID, -1),
-          sortID: objects.orDefault(x.sortID, -1),
+        return immutable<Character>({
+          characterID: orDefault(x.characterID, -1),
+          sortID: orDefault(x.sortID, -1),
         });
       }),
       ["sortID"]
@@ -108,9 +115,9 @@ let _monikersByCharacterMap: Record<number, ReadonlyArray<Moniker>>;
   _allMoniker = Object.freeze<Array<Moniker>>(
     MonikerList.decode(monikerData)
       .data.map((x) => {
-        return objects.immutable<Moniker>({
-          characterID: objects.orDefault(x.characterID, -1),
-          monikerID: objects.orDefault(x.monikerID, -1),
+        return immutable<Moniker>({
+          characterID: orDefault(x.characterID, -1),
+          monikerID: orDefault(x.monikerID, -1),
           initialTalentLevel: _talentLevel(x.initialTalentLevel),
         });
       })
@@ -133,10 +140,10 @@ let _monikersByCharacterMap: Record<number, ReadonlyArray<Moniker>>;
 
 export const Character: CharacterStatic = {
   get all(): ReadonlyArray<Character> {
-    return objects.orDefault(_allCharacter, () => Object.freeze([]));
+    return orDefault(_allCharacter, () => Object.freeze([]));
   },
   get allMoniker(): ReadonlyArray<Moniker> {
-    return objects.orDefault(_allMoniker, () => Object.freeze([]));
+    return orDefault(_allMoniker, () => Object.freeze([]));
   },
   get allTalentLevel(): ReadonlyArray<TalentLevel> {
     return _allTalentLevel;
@@ -145,27 +152,27 @@ export const Character: CharacterStatic = {
     return _allAwakeningLevel;
   },
   get(arg: number | CharacterIdentify): Character {
-    const map = objects.orDefault(_characterByIdMap, []);
-    return objects.orDefault(
+    const map = orDefault(_characterByIdMap, []);
+    return orDefault(
       map[_.isNumber(arg) ? arg : arg.characterID],
       NULL_CHARACTER
     );
   },
   getMoniker(arg1: number | MonikerIdentify, arg2?: number): Moniker {
-    const map = objects.orDefault(_monikerByIdMap, []);
+    const map = orDefault(_monikerByIdMap, []);
     if (_.isNumber(arg1)) {
       if (!_.isNumber(arg2)) throw Error(`arg2 must be number: ${arg2}`);
-      return objects.orDefault(map[numbers.hashCode(arg1, arg2)], NULL_MONIKER);
+      return orDefault(map[numbers.hashCode(arg1, arg2)], NULL_MONIKER);
     } else {
-      return objects.orDefault(
+      return orDefault(
         map[numbers.hashCode(arg1.characterID, arg1.monikerID)],
         NULL_MONIKER
       );
     }
   },
   getAvailableMoniker(arg: number | CharacterIdentify): ReadonlyArray<Moniker> {
-    const map = objects.orDefault(_monikersByCharacterMap, []);
-    return objects.orDefault(map[_.isNumber(arg) ? arg : arg.characterID], []);
+    const map = orDefault(_monikersByCharacterMap, []);
+    return orDefault(map[_.isNumber(arg) ? arg : arg.characterID], []);
   },
   getNameKey(arg: number | CharacterIdentify): string {
     const characterID = _.isNumber(arg) ? arg : arg.characterID;

@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+message SupportCard {
+  int32 cardID = 1;
+  int32 characterID = 2;
+  enum Rarity {
+    R = 0;
+    SR = 1;
+    SSR = 2;
+  }
+  Rarity rarity = 3;
+  enum Type {
+    SPEED = 0;
+    STAMINA = 1;
+    POWER = 2;
+    TENACITY = 3;
+    INTELLIGENCE = 4;
+    FRIEND = 5;
+  }
+  Type type = 4;
+  repeated int32 skills = 5;
+  repeated int32 events = 6;
+}
+
+message SupportCardList {
+  repeated SupportCard data = 1;
+}

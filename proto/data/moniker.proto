@@ -4,6 +4,47 @@ message Moniker {
   int32 characterID = 1;
   int32 monikerID = 2;
   int32 initialTalentLevel = 3;
+  message Status {
+    int32 speed = 1;
+    int32 stamina = 2;
+    int32 power = 3;
+    int32 tenacity = 4;
+    int32 intelligence = 5;
+  }
+  map<int32, Status> initialStatus = 4;
+  enum Ability {
+    G = 0;
+    F = 1;
+    E = 2;
+    D = 3;
+    C = 4;
+    B = 5;
+    A = 6;
+    S = 7;
+  }
+  message Abilities {
+    Ability turf = 1;
+    Ability dirt = 2;
+    Ability short = 3;
+    Ability mile = 4;
+    Ability middle = 5;
+    Ability long = 6;
+    Ability nige = 7;
+    Ability senko = 8;
+    Ability sashi = 9;
+    Ability oikomi = 10;
+  }
+  Abilities initialAbility = 5;
+  Status growthRate = 6;
+  message Skills {
+    int32 awakeningLevel2 = 1;
+    int32 awakeningLevel3 = 2;
+    int32 awakeningLevel4 = 3;
+    int32 awakeningLevel5 = 4;
+    repeated int32 defaults = 5;
+  }
+  Skills skills = 7;
+  repeated int32 events = 8;
 }
 
 message MonikerList {

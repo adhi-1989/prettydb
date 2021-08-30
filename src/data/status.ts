@@ -1,3 +1,5 @@
+import _ from "@/util/lodash";
+
 export type StatusGrade =
   | "g+"
   | "f"
@@ -30,6 +32,8 @@ export interface StatusStatic {
   get allGrade(): ReadonlyArray<StatusGrade>;
 
   getGrade(statusValue: number): StatusGrade;
+
+  check(arg: string): arg is StatusIdentify;
 
   getNameKey(identify: StatusIdentify): string;
 }
@@ -105,6 +109,9 @@ export const Status: StatusStatic = {
     } else {
       return "g+";
     }
+  },
+  check(arg: string): arg is StatusIdentify {
+    return _.some(_allStatus, (x) => x === arg);
   },
   getNameKey(identify: StatusIdentify): string {
     return `game-system.status.${identify}`;

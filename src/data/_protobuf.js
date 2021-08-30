@@ -3,7 +3,6 @@ import * as $protobuf from "protobufjs/minimal";
 
 // Common aliases
 const $Reader = $protobuf.Reader,
-  $Writer = $protobuf.Writer,
   $util = $protobuf.util;
 
 // Exported root namespace
@@ -49,52 +48,6 @@ export const Character = ($root.Character = (() => {
   Character.prototype.sortID = 0;
 
   /**
-   * Creates a new Character instance using the specified properties.
-   * @function create
-   * @memberof Character
-   * @static
-   * @param {ICharacter=} [properties] Properties to set
-   * @returns {Character} Character instance
-   */
-  Character.create = function create(properties) {
-    return new Character(properties);
-  };
-
-  /**
-   * Encodes the specified Character message. Does not implicitly {@link Character.verify|verify} messages.
-   * @function encode
-   * @memberof Character
-   * @static
-   * @param {ICharacter} message Character message or plain object to encode
-   * @param {$protobuf.Writer} [writer] Writer to encode to
-   * @returns {$protobuf.Writer} Writer
-   */
-  Character.encode = function encode(message, writer) {
-    if (!writer) writer = $Writer.create();
-    if (
-      message.characterID != null &&
-      Object.hasOwnProperty.call(message, "characterID")
-    )
-      writer.uint32(/* id 1, wireType 0 =*/ 8).int32(message.characterID);
-    if (message.sortID != null && Object.hasOwnProperty.call(message, "sortID"))
-      writer.uint32(/* id 2, wireType 0 =*/ 16).int32(message.sortID);
-    return writer;
-  };
-
-  /**
-   * Encodes the specified Character message, length delimited. Does not implicitly {@link Character.verify|verify} messages.
-   * @function encodeDelimited
-   * @memberof Character
-   * @static
-   * @param {ICharacter} message Character message or plain object to encode
-   * @param {$protobuf.Writer} [writer] Writer to encode to
-   * @returns {$protobuf.Writer} Writer
-   */
-  Character.encodeDelimited = function encodeDelimited(message, writer) {
-    return this.encode(message, writer).ldelim();
-  };
-
-  /**
    * Decodes a Character message from the specified reader or buffer.
    * @function decode
    * @memberof Character
@@ -124,91 +77,6 @@ export const Character = ($root.Character = (() => {
       }
     }
     return message;
-  };
-
-  /**
-   * Decodes a Character message from the specified reader or buffer, length delimited.
-   * @function decodeDelimited
-   * @memberof Character
-   * @static
-   * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-   * @returns {Character} Character
-   * @throws {Error} If the payload is not a reader or valid buffer
-   * @throws {$protobuf.util.ProtocolError} If required fields are missing
-   */
-  Character.decodeDelimited = function decodeDelimited(reader) {
-    if (!(reader instanceof $Reader)) reader = new $Reader(reader);
-    return this.decode(reader, reader.uint32());
-  };
-
-  /**
-   * Verifies a Character message.
-   * @function verify
-   * @memberof Character
-   * @static
-   * @param {Object.<string,*>} message Plain object to verify
-   * @returns {string|null} `null` if valid, otherwise the reason why it is not
-   */
-  Character.verify = function verify(message) {
-    if (typeof message !== "object" || message === null)
-      return "object expected";
-    if (message.characterID != null && message.hasOwnProperty("characterID"))
-      if (!$util.isInteger(message.characterID))
-        return "characterID: integer expected";
-    if (message.sortID != null && message.hasOwnProperty("sortID"))
-      if (!$util.isInteger(message.sortID)) return "sortID: integer expected";
-    return null;
-  };
-
-  /**
-   * Creates a Character message from a plain object. Also converts values to their respective internal types.
-   * @function fromObject
-   * @memberof Character
-   * @static
-   * @param {Object.<string,*>} object Plain object
-   * @returns {Character} Character
-   */
-  Character.fromObject = function fromObject(object) {
-    if (object instanceof $root.Character) return object;
-    let message = new $root.Character();
-    if (object.characterID != null)
-      message.characterID = object.characterID | 0;
-    if (object.sortID != null) message.sortID = object.sortID | 0;
-    return message;
-  };
-
-  /**
-   * Creates a plain object from a Character message. Also converts values to other types if specified.
-   * @function toObject
-   * @memberof Character
-   * @static
-   * @param {Character} message Character
-   * @param {$protobuf.IConversionOptions} [options] Conversion options
-   * @returns {Object.<string,*>} Plain object
-   */
-  Character.toObject = function toObject(message, options) {
-    if (!options) options = {};
-    let object = {};
-    if (options.defaults) {
-      object.characterID = 0;
-      object.sortID = 0;
-    }
-    if (message.characterID != null && message.hasOwnProperty("characterID"))
-      object.characterID = message.characterID;
-    if (message.sortID != null && message.hasOwnProperty("sortID"))
-      object.sortID = message.sortID;
-    return object;
-  };
-
-  /**
-   * Converts this Character to JSON.
-   * @function toJSON
-   * @memberof Character
-   * @instance
-   * @returns {Object.<string,*>} JSON object
-   */
-  Character.prototype.toJSON = function toJSON() {
-    return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
   };
 
   return Character;
@@ -246,51 +114,6 @@ export const CharacterList = ($root.CharacterList = (() => {
   CharacterList.prototype.data = $util.emptyArray;
 
   /**
-   * Creates a new CharacterList instance using the specified properties.
-   * @function create
-   * @memberof CharacterList
-   * @static
-   * @param {ICharacterList=} [properties] Properties to set
-   * @returns {CharacterList} CharacterList instance
-   */
-  CharacterList.create = function create(properties) {
-    return new CharacterList(properties);
-  };
-
-  /**
-   * Encodes the specified CharacterList message. Does not implicitly {@link CharacterList.verify|verify} messages.
-   * @function encode
-   * @memberof CharacterList
-   * @static
-   * @param {ICharacterList} message CharacterList message or plain object to encode
-   * @param {$protobuf.Writer} [writer] Writer to encode to
-   * @returns {$protobuf.Writer} Writer
-   */
-  CharacterList.encode = function encode(message, writer) {
-    if (!writer) writer = $Writer.create();
-    if (message.data != null && message.data.length)
-      for (let i = 0; i < message.data.length; ++i)
-        $root.Character.encode(
-          message.data[i],
-          writer.uint32(/* id 1, wireType 2 =*/ 10).fork()
-        ).ldelim();
-    return writer;
-  };
-
-  /**
-   * Encodes the specified CharacterList message, length delimited. Does not implicitly {@link CharacterList.verify|verify} messages.
-   * @function encodeDelimited
-   * @memberof CharacterList
-   * @static
-   * @param {ICharacterList} message CharacterList message or plain object to encode
-   * @param {$protobuf.Writer} [writer] Writer to encode to
-   * @returns {$protobuf.Writer} Writer
-   */
-  CharacterList.encodeDelimited = function encodeDelimited(message, writer) {
-    return this.encode(message, writer).ldelim();
-  };
-
-  /**
    * Decodes a CharacterList message from the specified reader or buffer.
    * @function decode
    * @memberof CharacterList
@@ -320,99 +143,150 @@ export const CharacterList = ($root.CharacterList = (() => {
     return message;
   };
 
+  return CharacterList;
+})());
+
+export const Event = ($root.Event = (() => {
   /**
-   * Decodes a CharacterList message from the specified reader or buffer, length delimited.
-   * @function decodeDelimited
-   * @memberof CharacterList
+   * Properties of an Event.
+   * @exports IEvent
+   * @interface IEvent
+   * @property {number|null} [eventID] Event eventID
+   * @property {Array.<number>|null} [skills] Event skills
+   */
+
+  /**
+   * Constructs a new Event.
+   * @exports Event
+   * @classdesc Represents an Event.
+   * @implements IEvent
+   * @constructor
+   * @param {IEvent=} [properties] Properties to set
+   */
+  function Event(properties) {
+    this.skills = [];
+    if (properties)
+      for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+        if (properties[keys[i]] != null) this[keys[i]] = properties[keys[i]];
+  }
+
+  /**
+   * Event eventID.
+   * @member {number} eventID
+   * @memberof Event
+   * @instance
+   */
+  Event.prototype.eventID = 0;
+
+  /**
+   * Event skills.
+   * @member {Array.<number>} skills
+   * @memberof Event
+   * @instance
+   */
+  Event.prototype.skills = $util.emptyArray;
+
+  /**
+   * Decodes an Event message from the specified reader or buffer.
+   * @function decode
+   * @memberof Event
    * @static
    * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-   * @returns {CharacterList} CharacterList
+   * @param {number} [length] Message length if known beforehand
+   * @returns {Event} Event
    * @throws {Error} If the payload is not a reader or valid buffer
    * @throws {$protobuf.util.ProtocolError} If required fields are missing
    */
-  CharacterList.decodeDelimited = function decodeDelimited(reader) {
-    if (!(reader instanceof $Reader)) reader = new $Reader(reader);
-    return this.decode(reader, reader.uint32());
-  };
-
-  /**
-   * Verifies a CharacterList message.
-   * @function verify
-   * @memberof CharacterList
-   * @static
-   * @param {Object.<string,*>} message Plain object to verify
-   * @returns {string|null} `null` if valid, otherwise the reason why it is not
-   */
-  CharacterList.verify = function verify(message) {
-    if (typeof message !== "object" || message === null)
-      return "object expected";
-    if (message.data != null && message.hasOwnProperty("data")) {
-      if (!Array.isArray(message.data)) return "data: array expected";
-      for (let i = 0; i < message.data.length; ++i) {
-        let error = $root.Character.verify(message.data[i]);
-        if (error) return "data." + error;
-      }
-    }
-    return null;
-  };
-
-  /**
-   * Creates a CharacterList message from a plain object. Also converts values to their respective internal types.
-   * @function fromObject
-   * @memberof CharacterList
-   * @static
-   * @param {Object.<string,*>} object Plain object
-   * @returns {CharacterList} CharacterList
-   */
-  CharacterList.fromObject = function fromObject(object) {
-    if (object instanceof $root.CharacterList) return object;
-    let message = new $root.CharacterList();
-    if (object.data) {
-      if (!Array.isArray(object.data))
-        throw TypeError(".CharacterList.data: array expected");
-      message.data = [];
-      for (let i = 0; i < object.data.length; ++i) {
-        if (typeof object.data[i] !== "object")
-          throw TypeError(".CharacterList.data: object expected");
-        message.data[i] = $root.Character.fromObject(object.data[i]);
+  Event.decode = function decode(reader, length) {
+    if (!(reader instanceof $Reader)) reader = $Reader.create(reader);
+    let end = length === undefined ? reader.len : reader.pos + length,
+      message = new $root.Event();
+    while (reader.pos < end) {
+      let tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.eventID = reader.int32();
+          break;
+        case 2:
+          if (!(message.skills && message.skills.length)) message.skills = [];
+          if ((tag & 7) === 2) {
+            let end2 = reader.uint32() + reader.pos;
+            while (reader.pos < end2) message.skills.push(reader.int32());
+          } else message.skills.push(reader.int32());
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
       }
     }
     return message;
   };
 
+  return Event;
+})());
+
+export const EventList = ($root.EventList = (() => {
   /**
-   * Creates a plain object from a CharacterList message. Also converts values to other types if specified.
-   * @function toObject
-   * @memberof CharacterList
-   * @static
-   * @param {CharacterList} message CharacterList
-   * @param {$protobuf.IConversionOptions} [options] Conversion options
-   * @returns {Object.<string,*>} Plain object
+   * Properties of an EventList.
+   * @exports IEventList
+   * @interface IEventList
+   * @property {Array.<IEvent>|null} [data] EventList data
    */
-  CharacterList.toObject = function toObject(message, options) {
-    if (!options) options = {};
-    let object = {};
-    if (options.arrays || options.defaults) object.data = [];
-    if (message.data && message.data.length) {
-      object.data = [];
-      for (let j = 0; j < message.data.length; ++j)
-        object.data[j] = $root.Character.toObject(message.data[j], options);
-    }
-    return object;
-  };
 
   /**
-   * Converts this CharacterList to JSON.
-   * @function toJSON
-   * @memberof CharacterList
+   * Constructs a new EventList.
+   * @exports EventList
+   * @classdesc Represents an EventList.
+   * @implements IEventList
+   * @constructor
+   * @param {IEventList=} [properties] Properties to set
+   */
+  function EventList(properties) {
+    this.data = [];
+    if (properties)
+      for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+        if (properties[keys[i]] != null) this[keys[i]] = properties[keys[i]];
+  }
+
+  /**
+   * EventList data.
+   * @member {Array.<IEvent>} data
+   * @memberof EventList
    * @instance
-   * @returns {Object.<string,*>} JSON object
    */
-  CharacterList.prototype.toJSON = function toJSON() {
-    return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+  EventList.prototype.data = $util.emptyArray;
+
+  /**
+   * Decodes an EventList message from the specified reader or buffer.
+   * @function decode
+   * @memberof EventList
+   * @static
+   * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+   * @param {number} [length] Message length if known beforehand
+   * @returns {EventList} EventList
+   * @throws {Error} If the payload is not a reader or valid buffer
+   * @throws {$protobuf.util.ProtocolError} If required fields are missing
+   */
+  EventList.decode = function decode(reader, length) {
+    if (!(reader instanceof $Reader)) reader = $Reader.create(reader);
+    let end = length === undefined ? reader.len : reader.pos + length,
+      message = new $root.EventList();
+    while (reader.pos < end) {
+      let tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (!(message.data && message.data.length)) message.data = [];
+          message.data.push($root.Event.decode(reader, reader.uint32()));
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
   };
 
-  return CharacterList;
+  return EventList;
 })());
 
 export const Factor = ($root.Factor = (() => {
@@ -473,59 +347,6 @@ export const Factor = ($root.Factor = (() => {
   Factor.prototype.skillID = 0;
 
   /**
-   * Creates a new Factor instance using the specified properties.
-   * @function create
-   * @memberof Factor
-   * @static
-   * @param {IFactor=} [properties] Properties to set
-   * @returns {Factor} Factor instance
-   */
-  Factor.create = function create(properties) {
-    return new Factor(properties);
-  };
-
-  /**
-   * Encodes the specified Factor message. Does not implicitly {@link Factor.verify|verify} messages.
-   * @function encode
-   * @memberof Factor
-   * @static
-   * @param {IFactor} message Factor message or plain object to encode
-   * @param {$protobuf.Writer} [writer] Writer to encode to
-   * @returns {$protobuf.Writer} Writer
-   */
-  Factor.encode = function encode(message, writer) {
-    if (!writer) writer = $Writer.create();
-    if (
-      message.factorID != null &&
-      Object.hasOwnProperty.call(message, "factorID")
-    )
-      writer.uint32(/* id 1, wireType 0 =*/ 8).int32(message.factorID);
-    if (message.sortID != null && Object.hasOwnProperty.call(message, "sortID"))
-      writer.uint32(/* id 2, wireType 0 =*/ 16).int32(message.sortID);
-    if (message.type != null && Object.hasOwnProperty.call(message, "type"))
-      writer.uint32(/* id 3, wireType 0 =*/ 24).int32(message.type);
-    if (
-      message.skillID != null &&
-      Object.hasOwnProperty.call(message, "skillID")
-    )
-      writer.uint32(/* id 4, wireType 0 =*/ 32).int32(message.skillID);
-    return writer;
-  };
-
-  /**
-   * Encodes the specified Factor message, length delimited. Does not implicitly {@link Factor.verify|verify} messages.
-   * @function encodeDelimited
-   * @memberof Factor
-   * @static
-   * @param {IFactor} message Factor message or plain object to encode
-   * @param {$protobuf.Writer} [writer] Writer to encode to
-   * @returns {$protobuf.Writer} Writer
-   */
-  Factor.encodeDelimited = function encodeDelimited(message, writer) {
-    return this.encode(message, writer).ldelim();
-  };
-
-  /**
    * Decodes a Factor message from the specified reader or buffer.
    * @function decode
    * @memberof Factor
@@ -561,140 +382,6 @@ export const Factor = ($root.Factor = (() => {
       }
     }
     return message;
-  };
-
-  /**
-   * Decodes a Factor message from the specified reader or buffer, length delimited.
-   * @function decodeDelimited
-   * @memberof Factor
-   * @static
-   * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-   * @returns {Factor} Factor
-   * @throws {Error} If the payload is not a reader or valid buffer
-   * @throws {$protobuf.util.ProtocolError} If required fields are missing
-   */
-  Factor.decodeDelimited = function decodeDelimited(reader) {
-    if (!(reader instanceof $Reader)) reader = new $Reader(reader);
-    return this.decode(reader, reader.uint32());
-  };
-
-  /**
-   * Verifies a Factor message.
-   * @function verify
-   * @memberof Factor
-   * @static
-   * @param {Object.<string,*>} message Plain object to verify
-   * @returns {string|null} `null` if valid, otherwise the reason why it is not
-   */
-  Factor.verify = function verify(message) {
-    if (typeof message !== "object" || message === null)
-      return "object expected";
-    if (message.factorID != null && message.hasOwnProperty("factorID"))
-      if (!$util.isInteger(message.factorID))
-        return "factorID: integer expected";
-    if (message.sortID != null && message.hasOwnProperty("sortID"))
-      if (!$util.isInteger(message.sortID)) return "sortID: integer expected";
-    if (message.type != null && message.hasOwnProperty("type"))
-      switch (message.type) {
-        default:
-          return "type: enum value expected";
-        case 0:
-        case 1:
-        case 2:
-        case 3:
-        case 4:
-        case 5:
-          break;
-      }
-    if (message.skillID != null && message.hasOwnProperty("skillID"))
-      if (!$util.isInteger(message.skillID)) return "skillID: integer expected";
-    return null;
-  };
-
-  /**
-   * Creates a Factor message from a plain object. Also converts values to their respective internal types.
-   * @function fromObject
-   * @memberof Factor
-   * @static
-   * @param {Object.<string,*>} object Plain object
-   * @returns {Factor} Factor
-   */
-  Factor.fromObject = function fromObject(object) {
-    if (object instanceof $root.Factor) return object;
-    let message = new $root.Factor();
-    if (object.factorID != null) message.factorID = object.factorID | 0;
-    if (object.sortID != null) message.sortID = object.sortID | 0;
-    switch (object.type) {
-      case "STATUS":
-      case 0:
-        message.type = 0;
-        break;
-      case "ABILITY":
-      case 1:
-        message.type = 1;
-        break;
-      case "UNIQUE_SKILL":
-      case 2:
-        message.type = 2;
-        break;
-      case "RACE":
-      case 3:
-        message.type = 3;
-        break;
-      case "SKILL":
-      case 4:
-        message.type = 4;
-        break;
-      case "SCENARIO":
-      case 5:
-        message.type = 5;
-        break;
-    }
-    if (object.skillID != null) message.skillID = object.skillID | 0;
-    return message;
-  };
-
-  /**
-   * Creates a plain object from a Factor message. Also converts values to other types if specified.
-   * @function toObject
-   * @memberof Factor
-   * @static
-   * @param {Factor} message Factor
-   * @param {$protobuf.IConversionOptions} [options] Conversion options
-   * @returns {Object.<string,*>} Plain object
-   */
-  Factor.toObject = function toObject(message, options) {
-    if (!options) options = {};
-    let object = {};
-    if (options.defaults) {
-      object.factorID = 0;
-      object.sortID = 0;
-      object.type = options.enums === String ? "STATUS" : 0;
-      object.skillID = 0;
-    }
-    if (message.factorID != null && message.hasOwnProperty("factorID"))
-      object.factorID = message.factorID;
-    if (message.sortID != null && message.hasOwnProperty("sortID"))
-      object.sortID = message.sortID;
-    if (message.type != null && message.hasOwnProperty("type"))
-      object.type =
-        options.enums === String
-          ? $root.Factor.Type[message.type]
-          : message.type;
-    if (message.skillID != null && message.hasOwnProperty("skillID"))
-      object.skillID = message.skillID;
-    return object;
-  };
-
-  /**
-   * Converts this Factor to JSON.
-   * @function toJSON
-   * @memberof Factor
-   * @instance
-   * @returns {Object.<string,*>} JSON object
-   */
-  Factor.prototype.toJSON = function toJSON() {
-    return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
   };
 
   /**
@@ -755,51 +442,6 @@ export const FactorList = ($root.FactorList = (() => {
   FactorList.prototype.data = $util.emptyArray;
 
   /**
-   * Creates a new FactorList instance using the specified properties.
-   * @function create
-   * @memberof FactorList
-   * @static
-   * @param {IFactorList=} [properties] Properties to set
-   * @returns {FactorList} FactorList instance
-   */
-  FactorList.create = function create(properties) {
-    return new FactorList(properties);
-  };
-
-  /**
-   * Encodes the specified FactorList message. Does not implicitly {@link FactorList.verify|verify} messages.
-   * @function encode
-   * @memberof FactorList
-   * @static
-   * @param {IFactorList} message FactorList message or plain object to encode
-   * @param {$protobuf.Writer} [writer] Writer to encode to
-   * @returns {$protobuf.Writer} Writer
-   */
-  FactorList.encode = function encode(message, writer) {
-    if (!writer) writer = $Writer.create();
-    if (message.data != null && message.data.length)
-      for (let i = 0; i < message.data.length; ++i)
-        $root.Factor.encode(
-          message.data[i],
-          writer.uint32(/* id 1, wireType 2 =*/ 10).fork()
-        ).ldelim();
-    return writer;
-  };
-
-  /**
-   * Encodes the specified FactorList message, length delimited. Does not implicitly {@link FactorList.verify|verify} messages.
-   * @function encodeDelimited
-   * @memberof FactorList
-   * @static
-   * @param {IFactorList} message FactorList message or plain object to encode
-   * @param {$protobuf.Writer} [writer] Writer to encode to
-   * @returns {$protobuf.Writer} Writer
-   */
-  FactorList.encodeDelimited = function encodeDelimited(message, writer) {
-    return this.encode(message, writer).ldelim();
-  };
-
-  /**
    * Decodes a FactorList message from the specified reader or buffer.
    * @function decode
    * @memberof FactorList
@@ -829,98 +471,6 @@ export const FactorList = ($root.FactorList = (() => {
     return message;
   };
 
-  /**
-   * Decodes a FactorList message from the specified reader or buffer, length delimited.
-   * @function decodeDelimited
-   * @memberof FactorList
-   * @static
-   * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-   * @returns {FactorList} FactorList
-   * @throws {Error} If the payload is not a reader or valid buffer
-   * @throws {$protobuf.util.ProtocolError} If required fields are missing
-   */
-  FactorList.decodeDelimited = function decodeDelimited(reader) {
-    if (!(reader instanceof $Reader)) reader = new $Reader(reader);
-    return this.decode(reader, reader.uint32());
-  };
-
-  /**
-   * Verifies a FactorList message.
-   * @function verify
-   * @memberof FactorList
-   * @static
-   * @param {Object.<string,*>} message Plain object to verify
-   * @returns {string|null} `null` if valid, otherwise the reason why it is not
-   */
-  FactorList.verify = function verify(message) {
-    if (typeof message !== "object" || message === null)
-      return "object expected";
-    if (message.data != null && message.hasOwnProperty("data")) {
-      if (!Array.isArray(message.data)) return "data: array expected";
-      for (let i = 0; i < message.data.length; ++i) {
-        let error = $root.Factor.verify(message.data[i]);
-        if (error) return "data." + error;
-      }
-    }
-    return null;
-  };
-
-  /**
-   * Creates a FactorList message from a plain object. Also converts values to their respective internal types.
-   * @function fromObject
-   * @memberof FactorList
-   * @static
-   * @param {Object.<string,*>} object Plain object
-   * @returns {FactorList} FactorList
-   */
-  FactorList.fromObject = function fromObject(object) {
-    if (object instanceof $root.FactorList) return object;
-    let message = new $root.FactorList();
-    if (object.data) {
-      if (!Array.isArray(object.data))
-        throw TypeError(".FactorList.data: array expected");
-      message.data = [];
-      for (let i = 0; i < object.data.length; ++i) {
-        if (typeof object.data[i] !== "object")
-          throw TypeError(".FactorList.data: object expected");
-        message.data[i] = $root.Factor.fromObject(object.data[i]);
-      }
-    }
-    return message;
-  };
-
-  /**
-   * Creates a plain object from a FactorList message. Also converts values to other types if specified.
-   * @function toObject
-   * @memberof FactorList
-   * @static
-   * @param {FactorList} message FactorList
-   * @param {$protobuf.IConversionOptions} [options] Conversion options
-   * @returns {Object.<string,*>} Plain object
-   */
-  FactorList.toObject = function toObject(message, options) {
-    if (!options) options = {};
-    let object = {};
-    if (options.arrays || options.defaults) object.data = [];
-    if (message.data && message.data.length) {
-      object.data = [];
-      for (let j = 0; j < message.data.length; ++j)
-        object.data[j] = $root.Factor.toObject(message.data[j], options);
-    }
-    return object;
-  };
-
-  /**
-   * Converts this FactorList to JSON.
-   * @function toJSON
-   * @memberof FactorList
-   * @instance
-   * @returns {Object.<string,*>} JSON object
-   */
-  FactorList.prototype.toJSON = function toJSON() {
-    return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
-  };
-
   return FactorList;
 })());
 
@@ -932,6 +482,11 @@ export const Moniker = ($root.Moniker = (() => {
    * @property {number|null} [characterID] Moniker characterID
    * @property {number|null} [monikerID] Moniker monikerID
    * @property {number|null} [initialTalentLevel] Moniker initialTalentLevel
+   * @property {Object.<string,Moniker.IStatus>|null} [initialStatus] Moniker initialStatus
+   * @property {Moniker.IAbilities|null} [initialAbility] Moniker initialAbility
+   * @property {Moniker.IStatus|null} [growthRate] Moniker growthRate
+   * @property {Moniker.ISkills|null} [skills] Moniker skills
+   * @property {Array.<number>|null} [events] Moniker events
    */
 
   /**
@@ -943,6 +498,8 @@ export const Moniker = ($root.Moniker = (() => {
    * @param {IMoniker=} [properties] Properties to set
    */
   function Moniker(properties) {
+    this.initialStatus = {};
+    this.events = [];
     if (properties)
       for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
         if (properties[keys[i]] != null) this[keys[i]] = properties[keys[i]];
@@ -973,60 +530,44 @@ export const Moniker = ($root.Moniker = (() => {
   Moniker.prototype.initialTalentLevel = 0;
 
   /**
-   * Creates a new Moniker instance using the specified properties.
-   * @function create
+   * Moniker initialStatus.
+   * @member {Object.<string,Moniker.IStatus>} initialStatus
    * @memberof Moniker
-   * @static
-   * @param {IMoniker=} [properties] Properties to set
-   * @returns {Moniker} Moniker instance
+   * @instance
    */
-  Moniker.create = function create(properties) {
-    return new Moniker(properties);
-  };
+  Moniker.prototype.initialStatus = $util.emptyObject;
 
   /**
-   * Encodes the specified Moniker message. Does not implicitly {@link Moniker.verify|verify} messages.
-   * @function encode
+   * Moniker initialAbility.
+   * @member {Moniker.IAbilities|null|undefined} initialAbility
    * @memberof Moniker
-   * @static
-   * @param {IMoniker} message Moniker message or plain object to encode
-   * @param {$protobuf.Writer} [writer] Writer to encode to
-   * @returns {$protobuf.Writer} Writer
+   * @instance
    */
-  Moniker.encode = function encode(message, writer) {
-    if (!writer) writer = $Writer.create();
-    if (
-      message.characterID != null &&
-      Object.hasOwnProperty.call(message, "characterID")
-    )
-      writer.uint32(/* id 1, wireType 0 =*/ 8).int32(message.characterID);
-    if (
-      message.monikerID != null &&
-      Object.hasOwnProperty.call(message, "monikerID")
-    )
-      writer.uint32(/* id 2, wireType 0 =*/ 16).int32(message.monikerID);
-    if (
-      message.initialTalentLevel != null &&
-      Object.hasOwnProperty.call(message, "initialTalentLevel")
-    )
-      writer
-        .uint32(/* id 3, wireType 0 =*/ 24)
-        .int32(message.initialTalentLevel);
-    return writer;
-  };
+  Moniker.prototype.initialAbility = null;
 
   /**
-   * Encodes the specified Moniker message, length delimited. Does not implicitly {@link Moniker.verify|verify} messages.
-   * @function encodeDelimited
+   * Moniker growthRate.
+   * @member {Moniker.IStatus|null|undefined} growthRate
    * @memberof Moniker
-   * @static
-   * @param {IMoniker} message Moniker message or plain object to encode
-   * @param {$protobuf.Writer} [writer] Writer to encode to
-   * @returns {$protobuf.Writer} Writer
+   * @instance
    */
-  Moniker.encodeDelimited = function encodeDelimited(message, writer) {
-    return this.encode(message, writer).ldelim();
-  };
+  Moniker.prototype.growthRate = null;
+
+  /**
+   * Moniker skills.
+   * @member {Moniker.ISkills|null|undefined} skills
+   * @memberof Moniker
+   * @instance
+   */
+  Moniker.prototype.skills = null;
+
+  /**
+   * Moniker events.
+   * @member {Array.<number>} events
+   * @memberof Moniker
+   * @instance
+   */
+  Moniker.prototype.events = $util.emptyArray;
 
   /**
    * Decodes a Moniker message from the specified reader or buffer.
@@ -1042,7 +583,9 @@ export const Moniker = ($root.Moniker = (() => {
   Moniker.decode = function decode(reader, length) {
     if (!(reader instanceof $Reader)) reader = $Reader.create(reader);
     let end = length === undefined ? reader.len : reader.pos + length,
-      message = new $root.Moniker();
+      message = new $root.Moniker(),
+      key,
+      value;
     while (reader.pos < end) {
       let tag = reader.uint32();
       switch (tag >>> 3) {
@@ -1055,6 +598,50 @@ export const Moniker = ($root.Moniker = (() => {
         case 3:
           message.initialTalentLevel = reader.int32();
           break;
+        case 4:
+          if (message.initialStatus === $util.emptyObject)
+            message.initialStatus = {};
+          let end2 = reader.uint32() + reader.pos;
+          key = 0;
+          value = null;
+          while (reader.pos < end2) {
+            let tag2 = reader.uint32();
+            switch (tag2 >>> 3) {
+              case 1:
+                key = reader.int32();
+                break;
+              case 2:
+                value = $root.Moniker.Status.decode(reader, reader.uint32());
+                break;
+              default:
+                reader.skipType(tag2 & 7);
+                break;
+            }
+          }
+          message.initialStatus[key] = value;
+          break;
+        case 5:
+          message.initialAbility = $root.Moniker.Abilities.decode(
+            reader,
+            reader.uint32()
+          );
+          break;
+        case 6:
+          message.growthRate = $root.Moniker.Status.decode(
+            reader,
+            reader.uint32()
+          );
+          break;
+        case 7:
+          message.skills = $root.Moniker.Skills.decode(reader, reader.uint32());
+          break;
+        case 8:
+          if (!(message.events && message.events.length)) message.events = [];
+          if ((tag & 7) === 2) {
+            let end2 = reader.uint32() + reader.pos;
+            while (reader.pos < end2) message.events.push(reader.int32());
+          } else message.events.push(reader.int32());
+          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -1063,105 +650,428 @@ export const Moniker = ($root.Moniker = (() => {
     return message;
   };
 
-  /**
-   * Decodes a Moniker message from the specified reader or buffer, length delimited.
-   * @function decodeDelimited
-   * @memberof Moniker
-   * @static
-   * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-   * @returns {Moniker} Moniker
-   * @throws {Error} If the payload is not a reader or valid buffer
-   * @throws {$protobuf.util.ProtocolError} If required fields are missing
-   */
-  Moniker.decodeDelimited = function decodeDelimited(reader) {
-    if (!(reader instanceof $Reader)) reader = new $Reader(reader);
-    return this.decode(reader, reader.uint32());
-  };
+  Moniker.Status = (function () {
+    /**
+     * Properties of a Status.
+     * @memberof Moniker
+     * @interface IStatus
+     * @property {number|null} [speed] Status speed
+     * @property {number|null} [stamina] Status stamina
+     * @property {number|null} [power] Status power
+     * @property {number|null} [tenacity] Status tenacity
+     * @property {number|null} [intelligence] Status intelligence
+     */
 
-  /**
-   * Verifies a Moniker message.
-   * @function verify
-   * @memberof Moniker
-   * @static
-   * @param {Object.<string,*>} message Plain object to verify
-   * @returns {string|null} `null` if valid, otherwise the reason why it is not
-   */
-  Moniker.verify = function verify(message) {
-    if (typeof message !== "object" || message === null)
-      return "object expected";
-    if (message.characterID != null && message.hasOwnProperty("characterID"))
-      if (!$util.isInteger(message.characterID))
-        return "characterID: integer expected";
-    if (message.monikerID != null && message.hasOwnProperty("monikerID"))
-      if (!$util.isInteger(message.monikerID))
-        return "monikerID: integer expected";
-    if (
-      message.initialTalentLevel != null &&
-      message.hasOwnProperty("initialTalentLevel")
-    )
-      if (!$util.isInteger(message.initialTalentLevel))
-        return "initialTalentLevel: integer expected";
-    return null;
-  };
-
-  /**
-   * Creates a Moniker message from a plain object. Also converts values to their respective internal types.
-   * @function fromObject
-   * @memberof Moniker
-   * @static
-   * @param {Object.<string,*>} object Plain object
-   * @returns {Moniker} Moniker
-   */
-  Moniker.fromObject = function fromObject(object) {
-    if (object instanceof $root.Moniker) return object;
-    let message = new $root.Moniker();
-    if (object.characterID != null)
-      message.characterID = object.characterID | 0;
-    if (object.monikerID != null) message.monikerID = object.monikerID | 0;
-    if (object.initialTalentLevel != null)
-      message.initialTalentLevel = object.initialTalentLevel | 0;
-    return message;
-  };
-
-  /**
-   * Creates a plain object from a Moniker message. Also converts values to other types if specified.
-   * @function toObject
-   * @memberof Moniker
-   * @static
-   * @param {Moniker} message Moniker
-   * @param {$protobuf.IConversionOptions} [options] Conversion options
-   * @returns {Object.<string,*>} Plain object
-   */
-  Moniker.toObject = function toObject(message, options) {
-    if (!options) options = {};
-    let object = {};
-    if (options.defaults) {
-      object.characterID = 0;
-      object.monikerID = 0;
-      object.initialTalentLevel = 0;
+    /**
+     * Constructs a new Status.
+     * @memberof Moniker
+     * @classdesc Represents a Status.
+     * @implements IStatus
+     * @constructor
+     * @param {Moniker.IStatus=} [properties] Properties to set
+     */
+    function Status(properties) {
+      if (properties)
+        for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+          if (properties[keys[i]] != null) this[keys[i]] = properties[keys[i]];
     }
-    if (message.characterID != null && message.hasOwnProperty("characterID"))
-      object.characterID = message.characterID;
-    if (message.monikerID != null && message.hasOwnProperty("monikerID"))
-      object.monikerID = message.monikerID;
-    if (
-      message.initialTalentLevel != null &&
-      message.hasOwnProperty("initialTalentLevel")
-    )
-      object.initialTalentLevel = message.initialTalentLevel;
-    return object;
-  };
+
+    /**
+     * Status speed.
+     * @member {number} speed
+     * @memberof Moniker.Status
+     * @instance
+     */
+    Status.prototype.speed = 0;
+
+    /**
+     * Status stamina.
+     * @member {number} stamina
+     * @memberof Moniker.Status
+     * @instance
+     */
+    Status.prototype.stamina = 0;
+
+    /**
+     * Status power.
+     * @member {number} power
+     * @memberof Moniker.Status
+     * @instance
+     */
+    Status.prototype.power = 0;
+
+    /**
+     * Status tenacity.
+     * @member {number} tenacity
+     * @memberof Moniker.Status
+     * @instance
+     */
+    Status.prototype.tenacity = 0;
+
+    /**
+     * Status intelligence.
+     * @member {number} intelligence
+     * @memberof Moniker.Status
+     * @instance
+     */
+    Status.prototype.intelligence = 0;
+
+    /**
+     * Decodes a Status message from the specified reader or buffer.
+     * @function decode
+     * @memberof Moniker.Status
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @param {number} [length] Message length if known beforehand
+     * @returns {Moniker.Status} Status
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    Status.decode = function decode(reader, length) {
+      if (!(reader instanceof $Reader)) reader = $Reader.create(reader);
+      let end = length === undefined ? reader.len : reader.pos + length,
+        message = new $root.Moniker.Status();
+      while (reader.pos < end) {
+        let tag = reader.uint32();
+        switch (tag >>> 3) {
+          case 1:
+            message.speed = reader.int32();
+            break;
+          case 2:
+            message.stamina = reader.int32();
+            break;
+          case 3:
+            message.power = reader.int32();
+            break;
+          case 4:
+            message.tenacity = reader.int32();
+            break;
+          case 5:
+            message.intelligence = reader.int32();
+            break;
+          default:
+            reader.skipType(tag & 7);
+            break;
+        }
+      }
+      return message;
+    };
+
+    return Status;
+  })();
 
   /**
-   * Converts this Moniker to JSON.
-   * @function toJSON
-   * @memberof Moniker
-   * @instance
-   * @returns {Object.<string,*>} JSON object
+   * Ability enum.
+   * @name Moniker.Ability
+   * @enum {number}
+   * @property {number} G=0 G value
+   * @property {number} F=1 F value
+   * @property {number} E=2 E value
+   * @property {number} D=3 D value
+   * @property {number} C=4 C value
+   * @property {number} B=5 B value
+   * @property {number} A=6 A value
+   * @property {number} S=7 S value
    */
-  Moniker.prototype.toJSON = function toJSON() {
-    return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
-  };
+  Moniker.Ability = (function () {
+    const valuesById = {},
+      values = Object.create(valuesById);
+    values[(valuesById[0] = "G")] = 0;
+    values[(valuesById[1] = "F")] = 1;
+    values[(valuesById[2] = "E")] = 2;
+    values[(valuesById[3] = "D")] = 3;
+    values[(valuesById[4] = "C")] = 4;
+    values[(valuesById[5] = "B")] = 5;
+    values[(valuesById[6] = "A")] = 6;
+    values[(valuesById[7] = "S")] = 7;
+    return values;
+  })();
+
+  Moniker.Abilities = (function () {
+    /**
+     * Properties of an Abilities.
+     * @memberof Moniker
+     * @interface IAbilities
+     * @property {Moniker.Ability|null} [turf] Abilities turf
+     * @property {Moniker.Ability|null} [dirt] Abilities dirt
+     * @property {Moniker.Ability|null} [short] Abilities short
+     * @property {Moniker.Ability|null} [mile] Abilities mile
+     * @property {Moniker.Ability|null} [middle] Abilities middle
+     * @property {Moniker.Ability|null} [long] Abilities long
+     * @property {Moniker.Ability|null} [nige] Abilities nige
+     * @property {Moniker.Ability|null} [senko] Abilities senko
+     * @property {Moniker.Ability|null} [sashi] Abilities sashi
+     * @property {Moniker.Ability|null} [oikomi] Abilities oikomi
+     */
+
+    /**
+     * Constructs a new Abilities.
+     * @memberof Moniker
+     * @classdesc Represents an Abilities.
+     * @implements IAbilities
+     * @constructor
+     * @param {Moniker.IAbilities=} [properties] Properties to set
+     */
+    function Abilities(properties) {
+      if (properties)
+        for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+          if (properties[keys[i]] != null) this[keys[i]] = properties[keys[i]];
+    }
+
+    /**
+     * Abilities turf.
+     * @member {Moniker.Ability} turf
+     * @memberof Moniker.Abilities
+     * @instance
+     */
+    Abilities.prototype.turf = 0;
+
+    /**
+     * Abilities dirt.
+     * @member {Moniker.Ability} dirt
+     * @memberof Moniker.Abilities
+     * @instance
+     */
+    Abilities.prototype.dirt = 0;
+
+    /**
+     * Abilities short.
+     * @member {Moniker.Ability} short
+     * @memberof Moniker.Abilities
+     * @instance
+     */
+    Abilities.prototype.short = 0;
+
+    /**
+     * Abilities mile.
+     * @member {Moniker.Ability} mile
+     * @memberof Moniker.Abilities
+     * @instance
+     */
+    Abilities.prototype.mile = 0;
+
+    /**
+     * Abilities middle.
+     * @member {Moniker.Ability} middle
+     * @memberof Moniker.Abilities
+     * @instance
+     */
+    Abilities.prototype.middle = 0;
+
+    /**
+     * Abilities long.
+     * @member {Moniker.Ability} long
+     * @memberof Moniker.Abilities
+     * @instance
+     */
+    Abilities.prototype.long = 0;
+
+    /**
+     * Abilities nige.
+     * @member {Moniker.Ability} nige
+     * @memberof Moniker.Abilities
+     * @instance
+     */
+    Abilities.prototype.nige = 0;
+
+    /**
+     * Abilities senko.
+     * @member {Moniker.Ability} senko
+     * @memberof Moniker.Abilities
+     * @instance
+     */
+    Abilities.prototype.senko = 0;
+
+    /**
+     * Abilities sashi.
+     * @member {Moniker.Ability} sashi
+     * @memberof Moniker.Abilities
+     * @instance
+     */
+    Abilities.prototype.sashi = 0;
+
+    /**
+     * Abilities oikomi.
+     * @member {Moniker.Ability} oikomi
+     * @memberof Moniker.Abilities
+     * @instance
+     */
+    Abilities.prototype.oikomi = 0;
+
+    /**
+     * Decodes an Abilities message from the specified reader or buffer.
+     * @function decode
+     * @memberof Moniker.Abilities
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @param {number} [length] Message length if known beforehand
+     * @returns {Moniker.Abilities} Abilities
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    Abilities.decode = function decode(reader, length) {
+      if (!(reader instanceof $Reader)) reader = $Reader.create(reader);
+      let end = length === undefined ? reader.len : reader.pos + length,
+        message = new $root.Moniker.Abilities();
+      while (reader.pos < end) {
+        let tag = reader.uint32();
+        switch (tag >>> 3) {
+          case 1:
+            message.turf = reader.int32();
+            break;
+          case 2:
+            message.dirt = reader.int32();
+            break;
+          case 3:
+            message.short = reader.int32();
+            break;
+          case 4:
+            message.mile = reader.int32();
+            break;
+          case 5:
+            message.middle = reader.int32();
+            break;
+          case 6:
+            message.long = reader.int32();
+            break;
+          case 7:
+            message.nige = reader.int32();
+            break;
+          case 8:
+            message.senko = reader.int32();
+            break;
+          case 9:
+            message.sashi = reader.int32();
+            break;
+          case 10:
+            message.oikomi = reader.int32();
+            break;
+          default:
+            reader.skipType(tag & 7);
+            break;
+        }
+      }
+      return message;
+    };
+
+    return Abilities;
+  })();
+
+  Moniker.Skills = (function () {
+    /**
+     * Properties of a Skills.
+     * @memberof Moniker
+     * @interface ISkills
+     * @property {number|null} [awakeningLevel2] Skills awakeningLevel2
+     * @property {number|null} [awakeningLevel3] Skills awakeningLevel3
+     * @property {number|null} [awakeningLevel4] Skills awakeningLevel4
+     * @property {number|null} [awakeningLevel5] Skills awakeningLevel5
+     * @property {Array.<number>|null} [defaults] Skills defaults
+     */
+
+    /**
+     * Constructs a new Skills.
+     * @memberof Moniker
+     * @classdesc Represents a Skills.
+     * @implements ISkills
+     * @constructor
+     * @param {Moniker.ISkills=} [properties] Properties to set
+     */
+    function Skills(properties) {
+      this.defaults = [];
+      if (properties)
+        for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+          if (properties[keys[i]] != null) this[keys[i]] = properties[keys[i]];
+    }
+
+    /**
+     * Skills awakeningLevel2.
+     * @member {number} awakeningLevel2
+     * @memberof Moniker.Skills
+     * @instance
+     */
+    Skills.prototype.awakeningLevel2 = 0;
+
+    /**
+     * Skills awakeningLevel3.
+     * @member {number} awakeningLevel3
+     * @memberof Moniker.Skills
+     * @instance
+     */
+    Skills.prototype.awakeningLevel3 = 0;
+
+    /**
+     * Skills awakeningLevel4.
+     * @member {number} awakeningLevel4
+     * @memberof Moniker.Skills
+     * @instance
+     */
+    Skills.prototype.awakeningLevel4 = 0;
+
+    /**
+     * Skills awakeningLevel5.
+     * @member {number} awakeningLevel5
+     * @memberof Moniker.Skills
+     * @instance
+     */
+    Skills.prototype.awakeningLevel5 = 0;
+
+    /**
+     * Skills defaults.
+     * @member {Array.<number>} defaults
+     * @memberof Moniker.Skills
+     * @instance
+     */
+    Skills.prototype.defaults = $util.emptyArray;
+
+    /**
+     * Decodes a Skills message from the specified reader or buffer.
+     * @function decode
+     * @memberof Moniker.Skills
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @param {number} [length] Message length if known beforehand
+     * @returns {Moniker.Skills} Skills
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    Skills.decode = function decode(reader, length) {
+      if (!(reader instanceof $Reader)) reader = $Reader.create(reader);
+      let end = length === undefined ? reader.len : reader.pos + length,
+        message = new $root.Moniker.Skills();
+      while (reader.pos < end) {
+        let tag = reader.uint32();
+        switch (tag >>> 3) {
+          case 1:
+            message.awakeningLevel2 = reader.int32();
+            break;
+          case 2:
+            message.awakeningLevel3 = reader.int32();
+            break;
+          case 3:
+            message.awakeningLevel4 = reader.int32();
+            break;
+          case 4:
+            message.awakeningLevel5 = reader.int32();
+            break;
+          case 5:
+            if (!(message.defaults && message.defaults.length))
+              message.defaults = [];
+            if ((tag & 7) === 2) {
+              let end2 = reader.uint32() + reader.pos;
+              while (reader.pos < end2) message.defaults.push(reader.int32());
+            } else message.defaults.push(reader.int32());
+            break;
+          default:
+            reader.skipType(tag & 7);
+            break;
+        }
+      }
+      return message;
+    };
+
+    return Skills;
+  })();
 
   return Moniker;
 })());
@@ -1198,51 +1108,6 @@ export const MonikerList = ($root.MonikerList = (() => {
   MonikerList.prototype.data = $util.emptyArray;
 
   /**
-   * Creates a new MonikerList instance using the specified properties.
-   * @function create
-   * @memberof MonikerList
-   * @static
-   * @param {IMonikerList=} [properties] Properties to set
-   * @returns {MonikerList} MonikerList instance
-   */
-  MonikerList.create = function create(properties) {
-    return new MonikerList(properties);
-  };
-
-  /**
-   * Encodes the specified MonikerList message. Does not implicitly {@link MonikerList.verify|verify} messages.
-   * @function encode
-   * @memberof MonikerList
-   * @static
-   * @param {IMonikerList} message MonikerList message or plain object to encode
-   * @param {$protobuf.Writer} [writer] Writer to encode to
-   * @returns {$protobuf.Writer} Writer
-   */
-  MonikerList.encode = function encode(message, writer) {
-    if (!writer) writer = $Writer.create();
-    if (message.data != null && message.data.length)
-      for (let i = 0; i < message.data.length; ++i)
-        $root.Moniker.encode(
-          message.data[i],
-          writer.uint32(/* id 1, wireType 2 =*/ 10).fork()
-        ).ldelim();
-    return writer;
-  };
-
-  /**
-   * Encodes the specified MonikerList message, length delimited. Does not implicitly {@link MonikerList.verify|verify} messages.
-   * @function encodeDelimited
-   * @memberof MonikerList
-   * @static
-   * @param {IMonikerList} message MonikerList message or plain object to encode
-   * @param {$protobuf.Writer} [writer] Writer to encode to
-   * @returns {$protobuf.Writer} Writer
-   */
-  MonikerList.encodeDelimited = function encodeDelimited(message, writer) {
-    return this.encode(message, writer).ldelim();
-  };
-
-  /**
    * Decodes a MonikerList message from the specified reader or buffer.
    * @function decode
    * @memberof MonikerList
@@ -1270,98 +1135,6 @@ export const MonikerList = ($root.MonikerList = (() => {
       }
     }
     return message;
-  };
-
-  /**
-   * Decodes a MonikerList message from the specified reader or buffer, length delimited.
-   * @function decodeDelimited
-   * @memberof MonikerList
-   * @static
-   * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-   * @returns {MonikerList} MonikerList
-   * @throws {Error} If the payload is not a reader or valid buffer
-   * @throws {$protobuf.util.ProtocolError} If required fields are missing
-   */
-  MonikerList.decodeDelimited = function decodeDelimited(reader) {
-    if (!(reader instanceof $Reader)) reader = new $Reader(reader);
-    return this.decode(reader, reader.uint32());
-  };
-
-  /**
-   * Verifies a MonikerList message.
-   * @function verify
-   * @memberof MonikerList
-   * @static
-   * @param {Object.<string,*>} message Plain object to verify
-   * @returns {string|null} `null` if valid, otherwise the reason why it is not
-   */
-  MonikerList.verify = function verify(message) {
-    if (typeof message !== "object" || message === null)
-      return "object expected";
-    if (message.data != null && message.hasOwnProperty("data")) {
-      if (!Array.isArray(message.data)) return "data: array expected";
-      for (let i = 0; i < message.data.length; ++i) {
-        let error = $root.Moniker.verify(message.data[i]);
-        if (error) return "data." + error;
-      }
-    }
-    return null;
-  };
-
-  /**
-   * Creates a MonikerList message from a plain object. Also converts values to their respective internal types.
-   * @function fromObject
-   * @memberof MonikerList
-   * @static
-   * @param {Object.<string,*>} object Plain object
-   * @returns {MonikerList} MonikerList
-   */
-  MonikerList.fromObject = function fromObject(object) {
-    if (object instanceof $root.MonikerList) return object;
-    let message = new $root.MonikerList();
-    if (object.data) {
-      if (!Array.isArray(object.data))
-        throw TypeError(".MonikerList.data: array expected");
-      message.data = [];
-      for (let i = 0; i < object.data.length; ++i) {
-        if (typeof object.data[i] !== "object")
-          throw TypeError(".MonikerList.data: object expected");
-        message.data[i] = $root.Moniker.fromObject(object.data[i]);
-      }
-    }
-    return message;
-  };
-
-  /**
-   * Creates a plain object from a MonikerList message. Also converts values to other types if specified.
-   * @function toObject
-   * @memberof MonikerList
-   * @static
-   * @param {MonikerList} message MonikerList
-   * @param {$protobuf.IConversionOptions} [options] Conversion options
-   * @returns {Object.<string,*>} Plain object
-   */
-  MonikerList.toObject = function toObject(message, options) {
-    if (!options) options = {};
-    let object = {};
-    if (options.arrays || options.defaults) object.data = [];
-    if (message.data && message.data.length) {
-      object.data = [];
-      for (let j = 0; j < message.data.length; ++j)
-        object.data[j] = $root.Moniker.toObject(message.data[j], options);
-    }
-    return object;
-  };
-
-  /**
-   * Converts this MonikerList to JSON.
-   * @function toJSON
-   * @memberof MonikerList
-   * @instance
-   * @returns {Object.<string,*>} JSON object
-   */
-  MonikerList.prototype.toJSON = function toJSON() {
-    return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
   };
 
   return MonikerList;
@@ -1488,90 +1261,6 @@ export const Skill = ($root.Skill = (() => {
   Skill.prototype.inheritable = false;
 
   /**
-   * Creates a new Skill instance using the specified properties.
-   * @function create
-   * @memberof Skill
-   * @static
-   * @param {ISkill=} [properties] Properties to set
-   * @returns {Skill} Skill instance
-   */
-  Skill.create = function create(properties) {
-    return new Skill(properties);
-  };
-
-  /**
-   * Encodes the specified Skill message. Does not implicitly {@link Skill.verify|verify} messages.
-   * @function encode
-   * @memberof Skill
-   * @static
-   * @param {ISkill} message Skill message or plain object to encode
-   * @param {$protobuf.Writer} [writer] Writer to encode to
-   * @returns {$protobuf.Writer} Writer
-   */
-  Skill.encode = function encode(message, writer) {
-    if (!writer) writer = $Writer.create();
-    if (
-      message.skillID != null &&
-      Object.hasOwnProperty.call(message, "skillID")
-    )
-      writer.uint32(/* id 1, wireType 0 =*/ 8).int32(message.skillID);
-    if (message.sortID != null && Object.hasOwnProperty.call(message, "sortID"))
-      writer.uint32(/* id 2, wireType 0 =*/ 16).int32(message.sortID);
-    if (message.point != null && Object.hasOwnProperty.call(message, "point"))
-      writer.uint32(/* id 3, wireType 0 =*/ 24).int32(message.point);
-    if (message.type != null && Object.hasOwnProperty.call(message, "type"))
-      writer.uint32(/* id 4, wireType 0 =*/ 32).int32(message.type);
-    if (
-      message.conflictID != null &&
-      Object.hasOwnProperty.call(message, "conflictID")
-    )
-      writer.uint32(/* id 5, wireType 0 =*/ 40).int32(message.conflictID);
-    if (
-      message.advanced != null &&
-      Object.hasOwnProperty.call(message, "advanced")
-    )
-      writer.uint32(/* id 6, wireType 0 =*/ 48).bool(message.advanced);
-    if (message.unique != null && Object.hasOwnProperty.call(message, "unique"))
-      writer.uint32(/* id 7, wireType 0 =*/ 56).bool(message.unique);
-    if (
-      message.characterID != null &&
-      Object.hasOwnProperty.call(message, "characterID")
-    )
-      writer.uint32(/* id 8, wireType 0 =*/ 64).int32(message.characterID);
-    if (
-      message.monikerID != null &&
-      Object.hasOwnProperty.call(message, "monikerID")
-    )
-      writer.uint32(/* id 9, wireType 0 =*/ 72).int32(message.monikerID);
-    if (
-      message.matchingTalentLevels != null &&
-      Object.hasOwnProperty.call(message, "matchingTalentLevels")
-    )
-      writer
-        .uint32(/* id 10, wireType 0 =*/ 80)
-        .int32(message.matchingTalentLevels);
-    if (
-      message.inheritable != null &&
-      Object.hasOwnProperty.call(message, "inheritable")
-    )
-      writer.uint32(/* id 11, wireType 0 =*/ 88).bool(message.inheritable);
-    return writer;
-  };
-
-  /**
-   * Encodes the specified Skill message, length delimited. Does not implicitly {@link Skill.verify|verify} messages.
-   * @function encodeDelimited
-   * @memberof Skill
-   * @static
-   * @param {ISkill} message Skill message or plain object to encode
-   * @param {$protobuf.Writer} [writer] Writer to encode to
-   * @returns {$protobuf.Writer} Writer
-   */
-  Skill.encodeDelimited = function encodeDelimited(message, writer) {
-    return this.encode(message, writer).ldelim();
-  };
-
-  /**
    * Decodes a Skill message from the specified reader or buffer.
    * @function decode
    * @memberof Skill
@@ -1631,299 +1320,6 @@ export const Skill = ($root.Skill = (() => {
   };
 
   /**
-   * Decodes a Skill message from the specified reader or buffer, length delimited.
-   * @function decodeDelimited
-   * @memberof Skill
-   * @static
-   * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-   * @returns {Skill} Skill
-   * @throws {Error} If the payload is not a reader or valid buffer
-   * @throws {$protobuf.util.ProtocolError} If required fields are missing
-   */
-  Skill.decodeDelimited = function decodeDelimited(reader) {
-    if (!(reader instanceof $Reader)) reader = new $Reader(reader);
-    return this.decode(reader, reader.uint32());
-  };
-
-  /**
-   * Verifies a Skill message.
-   * @function verify
-   * @memberof Skill
-   * @static
-   * @param {Object.<string,*>} message Plain object to verify
-   * @returns {string|null} `null` if valid, otherwise the reason why it is not
-   */
-  Skill.verify = function verify(message) {
-    if (typeof message !== "object" || message === null)
-      return "object expected";
-    if (message.skillID != null && message.hasOwnProperty("skillID"))
-      if (!$util.isInteger(message.skillID)) return "skillID: integer expected";
-    if (message.sortID != null && message.hasOwnProperty("sortID"))
-      if (!$util.isInteger(message.sortID)) return "sortID: integer expected";
-    if (message.point != null && message.hasOwnProperty("point"))
-      if (!$util.isInteger(message.point)) return "point: integer expected";
-    if (message.type != null && message.hasOwnProperty("type"))
-      switch (message.type) {
-        default:
-          return "type: enum value expected";
-        case 0:
-        case 1:
-        case 2:
-        case 3:
-        case 4:
-        case 5:
-        case 6:
-        case 7:
-        case 8:
-        case 9:
-        case 10:
-        case 11:
-        case 12:
-        case 13:
-        case 14:
-        case 15:
-        case 16:
-        case 17:
-        case 18:
-        case 19:
-        case 20:
-        case 21:
-          break;
-      }
-    if (message.conflictID != null && message.hasOwnProperty("conflictID"))
-      if (!$util.isInteger(message.conflictID))
-        return "conflictID: integer expected";
-    if (message.advanced != null && message.hasOwnProperty("advanced"))
-      if (typeof message.advanced !== "boolean")
-        return "advanced: boolean expected";
-    if (message.unique != null && message.hasOwnProperty("unique"))
-      if (typeof message.unique !== "boolean")
-        return "unique: boolean expected";
-    if (message.characterID != null && message.hasOwnProperty("characterID"))
-      if (!$util.isInteger(message.characterID))
-        return "characterID: integer expected";
-    if (message.monikerID != null && message.hasOwnProperty("monikerID"))
-      if (!$util.isInteger(message.monikerID))
-        return "monikerID: integer expected";
-    if (
-      message.matchingTalentLevels != null &&
-      message.hasOwnProperty("matchingTalentLevels")
-    )
-      switch (message.matchingTalentLevels) {
-        default:
-          return "matchingTalentLevels: enum value expected";
-        case 0:
-        case 1:
-        case 2:
-          break;
-      }
-    if (message.inheritable != null && message.hasOwnProperty("inheritable"))
-      if (typeof message.inheritable !== "boolean")
-        return "inheritable: boolean expected";
-    return null;
-  };
-
-  /**
-   * Creates a Skill message from a plain object. Also converts values to their respective internal types.
-   * @function fromObject
-   * @memberof Skill
-   * @static
-   * @param {Object.<string,*>} object Plain object
-   * @returns {Skill} Skill
-   */
-  Skill.fromObject = function fromObject(object) {
-    if (object instanceof $root.Skill) return object;
-    let message = new $root.Skill();
-    if (object.skillID != null) message.skillID = object.skillID | 0;
-    if (object.sortID != null) message.sortID = object.sortID | 0;
-    if (object.point != null) message.point = object.point | 0;
-    switch (object.type) {
-      case "BUFF_SPEED":
-      case 0:
-        message.type = 0;
-        break;
-      case "BUFF_ACCELERATION":
-      case 1:
-        message.type = 1;
-        break;
-      case "BUFF_POSITIONING":
-      case 2:
-        message.type = 2;
-        break;
-      case "BUFF_VISION":
-      case 3:
-        message.type = 3;
-        break;
-      case "BUFF_STARTING":
-      case 4:
-        message.type = 4;
-        break;
-      case "DEBUFF_SPEED":
-      case 5:
-        message.type = 5;
-        break;
-      case "DEBUFF_STAMINA":
-      case 6:
-        message.type = 6;
-        break;
-      case "DEBUFF_AGITATION":
-      case 7:
-        message.type = 7;
-        break;
-      case "DEBUFF_CALM":
-      case 8:
-        message.type = 8;
-        break;
-      case "DEBUFF_VISION":
-      case 9:
-        message.type = 9;
-        break;
-      case "RECOVERY_STAMINA":
-      case 10:
-        message.type = 10;
-        break;
-      case "SUPPORT_SPEED":
-      case 11:
-        message.type = 11;
-        break;
-      case "SUPPORT_STAMINA":
-      case 12:
-        message.type = 12;
-        break;
-      case "SUPPORT_POWER":
-      case 13:
-        message.type = 13;
-        break;
-      case "SUPPORT_TENACITY":
-      case 14:
-        message.type = 14;
-        break;
-      case "SUPPORT_GENERAL":
-      case 15:
-        message.type = 15;
-        break;
-      case "SUPPORT_STRATEGY":
-      case 16:
-        message.type = 16;
-        break;
-      case "WEAK_FATIGUE":
-      case 17:
-        message.type = 17;
-        break;
-      case "WEAK_STARTING":
-      case 18:
-        message.type = 18;
-        break;
-      case "WEAK_MENTAL":
-      case 19:
-        message.type = 19;
-        break;
-      case "WEAK_WILL":
-      case 20:
-        message.type = 20;
-        break;
-      case "WEAK_RACE":
-      case 21:
-        message.type = 21;
-        break;
-    }
-    if (object.conflictID != null) message.conflictID = object.conflictID | 0;
-    if (object.advanced != null) message.advanced = Boolean(object.advanced);
-    if (object.unique != null) message.unique = Boolean(object.unique);
-    if (object.characterID != null)
-      message.characterID = object.characterID | 0;
-    if (object.monikerID != null) message.monikerID = object.monikerID | 0;
-    switch (object.matchingTalentLevels) {
-      case "FROM_1_TO_5":
-      case 0:
-        message.matchingTalentLevels = 0;
-        break;
-      case "FROM_1_TO_2":
-      case 1:
-        message.matchingTalentLevels = 1;
-        break;
-      case "FROM_3_TO_5":
-      case 2:
-        message.matchingTalentLevels = 2;
-        break;
-    }
-    if (object.inheritable != null)
-      message.inheritable = Boolean(object.inheritable);
-    return message;
-  };
-
-  /**
-   * Creates a plain object from a Skill message. Also converts values to other types if specified.
-   * @function toObject
-   * @memberof Skill
-   * @static
-   * @param {Skill} message Skill
-   * @param {$protobuf.IConversionOptions} [options] Conversion options
-   * @returns {Object.<string,*>} Plain object
-   */
-  Skill.toObject = function toObject(message, options) {
-    if (!options) options = {};
-    let object = {};
-    if (options.defaults) {
-      object.skillID = 0;
-      object.sortID = 0;
-      object.point = 0;
-      object.type = options.enums === String ? "BUFF_SPEED" : 0;
-      object.conflictID = 0;
-      object.advanced = false;
-      object.unique = false;
-      object.characterID = 0;
-      object.monikerID = 0;
-      object.matchingTalentLevels =
-        options.enums === String ? "FROM_1_TO_5" : 0;
-      object.inheritable = false;
-    }
-    if (message.skillID != null && message.hasOwnProperty("skillID"))
-      object.skillID = message.skillID;
-    if (message.sortID != null && message.hasOwnProperty("sortID"))
-      object.sortID = message.sortID;
-    if (message.point != null && message.hasOwnProperty("point"))
-      object.point = message.point;
-    if (message.type != null && message.hasOwnProperty("type"))
-      object.type =
-        options.enums === String
-          ? $root.Skill.Type[message.type]
-          : message.type;
-    if (message.conflictID != null && message.hasOwnProperty("conflictID"))
-      object.conflictID = message.conflictID;
-    if (message.advanced != null && message.hasOwnProperty("advanced"))
-      object.advanced = message.advanced;
-    if (message.unique != null && message.hasOwnProperty("unique"))
-      object.unique = message.unique;
-    if (message.characterID != null && message.hasOwnProperty("characterID"))
-      object.characterID = message.characterID;
-    if (message.monikerID != null && message.hasOwnProperty("monikerID"))
-      object.monikerID = message.monikerID;
-    if (
-      message.matchingTalentLevels != null &&
-      message.hasOwnProperty("matchingTalentLevels")
-    )
-      object.matchingTalentLevels =
-        options.enums === String
-          ? $root.Skill.Levels[message.matchingTalentLevels]
-          : message.matchingTalentLevels;
-    if (message.inheritable != null && message.hasOwnProperty("inheritable"))
-      object.inheritable = message.inheritable;
-    return object;
-  };
-
-  /**
-   * Converts this Skill to JSON.
-   * @function toJSON
-   * @memberof Skill
-   * @instance
-   * @returns {Object.<string,*>} JSON object
-   */
-  Skill.prototype.toJSON = function toJSON() {
-    return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
-  };
-
-  /**
    * Type enum.
    * @name Skill.Type
    * @enum {number}
@@ -1949,6 +1345,9 @@ export const Skill = ($root.Skill = (() => {
    * @property {number} WEAK_MENTAL=19 WEAK_MENTAL value
    * @property {number} WEAK_WILL=20 WEAK_WILL value
    * @property {number} WEAK_RACE=21 WEAK_RACE value
+   * @property {number} BUFF_SPEED_TEAM=22 BUFF_SPEED_TEAM value
+   * @property {number} BUFF_ACCELERATION_TEAM=23 BUFF_ACCELERATION_TEAM value
+   * @property {number} RECOVERY_STAMINA_TEAM=24 RECOVERY_STAMINA_TEAM value
    */
   Skill.Type = (function () {
     const valuesById = {},
@@ -1975,6 +1374,9 @@ export const Skill = ($root.Skill = (() => {
     values[(valuesById[19] = "WEAK_MENTAL")] = 19;
     values[(valuesById[20] = "WEAK_WILL")] = 20;
     values[(valuesById[21] = "WEAK_RACE")] = 21;
+    values[(valuesById[22] = "BUFF_SPEED_TEAM")] = 22;
+    values[(valuesById[23] = "BUFF_ACCELERATION_TEAM")] = 23;
+    values[(valuesById[24] = "RECOVERY_STAMINA_TEAM")] = 24;
     return values;
   })();
 
@@ -2030,51 +1432,6 @@ export const SkillList = ($root.SkillList = (() => {
   SkillList.prototype.data = $util.emptyArray;
 
   /**
-   * Creates a new SkillList instance using the specified properties.
-   * @function create
-   * @memberof SkillList
-   * @static
-   * @param {ISkillList=} [properties] Properties to set
-   * @returns {SkillList} SkillList instance
-   */
-  SkillList.create = function create(properties) {
-    return new SkillList(properties);
-  };
-
-  /**
-   * Encodes the specified SkillList message. Does not implicitly {@link SkillList.verify|verify} messages.
-   * @function encode
-   * @memberof SkillList
-   * @static
-   * @param {ISkillList} message SkillList message or plain object to encode
-   * @param {$protobuf.Writer} [writer] Writer to encode to
-   * @returns {$protobuf.Writer} Writer
-   */
-  SkillList.encode = function encode(message, writer) {
-    if (!writer) writer = $Writer.create();
-    if (message.data != null && message.data.length)
-      for (let i = 0; i < message.data.length; ++i)
-        $root.Skill.encode(
-          message.data[i],
-          writer.uint32(/* id 1, wireType 2 =*/ 10).fork()
-        ).ldelim();
-    return writer;
-  };
-
-  /**
-   * Encodes the specified SkillList message, length delimited. Does not implicitly {@link SkillList.verify|verify} messages.
-   * @function encodeDelimited
-   * @memberof SkillList
-   * @static
-   * @param {ISkillList} message SkillList message or plain object to encode
-   * @param {$protobuf.Writer} [writer] Writer to encode to
-   * @returns {$protobuf.Writer} Writer
-   */
-  SkillList.encodeDelimited = function encodeDelimited(message, writer) {
-    return this.encode(message, writer).ldelim();
-  };
-
-  /**
    * Decodes a SkillList message from the specified reader or buffer.
    * @function decode
    * @memberof SkillList
@@ -2104,99 +1461,243 @@ export const SkillList = ($root.SkillList = (() => {
     return message;
   };
 
+  return SkillList;
+})());
+
+export const SupportCard = ($root.SupportCard = (() => {
   /**
-   * Decodes a SkillList message from the specified reader or buffer, length delimited.
-   * @function decodeDelimited
-   * @memberof SkillList
+   * Properties of a SupportCard.
+   * @exports ISupportCard
+   * @interface ISupportCard
+   * @property {number|null} [cardID] SupportCard cardID
+   * @property {number|null} [characterID] SupportCard characterID
+   * @property {SupportCard.Rarity|null} [rarity] SupportCard rarity
+   * @property {SupportCard.Type|null} [type] SupportCard type
+   * @property {Array.<number>|null} [skills] SupportCard skills
+   * @property {Array.<number>|null} [events] SupportCard events
+   */
+
+  /**
+   * Constructs a new SupportCard.
+   * @exports SupportCard
+   * @classdesc Represents a SupportCard.
+   * @implements ISupportCard
+   * @constructor
+   * @param {ISupportCard=} [properties] Properties to set
+   */
+  function SupportCard(properties) {
+    this.skills = [];
+    this.events = [];
+    if (properties)
+      for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+        if (properties[keys[i]] != null) this[keys[i]] = properties[keys[i]];
+  }
+
+  /**
+   * SupportCard cardID.
+   * @member {number} cardID
+   * @memberof SupportCard
+   * @instance
+   */
+  SupportCard.prototype.cardID = 0;
+
+  /**
+   * SupportCard characterID.
+   * @member {number} characterID
+   * @memberof SupportCard
+   * @instance
+   */
+  SupportCard.prototype.characterID = 0;
+
+  /**
+   * SupportCard rarity.
+   * @member {SupportCard.Rarity} rarity
+   * @memberof SupportCard
+   * @instance
+   */
+  SupportCard.prototype.rarity = 0;
+
+  /**
+   * SupportCard type.
+   * @member {SupportCard.Type} type
+   * @memberof SupportCard
+   * @instance
+   */
+  SupportCard.prototype.type = 0;
+
+  /**
+   * SupportCard skills.
+   * @member {Array.<number>} skills
+   * @memberof SupportCard
+   * @instance
+   */
+  SupportCard.prototype.skills = $util.emptyArray;
+
+  /**
+   * SupportCard events.
+   * @member {Array.<number>} events
+   * @memberof SupportCard
+   * @instance
+   */
+  SupportCard.prototype.events = $util.emptyArray;
+
+  /**
+   * Decodes a SupportCard message from the specified reader or buffer.
+   * @function decode
+   * @memberof SupportCard
    * @static
    * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-   * @returns {SkillList} SkillList
+   * @param {number} [length] Message length if known beforehand
+   * @returns {SupportCard} SupportCard
    * @throws {Error} If the payload is not a reader or valid buffer
    * @throws {$protobuf.util.ProtocolError} If required fields are missing
    */
-  SkillList.decodeDelimited = function decodeDelimited(reader) {
-    if (!(reader instanceof $Reader)) reader = new $Reader(reader);
-    return this.decode(reader, reader.uint32());
-  };
-
-  /**
-   * Verifies a SkillList message.
-   * @function verify
-   * @memberof SkillList
-   * @static
-   * @param {Object.<string,*>} message Plain object to verify
-   * @returns {string|null} `null` if valid, otherwise the reason why it is not
-   */
-  SkillList.verify = function verify(message) {
-    if (typeof message !== "object" || message === null)
-      return "object expected";
-    if (message.data != null && message.hasOwnProperty("data")) {
-      if (!Array.isArray(message.data)) return "data: array expected";
-      for (let i = 0; i < message.data.length; ++i) {
-        let error = $root.Skill.verify(message.data[i]);
-        if (error) return "data." + error;
-      }
-    }
-    return null;
-  };
-
-  /**
-   * Creates a SkillList message from a plain object. Also converts values to their respective internal types.
-   * @function fromObject
-   * @memberof SkillList
-   * @static
-   * @param {Object.<string,*>} object Plain object
-   * @returns {SkillList} SkillList
-   */
-  SkillList.fromObject = function fromObject(object) {
-    if (object instanceof $root.SkillList) return object;
-    let message = new $root.SkillList();
-    if (object.data) {
-      if (!Array.isArray(object.data))
-        throw TypeError(".SkillList.data: array expected");
-      message.data = [];
-      for (let i = 0; i < object.data.length; ++i) {
-        if (typeof object.data[i] !== "object")
-          throw TypeError(".SkillList.data: object expected");
-        message.data[i] = $root.Skill.fromObject(object.data[i]);
+  SupportCard.decode = function decode(reader, length) {
+    if (!(reader instanceof $Reader)) reader = $Reader.create(reader);
+    let end = length === undefined ? reader.len : reader.pos + length,
+      message = new $root.SupportCard();
+    while (reader.pos < end) {
+      let tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.cardID = reader.int32();
+          break;
+        case 2:
+          message.characterID = reader.int32();
+          break;
+        case 3:
+          message.rarity = reader.int32();
+          break;
+        case 4:
+          message.type = reader.int32();
+          break;
+        case 5:
+          if (!(message.skills && message.skills.length)) message.skills = [];
+          if ((tag & 7) === 2) {
+            let end2 = reader.uint32() + reader.pos;
+            while (reader.pos < end2) message.skills.push(reader.int32());
+          } else message.skills.push(reader.int32());
+          break;
+        case 6:
+          if (!(message.events && message.events.length)) message.events = [];
+          if ((tag & 7) === 2) {
+            let end2 = reader.uint32() + reader.pos;
+            while (reader.pos < end2) message.events.push(reader.int32());
+          } else message.events.push(reader.int32());
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
       }
     }
     return message;
   };
 
   /**
-   * Creates a plain object from a SkillList message. Also converts values to other types if specified.
-   * @function toObject
-   * @memberof SkillList
-   * @static
-   * @param {SkillList} message SkillList
-   * @param {$protobuf.IConversionOptions} [options] Conversion options
-   * @returns {Object.<string,*>} Plain object
+   * Rarity enum.
+   * @name SupportCard.Rarity
+   * @enum {number}
+   * @property {number} R=0 R value
+   * @property {number} SR=1 SR value
+   * @property {number} SSR=2 SSR value
    */
-  SkillList.toObject = function toObject(message, options) {
-    if (!options) options = {};
-    let object = {};
-    if (options.arrays || options.defaults) object.data = [];
-    if (message.data && message.data.length) {
-      object.data = [];
-      for (let j = 0; j < message.data.length; ++j)
-        object.data[j] = $root.Skill.toObject(message.data[j], options);
-    }
-    return object;
-  };
+  SupportCard.Rarity = (function () {
+    const valuesById = {},
+      values = Object.create(valuesById);
+    values[(valuesById[0] = "R")] = 0;
+    values[(valuesById[1] = "SR")] = 1;
+    values[(valuesById[2] = "SSR")] = 2;
+    return values;
+  })();
 
   /**
-   * Converts this SkillList to JSON.
-   * @function toJSON
-   * @memberof SkillList
-   * @instance
-   * @returns {Object.<string,*>} JSON object
+   * Type enum.
+   * @name SupportCard.Type
+   * @enum {number}
+   * @property {number} SPEED=0 SPEED value
+   * @property {number} STAMINA=1 STAMINA value
+   * @property {number} POWER=2 POWER value
+   * @property {number} TENACITY=3 TENACITY value
+   * @property {number} INTELLIGENCE=4 INTELLIGENCE value
+   * @property {number} FRIEND=5 FRIEND value
    */
-  SkillList.prototype.toJSON = function toJSON() {
-    return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+  SupportCard.Type = (function () {
+    const valuesById = {},
+      values = Object.create(valuesById);
+    values[(valuesById[0] = "SPEED")] = 0;
+    values[(valuesById[1] = "STAMINA")] = 1;
+    values[(valuesById[2] = "POWER")] = 2;
+    values[(valuesById[3] = "TENACITY")] = 3;
+    values[(valuesById[4] = "INTELLIGENCE")] = 4;
+    values[(valuesById[5] = "FRIEND")] = 5;
+    return values;
+  })();
+
+  return SupportCard;
+})());
+
+export const SupportCardList = ($root.SupportCardList = (() => {
+  /**
+   * Properties of a SupportCardList.
+   * @exports ISupportCardList
+   * @interface ISupportCardList
+   * @property {Array.<ISupportCard>|null} [data] SupportCardList data
+   */
+
+  /**
+   * Constructs a new SupportCardList.
+   * @exports SupportCardList
+   * @classdesc Represents a SupportCardList.
+   * @implements ISupportCardList
+   * @constructor
+   * @param {ISupportCardList=} [properties] Properties to set
+   */
+  function SupportCardList(properties) {
+    this.data = [];
+    if (properties)
+      for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+        if (properties[keys[i]] != null) this[keys[i]] = properties[keys[i]];
+  }
+
+  /**
+   * SupportCardList data.
+   * @member {Array.<ISupportCard>} data
+   * @memberof SupportCardList
+   * @instance
+   */
+  SupportCardList.prototype.data = $util.emptyArray;
+
+  /**
+   * Decodes a SupportCardList message from the specified reader or buffer.
+   * @function decode
+   * @memberof SupportCardList
+   * @static
+   * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+   * @param {number} [length] Message length if known beforehand
+   * @returns {SupportCardList} SupportCardList
+   * @throws {Error} If the payload is not a reader or valid buffer
+   * @throws {$protobuf.util.ProtocolError} If required fields are missing
+   */
+  SupportCardList.decode = function decode(reader, length) {
+    if (!(reader instanceof $Reader)) reader = $Reader.create(reader);
+    let end = length === undefined ? reader.len : reader.pos + length,
+      message = new $root.SupportCardList();
+    while (reader.pos < end) {
+      let tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (!(message.data && message.data.length)) message.data = [];
+          message.data.push($root.SupportCard.decode(reader, reader.uint32()));
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
   };
 
-  return SkillList;
+  return SupportCardList;
 })());
 
 export { $root as default };

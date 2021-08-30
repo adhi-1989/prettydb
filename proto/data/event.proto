@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+message Event {
+  int32 eventID = 1;
+  repeated int32 skills = 2;
+}
+
+message EventList {
+  repeated Event data = 1;
+}

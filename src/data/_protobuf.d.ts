@@ -23,35 +23,6 @@ export class Character implements ICharacter {
   public sortID: number;
 
   /**
-   * Creates a new Character instance using the specified properties.
-   * @param [properties] Properties to set
-   * @returns Character instance
-   */
-  public static create(properties?: ICharacter): Character;
-
-  /**
-   * Encodes the specified Character message. Does not implicitly {@link Character.verify|verify} messages.
-   * @param message Character message or plain object to encode
-   * @param [writer] Writer to encode to
-   * @returns Writer
-   */
-  public static encode(
-    message: ICharacter,
-    writer?: $protobuf.Writer
-  ): $protobuf.Writer;
-
-  /**
-   * Encodes the specified Character message, length delimited. Does not implicitly {@link Character.verify|verify} messages.
-   * @param message Character message or plain object to encode
-   * @param [writer] Writer to encode to
-   * @returns Writer
-   */
-  public static encodeDelimited(
-    message: ICharacter,
-    writer?: $protobuf.Writer
-  ): $protobuf.Writer;
-
-  /**
    * Decodes a Character message from the specified reader or buffer.
    * @param reader Reader or buffer to decode from
    * @param [length] Message length if known beforehand
@@ -63,48 +34,6 @@ export class Character implements ICharacter {
     reader: $protobuf.Reader | Uint8Array,
     length?: number
   ): Character;
-
-  /**
-   * Decodes a Character message from the specified reader or buffer, length delimited.
-   * @param reader Reader or buffer to decode from
-   * @returns Character
-   * @throws {Error} If the payload is not a reader or valid buffer
-   * @throws {$protobuf.util.ProtocolError} If required fields are missing
-   */
-  public static decodeDelimited(
-    reader: $protobuf.Reader | Uint8Array
-  ): Character;
-
-  /**
-   * Verifies a Character message.
-   * @param message Plain object to verify
-   * @returns `null` if valid, otherwise the reason why it is not
-   */
-  public static verify(message: { [k: string]: any }): string | null;
-
-  /**
-   * Creates a Character message from a plain object. Also converts values to their respective internal types.
-   * @param object Plain object
-   * @returns Character
-   */
-  public static fromObject(object: { [k: string]: any }): Character;
-
-  /**
-   * Creates a plain object from a Character message. Also converts values to other types if specified.
-   * @param message Character
-   * @param [options] Conversion options
-   * @returns Plain object
-   */
-  public static toObject(
-    message: Character,
-    options?: $protobuf.IConversionOptions
-  ): { [k: string]: any };
-
-  /**
-   * Converts this Character to JSON.
-   * @returns JSON object
-   */
-  public toJSON(): { [k: string]: any };
 }
 
 /** Properties of a CharacterList. */
@@ -125,35 +54,6 @@ export class CharacterList implements ICharacterList {
   public data: ICharacter[];
 
   /**
-   * Creates a new CharacterList instance using the specified properties.
-   * @param [properties] Properties to set
-   * @returns CharacterList instance
-   */
-  public static create(properties?: ICharacterList): CharacterList;
-
-  /**
-   * Encodes the specified CharacterList message. Does not implicitly {@link CharacterList.verify|verify} messages.
-   * @param message CharacterList message or plain object to encode
-   * @param [writer] Writer to encode to
-   * @returns Writer
-   */
-  public static encode(
-    message: ICharacterList,
-    writer?: $protobuf.Writer
-  ): $protobuf.Writer;
-
-  /**
-   * Encodes the specified CharacterList message, length delimited. Does not implicitly {@link CharacterList.verify|verify} messages.
-   * @param message CharacterList message or plain object to encode
-   * @param [writer] Writer to encode to
-   * @returns Writer
-   */
-  public static encodeDelimited(
-    message: ICharacterList,
-    writer?: $protobuf.Writer
-  ): $protobuf.Writer;
-
-  /**
    * Decodes a CharacterList message from the specified reader or buffer.
    * @param reader Reader or buffer to decode from
    * @param [length] Message length if known beforehand
@@ -165,48 +65,74 @@ export class CharacterList implements ICharacterList {
     reader: $protobuf.Reader | Uint8Array,
     length?: number
   ): CharacterList;
+}
+
+/** Properties of an Event. */
+export interface IEvent {
+  /** Event eventID */
+  eventID?: number | null;
+
+  /** Event skills */
+  skills?: number[] | null;
+}
+
+/** Represents an Event. */
+export class Event implements IEvent {
+  /**
+   * Constructs a new Event.
+   * @param [properties] Properties to set
+   */
+  constructor(properties?: IEvent);
+
+  /** Event eventID. */
+  public eventID: number;
+
+  /** Event skills. */
+  public skills: number[];
 
   /**
-   * Decodes a CharacterList message from the specified reader or buffer, length delimited.
+   * Decodes an Event message from the specified reader or buffer.
    * @param reader Reader or buffer to decode from
-   * @returns CharacterList
+   * @param [length] Message length if known beforehand
+   * @returns Event
    * @throws {Error} If the payload is not a reader or valid buffer
    * @throws {$protobuf.util.ProtocolError} If required fields are missing
    */
-  public static decodeDelimited(
-    reader: $protobuf.Reader | Uint8Array
-  ): CharacterList;
+  public static decode(
+    reader: $protobuf.Reader | Uint8Array,
+    length?: number
+  ): Event;
+}
+
+/** Properties of an EventList. */
+export interface IEventList {
+  /** EventList data */
+  data?: IEvent[] | null;
+}
+
+/** Represents an EventList. */
+export class EventList implements IEventList {
+  /**
+   * Constructs a new EventList.
+   * @param [properties] Properties to set
+   */
+  constructor(properties?: IEventList);
+
+  /** EventList data. */
+  public data: IEvent[];
 
   /**
-   * Verifies a CharacterList message.
-   * @param message Plain object to verify
-   * @returns `null` if valid, otherwise the reason why it is not
+   * Decodes an EventList message from the specified reader or buffer.
+   * @param reader Reader or buffer to decode from
+   * @param [length] Message length if known beforehand
+   * @returns EventList
+   * @throws {Error} If the payload is not a reader or valid buffer
+   * @throws {$protobuf.util.ProtocolError} If required fields are missing
    */
-  public static verify(message: { [k: string]: any }): string | null;
-
-  /**
-   * Creates a CharacterList message from a plain object. Also converts values to their respective internal types.
-   * @param object Plain object
-   * @returns CharacterList
-   */
-  public static fromObject(object: { [k: string]: any }): CharacterList;
-
-  /**
-   * Creates a plain object from a CharacterList message. Also converts values to other types if specified.
-   * @param message CharacterList
-   * @param [options] Conversion options
-   * @returns Plain object
-   */
-  public static toObject(
-    message: CharacterList,
-    options?: $protobuf.IConversionOptions
-  ): { [k: string]: any };
-
-  /**
-   * Converts this CharacterList to JSON.
-   * @returns JSON object
-   */
-  public toJSON(): { [k: string]: any };
+  public static decode(
+    reader: $protobuf.Reader | Uint8Array,
+    length?: number
+  ): EventList;
 }
 
 /** Properties of a Factor. */
@@ -245,35 +171,6 @@ export class Factor implements IFactor {
   public skillID: number;
 
   /**
-   * Creates a new Factor instance using the specified properties.
-   * @param [properties] Properties to set
-   * @returns Factor instance
-   */
-  public static create(properties?: IFactor): Factor;
-
-  /**
-   * Encodes the specified Factor message. Does not implicitly {@link Factor.verify|verify} messages.
-   * @param message Factor message or plain object to encode
-   * @param [writer] Writer to encode to
-   * @returns Writer
-   */
-  public static encode(
-    message: IFactor,
-    writer?: $protobuf.Writer
-  ): $protobuf.Writer;
-
-  /**
-   * Encodes the specified Factor message, length delimited. Does not implicitly {@link Factor.verify|verify} messages.
-   * @param message Factor message or plain object to encode
-   * @param [writer] Writer to encode to
-   * @returns Writer
-   */
-  public static encodeDelimited(
-    message: IFactor,
-    writer?: $protobuf.Writer
-  ): $protobuf.Writer;
-
-  /**
    * Decodes a Factor message from the specified reader or buffer.
    * @param reader Reader or buffer to decode from
    * @param [length] Message length if known beforehand
@@ -285,46 +182,6 @@ export class Factor implements IFactor {
     reader: $protobuf.Reader | Uint8Array,
     length?: number
   ): Factor;
-
-  /**
-   * Decodes a Factor message from the specified reader or buffer, length delimited.
-   * @param reader Reader or buffer to decode from
-   * @returns Factor
-   * @throws {Error} If the payload is not a reader or valid buffer
-   * @throws {$protobuf.util.ProtocolError} If required fields are missing
-   */
-  public static decodeDelimited(reader: $protobuf.Reader | Uint8Array): Factor;
-
-  /**
-   * Verifies a Factor message.
-   * @param message Plain object to verify
-   * @returns `null` if valid, otherwise the reason why it is not
-   */
-  public static verify(message: { [k: string]: any }): string | null;
-
-  /**
-   * Creates a Factor message from a plain object. Also converts values to their respective internal types.
-   * @param object Plain object
-   * @returns Factor
-   */
-  public static fromObject(object: { [k: string]: any }): Factor;
-
-  /**
-   * Creates a plain object from a Factor message. Also converts values to other types if specified.
-   * @param message Factor
-   * @param [options] Conversion options
-   * @returns Plain object
-   */
-  public static toObject(
-    message: Factor,
-    options?: $protobuf.IConversionOptions
-  ): { [k: string]: any };
-
-  /**
-   * Converts this Factor to JSON.
-   * @returns JSON object
-   */
-  public toJSON(): { [k: string]: any };
 }
 
 export namespace Factor {
@@ -357,35 +214,6 @@ export class FactorList implements IFactorList {
   public data: IFactor[];
 
   /**
-   * Creates a new FactorList instance using the specified properties.
-   * @param [properties] Properties to set
-   * @returns FactorList instance
-   */
-  public static create(properties?: IFactorList): FactorList;
-
-  /**
-   * Encodes the specified FactorList message. Does not implicitly {@link FactorList.verify|verify} messages.
-   * @param message FactorList message or plain object to encode
-   * @param [writer] Writer to encode to
-   * @returns Writer
-   */
-  public static encode(
-    message: IFactorList,
-    writer?: $protobuf.Writer
-  ): $protobuf.Writer;
-
-  /**
-   * Encodes the specified FactorList message, length delimited. Does not implicitly {@link FactorList.verify|verify} messages.
-   * @param message FactorList message or plain object to encode
-   * @param [writer] Writer to encode to
-   * @returns Writer
-   */
-  public static encodeDelimited(
-    message: IFactorList,
-    writer?: $protobuf.Writer
-  ): $protobuf.Writer;
-
-  /**
    * Decodes a FactorList message from the specified reader or buffer.
    * @param reader Reader or buffer to decode from
    * @param [length] Message length if known beforehand
@@ -397,48 +225,6 @@ export class FactorList implements IFactorList {
     reader: $protobuf.Reader | Uint8Array,
     length?: number
   ): FactorList;
-
-  /**
-   * Decodes a FactorList message from the specified reader or buffer, length delimited.
-   * @param reader Reader or buffer to decode from
-   * @returns FactorList
-   * @throws {Error} If the payload is not a reader or valid buffer
-   * @throws {$protobuf.util.ProtocolError} If required fields are missing
-   */
-  public static decodeDelimited(
-    reader: $protobuf.Reader | Uint8Array
-  ): FactorList;
-
-  /**
-   * Verifies a FactorList message.
-   * @param message Plain object to verify
-   * @returns `null` if valid, otherwise the reason why it is not
-   */
-  public static verify(message: { [k: string]: any }): string | null;
-
-  /**
-   * Creates a FactorList message from a plain object. Also converts values to their respective internal types.
-   * @param object Plain object
-   * @returns FactorList
-   */
-  public static fromObject(object: { [k: string]: any }): FactorList;
-
-  /**
-   * Creates a plain object from a FactorList message. Also converts values to other types if specified.
-   * @param message FactorList
-   * @param [options] Conversion options
-   * @returns Plain object
-   */
-  public static toObject(
-    message: FactorList,
-    options?: $protobuf.IConversionOptions
-  ): { [k: string]: any };
-
-  /**
-   * Converts this FactorList to JSON.
-   * @returns JSON object
-   */
-  public toJSON(): { [k: string]: any };
 }
 
 /** Properties of a Moniker. */
@@ -451,6 +237,21 @@ export interface IMoniker {
 
   /** Moniker initialTalentLevel */
   initialTalentLevel?: number | null;
+
+  /** Moniker initialStatus */
+  initialStatus?: { [k: string]: Moniker.IStatus } | null;
+
+  /** Moniker initialAbility */
+  initialAbility?: Moniker.IAbilities | null;
+
+  /** Moniker growthRate */
+  growthRate?: Moniker.IStatus | null;
+
+  /** Moniker skills */
+  skills?: Moniker.ISkills | null;
+
+  /** Moniker events */
+  events?: number[] | null;
 }
 
 /** Represents a Moniker. */
@@ -470,34 +271,20 @@ export class Moniker implements IMoniker {
   /** Moniker initialTalentLevel. */
   public initialTalentLevel: number;
 
-  /**
-   * Creates a new Moniker instance using the specified properties.
-   * @param [properties] Properties to set
-   * @returns Moniker instance
-   */
-  public static create(properties?: IMoniker): Moniker;
+  /** Moniker initialStatus. */
+  public initialStatus: { [k: string]: Moniker.IStatus };
 
-  /**
-   * Encodes the specified Moniker message. Does not implicitly {@link Moniker.verify|verify} messages.
-   * @param message Moniker message or plain object to encode
-   * @param [writer] Writer to encode to
-   * @returns Writer
-   */
-  public static encode(
-    message: IMoniker,
-    writer?: $protobuf.Writer
-  ): $protobuf.Writer;
+  /** Moniker initialAbility. */
+  public initialAbility?: Moniker.IAbilities | null;
 
-  /**
-   * Encodes the specified Moniker message, length delimited. Does not implicitly {@link Moniker.verify|verify} messages.
-   * @param message Moniker message or plain object to encode
-   * @param [writer] Writer to encode to
-   * @returns Writer
-   */
-  public static encodeDelimited(
-    message: IMoniker,
-    writer?: $protobuf.Writer
-  ): $protobuf.Writer;
+  /** Moniker growthRate. */
+  public growthRate?: Moniker.IStatus | null;
+
+  /** Moniker skills. */
+  public skills?: Moniker.ISkills | null;
+
+  /** Moniker events. */
+  public events: number[];
 
   /**
    * Decodes a Moniker message from the specified reader or buffer.
@@ -511,46 +298,215 @@ export class Moniker implements IMoniker {
     reader: $protobuf.Reader | Uint8Array,
     length?: number
   ): Moniker;
+}
 
-  /**
-   * Decodes a Moniker message from the specified reader or buffer, length delimited.
-   * @param reader Reader or buffer to decode from
-   * @returns Moniker
-   * @throws {Error} If the payload is not a reader or valid buffer
-   * @throws {$protobuf.util.ProtocolError} If required fields are missing
-   */
-  public static decodeDelimited(reader: $protobuf.Reader | Uint8Array): Moniker;
+export namespace Moniker {
+  /** Properties of a Status. */
+  interface IStatus {
+    /** Status speed */
+    speed?: number | null;
 
-  /**
-   * Verifies a Moniker message.
-   * @param message Plain object to verify
-   * @returns `null` if valid, otherwise the reason why it is not
-   */
-  public static verify(message: { [k: string]: any }): string | null;
+    /** Status stamina */
+    stamina?: number | null;
 
-  /**
-   * Creates a Moniker message from a plain object. Also converts values to their respective internal types.
-   * @param object Plain object
-   * @returns Moniker
-   */
-  public static fromObject(object: { [k: string]: any }): Moniker;
+    /** Status power */
+    power?: number | null;
 
-  /**
-   * Creates a plain object from a Moniker message. Also converts values to other types if specified.
-   * @param message Moniker
-   * @param [options] Conversion options
-   * @returns Plain object
-   */
-  public static toObject(
-    message: Moniker,
-    options?: $protobuf.IConversionOptions
-  ): { [k: string]: any };
+    /** Status tenacity */
+    tenacity?: number | null;
 
-  /**
-   * Converts this Moniker to JSON.
-   * @returns JSON object
-   */
-  public toJSON(): { [k: string]: any };
+    /** Status intelligence */
+    intelligence?: number | null;
+  }
+
+  /** Represents a Status. */
+  class Status implements IStatus {
+    /**
+     * Constructs a new Status.
+     * @param [properties] Properties to set
+     */
+    constructor(properties?: Moniker.IStatus);
+
+    /** Status speed. */
+    public speed: number;
+
+    /** Status stamina. */
+    public stamina: number;
+
+    /** Status power. */
+    public power: number;
+
+    /** Status tenacity. */
+    public tenacity: number;
+
+    /** Status intelligence. */
+    public intelligence: number;
+
+    /**
+     * Decodes a Status message from the specified reader or buffer.
+     * @param reader Reader or buffer to decode from
+     * @param [length] Message length if known beforehand
+     * @returns Status
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    public static decode(
+      reader: $protobuf.Reader | Uint8Array,
+      length?: number
+    ): Moniker.Status;
+  }
+
+  /** Ability enum. */
+  enum Ability {
+    G = 0,
+    F = 1,
+    E = 2,
+    D = 3,
+    C = 4,
+    B = 5,
+    A = 6,
+    S = 7,
+  }
+
+  /** Properties of an Abilities. */
+  interface IAbilities {
+    /** Abilities turf */
+    turf?: Moniker.Ability | null;
+
+    /** Abilities dirt */
+    dirt?: Moniker.Ability | null;
+
+    /** Abilities short */
+    short?: Moniker.Ability | null;
+
+    /** Abilities mile */
+    mile?: Moniker.Ability | null;
+
+    /** Abilities middle */
+    middle?: Moniker.Ability | null;
+
+    /** Abilities long */
+    long?: Moniker.Ability | null;
+
+    /** Abilities nige */
+    nige?: Moniker.Ability | null;
+
+    /** Abilities senko */
+    senko?: Moniker.Ability | null;
+
+    /** Abilities sashi */
+    sashi?: Moniker.Ability | null;
+
+    /** Abilities oikomi */
+    oikomi?: Moniker.Ability | null;
+  }
+
+  /** Represents an Abilities. */
+  class Abilities implements IAbilities {
+    /**
+     * Constructs a new Abilities.
+     * @param [properties] Properties to set
+     */
+    constructor(properties?: Moniker.IAbilities);
+
+    /** Abilities turf. */
+    public turf: Moniker.Ability;
+
+    /** Abilities dirt. */
+    public dirt: Moniker.Ability;
+
+    /** Abilities short. */
+    public short: Moniker.Ability;
+
+    /** Abilities mile. */
+    public mile: Moniker.Ability;
+
+    /** Abilities middle. */
+    public middle: Moniker.Ability;
+
+    /** Abilities long. */
+    public long: Moniker.Ability;
+
+    /** Abilities nige. */
+    public nige: Moniker.Ability;
+
+    /** Abilities senko. */
+    public senko: Moniker.Ability;
+
+    /** Abilities sashi. */
+    public sashi: Moniker.Ability;
+
+    /** Abilities oikomi. */
+    public oikomi: Moniker.Ability;
+
+    /**
+     * Decodes an Abilities message from the specified reader or buffer.
+     * @param reader Reader or buffer to decode from
+     * @param [length] Message length if known beforehand
+     * @returns Abilities
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    public static decode(
+      reader: $protobuf.Reader | Uint8Array,
+      length?: number
+    ): Moniker.Abilities;
+  }
+
+  /** Properties of a Skills. */
+  interface ISkills {
+    /** Skills awakeningLevel2 */
+    awakeningLevel2?: number | null;
+
+    /** Skills awakeningLevel3 */
+    awakeningLevel3?: number | null;
+
+    /** Skills awakeningLevel4 */
+    awakeningLevel4?: number | null;
+
+    /** Skills awakeningLevel5 */
+    awakeningLevel5?: number | null;
+
+    /** Skills defaults */
+    defaults?: number[] | null;
+  }
+
+  /** Represents a Skills. */
+  class Skills implements ISkills {
+    /**
+     * Constructs a new Skills.
+     * @param [properties] Properties to set
+     */
+    constructor(properties?: Moniker.ISkills);
+
+    /** Skills awakeningLevel2. */
+    public awakeningLevel2: number;
+
+    /** Skills awakeningLevel3. */
+    public awakeningLevel3: number;
+
+    /** Skills awakeningLevel4. */
+    public awakeningLevel4: number;
+
+    /** Skills awakeningLevel5. */
+    public awakeningLevel5: number;
+
+    /** Skills defaults. */
+    public defaults: number[];
+
+    /**
+     * Decodes a Skills message from the specified reader or buffer.
+     * @param reader Reader or buffer to decode from
+     * @param [length] Message length if known beforehand
+     * @returns Skills
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    public static decode(
+      reader: $protobuf.Reader | Uint8Array,
+      length?: number
+    ): Moniker.Skills;
+  }
 }
 
 /** Properties of a MonikerList. */
@@ -571,35 +527,6 @@ export class MonikerList implements IMonikerList {
   public data: IMoniker[];
 
   /**
-   * Creates a new MonikerList instance using the specified properties.
-   * @param [properties] Properties to set
-   * @returns MonikerList instance
-   */
-  public static create(properties?: IMonikerList): MonikerList;
-
-  /**
-   * Encodes the specified MonikerList message. Does not implicitly {@link MonikerList.verify|verify} messages.
-   * @param message MonikerList message or plain object to encode
-   * @param [writer] Writer to encode to
-   * @returns Writer
-   */
-  public static encode(
-    message: IMonikerList,
-    writer?: $protobuf.Writer
-  ): $protobuf.Writer;
-
-  /**
-   * Encodes the specified MonikerList message, length delimited. Does not implicitly {@link MonikerList.verify|verify} messages.
-   * @param message MonikerList message or plain object to encode
-   * @param [writer] Writer to encode to
-   * @returns Writer
-   */
-  public static encodeDelimited(
-    message: IMonikerList,
-    writer?: $protobuf.Writer
-  ): $protobuf.Writer;
-
-  /**
    * Decodes a MonikerList message from the specified reader or buffer.
    * @param reader Reader or buffer to decode from
    * @param [length] Message length if known beforehand
@@ -611,48 +538,6 @@ export class MonikerList implements IMonikerList {
     reader: $protobuf.Reader | Uint8Array,
     length?: number
   ): MonikerList;
-
-  /**
-   * Decodes a MonikerList message from the specified reader or buffer, length delimited.
-   * @param reader Reader or buffer to decode from
-   * @returns MonikerList
-   * @throws {Error} If the payload is not a reader or valid buffer
-   * @throws {$protobuf.util.ProtocolError} If required fields are missing
-   */
-  public static decodeDelimited(
-    reader: $protobuf.Reader | Uint8Array
-  ): MonikerList;
-
-  /**
-   * Verifies a MonikerList message.
-   * @param message Plain object to verify
-   * @returns `null` if valid, otherwise the reason why it is not
-   */
-  public static verify(message: { [k: string]: any }): string | null;
-
-  /**
-   * Creates a MonikerList message from a plain object. Also converts values to their respective internal types.
-   * @param object Plain object
-   * @returns MonikerList
-   */
-  public static fromObject(object: { [k: string]: any }): MonikerList;
-
-  /**
-   * Creates a plain object from a MonikerList message. Also converts values to other types if specified.
-   * @param message MonikerList
-   * @param [options] Conversion options
-   * @returns Plain object
-   */
-  public static toObject(
-    message: MonikerList,
-    options?: $protobuf.IConversionOptions
-  ): { [k: string]: any };
-
-  /**
-   * Converts this MonikerList to JSON.
-   * @returns JSON object
-   */
-  public toJSON(): { [k: string]: any };
 }
 
 /** Properties of a Skill. */
@@ -733,35 +618,6 @@ export class Skill implements ISkill {
   public inheritable: boolean;
 
   /**
-   * Creates a new Skill instance using the specified properties.
-   * @param [properties] Properties to set
-   * @returns Skill instance
-   */
-  public static create(properties?: ISkill): Skill;
-
-  /**
-   * Encodes the specified Skill message. Does not implicitly {@link Skill.verify|verify} messages.
-   * @param message Skill message or plain object to encode
-   * @param [writer] Writer to encode to
-   * @returns Writer
-   */
-  public static encode(
-    message: ISkill,
-    writer?: $protobuf.Writer
-  ): $protobuf.Writer;
-
-  /**
-   * Encodes the specified Skill message, length delimited. Does not implicitly {@link Skill.verify|verify} messages.
-   * @param message Skill message or plain object to encode
-   * @param [writer] Writer to encode to
-   * @returns Writer
-   */
-  public static encodeDelimited(
-    message: ISkill,
-    writer?: $protobuf.Writer
-  ): $protobuf.Writer;
-
-  /**
    * Decodes a Skill message from the specified reader or buffer.
    * @param reader Reader or buffer to decode from
    * @param [length] Message length if known beforehand
@@ -773,46 +629,6 @@ export class Skill implements ISkill {
     reader: $protobuf.Reader | Uint8Array,
     length?: number
   ): Skill;
-
-  /**
-   * Decodes a Skill message from the specified reader or buffer, length delimited.
-   * @param reader Reader or buffer to decode from
-   * @returns Skill
-   * @throws {Error} If the payload is not a reader or valid buffer
-   * @throws {$protobuf.util.ProtocolError} If required fields are missing
-   */
-  public static decodeDelimited(reader: $protobuf.Reader | Uint8Array): Skill;
-
-  /**
-   * Verifies a Skill message.
-   * @param message Plain object to verify
-   * @returns `null` if valid, otherwise the reason why it is not
-   */
-  public static verify(message: { [k: string]: any }): string | null;
-
-  /**
-   * Creates a Skill message from a plain object. Also converts values to their respective internal types.
-   * @param object Plain object
-   * @returns Skill
-   */
-  public static fromObject(object: { [k: string]: any }): Skill;
-
-  /**
-   * Creates a plain object from a Skill message. Also converts values to other types if specified.
-   * @param message Skill
-   * @param [options] Conversion options
-   * @returns Plain object
-   */
-  public static toObject(
-    message: Skill,
-    options?: $protobuf.IConversionOptions
-  ): { [k: string]: any };
-
-  /**
-   * Converts this Skill to JSON.
-   * @returns JSON object
-   */
-  public toJSON(): { [k: string]: any };
 }
 
 export namespace Skill {
@@ -840,6 +656,9 @@ export namespace Skill {
     WEAK_MENTAL = 19,
     WEAK_WILL = 20,
     WEAK_RACE = 21,
+    BUFF_SPEED_TEAM = 22,
+    BUFF_ACCELERATION_TEAM = 23,
+    RECOVERY_STAMINA_TEAM = 24,
   }
 
   /** Levels enum. */
@@ -868,35 +687,6 @@ export class SkillList implements ISkillList {
   public data: ISkill[];
 
   /**
-   * Creates a new SkillList instance using the specified properties.
-   * @param [properties] Properties to set
-   * @returns SkillList instance
-   */
-  public static create(properties?: ISkillList): SkillList;
-
-  /**
-   * Encodes the specified SkillList message. Does not implicitly {@link SkillList.verify|verify} messages.
-   * @param message SkillList message or plain object to encode
-   * @param [writer] Writer to encode to
-   * @returns Writer
-   */
-  public static encode(
-    message: ISkillList,
-    writer?: $protobuf.Writer
-  ): $protobuf.Writer;
-
-  /**
-   * Encodes the specified SkillList message, length delimited. Does not implicitly {@link SkillList.verify|verify} messages.
-   * @param message SkillList message or plain object to encode
-   * @param [writer] Writer to encode to
-   * @returns Writer
-   */
-  public static encodeDelimited(
-    message: ISkillList,
-    writer?: $protobuf.Writer
-  ): $protobuf.Writer;
-
-  /**
    * Decodes a SkillList message from the specified reader or buffer.
    * @param reader Reader or buffer to decode from
    * @param [length] Message length if known beforehand
@@ -908,46 +698,115 @@ export class SkillList implements ISkillList {
     reader: $protobuf.Reader | Uint8Array,
     length?: number
   ): SkillList;
+}
+
+/** Properties of a SupportCard. */
+export interface ISupportCard {
+  /** SupportCard cardID */
+  cardID?: number | null;
+
+  /** SupportCard characterID */
+  characterID?: number | null;
+
+  /** SupportCard rarity */
+  rarity?: SupportCard.Rarity | null;
+
+  /** SupportCard type */
+  type?: SupportCard.Type | null;
+
+  /** SupportCard skills */
+  skills?: number[] | null;
+
+  /** SupportCard events */
+  events?: number[] | null;
+}
+
+/** Represents a SupportCard. */
+export class SupportCard implements ISupportCard {
+  /**
+   * Constructs a new SupportCard.
+   * @param [properties] Properties to set
+   */
+  constructor(properties?: ISupportCard);
+
+  /** SupportCard cardID. */
+  public cardID: number;
+
+  /** SupportCard characterID. */
+  public characterID: number;
+
+  /** SupportCard rarity. */
+  public rarity: SupportCard.Rarity;
+
+  /** SupportCard type. */
+  public type: SupportCard.Type;
+
+  /** SupportCard skills. */
+  public skills: number[];
+
+  /** SupportCard events. */
+  public events: number[];
 
   /**
-   * Decodes a SkillList message from the specified reader or buffer, length delimited.
+   * Decodes a SupportCard message from the specified reader or buffer.
    * @param reader Reader or buffer to decode from
-   * @returns SkillList
+   * @param [length] Message length if known beforehand
+   * @returns SupportCard
    * @throws {Error} If the payload is not a reader or valid buffer
    * @throws {$protobuf.util.ProtocolError} If required fields are missing
    */
-  public static decodeDelimited(
-    reader: $protobuf.Reader | Uint8Array
-  ): SkillList;
+  public static decode(
+    reader: $protobuf.Reader | Uint8Array,
+    length?: number
+  ): SupportCard;
+}
+
+export namespace SupportCard {
+  /** Rarity enum. */
+  enum Rarity {
+    R = 0,
+    SR = 1,
+    SSR = 2,
+  }
+
+  /** Type enum. */
+  enum Type {
+    SPEED = 0,
+    STAMINA = 1,
+    POWER = 2,
+    TENACITY = 3,
+    INTELLIGENCE = 4,
+    FRIEND = 5,
+  }
+}
+
+/** Properties of a SupportCardList. */
+export interface ISupportCardList {
+  /** SupportCardList data */
+  data?: ISupportCard[] | null;
+}
+
+/** Represents a SupportCardList. */
+export class SupportCardList implements ISupportCardList {
+  /**
+   * Constructs a new SupportCardList.
+   * @param [properties] Properties to set
+   */
+  constructor(properties?: ISupportCardList);
+
+  /** SupportCardList data. */
+  public data: ISupportCard[];
 
   /**
-   * Verifies a SkillList message.
-   * @param message Plain object to verify
-   * @returns `null` if valid, otherwise the reason why it is not
+   * Decodes a SupportCardList message from the specified reader or buffer.
+   * @param reader Reader or buffer to decode from
+   * @param [length] Message length if known beforehand
+   * @returns SupportCardList
+   * @throws {Error} If the payload is not a reader or valid buffer
+   * @throws {$protobuf.util.ProtocolError} If required fields are missing
    */
-  public static verify(message: { [k: string]: any }): string | null;
-
-  /**
-   * Creates a SkillList message from a plain object. Also converts values to their respective internal types.
-   * @param object Plain object
-   * @returns SkillList
-   */
-  public static fromObject(object: { [k: string]: any }): SkillList;
-
-  /**
-   * Creates a plain object from a SkillList message. Also converts values to other types if specified.
-   * @param message SkillList
-   * @param [options] Conversion options
-   * @returns Plain object
-   */
-  public static toObject(
-    message: SkillList,
-    options?: $protobuf.IConversionOptions
-  ): { [k: string]: any };
-
-  /**
-   * Converts this SkillList to JSON.
-   * @returns JSON object
-   */
-  public toJSON(): { [k: string]: any };
+  public static decode(
+    reader: $protobuf.Reader | Uint8Array,
+    length?: number
+  ): SupportCardList;
 }

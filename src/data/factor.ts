@@ -1,8 +1,10 @@
 import { FactorList, Factor as _Factor } from "@/data/_protobuf";
-import { maps, objects } from "@/util";
-import _ from "@/util/lodash";
-import factorDataUrl from "#/assets/data/factor.dat?url";
 import axios from "axios";
+import _ from "@/util/lodash";
+import { maps, objects } from "@/util";
+import factorDataUrl from "#/assets/data/factor.dat?url";
+
+const { orDefault, immutable } = objects;
 
 export type FactorType =
   | "status"
@@ -67,7 +69,7 @@ let _allFactor: ReadonlyArray<Factor>;
 let _factorByIdMap: Record<number, Factor>;
 (async () => {
   const factorType = (value: _Factor.Type | null | undefined): FactorType => {
-    switch (objects.orDefault(value, _Factor.Type.STATUS)) {
+    switch (orDefault(value, _Factor.Type.STATUS)) {
       case _Factor.Type.STATUS:
         return "status";
       case _Factor.Type.ABILITY:
@@ -95,16 +97,16 @@ let _factorByIdMap: Record<number, Factor>;
       FactorList.decode(data).data.map((x) => {
         const type = factorType(x.type);
         if (type === "unique-skill") {
-          return objects.immutable<UniqueSkillFactor>({
-            factorID: objects.orDefault(x.factorID, -1),
-            sortID: objects.orDefault(x.sortID, -1),
+          return immutable<UniqueSkillFactor>({
+            factorID: orDefault(x.factorID, -1),
+            sortID: orDefault(x.sortID, -1),
             type: type,
-            skillID: objects.orDefault(x.skillID, -1),
+            skillID: orDefault(x.skillID, -1),
           });
         } else {
-          return objects.immutable<Factor>({
-            factorID: objects.orDefault(x.factorID, -1),
-            sortID: objects.orDefault(x.sortID, -1),
+          return immutable<Factor>({
+            factorID: orDefault(x.factorID, -1),
+            sortID: orDefault(x.sortID, -1),
             type: type,
           });
         }
@@ -125,7 +127,7 @@ const _checkUniqueSkill = _.memoize(
 
 export const Factor: FactorStatic = {
   get all(): ReadonlyArray<Factor> {
-    return objects.orDefault(_allFactor, () => Object.freeze([]));
+    return orDefault(_allFactor, () => Object.freeze([]));
   },
   get allType(): ReadonlyArray<FactorType> {
     return _allFactorType;
@@ -134,11 +136,8 @@ export const Factor: FactorStatic = {
     return _allFactorLevel;
   },
   get(arg: number | FactorIdentify): Factor {
-    const map = objects.orDefault(_factorByIdMap, []);
-    return objects.orDefault(
-      map[_.isNumber(arg) ? arg : arg.factorID],
-      NULL_FACTOR
-    );
+    const map = orDefault(_factorByIdMap, []);
+    return orDefault(map[_.isNumber(arg) ? arg : arg.factorID], NULL_FACTOR);
   },
   checkUniqueSkill: _checkUniqueSkill,
   getNameKey(arg: number | FactorIdentify): string {

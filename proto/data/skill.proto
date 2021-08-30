@@ -27,6 +27,9 @@ message Skill {
     WEAK_MENTAL = 19;
     WEAK_WILL = 20;
     WEAK_RACE = 21;
+    BUFF_SPEED_TEAM = 22;
+    BUFF_ACCELERATION_TEAM = 23;
+    RECOVERY_STAMINA_TEAM = 24;
   }
   Type type = 4;
   int32 conflictID = 5; // optional
