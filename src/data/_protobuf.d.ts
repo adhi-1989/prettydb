@@ -658,7 +658,8 @@ export namespace Skill {
     WEAK_RACE = 21,
     BUFF_SPEED_TEAM = 22,
     BUFF_ACCELERATION_TEAM = 23,
-    RECOVERY_STAMINA_TEAM = 24,
+    BUFF_POSITIONING_TEAM = 24,
+    RECOVERY_STAMINA_TEAM = 25,
   }
 
   /** Levels enum. */
