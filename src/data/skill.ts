@@ -32,6 +32,7 @@ export type SkillType =
   | "weak-race"
   | "buff-speed-team"
   | "buff-acceleration-team"
+  | "buff-positioning-team"
   | "recovery-stamina-team";
 
 export type SkillIdentify = {
@@ -161,6 +162,8 @@ let _skillByIdMap: Record<number, Skill>;
         return "buff-speed-team";
       case _Skill.Type.BUFF_ACCELERATION_TEAM:
         return "buff-acceleration-team";
+      case _Skill.Type.BUFF_POSITIONING_TEAM:
+        return "buff-positioning-team";
       case _Skill.Type.RECOVERY_STAMINA_TEAM:
         return "recovery-stamina-team";
       default:
@@ -251,6 +254,7 @@ const _allSkillType = Object.freeze<Array<SkillType>>([
   "weak-race",
   "buff-speed-team",
   "buff-acceleration-team",
+  "buff-positioning-team",
   "recovery-stamina-team",
 ]);
 

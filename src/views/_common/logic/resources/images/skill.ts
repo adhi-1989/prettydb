@@ -23,6 +23,7 @@ import WEAK_WILL from "#/images/skill/weak_will.svg";
 import WEAK_RACE from "#/images/skill/weak_race.svg";
 import BUFF_SPEED_TEAM from "#/images/skill/buff_speed_team.svg";
 import BUFF_ACCELERATION_TEAM from "#/images/skill/buff_acceleration_team.svg";
+import BUFF_POSITIONING_TEAM from "#/images/skill/buff_positioning_team.svg";
 import RECOVERY_STAMINA_TEAM from "#/images/skill/recovery_stamina_team.svg";
 
 export const SkillTypeIcon = {
@@ -50,6 +51,7 @@ export const SkillTypeIcon = {
   WEAK_RACE,
   BUFF_SPEED_TEAM,
   BUFF_ACCELERATION_TEAM,
+  BUFF_POSITIONING_TEAM,
   RECOVERY_STAMINA_TEAM,
 };
 
@@ -103,6 +105,8 @@ export function getSkillTypeIcon(type: SkillType): string {
       return SkillTypeIcon.BUFF_SPEED_TEAM;
     case "buff-acceleration-team":
       return SkillTypeIcon.BUFF_ACCELERATION_TEAM;
+    case "buff-positioning-team":
+      return SkillTypeIcon.BUFF_POSITIONING_TEAM;
     case "recovery-stamina-team":
       return SkillTypeIcon.RECOVERY_STAMINA_TEAM;
     default:
