@@ -44,6 +44,14 @@ export default defineComponent({
     //TODO: 余裕があれば国際化する
     const changelog: Array<Changelog> = [
       {
+        version: "0.8.3",
+        releaseDate: "2021-09-10",
+        logs: [
+          "ヒシアケボノ[ボーノ☆アラモーダ] のデータを追加",
+          "準備万全！ のスキルデータを追加",
+        ],
+      },
+      {
         version: "0.8.2",
         releaseDate: "2021-09-01",
         logs: ["アオハル点火（燃焼） のスキルデータ（根・賢）を追加"],
