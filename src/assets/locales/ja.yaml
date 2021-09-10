@@ -285,6 +285,9 @@ character:
         name: ストレート・ライン
   27:
     name: ヒシアケボノ
+    moniker:
+      0:
+        name: ボーノ☆アラモーダ
   28:
     name: ユキノビジン
   29:
@@ -655,6 +658,10 @@ skill:
   62:
     name: 禾スナハチ登ル
     description: 'レース後半に後方で詰め寄られると\nマシマシの幸運パワーが身体に実り\n速度が上がる'
+    description-for-inheritor: ''
+  63:
+    name: 'I''M☆FULL☆SPEED!!'
+    description: 'レース中間に好位置で少し疲れてくると\n気合を入れ直して大きく前へ踏み込む'
     description-for-inheritor: ''
   1024:
     name: アガッてきた！
@@ -1523,6 +1530,9 @@ skill:
   1312:
     name: アオハル燃焼・賢
     description: 'レース序盤にアオハル魂が燃え\nレース中のチームメンバーの賢さ合計が\n高いほど先を見据えたコース取りを行う'
+  1313:
+    name: 準備万全！
+    description: 'レース中盤でゴールに向けて\n準備を整える＜短距離＞'
 factor:
   '-1':
     name: 指定なし
@@ -1713,6 +1723,9 @@ factor:
   190:
     name: 禾スナハチ登ル
     description: 「禾スナハチ登ル」のスキルヒントを得られる因子です
+  191:
+    name: 'I''M☆FULL☆SPEED!!'
+    description: '「I''M☆FULL☆SPEED!!」のスキルヒントを得られる因子です'
   1024:
     name: NHKマイルC
     description: スピードとパワーがアップする因子です
@@ -2862,6 +2875,12 @@ event:
     name: 今だけ！パワースポット
   140:
     name: フクキタル来れば福来たる
+  141:
+    name: 届けボーノ！
+  142:
+    name: 大きくな～れ！
+  143:
+    name: 堂々と行こう！
   4096:
     name: 曲がり角には、気をつけます！
   4097:
