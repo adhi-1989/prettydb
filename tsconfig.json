@@ -18,7 +18,6 @@
       "vite-plugin-pwa/client"
     ],
     "paths": {
-      "~/*": ["node_modules/*"],
       "@/*": ["src/*"],
       "#/assets/*": ["src/assets/*"],
       "#/images/*": ["src/assets/images/*"]
