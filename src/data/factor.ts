@@ -82,8 +82,6 @@ let _factorByIdMap: Record<number, Factor>;
         return "skill";
       case _Factor.Type.SCENARIO:
         return "scenario";
-      default:
-        return "status";
     }
   };
 

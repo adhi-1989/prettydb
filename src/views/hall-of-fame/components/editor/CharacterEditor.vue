@@ -159,6 +159,7 @@ import { useI18n } from "vue-i18n";
 import {
   AwakeningLevel,
   Character,
+  Moniker,
   CharacterIdentify,
   MonikerIdentify,
   Skill,
@@ -208,10 +209,10 @@ export default defineComponent({
     const { hashCode } = numbers;
 
     return {
-      AllAwakeningLevel: Character.allAwakeningLevel,
-      AllTalentLevel: Character.allTalentLevel,
+      AllAwakeningLevel: Moniker.allAwakeningLevel,
+      AllTalentLevel: Moniker.allTalentLevel,
       getCharacterNameKey: Character.getNameKey,
-      getMonikerNameKey: Character.getMonikerNameKey,
+      getMonikerNameKey: Moniker.getNameKey,
       hashCode,
       selectInputValueOnFocus,
       fadeIn: fadeIn({
@@ -230,18 +231,18 @@ export default defineComponent({
 
     const searchQuery = ref("");
     const allFilterItems = computed(() => {
-      return Character.allMoniker.filter((x) => {
+      return Moniker.all.filter((x) => {
         const query = searchQuery.value;
         return (
           t(Character.getNameKey(x)).includes(query) ||
-          t(Character.getMonikerNameKey(x)).includes(query)
+          t(Moniker.getNameKey(x)).includes(query)
         );
       });
     });
 
     const filterItemName = (identify: MonikerIdentify): string => {
       const characterName = t(Character.getNameKey(identify));
-      const monikerName = t(Character.getMonikerNameKey(identify));
+      const monikerName = t(Moniker.getNameKey(identify));
       return `${characterName} [${monikerName}]`;
     };
 
@@ -287,7 +288,7 @@ export default defineComponent({
           return _.some(filters, (y) => {
             return (
               y.characterID === x.characterID &&
-              t(Character.getMonikerNameKey(y)).includes(query)
+              t(Moniker.getNameKey(y)).includes(query)
             );
           });
         }
@@ -306,14 +307,14 @@ export default defineComponent({
     const monikers = computed(() => {
       const query = searchQuery.value;
       const filters = allFilter().filter((x) => x.active);
-      return Character.getAvailableMoniker(character).filter(
+      return Moniker.getAvailableMonikers(character).filter(
         (x) =>
           _.some(filters, {
             characterID: x.characterID,
             monikerID: x.monikerID,
           }) &&
           (t(Character.getNameKey(x)).includes(query) ||
-            t(Character.getMonikerNameKey(x)).includes(query))
+            t(Moniker.getNameKey(x)).includes(query))
       );
     });
     const isMonikerSelected = (identify: MonikerIdentify): boolean =>
@@ -328,7 +329,7 @@ export default defineComponent({
     };
 
     const setTalentLevel = (level: TalentLevel) => {
-      const moniker = Character.getMoniker(character);
+      const moniker = Moniker.get(character);
       let newLevel: TalentLevel = level;
       if (level < moniker.initialTalentLevel) {
         newLevel = moniker.initialTalentLevel;
@@ -368,7 +369,7 @@ export default defineComponent({
           monikerID: oldData.monikerID,
         })
       ) {
-        const moniker = Character.getMoniker(newData);
+        const moniker = Moniker.get(newData);
         if (newData.talentLevel < moniker.initialTalentLevel) {
           character.talentLevel = moniker.initialTalentLevel;
         }
@@ -405,7 +406,7 @@ export default defineComponent({
     );
 
     onMounted(() => {
-      Character.allMoniker.forEach((x) => {
+      Moniker.all.forEach((x) => {
         const { characterID, monikerID } = x;
         if (!_.some(allFilter(), { characterID, monikerID })) {
           filterStore.value.push([characterID, monikerID, true]);
@@ -413,8 +414,7 @@ export default defineComponent({
       });
       _.remove(
         filterStore.value,
-        (x) =>
-          !_.some(Character.allMoniker, { characterID: x[0], monikerID: x[1] })
+        (x) => !_.some(Moniker.all, { characterID: x[0], monikerID: x[1] })
       );
     });
 

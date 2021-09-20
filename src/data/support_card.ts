@@ -63,37 +63,6 @@ const _allCardType = Object.freeze<Array<CardType>>([
 let _allCard: ReadonlyArray<SupportCard>;
 let _cardByIdMap: Record<number, SupportCard>;
 (async () => {
-  const rarity = (value: _SupportCard.Rarity | null | undefined): Rarity => {
-    switch (orDefault(value, _SupportCard.Rarity.R)) {
-      case _SupportCard.Rarity.R:
-        return "r";
-      case _SupportCard.Rarity.SR:
-        return "sr";
-      case _SupportCard.Rarity.SSR:
-        return "ssr";
-      default:
-        return "r";
-    }
-  };
-  const cardType = (value: _SupportCard.Type | null | undefined): CardType => {
-    switch (orDefault(value, _SupportCard.Type.SPEED)) {
-      case _SupportCard.Type.SPEED:
-        return "speed";
-      case _SupportCard.Type.STAMINA:
-        return "stamina";
-      case _SupportCard.Type.POWER:
-        return "power";
-      case _SupportCard.Type.TENACITY:
-        return "tenacity";
-      case _SupportCard.Type.INTELLIGENCE:
-        return "intelligence";
-      case _SupportCard.Type.FRIEND:
-        return "friend";
-      default:
-        return "speed";
-    }
-  };
-
   const data = await axios
     .get<ArrayBuffer>(supportCardDataUrl, { responseType: "arraybuffer" })
     .then((x) => new Uint8Array(x.data))
@@ -102,11 +71,38 @@ let _cardByIdMap: Record<number, SupportCard>;
   _allCard = Object.freeze<Array<SupportCard>>(
     _.sortBy(
       SupportCardList.decode(data).data.map((x) => {
+        const rarity = ((): Rarity => {
+          switch (orDefault(x.rarity, _SupportCard.Rarity.R)) {
+            case _SupportCard.Rarity.R:
+              return "r";
+            case _SupportCard.Rarity.SR:
+              return "sr";
+            case _SupportCard.Rarity.SSR:
+              return "ssr";
+          }
+        })();
+        const type = ((): CardType => {
+          switch (orDefault(x.type, _SupportCard.Type.SPEED)) {
+            case _SupportCard.Type.SPEED:
+              return "speed";
+            case _SupportCard.Type.STAMINA:
+              return "stamina";
+            case _SupportCard.Type.POWER:
+              return "power";
+            case _SupportCard.Type.TENACITY:
+              return "tenacity";
+            case _SupportCard.Type.INTELLIGENCE:
+              return "intelligence";
+            case _SupportCard.Type.FRIEND:
+              return "friend";
+          }
+        })();
+
         return immutable<SupportCard>({
           cardID: orDefault(x.cardID, -1),
           characterID: orDefault(x.characterID, -1),
-          rarity: rarity(x.rarity),
-          type: cardType(x.type),
+          rarity,
+          type,
           skills: orDefault(x.skills, []),
           events: orDefault(x.events, []),
         });

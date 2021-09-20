@@ -24,7 +24,7 @@
 <script lang="ts">
 import { defineComponent, inject } from "vue";
 import { useI18n } from "vue-i18n";
-import { Character } from "@/data";
+import { Character, Moniker } from "@/data";
 import {
   getPortrait,
   getRankGradeIcon,
@@ -36,9 +36,9 @@ import starEmpty from "#/images/level/star-empty.svg";
 export default defineComponent({
   data() {
     return {
-      AllTalentLevel: [...Character.allTalentLevel].reverse(),
+      AllTalentLevel: [...Moniker.allTalentLevel].reverse(),
       getCharacterNameKey: Character.getNameKey,
-      getMonikerNameKey: Character.getMonikerNameKey,
+      getMonikerNameKey: Moniker.getNameKey,
       getPortrait,
       getRankGradeIcon,
     };

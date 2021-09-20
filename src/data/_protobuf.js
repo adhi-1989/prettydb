@@ -1386,16 +1386,14 @@ export const Skill = ($root.Skill = (() => {
    * Levels enum.
    * @name Skill.Levels
    * @enum {number}
-   * @property {number} FROM_1_TO_5=0 FROM_1_TO_5 value
-   * @property {number} FROM_1_TO_2=1 FROM_1_TO_2 value
-   * @property {number} FROM_3_TO_5=2 FROM_3_TO_5 value
+   * @property {number} FROM_1_TO_2=0 FROM_1_TO_2 value
+   * @property {number} FROM_3_TO_5=1 FROM_3_TO_5 value
    */
   Skill.Levels = (function () {
     const valuesById = {},
       values = Object.create(valuesById);
-    values[(valuesById[0] = "FROM_1_TO_5")] = 0;
-    values[(valuesById[1] = "FROM_1_TO_2")] = 1;
-    values[(valuesById[2] = "FROM_3_TO_5")] = 2;
+    values[(valuesById[0] = "FROM_1_TO_2")] = 0;
+    values[(valuesById[1] = "FROM_3_TO_5")] = 1;
     return values;
   })();
 

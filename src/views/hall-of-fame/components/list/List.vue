@@ -54,7 +54,7 @@ import { computed, inject, ref, watch } from "vue";
 import { useI18n } from "vue-i18n";
 import dayjs from "dayjs";
 import type { CharacterIdentify, MonikerIdentify } from "@/data";
-import { Character } from "@/data";
+import { Character, Moniker } from "@/data";
 import { getRankGradeIcon } from "@/views/_common/logic/resources/images";
 import { Dto } from "@/views/hall-of-fame/logic/db";
 import { Action, State } from "@/views/hall-of-fame/logic/dependency";
@@ -67,7 +67,7 @@ function getCharacterName(identify: CharacterIdentify): string {
 }
 
 function getMonikerName(identify: MonikerIdentify): string {
-  return t(Character.getMonikerNameKey(identify));
+  return t(Moniker.getNameKey(identify));
 }
 
 function getInfo(data: Dto): string {

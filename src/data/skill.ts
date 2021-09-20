@@ -56,10 +56,6 @@ export type UniqueSkill = Skill & {
   readonly inheritable: boolean;
 };
 
-const _from_1_to_5: ReadonlyArray<TalentLevel> = Object.freeze([1, 2, 3, 4, 5]);
-const _from_1_to_2: ReadonlyArray<TalentLevel> = Object.freeze([1, 2]);
-const _from_3_to_5: ReadonlyArray<TalentLevel> = Object.freeze([3, 4, 5]);
-
 export type UniqueSkillLevel = 1 | 2 | 3 | 4 | 5 | 6;
 
 export type UniqueSkillOwner = MonikerIdentify & {
@@ -86,7 +82,7 @@ export interface SkillStatic {
   getNameKey(identify: SkillIdentify): string;
 }
 
-export const NULL_SKILL = Object.freeze<UniqueSkill>({
+export const NULL_SKILL = immutable<UniqueSkill>({
   skillID: -1,
   sortID: -1,
   point: 0,
@@ -95,7 +91,7 @@ export const NULL_SKILL = Object.freeze<UniqueSkill>({
   unique: true,
   characterID: -1,
   monikerID: -1,
-  matchingTalentLevels: _from_1_to_5,
+  matchingTalentLevels: [1, 2, 3, 4, 5],
   inheritable: false,
 });
 
@@ -112,77 +108,6 @@ let _allSkill: ReadonlyArray<Skill>;
 let _allUniqueSkill: ReadonlyArray<UniqueSkill>;
 let _skillByIdMap: Record<number, Skill>;
 (async () => {
-  const skillType = (value: _Skill.Type | null | undefined): SkillType => {
-    switch (orDefault(value, _Skill.Type.BUFF_SPEED)) {
-      case _Skill.Type.BUFF_SPEED:
-        return "buff-speed";
-      case _Skill.Type.BUFF_ACCELERATION:
-        return "buff-acceleration";
-      case _Skill.Type.BUFF_POSITIONING:
-        return "buff-positioning";
-      case _Skill.Type.BUFF_VISION:
-        return "buff-vision";
-      case _Skill.Type.BUFF_STARTING:
-        return "buff-starting";
-      case _Skill.Type.DEBUFF_SPEED:
-        return "debuff-speed";
-      case _Skill.Type.DEBUFF_STAMINA:
-        return "debuff-stamina";
-      case _Skill.Type.DEBUFF_AGITATION:
-        return "debuff-agitation";
-      case _Skill.Type.DEBUFF_CALM:
-        return "debuff-calm";
-      case _Skill.Type.DEBUFF_VISION:
-        return "debuff-vision";
-      case _Skill.Type.RECOVERY_STAMINA:
-        return "recovery-stamina";
-      case _Skill.Type.SUPPORT_SPEED:
-        return "support-speed";
-      case _Skill.Type.SUPPORT_STAMINA:
-        return "support-stamina";
-      case _Skill.Type.SUPPORT_POWER:
-        return "support-power";
-      case _Skill.Type.SUPPORT_TENACITY:
-        return "support-tenacity";
-      case _Skill.Type.SUPPORT_GENERAL:
-        return "support-general";
-      case _Skill.Type.SUPPORT_STRATEGY:
-        return "support-strategy";
-      case _Skill.Type.WEAK_FATIGUE:
-        return "weak-fatigue";
-      case _Skill.Type.WEAK_STARTING:
-        return "weak-starting";
-      case _Skill.Type.WEAK_MENTAL:
-        return "weak-mental";
-      case _Skill.Type.WEAK_WILL:
-        return "weak-will";
-      case _Skill.Type.WEAK_RACE:
-        return "weak-race";
-      case _Skill.Type.BUFF_SPEED_TEAM:
-        return "buff-speed-team";
-      case _Skill.Type.BUFF_ACCELERATION_TEAM:
-        return "buff-acceleration-team";
-      case _Skill.Type.BUFF_POSITIONING_TEAM:
-        return "buff-positioning-team";
-      case _Skill.Type.RECOVERY_STAMINA_TEAM:
-        return "recovery-stamina-team";
-      default:
-        return "buff-speed";
-    }
-  };
-  const talentLevelMatcher = (
-    value: _Skill.Levels | null | undefined
-  ): ReadonlyArray<TalentLevel> => {
-    switch (orDefault(value, _Skill.Levels.FROM_1_TO_5)) {
-      case _Skill.Levels.FROM_1_TO_5:
-        return _from_1_to_5;
-      case _Skill.Levels.FROM_1_TO_2:
-        return _from_1_to_2;
-      case _Skill.Levels.FROM_3_TO_5:
-        return _from_3_to_5;
-    }
-  };
-
   const data = await axios
     .get<ArrayBuffer>(skillDataUrl, { responseType: "arraybuffer" })
     .then((x) => new Uint8Array(x.data))
@@ -191,29 +116,97 @@ let _skillByIdMap: Record<number, Skill>;
   _allSkill = Object.freeze(
     _.sortBy(
       SkillList.decode(data).data.map((x) => {
-        let skill = Object.freeze<Skill>({
+        const type = ((): SkillType => {
+          switch (orDefault(x.type, _Skill.Type.BUFF_SPEED)) {
+            case _Skill.Type.BUFF_SPEED:
+              return "buff-speed";
+            case _Skill.Type.BUFF_ACCELERATION:
+              return "buff-acceleration";
+            case _Skill.Type.BUFF_POSITIONING:
+              return "buff-positioning";
+            case _Skill.Type.BUFF_VISION:
+              return "buff-vision";
+            case _Skill.Type.BUFF_STARTING:
+              return "buff-starting";
+            case _Skill.Type.DEBUFF_SPEED:
+              return "debuff-speed";
+            case _Skill.Type.DEBUFF_STAMINA:
+              return "debuff-stamina";
+            case _Skill.Type.DEBUFF_AGITATION:
+              return "debuff-agitation";
+            case _Skill.Type.DEBUFF_CALM:
+              return "debuff-calm";
+            case _Skill.Type.DEBUFF_VISION:
+              return "debuff-vision";
+            case _Skill.Type.RECOVERY_STAMINA:
+              return "recovery-stamina";
+            case _Skill.Type.SUPPORT_SPEED:
+              return "support-speed";
+            case _Skill.Type.SUPPORT_STAMINA:
+              return "support-stamina";
+            case _Skill.Type.SUPPORT_POWER:
+              return "support-power";
+            case _Skill.Type.SUPPORT_TENACITY:
+              return "support-tenacity";
+            case _Skill.Type.SUPPORT_GENERAL:
+              return "support-general";
+            case _Skill.Type.SUPPORT_STRATEGY:
+              return "support-strategy";
+            case _Skill.Type.WEAK_FATIGUE:
+              return "weak-fatigue";
+            case _Skill.Type.WEAK_STARTING:
+              return "weak-starting";
+            case _Skill.Type.WEAK_MENTAL:
+              return "weak-mental";
+            case _Skill.Type.WEAK_WILL:
+              return "weak-will";
+            case _Skill.Type.WEAK_RACE:
+              return "weak-race";
+            case _Skill.Type.BUFF_SPEED_TEAM:
+              return "buff-speed-team";
+            case _Skill.Type.BUFF_ACCELERATION_TEAM:
+              return "buff-acceleration-team";
+            case _Skill.Type.BUFF_POSITIONING_TEAM:
+              return "buff-positioning-team";
+            case _Skill.Type.RECOVERY_STAMINA_TEAM:
+              return "recovery-stamina-team";
+          }
+        })();
+
+        let skill: Skill = {
           skillID: orDefault(x.skillID, -1),
           sortID: orDefault(x.sortID, -1),
           point: orDefault(x.point, 0),
-          type: skillType(x.type),
+          type,
           advanced: orDefault(x.advanced, false),
           unique: orDefault(x.unique, false),
-        });
+        };
 
         if (_.has(x, "conflictID") && _.isNumber(x.conflictID)) {
-          skill = Object.freeze<Skill>({
+          skill = {
             ...skill,
             conflictID: x.conflictID,
-          });
+          };
         }
 
         if (skill.unique) {
+          const matchingTalentLevels = ((): Array<TalentLevel> => {
+            switch (
+              orDefault(x.matchingTalentLevels, _Skill.Levels.FROM_1_TO_2)
+            ) {
+              case _Skill.Levels.FROM_1_TO_2:
+                return [1, 2];
+              case _Skill.Levels.FROM_3_TO_5:
+                return [3, 4, 5];
+            }
+          })();
+
           return immutable<UniqueSkill>({
             ...skill,
             unique: true,
             characterID: orDefault(x.characterID, -1),
             monikerID: orDefault(x.monikerID, -1),
-            matchingTalentLevels: talentLevelMatcher(x.matchingTalentLevels),
+            matchingTalentLevels,
             inheritable: orDefault(x.inheritable, false),
           });
         } else {

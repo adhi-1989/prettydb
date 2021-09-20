@@ -664,9 +664,8 @@ export namespace Skill {
 
   /** Levels enum. */
   enum Levels {
-    FROM_1_TO_5 = 0,
-    FROM_1_TO_2 = 1,
-    FROM_3_TO_5 = 2,
+    FROM_1_TO_2 = 0,
+    FROM_3_TO_5 = 1,
   }
 }
 
