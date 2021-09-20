@@ -1522,6 +1522,61 @@ protobuf.load(path.resolve(__dirname, "moniker.proto"), (err, root) => {
         },
         events: [54, 55, 56],
       },
+      /* アグネスデジタル:超特急！フルカラー特殊PP */ {
+        characterID: 18,
+        monikerID: 0,
+        initialTalentLevel: 3,
+        initialStatus: {
+          3: {
+            speed: 85,
+            stamina: 91,
+            power: 83,
+            tenacity: 100,
+            intelligence: 91,
+          },
+          4: {
+            speed: 95,
+            stamina: 101,
+            power: 92,
+            tenacity: 111,
+            intelligence: 101,
+          },
+          5: {
+            speed: 104,
+            stamina: 111,
+            power: 101,
+            tenacity: 122,
+            intelligence: 112,
+          },
+        },
+        initialAbility: {
+          turf: Ability.A,
+          dirt: Ability.A,
+          short: Ability.F,
+          mile: Ability.A,
+          middle: Ability.A,
+          long: Ability.G,
+          nige: Ability.G,
+          senko: Ability.A,
+          sashi: Ability.A,
+          oikomi: Ability.B,
+        },
+        growthRate: {
+          speed: 8,
+          stamina: 8,
+          power: 7,
+          tenacity: 0,
+          intelligence: 7,
+        },
+        skills: {
+          awakeningLevel2: 1246,
+          awakeningLevel3: 1315,
+          awakeningLevel4: 1200,
+          awakeningLevel5: 1316,
+          defaults: [1134, 1027, 1314],
+        },
+        events: [144, 145, 146],
+      },
       /* セイウンスカイ:あおぐもサミング */ {
         characterID: 20,
         monikerID: 0,
@@ -3296,6 +3351,12 @@ protobuf.load(path.resolve(__dirname, "factor.proto"), (err, root) => {
         type: Type.UNIQUE_SKILL,
         skillID: 63,
       },
+      /* 尊み☆ﾗｽﾄｽﾊﾟ--(ﾟ∀ﾟ)--ﾄ! */ {
+        factorID: 192,
+        sortID: 192,
+        type: Type.UNIQUE_SKILL,
+        skillID: 64,
+      },
       /* NHKマイルC */ {
         factorID: 1024,
         sortID: 1024,
@@ -4211,6 +4272,11 @@ protobuf.load(path.resolve(__dirname, "factor.proto"), (err, root) => {
         sortID: 2334,
         type: Type.SKILL,
       },
+      /* 前列狙い */ {
+        factorID: 2337,
+        sortID: 2337,
+        type: Type.SKILL,
+      },
       /* URAシナリオ */ {
         factorID: 4096,
         sortID: 4096,
@@ -5009,6 +5075,18 @@ protobuf.load(path.resolve(__dirname, "skill.proto"), (err, root) => {
         matchingTalentLevels: Levels.FROM_3_TO_5,
         inheritable: true,
       },
+      /* 尊み☆ﾗｽﾄｽﾊﾟ--(ﾟ∀ﾟ)--ﾄ! */ {
+        skillID: 64,
+        sortID: 64,
+        point: 200,
+        type: Type.BUFF_SPEED,
+        advanced: false,
+        unique: true,
+        characterID: 18,
+        monikerID: 0,
+        matchingTalentLevels: Levels.FROM_3_TO_5,
+        inheritable: true,
+      },
       /* アガッてきた！ */ {
         skillID: 1024,
         sortID: 1024,
@@ -5041,6 +5119,7 @@ protobuf.load(path.resolve(__dirname, "skill.proto"), (err, root) => {
         sortID: 1027,
         point: 160,
         type: Type.BUFF_SPEED,
+        conflictID: 126,
         advanced: false,
         unique: false,
       },
@@ -7573,6 +7652,33 @@ protobuf.load(path.resolve(__dirname, "skill.proto"), (err, root) => {
         advanced: true,
         unique: false,
       },
+      /* 前列狙い */ {
+        skillID: 1314,
+        sortID: 1314,
+        point: 140,
+        type: Type.BUFF_POSITIONING,
+        conflictID: 125,
+        advanced: false,
+        unique: false,
+      },
+      /* ウママニア */ {
+        skillID: 1315,
+        sortID: 1315,
+        point: 160,
+        type: Type.BUFF_SPEED,
+        conflictID: 126,
+        advanced: true,
+        unique: false,
+      },
+      /* 狙うは最前列！ */ {
+        skillID: 1316,
+        sortID: 1316,
+        point: 140,
+        type: Type.BUFF_POSITIONING,
+        conflictID: 125,
+        advanced: true,
+        unique: false,
+      },
     ],
   });
 
@@ -7646,10 +7752,7 @@ protobuf.load(path.resolve(__dirname, "support_card.proto"), (err, root) => {
         characterID: 6,
         rarity: Rarity.R,
         type: Type.STAMINA,
-        skills: [
-          1114, 1210, 1252, 1214, 1271, 1031, 1093, 1138, 1073, 1219, 1229,
-          1027, 1197, 1045,
-        ],
+        skills: [1114, 1210, 1252, 1214, 1271, 1031, 1093, 1138, 1073, 1219, 1229, 1027, 1197, 1045],
         events: [4108, 4109],
       },
       /* ウオッカ:トレセン学園 */ {
@@ -8130,9 +8233,7 @@ protobuf.load(path.resolve(__dirname, "support_card.proto"), (err, root) => {
         rarity: Rarity.R,
         type: Type.FRIEND,
         skills: [],
-        events: [
-          4228, 4229, 4230, 4231, 4232, 4233, 4234, 4235, 4236, 4237, 4238,
-        ],
+        events: [4228, 4229, 4230, 4231, 4232, 4233, 4234, 4235, 4236, 4237, 4238],
       },
       /* 桐生院葵:トレセン学園 */ {
         cardID: 67,
@@ -8140,9 +8241,7 @@ protobuf.load(path.resolve(__dirname, "support_card.proto"), (err, root) => {
         rarity: Rarity.R,
         type: Type.FRIEND,
         skills: [],
-        events: [
-          4239, 4240, 4241, 4242, 4243, 4244, 4245, 4246, 4247, 4248, 4249,
-        ],
+        events: [4239, 4240, 4241, 4242, 4243, 4244, 4245, 4246, 4247, 4248, 4249],
       },
       /* スペシャルウィーク:日本一のステージを */ {
         cardID: 68,
@@ -8173,10 +8272,7 @@ protobuf.load(path.resolve(__dirname, "support_card.proto"), (err, root) => {
         characterID: 6,
         rarity: Rarity.SSR,
         type: Type.STAMINA,
-        skills: [
-          1114, 1210, 1252, 1214, 1271, 1031, 1093, 1138, 1073, 1219, 1229,
-          1027, 1197, 1045,
-        ],
+        skills: [1114, 1210, 1252, 1214, 1271, 1031, 1093, 1138, 1073, 1219, 1229, 1027, 1197, 1045],
         events: [4108, 4109, 4259, 4260, 4261],
       },
       /* ウオッカ:ロード・オブ・ウオッカ */ {
@@ -8305,10 +8401,7 @@ protobuf.load(path.resolve(__dirname, "support_card.proto"), (err, root) => {
         rarity: Rarity.SSR,
         type: Type.FRIEND,
         skills: [],
-        events: [
-          4228, 4229, 4230, 4231, 4232, 4233, 4234, 4235, 4236, 4237, 4238,
-          4307,
-        ],
+        events: [4228, 4229, 4230, 4231, 4232, 4233, 4234, 4235, 4236, 4237, 4238, 4307],
       },
       /* オグリキャップ:『愛してもらうんだぞ』 */ {
         cardID: 88,
@@ -8612,10 +8705,7 @@ protobuf.load(path.resolve(__dirname, "support_card.proto"), (err, root) => {
         rarity: Rarity.SR,
         type: Type.FRIEND,
         skills: [],
-        events: [
-          4239, 4240, 4241, 4242, 4243, 4244, 4245, 4246, 4247, 4248, 4249,
-          4399,
-        ],
+        events: [4239, 4240, 4241, 4242, 4243, 4244, 4245, 4246, 4247, 4248, 4249, 4399],
       },
       /* スイープトウショウ:見習い魔女と長い夜 */ {
         cardID: 126,
@@ -8750,10 +8840,7 @@ protobuf.load(path.resolve(__dirname, "support_card.proto"), (err, root) => {
         characterID: 6,
         rarity: Rarity.SSR,
         type: Type.SPEED,
-        skills: [
-          1114, 1210, 1252, 1214, 1271, 1031, 1093, 1138, 1073, 1219, 1229,
-          1027, 1197, 1045,
-        ],
+        skills: [1114, 1210, 1252, 1214, 1271, 1031, 1093, 1138, 1073, 1219, 1229, 1027, 1197, 1045],
         events: [4108, 4109, 4438, 4439, 4440],
       },
       /* ナリタブライアン:Two Pieces */ {
@@ -8818,9 +8905,7 @@ protobuf.load(path.resolve(__dirname, "support_card.proto"), (err, root) => {
         rarity: Rarity.R,
         type: Type.FRIEND,
         skills: [],
-        events: [
-          4462, 4463, 4464, 4465, 4466, 4467, 4468, 4469, 4470, 4471, 4472,
-        ],
+        events: [4462, 4463, 4464, 4465, 4466, 4467, 4468, 4469, 4470, 4471, 4472],
       },
       /* 樫本理子:徹底管理主義 */ {
         cardID: 151,
@@ -8828,10 +8913,7 @@ protobuf.load(path.resolve(__dirname, "support_card.proto"), (err, root) => {
         rarity: Rarity.SSR,
         type: Type.FRIEND,
         skills: [],
-        events: [
-          4462, 4463, 4464, 4465, 4466, 4467, 4468, 4469, 4470, 4471, 4472,
-          4473,
-        ],
+        events: [4462, 4463, 4464, 4465, 4466, 4467, 4468, 4469, 4470, 4471, 4472, 4473],
       },
       /* ライスシャワー:幸せは曲がり角の向こう */ {
         cardID: 152,
@@ -8840,6 +8922,22 @@ protobuf.load(path.resolve(__dirname, "support_card.proto"), (err, root) => {
         type: Type.POWER,
         skills: [1106, 1029, 1158, 1174, 1168, 1175, 1209, 1032, 1229],
         events: [4154, 4155, 4474, 4475, 4476],
+      },
+      /* ファインモーション:GRMAラーメン♪ */ {
+        cardID: 153,
+        characterID: 21,
+        rarity: Rarity.SR,
+        type: Type.POWER,
+        skills: [1085, 1143, 1099, 1211, 1160],
+        events: [4138, 4139, 4477, 4478],
+      },
+      /* イクノディクタス:心と足元は温かく */ {
+        cardID: 154,
+        characterID: 62,
+        rarity: Rarity.SSR,
+        type: Type.TENACITY,
+        skills: [1084, 1028, 1065, 1249, 1090],
+        events: [4210, 4211, 4479, 4480, 4481],
       },
     ],
   });
@@ -9435,6 +9533,18 @@ protobuf.load(path.resolve(__dirname, "event.proto"), (err, root) => {
       },
       /* 堂々と行こう！ */ {
         eventID: 143,
+        skills: [],
+      },
+      /* “推し”えて、デジタル先生！ */ {
+        eventID: 144,
+        skills: [],
+      },
+      /* あなたの背中を“推し”たくて…… */ {
+        eventID: 145,
+        skills: [],
+      },
+      /* “推し”みない愛を推しに！ */ {
+        eventID: 146,
         skills: [],
       },
       /* 曲がり角には、気をつけます！ */ {
@@ -10960,6 +11070,26 @@ protobuf.load(path.resolve(__dirname, "event.proto"), (err, root) => {
       /* 晴れの日、ヒラヒラ、花束を */ {
         eventID: 4476,
         skills: [1091],
+      },
+      /* どちらも日常なんだよね～ */ {
+        eventID: 4477,
+        skills: [],
+      },
+      /* 君もクローバーだよ♪ */ {
+        eventID: 4478,
+        skills: [1156],
+      },
+      /* 探偵U */ {
+        eventID: 4479,
+        skills: [],
+      },
+      /* Uゆしき事態？ */ {
+        eventID: 4480,
+        skills: [1277],
+      },
+      /* U情 */ {
+        eventID: 4481,
+        skills: [1191],
       },
     ],
   });

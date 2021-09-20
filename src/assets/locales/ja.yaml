@@ -250,6 +250,9 @@ character:
         name: クエルクス・キウィーリス
   18:
     name: アグネスデジタル
+    moniker:
+      0:
+        name: 超特急！フルカラー特殊PP
   19:
     name: タマモクロス
   20:
@@ -662,6 +665,10 @@ skill:
   63:
     name: 'I''M☆FULL☆SPEED!!'
     description: 'レース中間に好位置で少し疲れてくると\n気合を入れ直して大きく前へ踏み込む'
+    description-for-inheritor: ''
+  64:
+    name: '尊み☆ﾗｽﾄｽﾊﾟ--(ﾟ∀ﾟ)--ﾄ!'
+    description: 'レース終盤に2回追い抜くと間近で拝む\nウマ娘ちゃんのあまりの尊さに思わず\n速度を上げる'
     description-for-inheritor: ''
   1024:
     name: アガッてきた！
@@ -1533,6 +1540,15 @@ skill:
   1313:
     name: 準備万全！
     description: 'レース中盤でゴールに向けて\n準備を整える＜短距離＞'
+  1314:
+    name: 前列狙い
+    description: 'レース終盤に少し前を目指す\n体勢をとる＜ダート＞'
+  1315:
+    name: ウママニア
+    description: '近くにウマ娘がたくさんいると\n速度が上がる'
+  1316:
+    name: 狙うは最前列！
+    description: 'レース終盤に前を目指す\n体勢をとる＜ダート＞'
 factor:
   '-1':
     name: 指定なし
@@ -1726,6 +1742,9 @@ factor:
   191:
     name: 'I''M☆FULL☆SPEED!!'
     description: '「I''M☆FULL☆SPEED!!」のスキルヒントを得られる因子です'
+  192:
+    name: '尊み☆ﾗｽﾄｽﾊﾟ--(ﾟ∀ﾟ)--ﾄ!'
+    description: '「尊み☆ﾗｽﾄｽﾊﾟ--(ﾟ∀ﾟ)--ﾄ!」のスキルヒントを得られる因子です'
   1024:
     name: NHKマイルC
     description: スピードとパワーがアップする因子です
@@ -2275,6 +2294,9 @@ factor:
   2334:
     name: アオハル点火・賢
     description: 「アオハル点火・賢」のスキルヒントを得られる因子です
+  2337:
+    name: 前列狙い
+    description: 「前列狙い」のスキルヒントを得られる因子です
   4096:
     name: URAシナリオ
     description: スピードとスタミナがアップする因子です
@@ -2590,6 +2612,10 @@ support-card:
     caption: 徹底管理主義
   152:
     caption: 幸せは曲がり角の向こう
+  153:
+    caption: GRMAラーメン♪
+  154:
+    caption: 心と足元は温かく
 event:
   '-1':
     name: イベント取得エラー
@@ -2881,6 +2907,12 @@ event:
     name: 大きくな～れ！
   143:
     name: 堂々と行こう！
+  144:
+    name: “推し”えて、デジタル先生！
+  145:
+    name: あなたの背中を“推し”たくて……
+  146:
+    name: “推し”みない愛を推しに！
   4096:
     name: 曲がり角には、気をつけます！
   4097:
@@ -3643,3 +3675,13 @@ event:
     name: ずうっと、つやつや、魔法の花
   4476:
     name: 晴れの日、ヒラヒラ、花束を
+  4477:
+    name: どちらも日常なんだよね～
+  4478:
+    name: 君もクローバーだよ♪
+  4479:
+    name: 探偵U
+  4480:
+    name: Uゆしき事態？
+  4481:
+    name: U情
