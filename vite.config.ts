@@ -66,7 +66,7 @@ export default defineConfig(() => {
         exclude: ["**/components/*.vue"],
       }),
       VitePWA({
-        registerType: "prompt",
+        registerType: "autoUpdate",
         includeAssets: ["favicon.svg", "robots.txt", "sitemap.xml"],
         manifest: {
           name: "プリティーデービー",
