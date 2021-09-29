@@ -1,3 +1,4 @@
+import SS from "#/images/rank/ss.svg";
 import S_PLUS from "#/images/rank/s-plus.svg";
 import S from "#/images/rank/s.svg";
 import A_PLUS from "#/images/rank/a-plus.svg";
@@ -15,6 +16,7 @@ import F from "#/images/rank/f.svg";
 import G_PLUS from "#/images/rank/g-plus.svg";
 
 export const RankIcon = {
+  SS,
   S_PLUS,
   S,
   A_PLUS,
@@ -32,9 +34,10 @@ export const RankIcon = {
   G_PLUS,
 };
 
-//TODO: スコアのグレードが決まる閾値が適当なのでちゃんとデータ集める
 export function getRankGradeIcon(score: number): string {
-  if (score >= 16000) {
+  if (score >= 17500) {
+    return RankIcon.SS;
+  } else if (score >= 16000) {
     return RankIcon.S_PLUS;
   } else if (score >= 14500) {
     return RankIcon.S;
