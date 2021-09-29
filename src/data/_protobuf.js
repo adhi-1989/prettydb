@@ -1349,6 +1349,7 @@ export const Skill = ($root.Skill = (() => {
    * @property {number} BUFF_ACCELERATION_TEAM=23 BUFF_ACCELERATION_TEAM value
    * @property {number} BUFF_POSITIONING_TEAM=24 BUFF_POSITIONING_TEAM value
    * @property {number} RECOVERY_STAMINA_TEAM=25 RECOVERY_STAMINA_TEAM value
+   * @property {number} WEAK_DEMONSTRATE=26 WEAK_DEMONSTRATE value
    */
   Skill.Type = (function () {
     const valuesById = {},
@@ -1379,6 +1380,7 @@ export const Skill = ($root.Skill = (() => {
     values[(valuesById[23] = "BUFF_ACCELERATION_TEAM")] = 23;
     values[(valuesById[24] = "BUFF_POSITIONING_TEAM")] = 24;
     values[(valuesById[25] = "RECOVERY_STAMINA_TEAM")] = 25;
+    values[(valuesById[26] = "WEAK_DEMONSTRATE")] = 26;
     return values;
   })();
 

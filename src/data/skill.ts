@@ -7,6 +7,8 @@ import skillDataUrl from "#/assets/data/skill.dat?url";
 
 const { orDefault, immutable } = objects;
 
+//TODO: スキルタイプ リファクタリングする
+
 export type SkillType =
   | "buff-speed"
   | "buff-acceleration"
@@ -33,7 +35,8 @@ export type SkillType =
   | "buff-speed-team"
   | "buff-acceleration-team"
   | "buff-positioning-team"
-  | "recovery-stamina-team";
+  | "recovery-stamina-team"
+  | "weak-demonstrate";
 
 export type SkillIdentify = {
   skillID: number;
@@ -170,6 +173,8 @@ let _skillByIdMap: Record<number, Skill>;
               return "buff-positioning-team";
             case _Skill.Type.RECOVERY_STAMINA_TEAM:
               return "recovery-stamina-team";
+            case _Skill.Type.WEAK_DEMONSTRATE:
+              return "weak-demonstrate";
           }
         })();
 
@@ -245,6 +250,7 @@ const _allSkillType = Object.freeze<Array<SkillType>>([
   "weak-mental",
   "weak-will",
   "weak-race",
+  "weak-demonstrate",
   "buff-speed-team",
   "buff-acceleration-team",
   "buff-positioning-team",
