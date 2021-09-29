@@ -298,6 +298,8 @@ character:
     moniker:
       0:
         name: ローゼスドリーム
+      1:
+        name: 'Make up Vampire!'
   30:
     name: アイネスフウジン
   31:
@@ -345,6 +347,8 @@ character:
     moniker:
       0:
         name: マーマリングストリーム
+      1:
+        name: シフォンリボンマミー
   45:
     name: スマートファルコン
     moniker:
@@ -669,6 +673,14 @@ skill:
   64:
     name: '尊み☆ﾗｽﾄｽﾊﾟ--(ﾟ∀ﾟ)--ﾄ!'
     description: 'レース終盤に2回追い抜くと間近で拝む\nウマ娘ちゃんのあまりの尊さに思わず\n速度を上げる'
+    description-for-inheritor: ''
+  65:
+    name: Drain for rose
+    description: 'レース中間付近を好位置で走行中に\n詰め寄られると前方のウマ娘から\n持久力を吸い取る'
+    description-for-inheritor: ''
+  66:
+    name: ぐるぐるマミートリック♡
+    description: '最終直線を好位置で走行中\n前のウマ娘との距離が近いと\n抜け出しやすくなる'
     description-for-inheritor: ''
   1024:
     name: アガッてきた！
@@ -1549,6 +1561,21 @@ skill:
   1316:
     name: 狙うは最前列！
     description: 'レース終盤に前を目指す\n体勢をとる＜ダート＞'
+  1317:
+    name: 見惚れるトリック
+    description: 'レース中盤に前の方にいると後ろの\n掛かったウマ娘が疲れる'
+  1318:
+    name: 百万バリキ
+    description: '上り坂で速度が上がる\n＜作戦・差し＞'
+  1319:
+    name: 静かな呼吸
+    description: 'レース中盤が迫ったとき後方にいると\n持久力をわずかに回復する＜作戦・差し＞'
+  1320:
+    name: 潜伏態勢
+    description: 'レース中盤が迫ったとき後方にいると\n持久力を回復する＜作戦・差し＞'
+  1321:
+    name: 引っ込み思案
+    description: '自分と同じ作戦のウマ娘が6人以上だと\n能力を少し発揮しにくい'
 factor:
   '-1':
     name: 指定なし
@@ -1745,6 +1772,12 @@ factor:
   192:
     name: '尊み☆ﾗｽﾄｽﾊﾟ--(ﾟ∀ﾟ)--ﾄ!'
     description: '「尊み☆ﾗｽﾄｽﾊﾟ--(ﾟ∀ﾟ)--ﾄ!」のスキルヒントを得られる因子です'
+  193:
+    name: Drain for rose
+    description: 「Drain for rose」のスキルヒントを得られる因子です
+  194:
+    name: ぐるぐるマミートリック♡
+    description: 「ぐるぐるマミートリック♡」のスキルヒントを得られる因子です
   1024:
     name: NHKマイルC
     description: スピードとパワーがアップする因子です
@@ -2297,6 +2330,9 @@ factor:
   2337:
     name: 前列狙い
     description: 「前列狙い」のスキルヒントを得られる因子です
+  2342:
+    name: 静かな呼吸
+    description: 「静かな呼吸」のスキルヒントを得られる因子です
   4096:
     name: URAシナリオ
     description: スピードとスタミナがアップする因子です
@@ -2616,6 +2652,10 @@ support-card:
     caption: GRMAラーメン♪
   154:
     caption: 心と足元は温かく
+  155:
+    caption: やったれハロウィンナイト！
+  156:
+    caption: 魔力授かりし英雄
 event:
   '-1':
     name: イベント取得エラー
@@ -2913,6 +2953,18 @@ event:
     name: あなたの背中を“推し”たくて……
   146:
     name: “推し”みない愛を推しに！
+  147:
+    name: ライスのトリート大作戦！
+  148:
+    name: ライスのヴァンパイア退治大作戦！
+  149:
+    name: ライスのトリック大作戦！
+  150:
+    name: Curse or Wrap
+  151:
+    name: Search or Mommy
+  152:
+    name: Accident or Ghost
   4096:
     name: 曲がり角には、気をつけます！
   4097:
@@ -3685,3 +3737,15 @@ event:
     name: Uゆしき事態？
   4481:
     name: U情
+  4482:
+    name: ミイラハント～笑劇を打破せよ！～
+  4483:
+    name: ミイラハント～目覚めよ狩人！～
+  4484:
+    name: ミイラハント～最恐スイート・マミー～
+  4485:
+    name: 読書少女と賢者の催し物
+  4486:
+    name: 読書少女と秘密の作戦会議
+  4487:
+    name: 読書少女とあるカエルの友人
