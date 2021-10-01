@@ -15,6 +15,10 @@ export type Character = Readonly<CharacterIdentify> & {
 };
 
 export interface CharacterStatic {
+  get isLoaded(): boolean;
+
+  get null(): Character;
+
   get all(): ReadonlyArray<Character>;
 
   get(characterID: number): Character;
@@ -26,11 +30,12 @@ export interface CharacterStatic {
   getNameKey(identify: CharacterIdentify): string;
 }
 
-export const NULL_CHARACTER = Object.freeze<Character>({
+export const NULL_CHARACTER = immutable<Character>({
   characterID: -1,
   sortID: -1,
 });
 
+let _isLoaded = false;
 let _allCharacter: ReadonlyArray<Character>;
 let _characterByIdMap: Record<number, Character>;
 (async () => {
@@ -50,12 +55,21 @@ let _characterByIdMap: Record<number, Character>;
       ["sortID"]
     )
   );
+
   _characterByIdMap = maps.NumberMap(
     _allCharacter.map((x) => [x.characterID, x])
   );
+
+  _isLoaded = true;
 })();
 
 export const Character: CharacterStatic = {
+  get isLoaded(): boolean {
+    return _isLoaded;
+  },
+  get null(): Character {
+    return NULL_CHARACTER;
+  },
   get all(): ReadonlyArray<Character> {
     return orDefault(_allCharacter, () => Object.freeze([]));
   },

@@ -31,6 +31,10 @@ export type UniqueSkillFactor = Factor & {
 };
 
 export interface FactorStatic {
+  get isLoaded(): boolean;
+
+  get null(): Factor;
+
   get all(): ReadonlyArray<Factor>;
 
   get allType(): ReadonlyArray<FactorType>;
@@ -48,7 +52,7 @@ export interface FactorStatic {
   getNameKey(identify: FactorIdentify): string;
 }
 
-export const NULL_FACTOR = Object.freeze<Factor>({
+export const NULL_FACTOR = immutable<Factor>({
   factorID: -1,
   sortID: -1,
   type: "status",
@@ -65,26 +69,10 @@ const _allFactorType = Object.freeze<Array<FactorType>>([
 
 const _allFactorLevel = Object.freeze<Array<FactorLevel>>([1, 2, 3]);
 
+let _isLoaded = false;
 let _allFactor: ReadonlyArray<Factor>;
 let _factorByIdMap: Record<number, Factor>;
 (async () => {
-  const factorType = (value: _Factor.Type | null | undefined): FactorType => {
-    switch (orDefault(value, _Factor.Type.STATUS)) {
-      case _Factor.Type.STATUS:
-        return "status";
-      case _Factor.Type.ABILITY:
-        return "ability";
-      case _Factor.Type.UNIQUE_SKILL:
-        return "unique-skill";
-      case _Factor.Type.RACE:
-        return "race";
-      case _Factor.Type.SKILL:
-        return "skill";
-      case _Factor.Type.SCENARIO:
-        return "scenario";
-    }
-  };
-
   const data = await axios
     .get<ArrayBuffer>(factorDataUrl, { responseType: "arraybuffer" })
     .then((x) => new Uint8Array(x.data))
@@ -93,7 +81,22 @@ let _factorByIdMap: Record<number, Factor>;
   _allFactor = Object.freeze<Array<Factor>>(
     _.sortBy(
       FactorList.decode(data).data.map((x) => {
-        const type = factorType(x.type);
+        const type = ((): FactorType => {
+          switch (orDefault(x.type, _Factor.Type.STATUS)) {
+            case _Factor.Type.STATUS:
+              return "status";
+            case _Factor.Type.ABILITY:
+              return "ability";
+            case _Factor.Type.UNIQUE_SKILL:
+              return "unique-skill";
+            case _Factor.Type.RACE:
+              return "race";
+            case _Factor.Type.SKILL:
+              return "skill";
+            case _Factor.Type.SCENARIO:
+              return "scenario";
+          }
+        })();
         if (type === "unique-skill") {
           return immutable<UniqueSkillFactor>({
             factorID: orDefault(x.factorID, -1),
@@ -112,9 +115,12 @@ let _factorByIdMap: Record<number, Factor>;
       ["sortID"]
     )
   );
+
   _factorByIdMap = Object.freeze(
     maps.NumberMap(_allFactor.map((x) => [x.factorID, x]))
   );
+
+  _isLoaded = true;
 })();
 
 const _checkUniqueSkill = _.memoize(
@@ -124,6 +130,12 @@ const _checkUniqueSkill = _.memoize(
 );
 
 export const Factor: FactorStatic = {
+  get isLoaded(): boolean {
+    return _isLoaded;
+  },
+  get null(): Factor {
+    return NULL_FACTOR;
+  },
   get all(): ReadonlyArray<Factor> {
     return orDefault(_allFactor, () => Object.freeze([]));
   },

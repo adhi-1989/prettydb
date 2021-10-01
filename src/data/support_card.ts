@@ -8,7 +8,7 @@ const { orDefault, immutable } = objects;
 
 export type Rarity = "r" | "sr" | "ssr";
 
-export type CardType =
+export type SupportCardType =
   | "speed"
   | "stamina"
   | "power"
@@ -23,15 +23,19 @@ export type SupportCardIdentify = {
 export type SupportCard = Readonly<SupportCardIdentify> & {
   readonly characterID: number;
   readonly rarity: Rarity;
-  readonly type: CardType;
+  readonly type: SupportCardType;
   readonly skills: ReadonlyArray<number>;
   readonly events: ReadonlyArray<number>;
 };
 
 export interface SupportCardStatic {
+  get isLoaded(): boolean;
+
+  get null(): SupportCard;
+
   get all(): ReadonlyArray<SupportCard>;
 
-  get allType(): ReadonlyArray<CardType>;
+  get allType(): ReadonlyArray<SupportCardType>;
 
   get(cardID: number): SupportCard;
 
@@ -42,16 +46,16 @@ export interface SupportCardStatic {
   getCaptionKey(identify: SupportCardIdentify): string;
 }
 
-export const NULL_SUPPORT_CARD = Object.freeze<SupportCard>({
+export const NULL_SUPPORT_CARD = immutable<SupportCard>({
   cardID: -1,
   characterID: -1,
   rarity: "r",
   type: "speed",
-  skills: Object.freeze([]),
-  events: Object.freeze([]),
+  skills: [],
+  events: [],
 });
 
-const _allCardType = Object.freeze<Array<CardType>>([
+const _allSupportCardType = Object.freeze<Array<SupportCardType>>([
   "speed",
   "stamina",
   "power",
@@ -60,6 +64,7 @@ const _allCardType = Object.freeze<Array<CardType>>([
   "friend",
 ]);
 
+let _isLoaded = false;
 let _allCard: ReadonlyArray<SupportCard>;
 let _cardByIdMap: Record<number, SupportCard>;
 (async () => {
@@ -81,7 +86,7 @@ let _cardByIdMap: Record<number, SupportCard>;
               return "ssr";
           }
         })();
-        const type = ((): CardType => {
+        const type = ((): SupportCardType => {
           switch (orDefault(x.type, _SupportCard.Type.SPEED)) {
             case _SupportCard.Type.SPEED:
               return "speed";
@@ -110,17 +115,26 @@ let _cardByIdMap: Record<number, SupportCard>;
       ["sortID"]
     )
   );
+
   _cardByIdMap = Object.freeze(
     maps.NumberMap(_allCard.map((x) => [x.cardID, x]))
   );
+
+  _isLoaded = true;
 })();
 
 export const SupportCard: SupportCardStatic = {
+  get isLoaded(): boolean {
+    return _isLoaded;
+  },
+  get null(): SupportCard {
+    return NULL_SUPPORT_CARD;
+  },
   get all(): ReadonlyArray<SupportCard> {
     return orDefault(_allCard, () => Object.freeze([]));
   },
-  get allType(): ReadonlyArray<CardType> {
-    return _allCardType;
+  get allType(): ReadonlyArray<SupportCardType> {
+    return _allSupportCardType;
   },
   get(arg: number | SupportCardIdentify): SupportCard {
     const map = orDefault(_cardByIdMap, []);

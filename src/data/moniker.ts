@@ -46,6 +46,10 @@ export type Moniker = Readonly<MonikerIdentify> & {
 };
 
 export interface MonikerStatic {
+  get isLoaded(): boolean;
+
+  get null(): Moniker;
+
   get all(): ReadonlyArray<Moniker>;
 
   get allTalentLevel(): ReadonlyArray<TalentLevel>;
@@ -112,6 +116,7 @@ export const NULL_MONIKER = immutable<Moniker>({
 const _allTalentLevel = Object.freeze<TalentLevel>([1, 2, 3, 4, 5]);
 const _allAwakeningLevel = Object.freeze<AwakeningLevel>([1, 2, 3, 4, 5]);
 
+let _isLoaded = false;
 let _allMoniker: ReadonlyArray<Moniker>;
 let _monikerByIdMap: Record<number, Moniker>;
 let _monikersByCharacterMap: Record<number, ReadonlyArray<Moniker>>;
@@ -227,15 +232,25 @@ let _monikersByCharacterMap: Record<number, ReadonlyArray<Moniker>>;
       });
     })
   );
+
   _monikerByIdMap = maps.NumberMap(
     _allMoniker.map((x) => [numbers.hashCode(x.characterID, x.monikerID), x])
   );
+
   _monikersByCharacterMap = Object.freeze(
     _.groupBy(_allMoniker, (x) => x.characterID)
   );
+
+  _isLoaded = true;
 })();
 
 export const Moniker: MonikerStatic = {
+  get isLoaded(): boolean {
+    return _isLoaded;
+  },
+  get null(): Moniker {
+    return NULL_MONIKER;
+  },
   get all(): ReadonlyArray<Moniker> {
     return orDefault(_allMoniker, () => Object.freeze([]));
   },

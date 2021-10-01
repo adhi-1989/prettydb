@@ -66,6 +66,10 @@ export type UniqueSkillOwner = MonikerIdentify & {
 };
 
 export interface SkillStatic {
+  get isLoaded(): boolean;
+
+  get null(): Skill;
+
   get all(): ReadonlyArray<Skill>;
 
   get allType(): ReadonlyArray<SkillType>;
@@ -107,6 +111,7 @@ const _checkUnique = _.memoize(
     _.has(skill, "inheritable")
 );
 
+let _isLoaded = false;
 let _allSkill: ReadonlyArray<Skill>;
 let _allUniqueSkill: ReadonlyArray<UniqueSkill>;
 let _skillByIdMap: Record<number, Skill>;
@@ -221,10 +226,14 @@ let _skillByIdMap: Record<number, Skill>;
       ["sortID"]
     )
   );
+
   _allUniqueSkill = Object.freeze(_allSkill.filter(_checkUnique));
+
   _skillByIdMap = Object.freeze(
     maps.NumberMap(_allSkill.map((x) => [x.skillID, x]))
   );
+
+  _isLoaded = true;
 })();
 
 const _allSkillType = Object.freeze<Array<SkillType>>([
@@ -258,6 +267,12 @@ const _allSkillType = Object.freeze<Array<SkillType>>([
 ]);
 
 export const Skill: SkillStatic = {
+  get isLoaded(): boolean {
+    return _isLoaded;
+  },
+  get null(): Skill {
+    return NULL_SKILL;
+  },
   get all(): ReadonlyArray<Skill> {
     return orDefault(_allSkill, () => Object.freeze([]));
   },

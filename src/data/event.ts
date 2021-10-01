@@ -15,6 +15,10 @@ export type Event = Readonly<EventIdentify> & {
 };
 
 export interface EventStatic {
+  get isLoaded(): boolean;
+
+  get null(): Event;
+
   get all(): ReadonlyArray<Event>;
 
   get(eventID: number): Event;
@@ -26,11 +30,12 @@ export interface EventStatic {
   getNameKey(identify: EventIdentify): string;
 }
 
-export const NULL_EVENT = Object.freeze<Event>({
+export const NULL_EVENT = immutable<Event>({
   eventID: -1,
-  skills: Object.freeze<number>([]),
+  skills: [],
 });
 
+let _isLoaded = false;
 let _allEvent: ReadonlyArray<Event>;
 let _eventByIdMap: Record<number, Event>;
 (async () => {
@@ -50,12 +55,21 @@ let _eventByIdMap: Record<number, Event>;
       ["sortID"]
     )
   );
+
   _eventByIdMap = Object.freeze(
     maps.NumberMap(_allEvent.map((x) => [x.eventID, x]))
   );
+
+  _isLoaded = true;
 })();
 
 export const Event: EventStatic = {
+  get isLoaded(): boolean {
+    return _isLoaded;
+  },
+  get null(): Event {
+    return NULL_EVENT;
+  },
   get all(): ReadonlyArray<Event> {
     return orDefault(_allEvent, () => Object.freeze([]));
   },
