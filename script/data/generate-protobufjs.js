@@ -1,16 +1,18 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
+const childProcess = require("child_process");
 const fs = require("fs");
 const path = require("path");
 const util = require("util");
-const childProcess = require("child_process");
 /* eslint-enable @typescript-eslint/no-var-requires */
 
 console.log("Generate protobuf.js for data");
 
+const protoDir = "proto/data";
 const files = fs
-  .readdirSync(__dirname)
+  .readdirSync(protoDir)
   .filter((x) => x.endsWith(".proto"))
-  .map((x) => path.resolve(__dirname, x));
+  .map((x) => path.resolve(protoDir, x));
+
 files.forEach((x) => {
   console.log(`bundle: ${x}`);
 });

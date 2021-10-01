@@ -3,8 +3,8 @@
   "version": "0.8.5",
   "scripts": {
     "dev": "vite",
-    "build:protobuf-js": "node proto/data/generate_protobufjs.js",
-    "build:protobuf-data": "node proto/data/generate_data.js",
+    "build:protobuf:data:js": "node script/data/generate-protobufjs.js",
+    "build:protobuf:data:dat": "node script/data/generate-dat.js",
     "build": "vite-ssg build",
     "serve": "vite preview",
     "prepare": "husky install"
