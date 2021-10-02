@@ -26,7 +26,7 @@
             </div>
             <div
               :class="$style.button"
-              @click="openFileChooser('hall-of-fame/data')"
+              @click="importFile('hall-of-fame/data')"
             >
               <div :class="$style.content">
                 <icon-mdi-database-import :class="$style.icon" />
@@ -53,116 +53,99 @@
   </article>
 </template>
 
-<script lang="ts">
-import { defineComponent, ref } from "vue";
+<script lang="ts" setup>
+import { ref } from "vue";
 import { useHead } from "@vueuse/head";
 import { useToggle } from "@vueuse/core";
 import { useI18n } from "vue-i18n";
 import dayjs from "dayjs";
-import { fadeInUp, fadeOut } from "@/views/_common/logic/dom/animation";
+import { animations } from "@/views/_common/logic/dom/animation";
 import { db } from "@/views/hall-of-fame/logic/db";
 
 type DataType = "hall-of-fame/data";
 
-export default defineComponent({
-  data() {
-    return {
-      fadeInUp: fadeInUp({
-        duration: 250,
-      }),
-      fadeOut: fadeOut({
-        duration: 500,
-      }),
-    };
-  },
-  setup() {
-    const { t } = useI18n();
-
-    useHead({
-      title: t("head.settings.title"),
-      meta: [{ name: "description", content: t("head.settings.description") }],
-    });
-
-    const [isToastDisplay, toggleToast] = useToggle();
-
-    const importRef = ref<Element>();
-    const downloadRef = ref<Element>();
-
-    const dataType = ref<DataType>("hall-of-fame/data");
-
-    const openFileChooser = (type: DataType) => {
-      if (importRef.value !== undefined) {
-        dataType.value = type;
-        const input = importRef.value as HTMLElement;
-        input.click();
-      }
-    };
-
-    const exportData = async (type: DataType) => {
-      if (downloadRef.value !== undefined) {
-        const { exportDB } = await import("dexie-export-import");
-
-        if (type === "hall-of-fame/data") {
-          const baseName = t(
-            "pages.settings.export-import.file-name.hall-of-fame.data"
-          );
-          const timestamp = dayjs().format("YYYY-MM-DD_HH-mm-ss");
-          exportDB(db)
-            .then((blob) => {
-              const link = downloadRef.value as HTMLAnchorElement;
-              link.href = window.URL.createObjectURL(blob);
-              link.download = `${baseName} ${timestamp}.dat`;
-              link.click();
-              //TODO: 成功時のトーストを表示する
-            })
-            .catch(() => {
-              //TODO: エラー時のトーストを表示する
-            });
-        }
-      }
-    };
-    const importData = async () => {
-      if (importRef.value !== undefined) {
-        const input = importRef.value as HTMLInputElement;
-        if (input.files) {
-          const { importInto } = await import("dexie-export-import");
-
-          const file = input.files[0];
-
-          if (dataType.value === "hall-of-fame/data") {
-            importInto(db, file, {
-              acceptVersionDiff: true,
-              clearTablesBeforeImport: true,
-            })
-              .then(() => {
-                toast();
-              })
-              .catch(() => {
-                //TODO: エラー時のトーストを表示する
-              });
-          }
-        }
-      }
-    };
-
-    const toast = () => {
-      toggleToast(true);
-      window.setTimeout(() => {
-        toggleToast(false);
-      }, 3000);
-    };
-
-    return {
-      t,
-      isToastDisplay,
-      importRef,
-      downloadRef,
-      openFileChooser,
-      exportData,
-      importData,
-    };
-  },
+const fadeInUp = animations.fadeInUp({
+  duration: 250,
 });
+const fadeOut = animations.fadeOut({
+  duration: 500,
+});
+
+const { t } = useI18n();
+
+useHead({
+  title: t("head.settings.title"),
+  meta: [{ name: "description", content: t("head.settings.description") }],
+});
+
+const [isToastDisplay, toggleToast] = useToggle();
+
+const importRef = ref<Element>();
+const downloadRef = ref<Element>();
+
+const dataType = ref<DataType>("hall-of-fame/data");
+
+const importFile = (type: DataType) => {
+  if (importRef.value !== undefined) {
+    dataType.value = type;
+    const input = importRef.value as HTMLElement;
+    input.click();
+  }
+};
+
+const exportData = async (type: DataType) => {
+  if (downloadRef.value !== undefined) {
+    const { exportDB } = await import("dexie-export-import");
+
+    if (type === "hall-of-fame/data") {
+      const baseName = t(
+        "pages.settings.export-import.file-name.hall-of-fame.data"
+      );
+      const timestamp = dayjs().format("YYYY-MM-DD_HH-mm-ss");
+      exportDB(db)
+        .then((blob) => {
+          const link = downloadRef.value as HTMLAnchorElement;
+          link.href = window.URL.createObjectURL(blob);
+          link.download = `${baseName} ${timestamp}.dat`;
+          link.click();
+          //TODO: 成功時のトーストを表示する
+        })
+        .catch(() => {
+          //TODO: エラー時のトーストを表示する
+        });
+    }
+  }
+};
+const importData = async () => {
+  if (importRef.value !== undefined) {
+    const input = importRef.value as HTMLInputElement;
+    if (input.files) {
+      const { importInto } = await import("dexie-export-import");
+
+      const file = input.files[0];
+
+      if (dataType.value === "hall-of-fame/data") {
+        importInto(db, file, {
+          acceptVersionDiff: true,
+          clearTablesBeforeImport: true,
+        })
+          .then(() => {
+            toast();
+          })
+          .catch(() => {
+            //TODO: エラー時のトーストを表示する
+          });
+      }
+    }
+  }
+};
+
+const toast = () => {
+  toggleToast(true);
+  window.setTimeout(() => {
+    toggleToast(false);
+  }, 3000);
+};
 </script>
 
 <style lang="scss" module>
