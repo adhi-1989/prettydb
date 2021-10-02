@@ -10,28 +10,16 @@
   </article>
 </template>
 
-<script lang="ts">
-import { defineComponent } from "vue";
+<script lang="ts" setup>
 import { useHead } from "@vueuse/head";
 import { useI18n } from "vue-i18n";
 import notfound from "#/images/app/notfound.svg";
 
-export default defineComponent({
-  data() {
-    return {
-      notfound,
-    };
-  },
-  setup() {
-    const { t } = useI18n();
+const { t } = useI18n();
 
-    useHead({
-      title: t("head.404.title"),
-      meta: [{ name: "description", content: t("head.404.description") }],
-    });
-
-    return {};
-  },
+useHead({
+  title: t("head.404.title"),
+  meta: [{ name: "description", content: t("head.404.description") }],
 });
 </script>
 

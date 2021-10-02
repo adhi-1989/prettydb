@@ -202,40 +202,26 @@
   </client-only>
 </template>
 
-<script lang="ts">
-import { defineAsyncComponent, defineComponent } from "vue";
+<script lang="ts" setup>
+import { defineAsyncComponent } from "vue";
 import { useToggle } from "@vueuse/core";
-import { fadeIn, fadeOut } from "@/views/_common/logic/dom/animation";
+import { animations } from "@/views/_common/logic/dom/animation";
 import logo from "#/images/app/logo.svg";
 
-export default defineComponent({
-  components: {
-    HorseshoeParticles: defineAsyncComponent(
-      () => import("@/views/_common/components/screen/HorseshoeParticles.vue")
-    ),
-  },
-  data() {
-    return {
-      fadeIn: fadeIn({
-        duration: 125,
-        easing: "ease",
-      }),
-      fadeOut: fadeOut({
-        duration: 125,
-        easing: "ease",
-      }),
-      logo,
-    };
-  },
-  setup() {
-    const [isLocalized, toggleLocalized] = useToggle();
+const HorseshoeParticles = defineAsyncComponent(
+  () => import("@/views/_common/components/screen/HorseshoeParticles.vue")
+);
 
-    return {
-      isLocalized,
-      toggleLocalized,
-    };
-  },
+const fadeIn = animations.fadeIn({
+  duration: 125,
+  easing: "ease",
 });
+const fadeOut = animations.fadeOut({
+  duration: 125,
+  easing: "ease",
+});
+
+const [isLocalized, toggleLocalized] = useToggle();
 </script>
 
 <style lang="scss" module>

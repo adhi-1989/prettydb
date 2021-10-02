@@ -22,33 +22,21 @@
   </client-only>
 </template>
 
-<script lang="ts">
-import { defineAsyncComponent, defineComponent } from "vue";
+<script lang="ts" setup>
+import { defineAsyncComponent } from "vue";
 import { useHead } from "@vueuse/head";
 import { useI18n } from "vue-i18n";
 import { changelog } from "@/views/root/logic/changelog";
 
-export default defineComponent({
-  components: {
-    HorseshoeParticles: defineAsyncComponent(
-      () => import("@/views/_common/components/screen/HorseshoeParticles.vue")
-    ),
-  },
-  data() {
-    return {
-      changelog,
-    };
-  },
-  setup() {
-    const { t } = useI18n();
+const HorseshoeParticles = defineAsyncComponent(
+  () => import("@/views/_common/components/screen/HorseshoeParticles.vue")
+);
 
-    useHead({
-      title: t("head.changelog.title"),
-      meta: [{ name: "description", content: t("head.changelog.description") }],
-    });
+const { t } = useI18n();
 
-    return {};
-  },
+useHead({
+  title: t("head.changelog.title"),
+  meta: [{ name: "description", content: t("head.changelog.description") }],
 });
 </script>
 
