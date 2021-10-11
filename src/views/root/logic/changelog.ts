@@ -7,6 +7,14 @@ export type Changelog = {
 //TODO: 余裕があれば国際化する
 export const changelog: ReadonlyArray<Changelog> = Object.freeze([
   {
+    version: "0.8.6",
+    releaseDate: "2021-10-11",
+    logs: [
+      "ウマ娘「カワカミプリンセス: プリンセス・オブ・ピンク」のデータを追加",
+      "殿堂入りウマ娘の編集画面にてキャラクターを変更した際に、適性の値を自動で初期値に設定するように変更",
+    ],
+  },
+  {
     version: "0.8.5",
     releaseDate: "2021-09-29",
     logs: [

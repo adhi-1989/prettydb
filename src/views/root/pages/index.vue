@@ -2,7 +2,7 @@
   <article :class="$style.home">
     <header :class="$style.header">
       <img :class="$style.logo" :src="logo" alt="" />
-      <span :class="$style.version">v0.8.5</span>
+      <span :class="$style.version">v0.8.6</span>
     </header>
 
     <main :class="$style.main">
@@ -154,7 +154,7 @@
             @enter="fadeIn"
             @leave="fadeOut"
           >
-            <p :class="$style.paragraph" v-if="!isLocalized">
+            <p v-if="!isLocalized" :class="$style.paragraph">
               The MIT License<br />
               Copyright 2021 adhi-1989<br />
               <br />
@@ -178,7 +178,7 @@
               OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
               DEALINGS IN THE SOFTWARE.
             </p>
-            <p :class="$style.paragraph" v-else>
+            <p v-else :class="$style.paragraph">
               The MIT License<br />
               Copyright (c) 2021 adhi-1989<br />
               <br />
