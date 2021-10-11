@@ -4,8 +4,9 @@ import "vite-ssg";
 import vue from "@vitejs/plugin-vue";
 import i18n from "@intlify/vite-plugin-vue-i18n";
 import windiCss from "vite-plugin-windicss";
-import icons, { ViteIconsResolver } from "vite-plugin-icons";
-import components from "vite-plugin-components";
+import icons from "unplugin-icons/vite";
+import IconsResolver from "unplugin-icons/resolver";
+import components from "unplugin-vue-components/vite";
 import pages from "vite-plugin-pages";
 import layouts from "vite-plugin-vue-layouts";
 import { VitePWA } from "vite-plugin-pwa";
@@ -45,11 +46,8 @@ export default defineConfig(() => {
       windiCss(),
       icons(),
       components({
-        globalComponentsDeclaration: path.resolve(
-          __dirname,
-          "src/components.d.ts"
-        ),
-        customComponentResolvers: ViteIconsResolver({
+        dts: path.resolve(__dirname, "src/components.d.ts"),
+        resolvers: IconsResolver({
           componentPrefix: "icon",
         }),
       }),
