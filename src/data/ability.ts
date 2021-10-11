@@ -3,15 +3,15 @@ import _ from "@/util/lodash";
 export type AbilityGrade = "g" | "f" | "e" | "d" | "c" | "b" | "a" | "s";
 
 export type AbilityType =
-  // バ場適正
+  // バ場適性
   | "racetrack"
   // 距離適性
   | "distance"
-  // 脚質適正
+  // 脚質適性
   | "running-style";
 
 export type AbilityIdentify =
-  // バ場適正
+  // バ場適性
   | "turf" // 芝
   | "dirt" // ダート
   // 距離適性
@@ -19,7 +19,7 @@ export type AbilityIdentify =
   | "mile" // マイル
   | "middle" // 中距離
   | "long" // 長距離
-  // 脚質適正
+  // 脚質適性
   // ググっても適切な単語が見つからなかったのでローマ字表記
   | "nige" // 逃げ
   | "senko" // 先行

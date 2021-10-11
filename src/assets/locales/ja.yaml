@@ -94,7 +94,7 @@ pages:
             factor-type: 因子タイプ
           label:
             status: ステータス
-            ability: 適正
+            ability: 適性
             unique-skill: 固有スキル
             race: レース場
             skill: スキル
@@ -117,9 +117,9 @@ game-system:
     tenacity: 根性
     intelligence: 賢さ
   ability:
-    generic-term: 適正
+    generic-term: 適性
     racetrack:
-      generic-term: バ場適正
+      generic-term: バ場適性
       turf: 芝
       dirt: ダート
     distance:
@@ -129,7 +129,7 @@ game-system:
       middle: 中距離
       long: 長距離
     running-style:
-      generic-term: 脚質適正
+      generic-term: 脚質適性
       nige: 逃げ
       senko: 先行
       sashi: 差し
@@ -1604,34 +1604,34 @@ factor:
     description: 賢さがアップする因子です
   64:
     name: 芝
-    description: 芝適正がアップする因子です
+    description: 芝適性がアップする因子です
   65:
     name: ダート
-    description: ダート適正がアップする因子です
+    description: ダート適性がアップする因子です
   66:
     name: 短距離
-    description: 短距離適正がアップする因子です
+    description: 短距離適性がアップする因子です
   67:
     name: マイル
-    description: マイル適正がアップする因子です
+    description: マイル適性がアップする因子です
   68:
     name: 中距離
-    description: 中距離適正がアップする因子です
+    description: 中距離適性がアップする因子です
   69:
     name: 長距離
-    description: 長距離適正がアップする因子です
+    description: 長距離適性がアップする因子です
   70:
     name: 逃げ
-    description: 逃げ適正がアップする因子です
+    description: 逃げ適性がアップする因子です
   71:
     name: 先行
-    description: 先行適正がアップする因子です
+    description: 先行適性がアップする因子です
   72:
     name: 差し
-    description: 差し適正がアップする因子です
+    description: 差し適性がアップする因子です
   73:
     name: 追込
-    description: 追込適正がアップする因子です
+    description: 追込適性がアップする因子です
   128:
     name: シューティングスター
     description: 「シューティングスター」のスキルヒントを得られる因子です
