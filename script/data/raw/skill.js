@@ -805,6 +805,18 @@ module.exports = function (Type, Levels) {
         matchingTalentLevels: Levels.FROM_3_TO_5,
         inheritable: true,
       },
+      /* 姫たるもの、勝利をこの手に */ {
+        skillID: 67,
+        sortID: 67,
+        point: 200,
+        type: Type.BUFF_SPEED,
+        advanced: false,
+        unique: true,
+        characterID: 38,
+        monikerID: 0,
+        matchingTalentLevels: Levels.FROM_3_TO_5,
+        inheritable: true,
+      },
       /* アガッてきた！ */ {
         skillID: 1024,
         sortID: 1024,
@@ -2782,7 +2794,7 @@ module.exports = function (Type, Levels) {
       /* 道悪◎ */ {
         skillID: 1247,
         sortID: 1247,
-        point: -1,
+        point: 110,
         type: Type.SUPPORT_POWER,
         conflictID: 97,
         advanced: false,

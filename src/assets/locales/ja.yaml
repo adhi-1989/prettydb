@@ -326,6 +326,9 @@ character:
         name: フィーユ・エクレール
   38:
     name: カワカミプリンセス
+    moniker:
+      0:
+        name: プリンセス・オブ・ピンク
   39:
     name: ゴールドシチー
     moniker:
@@ -445,7 +448,7 @@ skill:
   3:
     name: 絶対は、ボクだ
     description: '最終直線で前の方で追いすがっていると\n不屈の闘志で速度が上がる'
-    description-for-inheritor: ''
+    description-for-inheritor: '最終直線で前の方で追いすがっていると\n速度がわずかに上がる'
   4:
     name: '紅焔ギア/LP1211-M'
     description: '最終コーナー以降で前の方にいると\nギアを変えて加速力が上がる'
@@ -500,7 +503,7 @@ skill:
   18:
     name: プランチャ☆ガナドール
     description: '最終直線で余力を持って前にいると\nより優位を保ちやすくなる'
-    description-for-inheritor: ''
+    description-for-inheritor: '最終直線で余力を持って前にいると\nちょっと優位を保ちやすくなる'
   19:
     name: ヴィットーリアに捧ぐ舞踏
     description: '最終コーナーで前の方で競り合うと\n王たる輝きで速度が上がる'
@@ -512,7 +515,7 @@ skill:
   21:
     name: 汝、皇帝の神威を見よ
     description: 'レース終盤に3回追い抜くと\n最終直線で速度がすごく上がる'
-    description-for-inheritor: ''
+    description-for-inheritor: 'レース終盤に3回追い抜くと\n最終直線で速度が少し上がる'
   22:
     name: エンプレス・プライド
     description: '最終コーナーで後ろから追い抜くと\n女帝たる走りで速度が少し上がる'
@@ -527,14 +530,14 @@ skill:
   25:
     name: ∴win Q.E.D.
     description: '最終コーナーで前の方で追い抜くと\n勝利の方程式を導き、速度を上げる'
-    description-for-inheritor: ''
+    description-for-inheritor: '最終コーナーで前の方で追い抜くと\n速度をわずかに上げる'
   26:
     name: 勝利のキッス☆
     description: '最終コーナーで前の方で競り合うと\n直線でわずかに抜け出しやすくなる'
   27:
     name: ひらめき☆ランディング
     description: '最終コーナーで前の方で競り合うと\n直線で抜け出しやすくなる'
-    description-for-inheritor: ''
+    description-for-inheritor: '最終コーナーで前の方で競り合うと\n直線でちょっと抜け出しやすくなる'
   28:
     name: フラワリー☆マニューバ
     description: '最終コーナーで前の方で抜くと速度が\n後ろの方で抜くと加速力が上がる'
@@ -578,7 +581,7 @@ skill:
   39:
     name: 優等生☓バクシン＝大勝利ッ
     description: 'レース後半に前の方で競り合うと\nバクシン力（？）を発揮、速度が上がる'
-    description-for-inheritor: ''
+    description-for-inheritor: 'レース後半に前の方で競り合うと\n速度がわずかに上がる'
   40:
     name: クリアハート
     description: 'レース中盤で好位置にいる時に\n持久力が少し回復する'
@@ -682,6 +685,10 @@ skill:
     name: ぐるぐるマミートリック♡
     description: '最終直線を好位置で走行中\n前のウマ娘との距離が近いと\n抜け出しやすくなる'
     description-for-inheritor: ''
+  67:
+    name: 姫たるもの、勝利をこの手に
+    description: '最終直線を走行中に中団で競り合うと\n可憐にぶっ飛ばして速度を上げる'
+    description-for-inheritor: '最終直線を走行中に中団で競り合うと\n速度をわずかに上げる'
   1024:
     name: アガッてきた！
     description: 'レース中盤に追い抜くと\n速度が上がる'
@@ -702,7 +709,7 @@ skill:
     description: '自分と同じ作戦のウマ娘がいないと\n能力を少し発揮しやすい'
   1030:
     name: おひとり様◎
-    description: ''
+    description: '自分と同じ作戦のウマ娘がいないと\n能力を発揮しやすい'
   1031:
     name: お見通し
     description: '左右に移動すると状況を把握して\n視野がわずかに広くなる＜作戦・追込＞'
@@ -816,7 +823,7 @@ skill:
     description: 'コーナーで速度がわずかに上がる\n＜マイル＞'
   1068:
     name: マイルコーナー◎
-    description: ''
+    description: 'コーナーで速度が少し上がる\n＜マイル＞'
   1069:
     name: マイルの支配者
     description: 'レース序盤に先頭だと\n差を広げやすくなる＜マイル＞'
@@ -876,7 +883,7 @@ skill:
     description: 雨の日のレースが少し得意になる
   1088:
     name: 雨の日◎
-    description: ''
+    description: 雨の日のレースが得意になる
   1089:
     name: 栄養補給
     description: 'レース中盤に持久力がわずかに回復する\n＜作戦・先行＞'
@@ -912,7 +919,7 @@ skill:
     description: 枠番が6～8のレースが少し得意になる
   1100:
     name: 外枠得意◎
-    description: ''
+    description: 枠番が6～8のレースが得意になる
   1101:
     name: 危険回避
     description: 'レース序盤に少し囲まれにくくなる\n＜作戦・逃げ＞'
@@ -1101,7 +1108,7 @@ skill:
     description: 晴れの日のレース場が少し得意になる
   1163:
     name: 晴れの日◎
-    description: ''
+    description: 晴れの日のレース場が得意になる
   1164:
     name: 積極策
     description: 'レース序盤に先頭だとわずかに\n差を広げやすくなる＜マイル＞'
@@ -1200,7 +1207,7 @@ skill:
     description: 直線で速度がわずかに上がる＜短距離＞
   1196:
     name: 短距離直線◎
-    description: ''
+    description: 直線で速度が少し上がる＜短距離＞
   1197:
     name: 地固め
     description: 'レース序盤にスキルを多く発動すると\n加速力がわずかに上がる'
@@ -1215,7 +1222,7 @@ skill:
     description: 直線で速度がわずかに上がる＜中距離＞
   1201:
     name: 中距離直線◎
-    description: ''
+    description: 直線で速度が少し上がる＜中距離＞
   1202:
     name: 中山レース場○
     description: 中山レース場が少し得意になる
@@ -1230,7 +1237,7 @@ skill:
     description: 'コーナーで速度がわずかに上がる\n＜長距離＞'
   1206:
     name: 長距離コーナー◎
-    description: ''
+    description: 'コーナーで速度が少し上がる\n＜長距離＞'
   1207:
     name: 長距離直線○
     description: 直線で速度がわずかに上がる＜長距離＞
@@ -1290,7 +1297,7 @@ skill:
     description: '1番人気のウマ娘と作戦が同じだと\n能力を発揮しやすい'
   1226:
     name: 徹底マーク◎
-    description: ''
+    description: '1番人気のウマ娘と作戦が同じだと\n能力を発揮しやすい'
   1227:
     name: 展開窺い
     description: 'レース序盤に後ろの方だと\nわずかに疲れにくくなる＜マイル＞'
@@ -1353,7 +1360,7 @@ skill:
     description: '「稍重」「重」「不良」のバ場状態が\n少し得意になる'
   1247:
     name: 道悪◎
-    description: ''
+    description: '「稍重」「重」「不良」のバ場状態が\n得意になる'
   1248:
     name: 独占力
     description: 'レース終盤に後ろの方にいると\n前の速度を下げる＜中距離＞'
@@ -1374,7 +1381,7 @@ skill:
     description: 枠番が1～3のレースが少し得意になる
   1254:
     name: 内枠得意◎
-    description: ''
+    description: 枠番が1～3のレースが得意になる
   1255:
     name: 二の矢
     description: 'レース中盤に後ろにいると\n加速力がわずかに上がる＜作戦・逃げ＞'
@@ -1413,7 +1420,7 @@ skill:
     description: '4番人気以下のレースで\n能力を少し発揮しやすい'
   1267:
     name: 伏兵◎
-    description: ''
+    description: '4番人気以下のレースで\n能力を発揮しやすい'
   1268:
     name: 別腹タンク
     description: '力を出し切った時に\n走る気力がわずかに復活する＜長距離＞'
@@ -1778,6 +1785,9 @@ factor:
   194:
     name: ぐるぐるマミートリック♡
     description: 「ぐるぐるマミートリック♡」のスキルヒントを得られる因子です
+  195:
+    name: 姫たるもの、勝利をこの手に
+    description: 「姫たるもの、勝利をこの手に」のスキルヒントを得られる因子です
   1024:
     name: NHKマイルC
     description: スピードとパワーがアップする因子です
@@ -2965,6 +2975,12 @@ event:
     name: Search or Mommy
   152:
     name: Accident or Ghost
+  153:
+    name: 決意はドレスにこめて
+  154:
+    name: 受け止めます、姫のパワーで！
+  155:
+    name: いつか一流のプリンセスに
   4096:
     name: 曲がり角には、気をつけます！
   4097:

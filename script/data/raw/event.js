@@ -1,4 +1,3 @@
-/* eslint-disable no-irregular-whitespace */
 module.exports = function () {
   return {
     data: [
@@ -612,6 +611,18 @@ module.exports = function () {
       },
       /* Accident or Ghost */ {
         eventID: 152,
+        skills: [],
+      },
+      /* 決意はドレスにこめて */ {
+        eventID: 153,
+        skills: [],
+      },
+      /* 受け止めます、姫のパワーで！ */ {
+        eventID: 154,
+        skills: [],
+      },
+      /* いつか一流のプリンセスに */ {
+        eventID: 155,
         skills: [],
       },
       /* 曲がり角には、気をつけます！ */ {
@@ -2185,4 +2196,3 @@ module.exports = function () {
     ],
   };
 };
-/* eslint-enable no-irregular-whitespace */

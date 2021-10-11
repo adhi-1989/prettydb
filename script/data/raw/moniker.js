@@ -1,7 +1,7 @@
 module.exports = function (Ability) {
   return {
     data: [
-      /* スペシャルウィーク:スペシャルドリーマー */ {
+      /* スペシャルウィーク: スペシャルドリーマー */ {
         characterID: 0,
         monikerID: 0,
         initialTalentLevel: 3,
@@ -56,7 +56,7 @@ module.exports = function (Ability) {
         },
         events: [0, 1, 2],
       },
-      /* スペシャルウィーク:ほっぴん♪ビタミンハート */ {
+      /* スペシャルウィーク: ほっぴん♪ビタミンハート */ {
         characterID: 0,
         monikerID: 1,
         initialTalentLevel: 3,
@@ -111,7 +111,7 @@ module.exports = function (Ability) {
         },
         events: [126, 127, 128],
       },
-      /* サイレンススズカ:サイレントイノセンス */ {
+      /* サイレンススズカ: サイレントイノセンス */ {
         characterID: 1,
         monikerID: 0,
         initialTalentLevel: 3,
@@ -166,7 +166,7 @@ module.exports = function (Ability) {
         },
         events: [3, 4, 5],
       },
-      /* トウカイテイオー:トップ・オブ・ジョイフル */ {
+      /* トウカイテイオー: トップ・オブ・ジョイフル */ {
         characterID: 2,
         monikerID: 0,
         initialTalentLevel: 3,
@@ -221,7 +221,7 @@ module.exports = function (Ability) {
         },
         events: [6, 7, 8],
       },
-      /* トウカイテイオー:ビヨンド・ザ・ホライズン */ {
+      /* トウカイテイオー: ビヨンド・ザ・ホライズン */ {
         characterID: 2,
         monikerID: 1,
         initialTalentLevel: 3,
@@ -276,7 +276,7 @@ module.exports = function (Ability) {
         },
         events: [9, 10, 11],
       },
-      /* マルゼンスキー:フォーミュラオブルージュ */ {
+      /* マルゼンスキー: フォーミュラオブルージュ */ {
         characterID: 3,
         monikerID: 0,
         initialTalentLevel: 3,
@@ -331,7 +331,7 @@ module.exports = function (Ability) {
         },
         events: [12, 13, 14],
       },
-      /* マルゼンスキー:ぶっとび☆さまーナイト */ {
+      /* マルゼンスキー: ぶっとび☆さまーナイト */ {
         characterID: 3,
         monikerID: 1,
         initialTalentLevel: 3,
@@ -386,7 +386,7 @@ module.exports = function (Ability) {
         },
         events: [129, 130, 131],
       },
-      /* フジキセキ:シューティンスタァ・ルヴュ */ {
+      /* フジキセキ: シューティンスタァ・ルヴュ */ {
         characterID: 4,
         monikerID: 0,
         initialTalentLevel: 3,
@@ -441,7 +441,7 @@ module.exports = function (Ability) {
         },
         events: [120, 121, 122],
       },
-      /* オグリキャップ:スターライトビート */ {
+      /* オグリキャップ: スターライトビート */ {
         characterID: 5,
         monikerID: 0,
         initialTalentLevel: 3,
@@ -496,7 +496,7 @@ module.exports = function (Ability) {
         },
         events: [15, 16, 17],
       },
-      /* ゴールドシップ:レッドストライフ */ {
+      /* ゴールドシップ: レッドストライフ */ {
         characterID: 6,
         monikerID: 0,
         initialTalentLevel: 2,
@@ -558,7 +558,7 @@ module.exports = function (Ability) {
         },
         events: [18, 19, 20],
       },
-      /* ウオッカ:ワイルドトップギア */ {
+      /* ウオッカ: ワイルドトップギア */ {
         characterID: 7,
         monikerID: 0,
         initialTalentLevel: 2,
@@ -620,7 +620,7 @@ module.exports = function (Ability) {
         },
         events: [21, 22, 23],
       },
-      /* ダイワスカーレット:トップ・オブ・ブルー */ {
+      /* ダイワスカーレット: トップ・オブ・ブルー */ {
         characterID: 8,
         monikerID: 0,
         initialTalentLevel: 2,
@@ -682,7 +682,7 @@ module.exports = function (Ability) {
         },
         events: [24, 25, 26],
       },
-      /* タイキシャトル:ワイルド・フロンティア */ {
+      /* タイキシャトル: ワイルド・フロンティア */ {
         characterID: 9,
         monikerID: 0,
         initialTalentLevel: 3,
@@ -737,7 +737,7 @@ module.exports = function (Ability) {
         },
         events: [27, 28, 29],
       },
-      /* グラスワンダー:岩穿つ青 */ {
+      /* グラスワンダー: 岩穿つ青 */ {
         characterID: 10,
         monikerID: 0,
         initialTalentLevel: 2,
@@ -799,7 +799,7 @@ module.exports = function (Ability) {
         },
         events: [30, 31, 32],
       },
-      /* グラスワンダー:セイントジェード・ヒーラー */ {
+      /* グラスワンダー: セイントジェード・ヒーラー */ {
         characterID: 10,
         monikerID: 1,
         initialTalentLevel: 3,
@@ -854,7 +854,7 @@ module.exports = function (Ability) {
         },
         events: [117, 118, 119],
       },
-      /* ヒシアマゾン:アマゾネス・ラピス */ {
+      /* ヒシアマゾン: アマゾネス・ラピス */ {
         characterID: 11,
         monikerID: 0,
         initialTalentLevel: 3,
@@ -909,7 +909,7 @@ module.exports = function (Ability) {
         },
         events: [111, 112, 113],
       },
-      /* メジロマックイーン:エレガンス・ライン */ {
+      /* メジロマックイーン: エレガンス・ライン */ {
         characterID: 12,
         monikerID: 0,
         initialTalentLevel: 3,
@@ -964,7 +964,7 @@ module.exports = function (Ability) {
         },
         events: [33, 34, 35],
       },
-      /* メジロマックイーン:エンド・オブ・スカイ */ {
+      /* メジロマックイーン: エンド・オブ・スカイ */ {
         characterID: 12,
         monikerID: 1,
         initialTalentLevel: 3,
@@ -1019,7 +1019,7 @@ module.exports = function (Ability) {
         },
         events: [36, 37, 38],
       },
-      /* エルコンドルパサー:エル☆Número 1 */ {
+      /* エルコンドルパサー: エル☆Número 1 */ {
         characterID: 13,
         monikerID: 0,
         initialTalentLevel: 2,
@@ -1081,7 +1081,7 @@ module.exports = function (Ability) {
         },
         events: [39, 40, 41],
       },
-      /* エルコンドルパサー:クルルカン・モンク */ {
+      /* エルコンドルパサー: クルルカン・モンク */ {
         characterID: 13,
         monikerID: 1,
         initialTalentLevel: 3,
@@ -1136,7 +1136,7 @@ module.exports = function (Ability) {
         },
         events: [114, 115, 116],
       },
-      /* テイエムオペラオー:オー・ソレ・スーオ！ */ {
+      /* テイエムオペラオー: オー・ソレ・スーオ！ */ {
         characterID: 14,
         monikerID: 0,
         initialTalentLevel: 3,
@@ -1191,7 +1191,7 @@ module.exports = function (Ability) {
         },
         events: [42, 43, 44],
       },
-      /* ナリタブライアン:Maverick */ {
+      /* ナリタブライアン: Maverick */ {
         characterID: 15,
         monikerID: 0,
         initialTalentLevel: 3,
@@ -1246,7 +1246,7 @@ module.exports = function (Ability) {
         },
         events: [45, 46, 47],
       },
-      /* シンボリルドルフ:ロード・オブ・エンペラー */ {
+      /* シンボリルドルフ: ロード・オブ・エンペラー */ {
         characterID: 16,
         monikerID: 0,
         initialTalentLevel: 3,
@@ -1301,7 +1301,7 @@ module.exports = function (Ability) {
         },
         events: [48, 49, 50],
       },
-      /* エアグルーヴ:エンプレスロード */ {
+      /* エアグルーヴ: エンプレスロード */ {
         characterID: 17,
         monikerID: 0,
         initialTalentLevel: 2,
@@ -1363,7 +1363,7 @@ module.exports = function (Ability) {
         },
         events: [51, 52, 53],
       },
-      /* エアグルーヴ:クエルクス・キウィーリス */ {
+      /* エアグルーヴ: クエルクス・キウィーリス */ {
         characterID: 17,
         monikerID: 1,
         initialTalentLevel: 3,
@@ -1418,7 +1418,7 @@ module.exports = function (Ability) {
         },
         events: [54, 55, 56],
       },
-      /* アグネスデジタル:超特急！フルカラー特殊PP */ {
+      /* アグネスデジタル: 超特急！フルカラー特殊PP */ {
         characterID: 18,
         monikerID: 0,
         initialTalentLevel: 3,
@@ -1473,7 +1473,7 @@ module.exports = function (Ability) {
         },
         events: [144, 145, 146],
       },
-      /* セイウンスカイ:あおぐもサミング */ {
+      /* セイウンスカイ: あおぐもサミング */ {
         characterID: 20,
         monikerID: 0,
         initialTalentLevel: 3,
@@ -1528,7 +1528,7 @@ module.exports = function (Ability) {
         },
         events: [57, 58, 59],
       },
-      /* ビワハヤヒデ:pf.Victory formula... */ {
+      /* ビワハヤヒデ: pf.Victory formula... */ {
         characterID: 22,
         monikerID: 0,
         initialTalentLevel: 3,
@@ -1583,7 +1583,7 @@ module.exports = function (Ability) {
         },
         events: [60, 61, 62],
       },
-      /* マヤノトップガン:すくらんぶる☆ゾーン */ {
+      /* マヤノトップガン: すくらんぶる☆ゾーン */ {
         characterID: 23,
         monikerID: 0,
         initialTalentLevel: 2,
@@ -1645,7 +1645,7 @@ module.exports = function (Ability) {
         },
         events: [63, 64, 65],
       },
-      /* マヤノトップガン:サンライト・ブーケ */ {
+      /* マヤノトップガン: サンライト・ブーケ */ {
         characterID: 23,
         monikerID: 1,
         initialTalentLevel: 3,
@@ -1700,7 +1700,7 @@ module.exports = function (Ability) {
         },
         events: [66, 67, 68],
       },
-      /* ミホノブルボン:MB-19890425 */ {
+      /* ミホノブルボン: MB-19890425 */ {
         characterID: 25,
         monikerID: 0,
         initialTalentLevel: 3,
@@ -1755,7 +1755,7 @@ module.exports = function (Ability) {
         },
         events: [69, 70, 71],
       },
-      /* メジロライアン:ストレート・ライン */ {
+      /* メジロライアン: ストレート・ライン */ {
         characterID: 26,
         monikerID: 0,
         initialTalentLevel: 1,
@@ -1824,7 +1824,7 @@ module.exports = function (Ability) {
         },
         events: [72, 73, 74],
       },
-      /* ヒシアケボノ:ボーノ☆アラモーダ */ {
+      /* ヒシアケボノ: ボーノ☆アラモーダ */ {
         characterID: 27,
         monikerID: 0,
         initialTalentLevel: 3,
@@ -1879,7 +1879,7 @@ module.exports = function (Ability) {
         },
         events: [141, 142, 143],
       },
-      /* ライスシャワー:ローゼスドリーム */ {
+      /* ライスシャワー: ローゼスドリーム */ {
         characterID: 29,
         monikerID: 0,
         initialTalentLevel: 3,
@@ -1934,7 +1934,7 @@ module.exports = function (Ability) {
         },
         events: [75, 76, 77],
       },
-      /* ライスシャワー:Make up Vampire! */ {
+      /* ライスシャワー: Make up Vampire! */ {
         characterID: 29,
         monikerID: 1,
         initialTalentLevel: 3,
@@ -1989,7 +1989,7 @@ module.exports = function (Ability) {
         },
         events: [147, 148, 149],
       },
-      /* アグネスタキオン:tach-nology */ {
+      /* アグネスタキオン: tach-nology */ {
         characterID: 31,
         monikerID: 0,
         initialTalentLevel: 1,
@@ -2058,7 +2058,7 @@ module.exports = function (Ability) {
         },
         events: [78, 79, 80],
       },
-      /* ウイニングチケット:Go To Winning! */ {
+      /* ウイニングチケット: Go To Winning! */ {
         characterID: 34,
         monikerID: 0,
         initialTalentLevel: 1,
@@ -2127,7 +2127,7 @@ module.exports = function (Ability) {
         },
         events: [81, 82, 83],
       },
-      /* エイシンフラッシュ:Meisterschaft */ {
+      /* エイシンフラッシュ: Meisterschaft */ {
         characterID: 36,
         monikerID: 0,
         initialTalentLevel: 3,
@@ -2182,7 +2182,7 @@ module.exports = function (Ability) {
         },
         events: [135, 136, 137],
       },
-      /* カレンチャン:フィーユ・エクレール */ {
+      /* カレンチャン: フィーユ・エクレール */ {
         characterID: 37,
         monikerID: 0,
         initialTalentLevel: 3,
@@ -2237,7 +2237,62 @@ module.exports = function (Ability) {
         },
         events: [84, 85, 86],
       },
-      /* ゴールドシチー:オーセンティック/1928 */ {
+      /* カワカミプリンセス: プリンセス・オブ・ピンク */ {
+        characterID: 38,
+        monikerID: 0,
+        initialTalentLevel: 3,
+        initialStatus: {
+          3: {
+            speed: 100,
+            stamina: 71,
+            power: 107,
+            tenacity: 82,
+            intelligence: 90,
+          },
+          4: {
+            speed: 111,
+            stamina: 79,
+            power: 119,
+            tenacity: 91,
+            intelligence: 100,
+          },
+          5: {
+            speed: 122,
+            stamina: 87,
+            power: 131,
+            tenacity: 101,
+            intelligence: 109,
+          },
+        },
+        initialAbility: {
+          turf: Ability.A,
+          dirt: Ability.G,
+          short: Ability.D,
+          mile: Ability.B,
+          middle: Ability.A,
+          long: Ability.F,
+          nige: Ability.G,
+          senko: Ability.C,
+          sashi: Ability.A,
+          oikomi: Ability.D,
+        },
+        growthRate: {
+          speed: 0,
+          stamina: 0,
+          power: 10,
+          tenacity: 20,
+          intelligence: 0,
+        },
+        skills: {
+          awakeningLevel2: 1134,
+          awakeningLevel3: 1059,
+          awakeningLevel4: 1121,
+          awakeningLevel5: 1152,
+          defaults: [1160, 1098, 1265],
+        },
+        events: [153, 154, 155],
+      },
+      /* ゴールドシチー: オーセンティック/1928 */ {
         characterID: 39,
         monikerID: 0,
         initialTalentLevel: 3,
@@ -2292,7 +2347,7 @@ module.exports = function (Ability) {
         },
         events: [123, 124, 125],
       },
-      /* サクラバクシンオー:サクラ、すすめ！ */ {
+      /* サクラバクシンオー: サクラ、すすめ！ */ {
         characterID: 40,
         monikerID: 0,
         initialTalentLevel: 1,
@@ -2361,7 +2416,7 @@ module.exports = function (Ability) {
         },
         events: [87, 88, 89],
       },
-      /* スーパークリーク:マーマリングストリーム */ {
+      /* スーパークリーク: マーマリングストリーム */ {
         characterID: 44,
         monikerID: 0,
         initialTalentLevel: 2,
@@ -2423,7 +2478,7 @@ module.exports = function (Ability) {
         },
         events: [90, 91, 92],
       },
-      /* スーパークリーク:シフォンリボンマミー */ {
+      /* スーパークリーク: シフォンリボンマミー */ {
         characterID: 44,
         monikerID: 1,
         initialTalentLevel: 3,
@@ -2478,7 +2533,7 @@ module.exports = function (Ability) {
         },
         events: [150, 151, 152],
       },
-      /* スマートファルコン:あぶそりゅーと☆LOVE */ {
+      /* スマートファルコン: あぶそりゅーと☆LOVE */ {
         characterID: 45,
         monikerID: 0,
         initialTalentLevel: 3,
@@ -2533,7 +2588,7 @@ module.exports = function (Ability) {
         },
         events: [93, 94, 95],
       },
-      /* ナリタタイシン:Nevertheless */ {
+      /* ナリタタイシン: Nevertheless */ {
         characterID: 49,
         monikerID: 0,
         initialTalentLevel: 3,
@@ -2588,7 +2643,7 @@ module.exports = function (Ability) {
         },
         events: [96, 97, 98],
       },
-      /* ハルウララ:うららん一等賞♪ */ {
+      /* ハルウララ: うららん一等賞♪ */ {
         characterID: 51,
         monikerID: 0,
         initialTalentLevel: 1,
@@ -2657,7 +2712,7 @@ module.exports = function (Ability) {
         },
         events: [99, 100, 101],
       },
-      /* マチカネフクキタル:運気上昇☆幸福万来 */ {
+      /* マチカネフクキタル: 運気上昇☆幸福万来 */ {
         characterID: 55,
         monikerID: 0,
         initialTalentLevel: 1,
@@ -2726,7 +2781,7 @@ module.exports = function (Ability) {
         },
         events: [102, 103, 104],
       },
-      /* マチカネフクキタル:吉兆・初あらし */ {
+      /* マチカネフクキタル: 吉兆・初あらし */ {
         characterID: 55,
         monikerID: 1,
         initialTalentLevel: 3,
@@ -2781,7 +2836,7 @@ module.exports = function (Ability) {
         },
         events: [138, 139, 140],
       },
-      /* メイショウドトウ:ブルー/レイジング */ {
+      /* メイショウドトウ: ブルー/レイジング */ {
         characterID: 57,
         monikerID: 0,
         initialTalentLevel: 3,
@@ -2836,7 +2891,7 @@ module.exports = function (Ability) {
         },
         events: [132, 133, 134],
       },
-      /* ナイスネイチャ:ポインセチア・リボン */ {
+      /* ナイスネイチャ: ポインセチア・リボン */ {
         characterID: 59,
         monikerID: 0,
         initialTalentLevel: 1,
@@ -2905,7 +2960,7 @@ module.exports = function (Ability) {
         },
         events: [105, 106, 107],
       },
-      /* キングヘイロー:キング・オブ・エメラルド */ {
+      /* キングヘイロー: キング・オブ・エメラルド */ {
         characterID: 60,
         monikerID: 0,
         initialTalentLevel: 1,

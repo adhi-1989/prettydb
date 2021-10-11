@@ -382,6 +382,12 @@ module.exports = function (Type) {
         type: Type.UNIQUE_SKILL,
         skillID: 66,
       },
+      /* 姫たるもの、勝利をこの手に */ {
+        factorID: 195,
+        sortID: 195,
+        type: Type.UNIQUE_SKILL,
+        skillID: 67,
+      },
       /* NHKマイルC */ {
         factorID: 1024,
         sortID: 1024,
