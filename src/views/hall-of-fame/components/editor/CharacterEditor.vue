@@ -2,8 +2,8 @@
   <section :class="$style.characterEditor">
     <div :class="$style.tools">
       <search-bar
-        :class="$style.searchBar"
         v-model="searchQuery"
+        :class="$style.searchBar"
         :placeholder="
           t('pages.hall-of-fame.editor.character.search-bar.placeholder')
         "
@@ -22,7 +22,7 @@
     </div>
 
     <div :class="$style.content">
-      <div :class="$style.filterSettings" v-if="isFilterSettingsActive">
+      <div v-if="isFilterSettingsActive" :class="$style.filterSettings">
         <div :class="$style.main">
           <div :class="$style.header">
             {{ t("pages.hall-of-fame.editor.character.filter.description") }}
@@ -62,7 +62,7 @@
         </div>
       </div>
 
-      <div :class="$style.editors" v-else>
+      <div v-else :class="$style.editors">
         <div :class="$style.character">
           <div :class="$style.container">
             <div :class="$style.selectors">
@@ -112,9 +112,9 @@
           </div>
           <div :class="$style.selectors">
             <div
-              :class="$style.selector"
               v-for="level in AllTalentLevel"
               :key="level"
+              :class="$style.selector"
               @click="setTalentLevel(level)"
             >
               <img
@@ -134,9 +134,9 @@
           </div>
           <div :class="$style.selectors">
             <div
-              :class="$style.selector"
               v-for="level in AllAwakeningLevel"
               :key="level"
+              :class="$style.selector"
               @click="setAwakeningLevel(level)"
             >
               <img
@@ -205,29 +205,11 @@ export default defineComponent({
   components: {
     SearchBar,
   },
-  data() {
-    const { hashCode } = numbers;
-
-    return {
-      AllAwakeningLevel: Moniker.allAwakeningLevel,
-      AllTalentLevel: Moniker.allTalentLevel,
-      getCharacterNameKey: Character.getNameKey,
-      getMonikerNameKey: Moniker.getNameKey,
-      hashCode,
-      selectInputValueOnFocus,
-      fadeIn: fadeIn({
-        duration: 250,
-      }),
-      fadeOut: fadeOut({
-        duration: 250,
-      }),
-    };
-  },
   setup() {
     const { t } = useI18n();
 
     const { editData } = State(inject);
-    const { character, skills } = editData.value;
+    const { character, skills, ability } = editData.value;
 
     const searchQuery = ref("");
     const allFilterItems = computed(() => {
@@ -351,57 +333,50 @@ export default defineComponent({
       return level <= character.awakeningLevel ? starFill : starEmpty;
     };
 
-    const adjustMoniker = (newData: CharacterDto, oldData: CharacterDto) => {
-      if (newData.characterID !== oldData.characterID) {
+    type DataAdjuster = (data: CharacterDto, old: CharacterDto) => void;
+    const adjustMoniker: DataAdjuster = (data, old) => {
+      if (data.characterID !== old.characterID) {
         const _monikers = monikers.value;
-        if (!_.some(_monikers, { monikerID: newData.monikerID })) {
+        if (!_.some(_monikers, { monikerID: data.monikerID })) {
           character.monikerID = _monikers[0].monikerID;
         }
       }
     };
-    const adjustTalentLevel = (
-      newData: CharacterDto,
-      oldData: CharacterDto
-    ) => {
-      if (
-        !_.isMatch(newData, {
-          characterID: oldData.characterID,
-          monikerID: oldData.monikerID,
-        })
-      ) {
-        const moniker = Moniker.get(newData);
-        if (newData.talentLevel < moniker.initialTalentLevel) {
+    const adjustTalentLevel: DataAdjuster = (data, old) => {
+      const { characterID, monikerID } = old;
+      if (!_.isMatch(data, { characterID, monikerID })) {
+        const moniker = Moniker.get(data);
+        if (data.talentLevel < moniker.initialTalentLevel) {
           character.talentLevel = moniker.initialTalentLevel;
         }
       }
     };
-    const adjustUniqueSkill = (
-      newData: CharacterDto,
-      oldData: CharacterDto
-    ) => {
-      if (
-        !_.isMatch(newData, {
-          characterID: oldData.characterID,
-          monikerID: oldData.monikerID,
-          talentLevel: oldData.talentLevel,
-        })
-      ) {
-        const oldUniqueSkill = Skill.getUnique(oldData);
+    const adjustUniqueSkill: DataAdjuster = (data, old) => {
+      const { characterID, monikerID, talentLevel } = old;
+      if (!_.isMatch(data, { characterID, monikerID, talentLevel })) {
+        const oldUniqueSkill = Skill.getUnique(old);
         _.remove(skills, { skillID: oldUniqueSkill.skillID });
 
-        const uniqueSkill = Skill.getUnique(newData);
+        const uniqueSkill = Skill.getUnique(data);
         if (!_.some(skills, { skillID: uniqueSkill.skillID })) {
           skills.push(SkillDto(uniqueSkill));
         }
       }
     };
+    const adjustAbility: DataAdjuster = (data, old) => {
+      if (data.characterID !== old.characterID) {
+        const moniker = Moniker.get(data);
+        Object.assign(ability, moniker.initialAbility);
+      }
+    };
 
     watch(
       () => _.cloneDeep(editData.value.character),
-      (newData, oldData) => {
-        adjustMoniker(newData, oldData);
-        adjustTalentLevel(newData, oldData);
-        adjustUniqueSkill(newData, oldData);
+      (data, old) => {
+        adjustMoniker(data, old);
+        adjustTalentLevel(data, old);
+        adjustAbility(data, old);
+        adjustUniqueSkill(data, old);
       }
     );
 
@@ -438,6 +413,24 @@ export default defineComponent({
       getTalentLevelIcon,
       setAwakeningLevel,
       getAwakeningLevelIcon,
+    };
+  },
+  data() {
+    const { hashCode } = numbers;
+
+    return {
+      AllAwakeningLevel: Moniker.allAwakeningLevel,
+      AllTalentLevel: Moniker.allTalentLevel,
+      getCharacterNameKey: Character.getNameKey,
+      getMonikerNameKey: Moniker.getNameKey,
+      hashCode,
+      selectInputValueOnFocus,
+      fadeIn: fadeIn({
+        duration: 250,
+      }),
+      fadeOut: fadeOut({
+        duration: 250,
+      }),
     };
   },
 });
