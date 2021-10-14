@@ -32,7 +32,9 @@
       </div>
       <numpad
         v-model="status[editing]"
-        :option="{ min: 0, max: 1200, hiddenNumberDisplay: true }"
+        :min="0"
+        :max="1200"
+        :hidden-number-display="true"
         @enter-key-pressed="rotateEditing"
       />
     </div>

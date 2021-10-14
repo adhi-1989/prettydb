@@ -1,13 +1,16 @@
 <template>
   <section :class="$style.numpad" v-bind="$attrs">
     <div
-      :class="[$style.layout, { [$style.hiddenDisplay]: hiddenNumberDisplay }]"
+      :class="[
+        $style.layout,
+        { [$style.hiddenDisplay]: props.hiddenNumberDisplay },
+      ]"
     >
       <input
         ref="inputRef"
+        v-model="value"
         :class="$style.display"
         type="number"
-        v-model="value"
         @focus="selectInputValueOnFocus"
         @keyup.enter="$emit('enterKeyPressed')"
       />
@@ -34,8 +37,15 @@
   </section>
 </template>
 
-<script lang="ts">
-import { computed, defineComponent, PropType, ref, useCssModule } from "vue";
+<script lang="ts" setup>
+import {
+  computed,
+  defineEmits,
+  defineProps,
+  ref,
+  useCssModule,
+  withDefaults,
+} from "vue";
 import { onKeyStroke, onStartTyping } from "@vueuse/core";
 import _ from "@/util/lodash";
 import { strings } from "@/util";
@@ -70,120 +80,97 @@ const OrderedKeys = Object.freeze<NumpadKey>([
   "0",
 ]);
 
-type Option = {
+type Props = {
+  modelValue: number;
   min?: number;
   max?: number;
   hiddenNumberDisplay?: boolean;
 };
 
-export default defineComponent({
-  props: {
-    modelValue: {
-      type: Number,
-      required: true,
-    },
-    option: {
-      type: Object as PropType<Option>,
-    },
-  },
-  emits: ["update:modelValue", "enterKeyPressed"],
-  data() {
-    return {
-      OrderedKeys,
-      selectInputValueOnFocus,
-    };
-  },
-  setup(props, { emit }) {
-    const value = computed({
-      get: () => props.modelValue,
-      set: (value: number) => emit("update:modelValue", value),
-    });
-    const option = Object.assign(
-      {
-        min: Number.MIN_SAFE_INTEGER,
-        max: Number.MAX_SAFE_INTEGER,
-        hiddenNumberDisplay: false,
-      },
-      props.option
-    );
+const props = withDefaults(defineProps<Props>(), {
+  min: Number.MIN_SAFE_INTEGER,
+  max: Number.MAX_SAFE_INTEGER,
+  hiddenNumberDisplay: false,
+});
+const emit = defineEmits<{
+  (e: "update:modelValue", value: number): void;
+  (e: "enterKeyPressed"): void;
+}>();
 
-    const _style = useCssModule();
-    const inputRef = ref<HTMLInputElement>();
+const value = computed({
+  get: () => props.modelValue,
+  set: (value: number) => emit("update:modelValue", value),
+});
 
-    const getKeyClasses = (arg: NumpadKey) => {
-      const { key, backspace, enter, zero } = _style;
-      const result = [key];
-      if (arg === "backspace") {
-        result.push(backspace);
-      } else if (arg === "enter") {
-        result.push(enter);
-      } else if (arg === "0") {
-        result.push(zero);
-      }
-      return result;
-    };
-    const keyClicked = (key: NumpadKey) => {
-      const input = inputRef.value;
-      if (input !== undefined) {
-        let _value = value.value;
-        switch (key) {
-          case "enter":
-            emit("enterKeyPressed");
-            return;
-          case "backspace":
-            _value = Math.floor(_value / 10);
-            break;
-          case "0":
-          case "1":
-          case "2":
-          case "3":
-          case "4":
-          case "5":
-          case "6":
-          case "7":
-          case "8":
-          case "9":
-            _value = _value * 10 + Number(key);
-            break;
-        }
-        value.value = _.clamp(Number(_value), option.min, option.max);
-      }
-    };
+const _style = useCssModule();
 
-    if (!option.hiddenNumberDisplay) {
-      onStartTyping((event) => {
-        const input = inputRef.value;
-        if (input !== undefined && !isNaN(Number(event.key))) {
-          input.focus();
-        }
-      });
-    } else {
-      onKeyStroke(
-        (event: KeyboardEvent) =>
-          _.some(OrderedKeys, (x) => strings.equalsIgnoreCase(event.key, x)),
-        (event) => {
-          const key = OrderedKeys.find((x) =>
-            strings.equalsIgnoreCase(event.key, x)
-          );
-          if (key !== undefined) {
-            keyClicked(key);
-          }
-        }
-      );
+const inputRef = ref<HTMLInputElement>();
+
+const getKeyClasses = (arg: NumpadKey) => {
+  const { key, backspace, enter, zero } = _style;
+  const result = [key];
+  if (arg === "backspace") {
+    result.push(backspace);
+  } else if (arg === "enter") {
+    result.push(enter);
+  } else if (arg === "0") {
+    result.push(zero);
+  }
+  return result;
+};
+
+const keyClicked = (key: NumpadKey) => {
+  const input = inputRef.value;
+  if (input !== undefined) {
+    let _value = value.value;
+    switch (key) {
+      case "enter":
+        emit("enterKeyPressed");
+        return;
+      case "backspace":
+        _value = Math.floor(_value / 10);
+        break;
+      case "0":
+      case "1":
+      case "2":
+      case "3":
+      case "4":
+      case "5":
+      case "6":
+      case "7":
+      case "8":
+      case "9":
+        _value = _value * 10 + Number(key);
+        break;
     }
+    value.value = _.clamp(Number(_value), props.min, props.max);
+  }
+};
 
-    onKeyStroke("Delete", () => {
-      value.value = 0;
-    });
+if (!props.hiddenNumberDisplay) {
+  onStartTyping((event) => {
+    const input = inputRef.value;
+    if (input !== undefined && !isNaN(Number(event.key))) {
+      input.focus();
+    }
+  });
+} else {
+  onKeyStroke(
+    (event: KeyboardEvent) =>
+      _.some(OrderedKeys, (x) => strings.equalsIgnoreCase(event.key, x)),
+    (event) => {
+      const key = OrderedKeys.find((x) =>
+        strings.equalsIgnoreCase(event.key, x)
+      );
+      if (key !== undefined) {
+        keyClicked(key);
+      }
+    }
+  );
+}
 
-    return {
-      value,
-      hiddenNumberDisplay: option.hiddenNumberDisplay,
-      inputRef,
-      getKeyClasses,
-      keyClicked,
-    };
-  },
+onKeyStroke("Delete", () => {
+  value.value = 0;
 });
 </script>
 
