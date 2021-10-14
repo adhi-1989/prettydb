@@ -46,7 +46,7 @@
     </section>
 
     <transition name="toast" @enter="fadeInUp" @leave="fadeOut">
-      <section :class="$style.toast" v-if="isToastDisplay">
+      <section v-if="isToastDisplay" :class="$style.toast">
         {{ t("pages.settings.toast.import") }}
       </section>
     </transition>

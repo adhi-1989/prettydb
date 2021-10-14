@@ -1,14 +1,14 @@
 <template>
   <article :class="$style.changelog">
     <section
-      :class="$style.content"
       v-for="item in changelog"
       :key="item.version"
+      :class="$style.content"
     >
       <h1 :class="$style.version">v{{ item.version }}</h1>
       <div :class="$style.update">公開日: {{ item.releaseDate }}</div>
       <ul :class="$style.logs">
-        <li :class="$style.log" v-for="log in item.logs" :key="log">
+        <li v-for="log in item.logs" :key="log" :class="$style.log">
           {{ log }}
         </li>
       </ul>
