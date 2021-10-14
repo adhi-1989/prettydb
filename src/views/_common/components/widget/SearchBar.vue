@@ -3,10 +3,10 @@
     <label :class="$style.content">
       <icon-ion-search :class="$style.icon" />
       <input
+        v-model="value"
         :class="$style.input"
         type="text"
         :placeholder="placeholder"
-        v-model="value"
         @focus="selectInputValueOnFocus"
       />
     </label>
@@ -46,9 +46,9 @@ const value = computed({
     }
 
     > .input {
-      @apply w-[calc(100%-0.25rem-1.25rem)] bg-transparent;
-      @apply sm:(w-[calc(100%-0.375rem-2rem)]);
-      @apply md:(w-[calc(100%-0.5rem-1.75rem)]);
+      @apply w-[calc(100%-0.25rem-1.25rem)] h-[1.75rem] bg-transparent;
+      @apply sm:(w-[calc(100%-0.375rem-1.5rem)] h-[2rem]);
+      @apply md:(w-[calc(100%-0.5rem-1.75rem)] h-[2.5rem]);
     }
   }
 }
