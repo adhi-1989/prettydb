@@ -3,7 +3,7 @@
     <label :class="$style.content">
       <icon-ion-search :class="$style.icon" />
       <input
-        v-model="value"
+        v-model="_query"
         :class="$style.input"
         type="text"
         :placeholder="placeholder"
@@ -25,9 +25,9 @@ const props = withDefaults(
 );
 const emit = defineEmits<{ (e: "update:modelValue", value: string): void }>();
 
-const value = computed({
+const _query = computed({
   get: () => props.modelValue,
-  set: (value: string) => emit("update:modelValue", value),
+  set: (query: string) => emit("update:modelValue", query),
 });
 </script>
 

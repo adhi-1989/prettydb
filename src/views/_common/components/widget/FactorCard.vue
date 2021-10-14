@@ -2,9 +2,9 @@
   <section :class="[$style.card, frameType]">
     <div :class="$style.content">
       <div :class="$style.label">{{ factorName }}</div>
-      <div :class="$style.level" v-if="isLevelValid">
-        <template v-for="level in Factor.allLevel" :key="level">
-          <img :class="$style.icon" :src="getLevelIcon(level)" alt="" />
+      <div v-if="isLevelValid" :class="$style.level">
+        <template v-for="factorLevel in allLevel" :key="factorLevel">
+          <img :class="$style.icon" :src="getLevelIcon(factorLevel)" alt="" />
         </template>
       </div>
     </div>
@@ -12,9 +12,9 @@
 </template>
 
 <script lang="ts" setup>
+import type { FactorLevel } from "@/data";
 import { computed, defineProps, useCssModule, withDefaults } from "vue";
 import { useI18n } from "vue-i18n";
-import type { FactorLevel } from "@/data";
 import { Factor } from "@/data";
 import starFill from "#/images/level/star-fill.svg";
 import starEmpty from "#/images/level/star-empty.svg";
@@ -25,6 +25,8 @@ const props = withDefaults(defineProps<{ factor: Factor; level?: number }>(), {
 
 const _style = useCssModule();
 const { t } = useI18n();
+
+const allLevel = Factor.allLevel;
 
 const factorName = computed(() => {
   return t(Factor.getNameKey(props.factor));

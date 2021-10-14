@@ -16,88 +16,80 @@
   </section>
 </template>
 
-<script lang="ts">
-import { computed, defineComponent, useCssModule } from "vue";
+<script lang="ts" setup>
+import {
+  computed,
+  defineEmits,
+  defineProps,
+  useCssModule,
+  withDefaults,
+} from "vue";
 import _ from "@/util/lodash";
 
 type Page = number | string;
 
-export default defineComponent({
-  props: {
-    modelValue: {
-      type: Number,
-      required: true,
-    },
-    max: {
-      type: Number,
-      required: true,
-    },
-    sphere: {
-      type: Boolean,
-      default: false,
-    },
-  },
-  emits: ["update:modelValue"],
-  setup(props, { emit }) {
-    const _style = useCssModule();
+const props = withDefaults(
+  defineProps<{ modelValue: number; max: number; sphere?: boolean }>(),
+  {
+    sphere: false,
+  }
+);
+const emit = defineEmits<{ (e: "update:modelValue", value: number): void }>();
 
-    const _page = computed({
-      get: () => props.modelValue,
-      set: (page: number) => emit("update:modelValue", page),
-    });
-    const setPage = (page: Page) => {
-      if (_.isNumber(page)) {
-        const newPage = _.clamp(page, 1, props.max);
-        if (newPage !== _page.value) {
-          _page.value = newPage;
-        }
-      }
-    };
-    const moveNext = () => {
-      setPage(_page.value + 1);
-    };
-    const movePrev = () => {
-      setPage(_page.value - 1);
-    };
-    const pages = computed<Array<Page>>(() => {
-      const max = props.max;
-      if (max <= 1) {
-        return max === 1 ? [1] : [];
-      } else if (max < 6 || props.sphere) {
-        return _.range(1, max + 1);
-      }
-      const page = _page.value;
-      if (page <= 4) {
-        return [1, 2, 3, 4, 5, "...", max];
-      } else if (page > 4 && page <= max - 4) {
-        return [1, "...", page - 1, page, page + 1, "...", max];
-      } else {
-        return [1, "...", max - 4, max - 3, max - 2, max - 1, max];
-      }
-    });
-    const getPageClasses = (arg: Page) => {
-      const { page, sphere, button, selected } = _style;
-      const result = [page];
-      if (props.sphere) {
-        result.push(sphere);
-      } else if (_.isNumber(arg)) {
-        result.push(button);
-      }
-      if (_page.value === arg) {
-        result.push(selected);
-      }
-      return result;
-    };
-
-    return {
-      setPage,
-      moveNext,
-      movePrev,
-      pages,
-      getPageClasses,
-    };
-  },
+const _page = computed({
+  get: () => props.modelValue,
+  set: (page: number) => emit("update:modelValue", page),
 });
+
+const _style = useCssModule();
+
+const setPage = (page: Page) => {
+  if (_.isNumber(page)) {
+    const newPage = _.clamp(page, 1, props.max);
+    if (newPage !== _page.value) {
+      _page.value = newPage;
+    }
+  }
+};
+
+const moveNext = () => {
+  setPage(_page.value + 1);
+};
+
+const movePrev = () => {
+  setPage(_page.value - 1);
+};
+
+const pages = computed<Array<Page>>(() => {
+  const max = props.max;
+  if (max <= 1) {
+    return max === 1 ? [1] : [];
+  } else if (max < 6 || props.sphere) {
+    return _.range(1, max + 1);
+  }
+  const page = _page.value;
+  if (page <= 4) {
+    return [1, 2, 3, 4, 5, "...", max];
+  } else if (page > 4 && page <= max - 4) {
+    return [1, "...", page - 1, page, page + 1, "...", max];
+  } else {
+    return [1, "...", max - 4, max - 3, max - 2, max - 1, max];
+  }
+});
+
+const getPageClasses = (arg: Page) => {
+  const { page, sphere, button, selected } = _style;
+  const result = [page];
+  if (props.sphere) {
+    result.push(sphere);
+  } else if (_.isNumber(arg)) {
+    result.push(button);
+  }
+  if (_page.value === arg) {
+    result.push(selected);
+  }
+  return result;
+};
 </script>
 
 <style lang="scss" module>

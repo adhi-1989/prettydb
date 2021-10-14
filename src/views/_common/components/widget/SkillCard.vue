@@ -5,45 +5,38 @@
         <img :src="skillTypeIcon" alt="" />
       </div>
       <div :class="$style.label">{{ skillName }}</div>
-      <div :class="$style.level" v-if="isOwnUnique">
+      <div v-if="isOwnUnique" :class="$style.level">
         {{ uniqueSkillLevel }}
       </div>
     </div>
   </section>
 </template>
 
-<script lang="ts">
+<script lang="ts" setup>
 import type { UniqueSkillLevel, UniqueSkillOwner } from "@/data";
+import { defineProps, withDefaults, useCssModule, computed } from "vue";
+import { useI18n } from "vue-i18n";
+import { Skill } from "@/data";
+import { getSkillTypeIcon } from "@/views/_common/logic/resources/images";
 
 type UniqueSkillInfo = {
   owner: UniqueSkillOwner;
   level: UniqueSkillLevel;
 };
 
-const defaultInfo = Object.freeze<UniqueSkillInfo>({
-  owner: {
-    characterID: -1,
-    monikerID: -1,
-    talentLevel: 1,
-  },
-  level: 1,
-});
-
-export default {
-  defaultInfo,
-};
-</script>
-
-<script lang="ts" setup>
-import { defineProps, withDefaults, useCssModule, computed } from "vue";
-import { useI18n } from "vue-i18n";
-import { Skill } from "@/data";
-import { getSkillTypeIcon } from "@/views/_common/logic/resources/images";
-
 const props = withDefaults(
   defineProps<{ skill: Skill; unique?: UniqueSkillInfo }>(),
   {
-    unique: () => defaultInfo,
+    unique: () => {
+      return {
+        owner: {
+          characterID: -1,
+          monikerID: -1,
+          talentLevel: 1,
+        },
+        level: 1,
+      };
+    },
   }
 );
 
@@ -53,6 +46,7 @@ const { t } = useI18n();
 const skillName = computed(() => {
   return t(Skill.getNameKey(props.skill));
 });
+
 const uniqueSkillLevel = computed(() => {
   return t("components.widget.skill-card.unique-level", {
     uniqueSkillLevel: props.unique.level,
@@ -62,6 +56,7 @@ const uniqueSkillLevel = computed(() => {
 const isOwnUnique = computed(() => {
   return props.skill === Skill.getUnique(props.unique.owner);
 });
+
 const frameType = computed(() => {
   const { standard, advanced, unique } = _style;
   if (isOwnUnique.value) {
@@ -69,6 +64,7 @@ const frameType = computed(() => {
   }
   return props.skill.advanced ? advanced : standard;
 });
+
 const skillTypeIcon = computed(() => {
   return getSkillTypeIcon(props.skill.type);
 });
