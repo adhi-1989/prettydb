@@ -388,6 +388,12 @@ module.exports = function (Type) {
         type: Type.UNIQUE_SKILL,
         skillID: 67,
       },
+      /* アナタヲ・オイカケテ */ {
+        factorID: 196,
+        sortID: 196,
+        type: Type.UNIQUE_SKILL,
+        skillID: 68,
+      },
       /* NHKマイルC */ {
         factorID: 1024,
         sortID: 1024,
@@ -1311,6 +1317,11 @@ module.exports = function (Type) {
       /* 静かな呼吸 */ {
         factorID: 2342,
         sortID: 2342,
+        type: Type.SKILL,
+      },
+      /* ありったけ */ {
+        factorID: 2346,
+        sortID: 2346,
         type: Type.SKILL,
       },
       /* URAシナリオ */ {

@@ -1257,6 +1257,38 @@ module.exports = function (Rarity, Type) {
         skills: [1213, 1066, 1160, 1277, 1118, 1249, 1172, 1129],
         events: [4182, 4183, 4485, 4486, 4487],
       },
+      /* ナカヤマフェスタ: トレセン学園 */ {
+        cardID: 157,
+        characterID: 48,
+        rarity: Rarity.R,
+        type: Type.STAMINA,
+        skills: [1246, 1266, 1133, 1098, 1156, 1134, 1090, 1074, 1323],
+        events: [4488, 4489],
+      },
+      /* シリウスシンボリ: トレセン学園 */ {
+        cardID: 158,
+        characterID: 70,
+        rarity: Rarity.R,
+        type: Type.TENACITY,
+        skills: [1246, 1260, 1198, 1083],
+        events: [4490, 4491],
+      },
+      /* ナカヤマフェスタ: 43、8、1 */ {
+        cardID: 159,
+        characterID: 48,
+        rarity: Rarity.SSR,
+        type: Type.STAMINA,
+        skills: [1246, 1266, 1133, 1098, 1156, 1134, 1090, 1074, 1323],
+        events: [4488, 4489, 4492, 4493, 4494, 4495],
+      },
+      /* シリウスシンボリ: 一等星は揺らがない */ {
+        cardID: 160,
+        characterID: 70,
+        rarity: Rarity.SR,
+        type: Type.TENACITY,
+        skills: [1246, 1260, 1198, 1083],
+        events: [4490, 4491, 4496, 4497],
+      },
     ],
   };
 };

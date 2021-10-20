@@ -625,6 +625,18 @@ module.exports = function () {
         eventID: 155,
         skills: [],
       },
+      /* ズット、ズット、待ッテイタ…… */ {
+        eventID: 156,
+        skills: [],
+      },
+      /* 影ナル者 */ {
+        eventID: 157,
+        skills: [],
+      },
+      /* 夢幻ナル世界ノ中デ */ {
+        eventID: 158,
+        skills: [],
+      },
       /* 曲がり角には、気をつけます！ */ {
         eventID: 4096,
         skills: [1268],
@@ -2192,6 +2204,46 @@ module.exports = function () {
       /* 読書少女とあるカエルの友人 */ {
         eventID: 4487,
         skills: [1320],
+      },
+      /* 夕暮れにひと勝負 */ {
+        eventID: 4488,
+        skills: [],
+      },
+      /* 夕暮れの独り飯 */ {
+        eventID: 4489,
+        skills: [1202, 1136],
+      },
+      /* 教えてやろうか？ */ {
+        eventID: 4490,
+        skills: [],
+      },
+      /* 助けてやろうか？ */ {
+        eventID: 4491,
+        skills: [1032],
+      },
+      /* 予兆の夜 */ {
+        eventID: 4492,
+        skills: [],
+      },
+      /* 火花散る昼 */ {
+        eventID: 4493,
+        skills: [],
+      },
+      /* 闇に溶ける夕 */ {
+        eventID: 4494,
+        skills: [1027],
+      },
+      /* 闇に溶ける夕 */ {
+        eventID: 4495,
+        skills: [1324, 1323],
+      },
+      /* 問題児たちの王 */ {
+        eventID: 4496,
+        skills: [],
+      },
+      /* 水と油 */ {
+        eventID: 4497,
+        skills: [1118],
       },
     ],
   };
