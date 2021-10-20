@@ -1,6 +1,6 @@
 {
   "name": "prettydb",
-  "version": "0.8.6",
+  "version": "0.8.7",
   "scripts": {
     "dev": "vite",
     "build:protobuf:data:js": "node script/data/generate-protobufjs.js",
