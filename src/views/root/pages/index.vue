@@ -2,7 +2,7 @@
   <article :class="$style.home">
     <header :class="$style.header">
       <img :class="$style.logo" :src="logo" alt="" />
-      <span :class="$style.version">v0.8.7</span>
+      <span :class="$style.version">v0.8.8</span>
     </header>
 
     <main :class="$style.main">

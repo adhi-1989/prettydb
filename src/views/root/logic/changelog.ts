@@ -7,6 +7,16 @@ export type Changelog = {
 //TODO: 余裕があれば国際化する
 export const changelog: ReadonlyArray<Changelog> = Object.freeze([
   {
+    version: "0.8.8",
+    releaseDate: "2021-10-28",
+    logs: [
+      "ウマ娘「シンボリルドルフ: 皓月の弓取り」のデータを追加",
+      "ウマ娘「ゴールドシチー: 秋桜ダンツァトリーチェ」のデータを追加",
+      "スキル「布陣」のデータを追加",
+      "スキル「初嵐」のデータを追加",
+    ],
+  },
+  {
     version: "0.8.7",
     releaseDate: "2021-10-20",
     logs: [
