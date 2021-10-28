@@ -82,7 +82,7 @@ pages:
             skill-type: スキルタイプ
           label:
             standard: 通常スキル
-            advanced: 金スキル
+            advanced: レアスキル
             unique: 固有スキル
       factor:
         search-bar:
