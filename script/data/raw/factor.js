@@ -394,6 +394,18 @@ module.exports = function (Type) {
         type: Type.UNIQUE_SKILL,
         skillID: 68,
       },
+      /* GET DOWN */ {
+        factorID: 197,
+        sortID: 197,
+        type: Type.UNIQUE_SKILL,
+        skillID: 69,
+      },
+      /* 翳り退く、さざめきの矢 */ {
+        factorID: 198,
+        sortID: 198,
+        type: Type.UNIQUE_SKILL,
+        skillID: 70,
+      },
       /* NHKマイルC */ {
         factorID: 1024,
         sortID: 1024,

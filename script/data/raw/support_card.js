@@ -1289,6 +1289,30 @@ module.exports = function (Rarity, Type) {
         skills: [1246, 1260, 1198, 1083],
         events: [4490, 4491, 4496, 4497],
       },
+      /* カレンチャン: トレセン学園 */ {
+        cardID: 161,
+        characterID: 37,
+        rarity: Rarity.R,
+        type: Type.INTELLIGENCE,
+        skills: [1051, 1128, 1195, 1282, 1032],
+        events: [4498, 4499],
+      },
+      /* カレンチャン: かなし君、うつくし君 */ {
+        cardID: 162,
+        characterID: 37,
+        rarity: Rarity.SSR,
+        type: Type.INTELLIGENCE,
+        skills: [1051, 1128, 1195, 1282, 1032],
+        events: [4498, 4499, 4500, 4501, 4502],
+      },
+      /* ナリタブライアン: 天嗤う鏑矢 */ {
+        cardID: 163,
+        characterID: 15,
+        rarity: Rarity.SSR,
+        type: Type.STAMINA,
+        skills: [1085, 1116, 1098, 1252, 1200, 1198, 1207, 1089],
+        events: [4126, 4127, 4503, 4504, 4505],
+      },
     ],
   };
 };

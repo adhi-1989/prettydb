@@ -637,6 +637,30 @@ module.exports = function () {
         eventID: 158,
         skills: [],
       },
+      /* 本番前の、静かな余談 */ {
+        eventID: 159,
+        skills: [1133],
+      },
+      /* “シチーガール”の今の気分♪ */ {
+        eventID: 160,
+        skills: [],
+      },
+      /* 金色の佳景、極まる */ {
+        eventID: 161,
+        skills: [1146],
+      },
+      /* 心に咲く、熱 */ {
+        eventID: 162,
+        skills: [1260],
+      },
+      /* 経験を授けよ */ {
+        eventID: 163,
+        skills: [1169],
+      },
+      /* 鮮やかな記憶 */ {
+        eventID: 164,
+        skills: [],
+      },
       /* 曲がり角には、気をつけます！ */ {
         eventID: 4096,
         skills: [1268],
@@ -2229,11 +2253,11 @@ module.exports = function () {
         eventID: 4493,
         skills: [],
       },
-      /* 闇に溶ける夕 */ {
+      /* 闇に溶ける夕A */ {
         eventID: 4494,
         skills: [1027],
       },
-      /* 闇に溶ける夕 */ {
+      /* 闇に溶ける夕B */ {
         eventID: 4495,
         skills: [1324, 1323],
       },
@@ -2244,6 +2268,38 @@ module.exports = function () {
       /* 水と油 */ {
         eventID: 4497,
         skills: [1118],
+      },
+      /* #あなただけのカワイイ */ {
+        eventID: 4498,
+        skills: [],
+      },
+      /* #カワイイフォーユー☆ */ {
+        eventID: 4499,
+        skills: [1115],
+      },
+      /* #カレンの可能性 */ {
+        eventID: 4500,
+        skills: [1259, 1272],
+      },
+      /* #カレンの疑問 */ {
+        eventID: 4501,
+        skills: [],
+      },
+      /* #カレンらしく */ {
+        eventID: 4502,
+        skills: [1313, 1282],
+      },
+      /* いつかの標的 */ {
+        eventID: 4503,
+        skills: [],
+      },
+      /* 池の覇者 */ {
+        eventID: 4504,
+        skills: [1055],
+      },
+      /* 戦場の心得 */ {
+        eventID: 4505,
+        skills: [1061],
       },
     ],
   };
