@@ -7,6 +7,11 @@ export type Changelog = {
 //TODO: 余裕があれば国際化する
 export const changelog: ReadonlyArray<Changelog> = Object.freeze([
   {
+    version: "0.8.9",
+    releaseDate: "2021-11-08",
+    logs: ["ウマ娘「トーセンジョーダン: ポップス☆ジョーカー」のデータを追加"],
+  },
+  {
     version: "0.8.8",
     releaseDate: "2021-10-28",
     logs: [
