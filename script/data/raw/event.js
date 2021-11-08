@@ -661,6 +661,18 @@ module.exports = function () {
         eventID: 164,
         skills: [],
       },
+      /* ラメの輝きに託して */ {
+        eventID: 165,
+        skills: [],
+      },
+      /* 基本フリータイムっしょ！ */ {
+        eventID: 166,
+        skills: [],
+      },
+      /* 勝利の味ってヤツ！ */ {
+        eventID: 167,
+        skills: [],
+      },
       /* 曲がり角には、気をつけます！ */ {
         eventID: 4096,
         skills: [1268],

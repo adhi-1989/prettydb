@@ -406,6 +406,12 @@ module.exports = function (Type) {
         type: Type.UNIQUE_SKILL,
         skillID: 70,
       },
+      /* YEAH☆VIVID TIME! */ {
+        factorID: 199,
+        sortID: 199,
+        type: Type.UNIQUE_SKILL,
+        skillID: 71,
+      },
       /* NHKマイルC */ {
         factorID: 1024,
         sortID: 1024,

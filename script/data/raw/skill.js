@@ -853,6 +853,18 @@ module.exports = function (Type, Levels) {
         matchingTalentLevels: Levels.FROM_3_TO_5,
         inheritable: true,
       },
+      /* YEAH☆VIVID TIME! */ {
+        skillID: 71,
+        sortID: 71,
+        point: 200,
+        type: Type.BUFF_SPEED,
+        advanced: false,
+        unique: true,
+        characterID: 47,
+        monikerID: 0,
+        matchingTalentLevels: Levels.FROM_3_TO_5,
+        inheritable: true,
+      },
       /* アガッてきた！ */ {
         skillID: 1024,
         sortID: 1024,

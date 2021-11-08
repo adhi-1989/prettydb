@@ -368,6 +368,9 @@ character:
     name: ゼンノロブロイ
   47:
     name: トーセンジョーダン
+    moniker:
+      0:
+        name: ポップス☆ジョーカー
   48:
     name: ナカヤマフェスタ
   49:
@@ -712,6 +715,10 @@ skill:
     name: 翳り退く、さざめきの矢
     description: '最終コーナー以降に先団で\n詰め寄られると闘志を燃やして\n速度を上げる'
     description-for-inheritor: '最終コーナー以降に先団で\n詰め寄られるとわずかに速度を上げる'
+  71:
+    name: 'YEAH☆VIVID TIME!'
+    description: '最終直線を走行中に好位置で\n追い抜くまたは詰め寄られると\nテンションを上げて速度を上げる'
+    description-for-inheritor: '最終直線を走行中に好位置で\n追い抜くまたは詰め寄られると\nわずかに速度を上げる'
   1024:
     name: アガッてきた！
     description: 'レース中盤に追い抜くと\n速度が上がる'
@@ -1835,6 +1842,9 @@ factor:
   198:
     name: 翳り退く、さざめきの矢
     description: 「翳り退く、さざめきの矢」のスキルヒントを得られる因子です
+  199:
+    name: 'YEAH☆VIVID TIME!'
+    description: '「YEAH☆VIVID TIME!」のスキルヒントを得られる因子です'
   1024:
     name: NHKマイルC
     description: スピードとパワーがアップする因子です
@@ -3063,6 +3073,12 @@ event:
     name: 経験を授けよ
   164:
     name: 鮮やかな記憶
+  165:
+    name: ラメの輝きに託して
+  166:
+    name: 基本フリータイムっしょ！
+  167:
+    name: 勝利の味ってヤツ！
   4096:
     name: 曲がり角には、気をつけます！
   4097:
